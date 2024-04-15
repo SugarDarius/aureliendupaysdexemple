@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import { GeistSans } from 'geist/font/sans'
 
-const inter = Inter({ subsets: ['latin'] })
+import { cn } from '@/lib/utils'
+
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cn(
+          'bg-background font-sans antialiased',
+          GeistSans.variable
+        )}
+      >
+        {children}
+      </body>
     </html>
   )
 }
