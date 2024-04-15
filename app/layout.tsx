@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { GeistSans } from 'geist/font/sans'
 
 import { cn } from '@/lib/utils'
+import { ProvidersTree } from '@/components/providers/providers-tree'
 
 import './globals.css'
 
@@ -30,7 +31,7 @@ export default function RootLayout({
           GeistSans.variable
         )}
       >
-        {children}
+        <ProvidersTree>{children}</ProvidersTree>
       </body>
     </html>
   )
