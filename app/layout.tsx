@@ -31,7 +31,11 @@ export default function RootLayout({
           GeistSans.variable
         )}
       >
-        <ProvidersTree>{children}</ProvidersTree>
+        <ProvidersTree>
+          <main className='flex h-screen w-screen flex-col overflow-hidden'>
+            {children}
+          </main>
+        </ProvidersTree>
       </body>
     </html>
   )
