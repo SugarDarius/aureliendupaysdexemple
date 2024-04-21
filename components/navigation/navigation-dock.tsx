@@ -1,111 +1,21 @@
 'use client'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { forwardRef } from 'react'
-
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 
 import { siteConfig } from '@/config/site-config'
-import { cn } from '@/lib/utils'
-import {
-  type NavigationItemName,
-  navigationItems,
-  navigationItemsIcons,
-} from '@/lib/navigation'
+import { navigationItems } from '@/lib/navigation'
 
-import { TwitterLogoIcon } from '@/components/icons/twitter-logo'
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/ui/tooltip'
 import {
   NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import { Separator } from '@/components/ui/separator'
 
-type NavigationDockItemLinkProps = {
-  href: string
-  active?: boolean
-  children: React.ReactNode
-}
+import { TwitterLogoIcon } from '@/components/icons/twitter-logo'
 
-const NavigationDockItemLink = forwardRef<
-  HTMLAnchorElement,
-  NavigationDockItemLinkProps
->(({ href, active = false, children }, ref) => {
-  return (
-    <Link
-      ref={ref}
-      href={href}
-      className={cn(
-        navigationMenuTriggerStyle(),
-        'flex flex-col items-center justify-center rounded-xl data-[active]:bg-accent'
-      )}
-      data-active={active ? '' : undefined}
-    >
-      {children}
-    </Link>
-  )
-})
-NavigationDockItemLink.displayName = 'NavigationDockItemLink'
-
-const NavigationDockItemExternalLink = ({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) => {
-  return (
-    <a
-      href={href}
-      target='_blank'
-      rel='noopener noreferrer'
-      className={cn(
-        navigationMenuTriggerStyle(),
-        'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
-      )}
-    >
-      {children}
-    </a>
-  )
-}
-
-const NavigationDockItem = ({
-  href,
-  name,
-  label,
-  pathname,
-}: {
-  href: string
-  name: NavigationItemName
-  label: string
-  pathname: string
-}) => {
-  const isActive = href === pathname
-  const Icon = navigationItemsIcons[name]
-
-  return (
-    <NavigationMenuItem>
-      <Tooltip>
-        <TooltipTrigger>
-          <NavigationMenuLink asChild>
-            <NavigationDockItemLink href={href} active={isActive}>
-              <Icon className='h-4 w-4' />
-            </NavigationDockItemLink>
-          </NavigationMenuLink>
-        </TooltipTrigger>
-        <TooltipContent>{label}</TooltipContent>
-      </Tooltip>
-    </NavigationMenuItem>
-  )
-}
+import { NavigationDockItem } from '@/components/navigation/navigation-dock-item'
+import { NavigationDockItemExternalLink } from '@/components/navigation/navigation-dock-item-link'
 
 export function NavigationDock() {
   const pathname = usePathname()
