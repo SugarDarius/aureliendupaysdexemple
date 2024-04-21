@@ -4,6 +4,12 @@ import Link from 'next/link'
 import { forwardRef } from 'react'
 
 import { cn } from '@/lib/utils'
+
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 
 type NavigationDockItemLinkProps = {
@@ -34,22 +40,29 @@ NavigationDockItemLink.displayName = 'NavigationDockItemLink'
 
 export const NavigationDockItemExternalLink = ({
   href,
+  tooltipLabel,
   children,
 }: {
   href: string
+  tooltipLabel: string
   children: React.ReactNode
 }) => {
   return (
-    <a
-      href={href}
-      target='_blank'
-      rel='noopener noreferrer'
-      className={cn(
-        navigationMenuTriggerStyle(),
-        'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
-      )}
-    >
-      {children}
-    </a>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <a
+          href={href}
+          target='_blank'
+          rel='noopener noreferrer'
+          className={cn(
+            navigationMenuTriggerStyle(),
+            'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
+          )}
+        >
+          {children}
+        </a>
+      </TooltipTrigger>
+      <TooltipContent>{tooltipLabel}</TooltipContent>
+    </Tooltip>
   )
 }

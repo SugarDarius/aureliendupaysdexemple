@@ -39,16 +39,19 @@ export function NavigationDock() {
         <div className='flex flex-row items-center gap-1'>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.linkedin.url}
+            tooltipLabel='Linked In'
           >
             <LinkedInLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.github.url}
+            tooltipLabel='GitHub'
           >
             <GitHubLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.twitter.url}
+            tooltipLabel='Twitter'
           >
             <TwitterLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
