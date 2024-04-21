@@ -10,6 +10,11 @@ import {
 } from '@/lib/navigation'
 
 import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
+import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
@@ -20,26 +25,33 @@ import {
 const NavigationBarMenuItem = ({
   href,
   name,
+  label,
 }: {
   href: string
   name: NavigationItemName
+  label: string
 }) => {
   const Icon = navigationItemsIcons[name]
 
   return (
-    <NavigationMenuItem>
-      <NavigationMenuLink asChild>
-        <Link
-          href={href}
-          className={cn(
-            navigationMenuTriggerStyle(),
-            'flex flex-col items-center justify-center rounded-xl'
-          )}
-        >
-          <Icon className='h-4 w-4' />
-        </Link>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <Link
+              href={href}
+              className={cn(
+                navigationMenuTriggerStyle(),
+                'flex flex-col items-center justify-center rounded-xl'
+              )}
+            >
+              <Icon className='h-4 w-4' />
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </TooltipTrigger>
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
   )
 }
 
