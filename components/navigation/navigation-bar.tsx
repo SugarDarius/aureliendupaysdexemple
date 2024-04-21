@@ -1,52 +1,59 @@
 'use client'
 
 import Link from 'next/link'
-import { HomeIcon } from '@heroicons/react/24/outline'
 
-import type { HeroiconsIcon } from '@/lib/heroicons'
 import { cn } from '@/lib/utils'
+import {
+  type NavigationItemName,
+  navigationItems,
+  navigationItemsIcons,
+} from '@/lib/navigation'
+
 import {
   NavigationMenu,
   NavigationMenuItem,
+  NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 
-type NavigationBarMenuItemKey = 'home'
-
-const icons: Record<NavigationBarMenuItemKey, HeroiconsIcon> = {
-  home: HomeIcon,
-}
-
 const NavigationBarMenuItem = ({
   href,
-  itemKey,
+  name,
 }: {
   href: string
-  itemKey: NavigationBarMenuItemKey
+  name: NavigationItemName
 }) => {
-  const Icon = icons[itemKey]
+  const Icon = navigationItemsIcons[name]
+
   return (
     <NavigationMenuItem>
-      <Link
-        href={href}
-        className={cn(
-          navigationMenuTriggerStyle(),
-          'flex flex-col items-center justify-center rounded-xl'
-        )}
-      >
-        <Icon className='h-4 w-4' />
-      </Link>
+      <NavigationMenuLink asChild>
+        <Link
+          href={href}
+          className={cn(
+            navigationMenuTriggerStyle(),
+            'flex flex-col items-center justify-center rounded-xl'
+          )}
+        >
+          <Icon className='h-4 w-4' />
+        </Link>
+      </NavigationMenuLink>
     </NavigationMenuItem>
   )
 }
 
 export function NavigationBar() {
   return (
-    <div className='fixed bottom-6 left-0 right-0 mx-auto my-0 w-max rounded-xl border-2 px-4 py-2.5'>
+    <div className='fixed bottom-6 left-0 right-0 mx-auto my-0 w-max rounded-xl border-2 p-2.5'>
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationBarMenuItem href='/' itemKey='home' />
+          {navigationItems.map((navigationItem) => (
+            <NavigationBarMenuItem
+              key={navigationItem.name}
+              {...navigationItem}
+            />
+          ))}
         </NavigationMenuList>
       </NavigationMenu>
     </div>
