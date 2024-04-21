@@ -59,18 +59,18 @@ const NavigationDockItem = ({
   const Icon = navigationItemsIcons[name]
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <NavigationMenuItem>
+    <NavigationMenuItem>
+      <Tooltip>
+        <TooltipTrigger>
           <NavigationMenuLink asChild>
             <NavigationDockItemLink href={href}>
               <Icon className='h-4 w-4' />
             </NavigationDockItemLink>
           </NavigationMenuLink>
-        </NavigationMenuItem>
-      </TooltipTrigger>
-      <TooltipContent>{label}</TooltipContent>
-    </Tooltip>
+        </TooltipTrigger>
+        <TooltipContent>{label}</TooltipContent>
+      </Tooltip>
+    </NavigationMenuItem>
   )
 }
 
