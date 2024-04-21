@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { siteConfig } from '@/config/site-config'
 import { baseUrl } from '@/app/sitemap'
 import { ProvidersTree } from '@/components/providers/providers-tree'
-import { NavigationBar } from '@/components/navigation/navigation-bar'
+import { NavigationDock } from '@/components/navigation/navigation-dock'
 
 import './globals.css'
 
@@ -56,7 +56,7 @@ export default function RootLayout({
             <div className='flex min-h-full w-full flex-col overflow-auto'>
               <div className='flex w-full flex-1 flex-col'>{children}</div>
             </div>
-            <NavigationBar />
+            <NavigationDock />
           </main>
         </ProvidersTree>
       </body>

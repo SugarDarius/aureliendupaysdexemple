@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { forwardRef } from 'react'
 
 import { cn } from '@/lib/utils'
 import {
@@ -22,7 +23,31 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 
-const NavigationBarMenuItem = ({
+type NavigationDockItemLinkProps = {
+  href: string
+  children: React.ReactNode
+}
+
+const NavigationDockItemLink = forwardRef<
+  HTMLAnchorElement,
+  NavigationDockItemLinkProps
+>(({ href, children }, ref) => {
+  return (
+    <Link
+      ref={ref}
+      href={href}
+      className={cn(
+        navigationMenuTriggerStyle(),
+        'flex flex-col items-center justify-center rounded-xl'
+      )}
+    >
+      {children}
+    </Link>
+  )
+})
+NavigationDockItemLink.displayName = 'NavigationDockItemLink'
+
+const NavigationDockItem = ({
   href,
   name,
   label,
@@ -38,15 +63,9 @@ const NavigationBarMenuItem = ({
       <TooltipTrigger asChild>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Link
-              href={href}
-              className={cn(
-                navigationMenuTriggerStyle(),
-                'flex flex-col items-center justify-center rounded-xl'
-              )}
-            >
+            <NavigationDockItemLink href={href}>
               <Icon className='h-4 w-4' />
-            </Link>
+            </NavigationDockItemLink>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </TooltipTrigger>
@@ -55,16 +74,13 @@ const NavigationBarMenuItem = ({
   )
 }
 
-export function NavigationBar() {
+export function NavigationDock() {
   return (
     <div className='fixed bottom-6 left-0 right-0 mx-auto my-0 w-max rounded-xl border-2 p-2.5'>
       <NavigationMenu>
         <NavigationMenuList>
           {navigationItems.map((navigationItem) => (
-            <NavigationBarMenuItem
-              key={navigationItem.name}
-              {...navigationItem}
-            />
+            <NavigationDockItem key={navigationItem.name} {...navigationItem} />
           ))}
         </NavigationMenuList>
       </NavigationMenu>
