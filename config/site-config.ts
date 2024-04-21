@@ -12,6 +12,10 @@ export const siteConfig = {
       url: 'https://github.com/SugarDarius',
       name: 'SugarDarius',
     },
+    linkedin: {
+      url: 'https://www.linkedin.com/in/aureliendupaysdexemple/',
+      name: 'Aurélien Dupays Dexemple',
+    },
   },
   authors: [
     {

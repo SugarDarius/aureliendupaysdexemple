@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { forwardRef } from 'react'
 
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 
 import { siteConfig } from '@/config/site-config'
 import { cn } from '@/lib/utils'
@@ -127,6 +127,11 @@ export function NavigationDock() {
         <Separator orientation='vertical' className='h-[26px]' />
         <div className='flex flex-row items-center gap-1'>
           <NavigationDockItemExternalLink
+            href={siteConfig.socialLinks.linkedin.url}
+          >
+            <LinkedInLogoIcon className='h-4 w-4' />
+          </NavigationDockItemExternalLink>
+          <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.github.url}
           >
             <GitHubLogoIcon className='h-4 w-4' />
@@ -137,6 +142,7 @@ export function NavigationDock() {
             <TwitterLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
         </div>
+        <Separator orientation='vertical' className='h-[26px]' />
       </div>
     </div>
   )
