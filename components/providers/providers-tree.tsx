@@ -1,6 +1,7 @@
 'use client'
 
-import { ThemeProvider } from './theme-provider'
+import { TooltipProvider } from '@/components/ui/tooltip'
+import { ThemeProvider } from '@/components/providers/theme-provider'
 
 export function ProvidersTree({ children }: { children: React.ReactNode }) {
   return (
@@ -10,7 +11,7 @@ export function ProvidersTree({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <TooltipProvider>{children}</TooltipProvider>
     </ThemeProvider>
   )
 }
