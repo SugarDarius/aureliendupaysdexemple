@@ -76,7 +76,7 @@ const NavigationDockItem = ({
 
 export function NavigationDock() {
   return (
-    <div className='fixed bottom-6 left-0 right-0 mx-auto my-0 w-max rounded-xl border-2 p-2.5'>
+    <div className='fixed bottom-6 left-0 right-0 mx-auto my-0 w-max rounded-xl border-2 p-2'>
       <NavigationMenu>
         <NavigationMenuList>
           {navigationItems.map((navigationItem) => (
