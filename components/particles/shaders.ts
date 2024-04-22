@@ -13,7 +13,7 @@ void main() {
 
   gl_PointSize = 3.0;
   // Size attenuation;
-  gl_PointSize *= step(1.0 - (1.0/64.0), position.x) + 0.5;
+  gl_PointSize *= step(1.0 - (1.0/64.0), position.x) + 0.4;
 }
 `
 export const fragmentShader = /* glsl */ `
