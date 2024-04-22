@@ -23,7 +23,7 @@ export function NavigationDock() {
 
   return (
     <div className='fixed bottom-6 left-0 right-0 mx-auto my-0 w-max'>
-      <div className='relative flex flex-row items-center gap-2 rounded-xl border-2 p-2'>
+      <div className='relative flex flex-row items-center gap-2 rounded-xl border-2 bg-background p-2'>
         <NavigationMenu>
           <NavigationMenuList>
             {navigationItems.map((navigationItem) => (
