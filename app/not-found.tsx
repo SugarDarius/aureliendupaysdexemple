@@ -12,7 +12,7 @@ export default function NotFoundPage() {
             404
           </h1>
         </div>
-        <p className='text-xl font-bold tracking-tight'>
+        <p className='text-xl font-bold tracking-tight text-muted-foreground'>
           The page you are looking for does not exist.
         </p>
       </div>
