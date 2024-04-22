@@ -7,7 +7,11 @@ import {
 import type { HeroiconsIcon } from '@/lib/heroicons'
 
 export type NavigationItemName = 'home' | 'tech-stack' | 'experience' | 'craft'
-type NavigationItem = { href: string; name: NavigationItemName; label: string }
+export type NavigationItem = {
+  href: string
+  name: NavigationItemName
+  label: string
+}
 
 export const navigationItems: NavigationItem[] = [
   { href: '/', name: 'home', label: 'home' },
