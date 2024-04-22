@@ -1,7 +1,11 @@
 'use client'
 
-import { Canvas } from '@react-three/fiber'
+import { Canvas, extend } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+
+import { SimulationMaterial } from '@/components/particles/simulation-material'
+
+extend({ SimulationMaterial })
 
 export function ParticlesScene() {
   return (
