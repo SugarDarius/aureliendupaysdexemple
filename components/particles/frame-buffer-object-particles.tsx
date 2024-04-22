@@ -45,9 +45,9 @@ export function FrameBufferObjectParticles() {
     gl.setRenderTarget(null)
 
     if (points.current) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      points.current.material.uniforms.uPositions.value = renderTarget.texture
+      ;(
+        points.current.material as THREE.ShaderMaterial
+      ).uniforms.uPositions.value = renderTarget.texture
     }
 
     if (simulationMaterialRef.current) {
