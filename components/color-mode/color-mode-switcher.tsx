@@ -28,21 +28,23 @@ export function ColorModeSwitcher() {
 
   return (
     <DropdownMenu>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <DropdownMenuTrigger
-            className={cn(
-              navigationMenuTriggerStyle(),
-              'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
-            )}
-          >
-            <SunIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-            <MoonIcon className='absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-            <span className='sr-only'>Toggle color mode</span>
-          </DropdownMenuTrigger>
-        </TooltipTrigger>
-        <TooltipContent>Switch color mode</TooltipContent>
-      </Tooltip>
+      <DropdownMenuTrigger className='focus-visible:outline-none'>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span
+              className={cn(
+                navigationMenuTriggerStyle(),
+                'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
+              )}
+            >
+              <SunIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
+              <MoonIcon className='absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+              <span className='sr-only'>Toggle color mode</span>
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>Switch color mode</TooltipContent>
+        </Tooltip>
+      </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
         <DropdownMenuItem
           onClick={() => setTheme('light')}
