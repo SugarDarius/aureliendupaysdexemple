@@ -24,7 +24,7 @@ extend({ SimulationMaterial: SimulationMaterial })
 
 const SIZE = 128
 
-export function FBOParticles() {
+export function FrameBufferObjectParticles() {
   const points = useRef<THREE.Points>(null)
   const simulationMaterialRef = useRef<SimulationMaterial>(null)
 
