@@ -1,4 +1,7 @@
+import { useRouter } from 'next/navigation'
+
 import { useState } from 'react'
+import useEvent from 'react-use-event-hook'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/lib/utils'
@@ -27,11 +30,17 @@ export function CommandCenter({
 }: {
   navigationItems: NavigationItem[]
 }) {
+  const router = useRouter()
   const [open, setOpen] = useState<boolean>(false)
 
-  const onButtonClick = (): void => {
+  const onButtonClick = useEvent((): void => {
     setOpen(true)
-  }
+  })
+
+  const handleSelectNavigationItem = useEvent((href: string): void => {
+    setOpen(false)
+    router.push(href)
+  })
 
   return (
     <>
@@ -60,6 +69,9 @@ export function CommandCenter({
               <CommandItem
                 key={navigationItem.name}
                 value={navigationItem.name}
+                onSelect={() => {
+                  handleSelectNavigationItem(navigationItem.href)
+                }}
               >
                 <div className='flex h-full w-full flex-row items-center gap-2'>
                   <ArrowRightIcon className='h-4 w-4' />
