@@ -32,7 +32,7 @@ const getRandomDataSphere = (size: number): Float32Array => {
   return data
 }
 
-const getRandomDataCube = (size: number): Float32Array => {
+const getRandomDataBox = (size: number): Float32Array => {
   const length = Math.pow(size, 2) * 4
   const data = new Float32Array(length)
 
@@ -60,7 +60,7 @@ export class SimulationMaterial extends ShaderMaterial {
     )
     positionsTextureA.needsUpdate = true
 
-    const dataBox = getRandomDataCube(size)
+    const dataBox = getRandomDataBox(size)
     const positionsTextureB = new DataTexture(
       dataBox,
       size,
