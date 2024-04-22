@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/navigation-menu'
 import { Separator } from '@/components/ui/separator'
 
-import { TwitterLogoIcon } from '@/components/icons/twitter-logo'
+import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { ColorModeSwitcher } from '@/components/color-mode/color-mode-switcher'
 
 import { NavigationDockItem } from '@/components/navigation/navigation-dock-item'
