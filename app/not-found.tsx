@@ -8,11 +8,11 @@ export default function NotFoundPage() {
       </div>
       <div className='z-10 flex flex-col items-center'>
         <div className='text-8xl font-extrabold tracking-tighter opacity-75'>
-          <h1 className='bg-gradient-to-r from-blue-200 to-blue-500 bg-clip-text text-transparent'>
+          <h1 className='bg-gradient-to-r from-sky-200 to-sky-500 bg-clip-text text-transparent'>
             404
           </h1>
         </div>
-        <p className='font-bold tracking-tight'>
+        <p className='text-xl font-bold tracking-tight'>
           The page you are looking for does not exist.
         </p>
       </div>

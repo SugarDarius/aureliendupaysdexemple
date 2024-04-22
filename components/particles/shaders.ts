@@ -18,7 +18,7 @@ void main() {
 `
 export const fragmentShader = /* glsl */ `
 void main() {
-  vec3 color = vec3(0.34, 0.53, 0.96);
+  vec3 color = vec3(0.22,0.741,0.973);
   gl_FragColor = vec4(color, 1.0);
 }
 `
