@@ -18,7 +18,7 @@ import {
   positions,
   uvs,
   particlesPosition,
-} from '@/components/particles/fbo-particles-utils'
+} from '@/components/particles/frame-buffe-object-particles-utils'
 
 extend({ SimulationMaterial: SimulationMaterial })
 
