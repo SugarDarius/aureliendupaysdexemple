@@ -1,4 +1,4 @@
-export const simulationVertexShader = `
+export const simulationVertexShader = /* glsl */ `
 varying vec2 vUv;
 
 void main() {
@@ -11,7 +11,7 @@ void main() {
   gl_Position = projectedPosition;
 }
 `
-export const simulationFragmentShader = `
+export const simulationFragmentShader = /* glsl */ `
 uniform sampler2D positionsA;
 uniform sampler2D positionsB;
 uniform float uTime;

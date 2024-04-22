@@ -1,4 +1,4 @@
-export const vertexShader = `
+export const vertexShader = /* glsl */ `
 uniform sampler2D uPositions;
 uniform float uTime;
 
@@ -16,7 +16,7 @@ void main() {
   gl_PointSize *= step(1.0 - (1.0/64.0), position.x) + 0.5;
 }
 `
-export const fragmentShader = `
+export const fragmentShader = /* glsl */ `
 void main() {
   vec3 color = vec3(0.34, 0.53, 0.96);
   gl_FragColor = vec4(color, 1.0);
