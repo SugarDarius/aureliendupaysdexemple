@@ -14,6 +14,7 @@ import { Separator } from '@/components/ui/separator'
 
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { ColorModeSwitcher } from '@/components/color-mode/color-mode-switcher'
+import { CommandCenter } from '@/components/command-center/command-center'
 
 import { NavigationDockItem } from '@/components/navigation/navigation-dock-item'
 import { NavigationDockItemExternalLink } from '@/components/navigation/navigation-dock-item-link'
@@ -58,6 +59,7 @@ export function NavigationDock() {
         </div>
         <Separator orientation='vertical' className='h-[26px]' />
         <div className='flex flex-row items-center gap-1'>
+          <CommandCenter />
           <ColorModeSwitcher />
         </div>
       </div>
