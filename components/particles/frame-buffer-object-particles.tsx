@@ -17,12 +17,12 @@ import {
   camera,
   positions,
   uvs,
+  uniforms,
   particlesPosition,
-} from '@/components/particles/frame-buffe-object-particles-utils'
+  SIZE,
+} from '@/components/particles/frame-buffer-object-particles-utils'
 
 extend({ SimulationMaterial: SimulationMaterial })
-
-const SIZE = 128
 
 export function FrameBufferObjectParticles() {
   const points = useRef<THREE.Points>(null)
@@ -91,11 +91,7 @@ export function FrameBufferObjectParticles() {
           depthWrite={false}
           fragmentShader={fragmentShader}
           vertexShader={vertexShader}
-          uniforms={{
-            uPositions: {
-              value: null,
-            },
-          }}
+          uniforms={uniforms}
         />
       </points>
     </>

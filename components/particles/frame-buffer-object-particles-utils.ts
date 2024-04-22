@@ -1,4 +1,4 @@
-import { Scene, OrthographicCamera } from 'three'
+import { Scene, OrthographicCamera, IUniform } from 'three'
 
 export const SIZE = 128
 
@@ -31,3 +31,8 @@ const getParticlesPosition = (): Float32Array => {
 }
 
 export const particlesPosition = getParticlesPosition()
+export const uniforms: Record<string, IUniform> = {
+  uPositions: {
+    value: null,
+  },
+}
