@@ -1,5 +1,8 @@
 import Image from 'next/image'
 
+import { ReactIcon } from '@/components/icons/react-icon'
+import { NextJSIcon } from '@/components/icons/nextjs-icon'
+
 import { BentoGrid } from '@/components/grids/bento-grid'
 import { BentoCard } from '@/components/grids/bento-card'
 
@@ -15,6 +18,39 @@ export default function HomePage() {
               height={160}
               alt='logo'
             />
+          </div>
+        </BentoCard>
+        <BentoCard className='col-span-3 row-span-1'>
+          <div className='relative flex h-full w-full flex-col justify-between p-4'>
+            <h1 className='text-2xl font-semibold tracking-tighter'>
+              Hey, I&apos;m Aurélien Dupays Dexemple 👋
+            </h1>
+            <div className='flex flex-col gap-2'>
+              <p>
+                I&apos;m a senior frontend software engineer crafting interfaces
+                and products with{' '}
+                <a
+                  href='https://react.dev/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'
+                >
+                  <ReactIcon className='mr-1 inline-flex h-3 w-3' />
+                  React
+                </a>{' '}
+                &{' '}
+                <a
+                  href='https://nextjs.org/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center rounded border border-neutral-200 bg-neutral-50 p-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'
+                >
+                  <NextJSIcon className='mr-1 inline-flex h-3 w-3' />
+                  Next.js
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </BentoCard>
       </BentoGrid>
