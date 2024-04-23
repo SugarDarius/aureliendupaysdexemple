@@ -13,6 +13,9 @@ import {
   MoonIcon,
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
+import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
+
+import { siteConfig } from '@/config/site-config'
 
 import { cn, toUpperFirst } from '@/lib/utils'
 import { NavigationItem } from '@/lib/navigation'
@@ -34,6 +37,7 @@ import {
   CommandSeparator,
 } from '@/components/ui/command'
 import { CommandIcon } from '@/components/icons/command-icon'
+import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 
 export function CommandCenter({
   navigationItems,
@@ -60,6 +64,11 @@ export function CommandCenter({
   const handleSelectNavigationItem = useEvent((href: string): void => {
     setOpen(false)
     router.push(href)
+  })
+
+  const handleSelectLinkItem = useEvent((url: string): void => {
+    setOpen(false)
+    window.open(url, '_blank')
   })
 
   const handleSelectColorModeItem = useEvent(
@@ -111,39 +120,69 @@ export function CommandCenter({
             ))}
           </CommandGroup>
           <CommandSeparator />
+          <CommandGroup heading='Links'>
+            <CommandItem
+              value='linkedin'
+              className='items-center gap-2'
+              onSelect={() => {
+                handleSelectLinkItem(siteConfig.socialLinks.linkedin.url)
+              }}
+            >
+              <LinkedInLogoIcon className='h-4 w-4' />
+              LinkedIn
+            </CommandItem>
+            <CommandItem
+              value='github'
+              className='items-center gap-2'
+              onSelect={() => {
+                handleSelectLinkItem(siteConfig.socialLinks.github.url)
+              }}
+            >
+              <GitHubLogoIcon className='h-4 w-4' />
+              GitHub
+            </CommandItem>
+            <CommandItem
+              value='twitter'
+              className='items-center gap-2'
+              onSelect={() => {
+                handleSelectLinkItem(siteConfig.socialLinks.twitter.url)
+              }}
+            >
+              <TwitterLogoIcon className='h-4 w-4' />
+              Twitter (X)
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
           <CommandGroup heading='Color mode'>
             <CommandItem
               value='light'
               onSelect={() => {
                 handleSelectColorModeItem('light')
               }}
+              className='items-center gap-2'
             >
-              <div className='flex h-full w-full flex-row items-center gap-2'>
-                <SunIcon className='h-4 w-4' />
-                Light
-              </div>
+              <SunIcon className='h-4 w-4' />
+              Light
             </CommandItem>
             <CommandItem
               value='dark'
               onSelect={() => {
                 handleSelectColorModeItem('dark')
               }}
+              className='items-center gap-2'
             >
-              <div className='flex h-full w-full flex-row items-center gap-2'>
-                <MoonIcon className='h-4 w-4' />
-                Dark
-              </div>
+              <MoonIcon className='h-4 w-4' />
+              Dark
             </CommandItem>
             <CommandItem
               value='system'
               onSelect={() => {
                 handleSelectColorModeItem('system')
               }}
+              className='items-center gap-2'
             >
-              <div className='flex h-full w-full flex-row items-center gap-2'>
-                <ComputerDesktopIcon className='h-4 w-4' />
-                System
-              </div>
+              <ComputerDesktopIcon className='h-4 w-4' />
+              System
             </CommandItem>
           </CommandGroup>
         </CommandList>

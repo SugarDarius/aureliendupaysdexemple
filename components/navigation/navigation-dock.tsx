@@ -40,7 +40,7 @@ export function NavigationDock() {
         <div className='flex flex-row items-center gap-1'>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.linkedin.url}
-            tooltipLabel='Linked In'
+            tooltipLabel='LinkedIn'
           >
             <LinkedInLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
@@ -52,7 +52,7 @@ export function NavigationDock() {
           </NavigationDockItemExternalLink>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.twitter.url}
-            tooltipLabel='Twitter'
+            tooltipLabel='Twitter (X)'
           >
             <TwitterLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
