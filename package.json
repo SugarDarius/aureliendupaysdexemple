@@ -28,6 +28,7 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hotkeys-hook": "^4.5.0",
     "react-use-event-hook": "^0.9.6",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
