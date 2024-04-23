@@ -50,7 +50,6 @@ export default function HomePage() {
                 </a>
                 .
               </p>
-              {/* <p className='font-bold'>frontend cloud & remote club</p> */}
               <div className='flex flex-row items-center gap-2'>
                 <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
                   frontend cloud
