@@ -27,8 +27,8 @@ export default function HomePage() {
             </h1>
             <div className='flex flex-col gap-2.5'>
               <p>
-                I&apos;m a senior frontend software engineer crafting interfaces
-                and products with{' '}
+                I&apos;m a senior frontend and creative software engineer
+                crafting interfaces and products with{' '}
                 <a
                   href='https://react.dev/'
                   target='_blank'
@@ -50,7 +50,15 @@ export default function HomePage() {
                 </a>
                 .
               </p>
-              <p className='font-bold'>frontend cloud & remote club</p>
+              {/* <p className='font-bold'>frontend cloud & remote club</p> */}
+              <div className='flex flex-row items-center gap-2'>
+                <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
+                  frontend cloud
+                </span>
+                <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
+                  remote club
+                </span>
+              </div>
             </div>
           </div>
         </BentoCard>
