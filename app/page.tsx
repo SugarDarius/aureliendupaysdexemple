@@ -6,38 +6,13 @@ import { NextJSIcon } from '@/components/icons/nextjs-icon'
 import { BentoGrid } from '@/components/grids/bento-grid'
 import { BentoCard } from '@/components/grids/bento-card'
 
+import { GitHubBentoItem } from '@/components/bento/github-bento-item'
+
 export default function HomePage() {
   return (
     <div className='relative flex h-full w-full flex-col items-center justify-center'>
       <BentoGrid>
-        <BentoCard className='col-span-1 row-span-1'>
-          <div className='relative flex aspect-square h-full w-full flex-col'>
-            <div className='absolute left-0 top-0 h-full w-full opacity-60'>
-              <Image
-                src='/aureliendupaysdexemple-logo.png'
-                fill
-                alt='logo'
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  scale: 2,
-                }}
-                priority
-                sizes='720px'
-              />
-            </div>
-            <div className='flex h-full w-full flex-col items-center justify-center backdrop-blur-md'>
-              <Image
-                src='/aureliendupaysdexemple-logo.png'
-                width={160}
-                height={160}
-                alt='logo'
-                priority
-              />
-            </div>
-          </div>
-        </BentoCard>
+        <GitHubBentoItem />
         <BentoCard className='col-span-3 row-span-1'>
           <div className='relative flex h-full w-full flex-col overflow-hidden'>
             <div className='absolute left-0 top-0 h-full w-full opacity-60'>
