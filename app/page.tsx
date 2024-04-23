@@ -52,10 +52,10 @@ export default function HomePage() {
               </p>
               <div className='flex flex-row items-center gap-2'>
                 <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
-                  frontend cloud
+                  frontend cloud 🧑🏻‍💻
                 </span>
                 <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
-                  remote club
+                  remote club 🌎
                 </span>
               </div>
             </div>
