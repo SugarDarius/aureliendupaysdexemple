@@ -1,3 +1,5 @@
+'use client'
+
 import { type NavigationItemName, navigationItemsIcons } from '@/lib/navigation'
 import {
   Tooltip,
