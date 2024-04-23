@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-
 import { useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
@@ -85,7 +84,12 @@ export function CommandCenter({
             <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
           </Button>
         </TooltipTrigger>
-        <TooltipContent>Command center</TooltipContent>
+        <TooltipContent className='flex flex-row items-center gap-1'>
+          Command center
+          <kbd className='pointer-events-none inline-flex h-4 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100'>
+            <span className='text-xs'>⌘</span>K
+          </kbd>
+        </TooltipContent>
       </Tooltip>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder='Type a command or search' />
