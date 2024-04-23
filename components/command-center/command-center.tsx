@@ -1,10 +1,19 @@
 import { useRouter } from 'next/navigation'
 
 import { useState } from 'react'
-import useEvent from 'react-use-event-hook'
-import { ArrowRightIcon } from '@heroicons/react/24/outline'
 
-import { cn } from '@/lib/utils'
+import useEvent from 'react-use-event-hook'
+import { useHotkeys } from 'react-hotkeys-hook'
+import { useTheme } from 'next-themes'
+
+import {
+  ArrowRightIcon,
+  SunIcon,
+  MoonIcon,
+  ComputerDesktopIcon,
+} from '@heroicons/react/24/outline'
+
+import { cn, toUpperFirst } from '@/lib/utils'
 import { NavigationItem } from '@/lib/navigation'
 
 import { Button } from '@/components/ui/button'
@@ -31,7 +40,17 @@ export function CommandCenter({
   navigationItems: NavigationItem[]
 }) {
   const router = useRouter()
+  const { setTheme } = useTheme()
+
   const [open, setOpen] = useState<boolean>(false)
+
+  useHotkeys(
+    'meta+k',
+    (): void => {
+      setOpen(true)
+    },
+    { enabled: !open }
+  )
 
   const onButtonClick = useEvent((): void => {
     setOpen(true)
@@ -41,6 +60,13 @@ export function CommandCenter({
     setOpen(false)
     router.push(href)
   })
+
+  const handleSelectColorModeItem = useEvent(
+    (colorMode: 'light' | 'dark' | 'system'): void => {
+      setOpen(false)
+      setTheme(colorMode)
+    }
+  )
 
   return (
     <>
@@ -59,7 +85,6 @@ export function CommandCenter({
         </TooltipTrigger>
         <TooltipContent>Command center</TooltipContent>
       </Tooltip>
-
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder='Type a command or search' />
         <CommandList>
@@ -72,15 +97,49 @@ export function CommandCenter({
                 onSelect={() => {
                   handleSelectNavigationItem(navigationItem.href)
                 }}
+                className='items-center gap-2'
               >
-                <div className='flex h-full w-full flex-row items-center gap-2'>
-                  <ArrowRightIcon className='h-4 w-4' />
-                  {navigationItem.label}
-                </div>
+                <ArrowRightIcon className='h-4 w-4' />
+                {toUpperFirst(navigationItem.label)}
               </CommandItem>
             ))}
           </CommandGroup>
           <CommandSeparator />
+          <CommandGroup heading='Color mode'>
+            <CommandItem
+              value='light'
+              onSelect={() => {
+                handleSelectColorModeItem('light')
+              }}
+            >
+              <div className='flex h-full w-full flex-row items-center gap-2'>
+                <SunIcon className='h-4 w-4' />
+                Light
+              </div>
+            </CommandItem>
+            <CommandItem
+              value='dark'
+              onSelect={() => {
+                handleSelectColorModeItem('dark')
+              }}
+            >
+              <div className='flex h-full w-full flex-row items-center gap-2'>
+                <MoonIcon className='h-4 w-4' />
+                Dark
+              </div>
+            </CommandItem>
+            <CommandItem
+              value='system'
+              onSelect={() => {
+                handleSelectColorModeItem('system')
+              }}
+            >
+              <div className='flex h-full w-full flex-row items-center gap-2'>
+                <ComputerDesktopIcon className='h-4 w-4' />
+                System
+              </div>
+            </CommandItem>
+          </CommandGroup>
         </CommandList>
       </CommandDialog>
     </>
