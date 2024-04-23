@@ -12,7 +12,7 @@ export function BentoCard({
   return (
     <div
       className={cn(
-        'relative flex flex-col overflow-hidden rounded-md bg-popover text-popover-foreground',
+        'relative flex transform-gpu flex-col overflow-hidden rounded-2xl border bg-accent text-popover-foreground transition-transform duration-150 ease-in-out hover:scale-105',
         className
       )}
     >
