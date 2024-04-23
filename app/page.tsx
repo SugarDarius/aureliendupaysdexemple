@@ -25,7 +25,7 @@ export default function HomePage() {
             <h1 className='text-2xl font-semibold tracking-tighter'>
               Hey, I&apos;m Aurélien Dupays Dexemple 👋
             </h1>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2.5'>
               <p>
                 I&apos;m a senior frontend software engineer crafting interfaces
                 and products with{' '}
@@ -38,7 +38,7 @@ export default function HomePage() {
                   <ReactIcon className='mr-1 inline-flex h-3 w-3' />
                   React
                 </a>{' '}
-                &{' '}
+                and{' '}
                 <a
                   href='https://nextjs.org/'
                   target='_blank'
@@ -50,6 +50,7 @@ export default function HomePage() {
                 </a>
                 .
               </p>
+              <p className='font-bold'>frontend cloud & remote club</p>
             </div>
           </div>
         </BentoCard>
