@@ -21,7 +21,7 @@ export const NextJSIcon = (props: React.HTMLAttributes<SVGElement>) => (
     <g mask='url(#mask0_1323_4824)'>
       <rect width='114' height='114' rx='27' fill='black' />
     </g>
-    <g clip-path='url(#clip0_1323_4824)'>
+    <g clipPath='url(#clip0_1323_4824)'>
       <mask
         id='mask1_1323_4824'
         style={{ maskType: 'alpha' }}
