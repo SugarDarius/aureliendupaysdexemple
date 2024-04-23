@@ -120,7 +120,7 @@ export function CommandCenter({
             ))}
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading='Links'>
+          <CommandGroup heading='Social links'>
             <CommandItem
               value='linkedin'
               className='items-center gap-2'
