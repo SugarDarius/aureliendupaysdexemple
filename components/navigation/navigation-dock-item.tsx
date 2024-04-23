@@ -1,5 +1,6 @@
 'use client'
 
+import { toUpperFirst } from '@/lib/utils'
 import { type NavigationItemName, navigationItemsIcons } from '@/lib/navigation'
 import {
   Tooltip,
@@ -36,7 +37,7 @@ export const NavigationDockItem = ({
             </NavigationDockItemLink>
           </NavigationMenuLink>
         </TooltipTrigger>
-        <TooltipContent>{label}</TooltipContent>
+        <TooltipContent>{toUpperFirst(label)}</TooltipContent>
       </Tooltip>
     </NavigationMenuItem>
   )
