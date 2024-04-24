@@ -20,9 +20,18 @@ export function HeroBentoItem() {
           />
         </div>
         <div className='flex h-full flex-col justify-between p-4 backdrop-blur-md'>
-          <h1 className='text-2xl font-semibold tracking-tighter'>
-            Hey, I&apos;m Aurélien Dupays Dexemple 👋
-          </h1>
+          <div className='flex flex-row items-center justify-between'>
+            <h1 className='text-2xl font-semibold tracking-tighter'>
+              Hey, I&apos;m Aurélien Dupays Dexemple 👋
+            </h1>
+            <Image
+              src='/aureliendupaysdexemple-logo.png'
+              width={24}
+              height={24}
+              alt='logo'
+              priority
+            />
+          </div>
           <div className='flex flex-col gap-2.5'>
             <p>
               Senior frontend and creative software engineer crafting interfaces
