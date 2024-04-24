@@ -1,6 +1,7 @@
 import Image from 'next/image'
 
 import { siteConfig } from '@/config/site-config'
+import { TwitterSquareIcon } from '@/components/icons/twitter-square-icon'
 import { BentoCard } from '@/components/grids/bento-card'
 
 export function TwitterBentoItem() {
@@ -32,6 +33,7 @@ export function TwitterBentoItem() {
               <h1 className='text-xl font-extrabold tracking-tighter'>
                 Twitter (X)
               </h1>
+              <TwitterSquareIcon className='size-6' />
             </div>
           </div>
         </div>
