@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
 
 import { siteConfig } from '@/config/site-config'
 import { TwitterSquareIcon } from '@/components/icons/twitter-square-icon'
@@ -34,6 +35,13 @@ export function TwitterBentoItem() {
                 Twitter (X)
               </h1>
               <TwitterSquareIcon className='size-6' />
+            </div>
+            <div className='flex flex-col'>
+              <h1 className='text-md font-bold tracking-tighter'>Azeldvin</h1>
+              <div className='flex flex-row items-center gap-1'>
+                <p className='text-xs underline'>Check my Twitter profile</p>
+                <ArrowTopRightOnSquareIcon className='inline-flex h-3.5 w-3.5' />
+              </div>
             </div>
           </div>
         </div>
