@@ -2,6 +2,7 @@ import { BentoGrid } from '@/components/grids/bento-grid'
 
 import { GitHubBentoItem } from '@/components/bento/github-bento-item'
 import { HeroBentoItem } from '@/components/bento/hero-bento-item'
+import { TwitterBentoItem } from '@/components/bento/twitter-bento-item'
 
 export default function HomePage() {
   return (
@@ -9,6 +10,7 @@ export default function HomePage() {
       <BentoGrid>
         <HeroBentoItem />
         <GitHubBentoItem />
+        <TwitterBentoItem />
       </BentoGrid>
     </div>
   )
