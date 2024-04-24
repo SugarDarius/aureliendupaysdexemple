@@ -12,7 +12,7 @@ export function BentoGrid({
   return (
     <div
       className={cn(
-        'relative grid h-auto w-full max-w-4xl grid-cols-4 gap-4 p-6',
+        'relative grid h-auto w-full max-w-4xl grid-cols-4 gap-4 p-6 max-sm:grid-cols-2',
         className
       )}
     >

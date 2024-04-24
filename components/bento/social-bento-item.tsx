@@ -71,7 +71,7 @@ export function SocialBentoItem({
               <h1 className='text-md font-bold tracking-tighter'>
                 {accountName}
               </h1>
-              <div className='flex flex-row items-center gap-1'>
+              <div className='flex flex-row items-center gap-1 max-sm:hidden'>
                 <p className='text-xs underline'>Check my {name} profile</p>
                 <ArrowTopRightOnSquareIcon className='inline-flex h-3.5 w-3.5' />
               </div>

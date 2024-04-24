@@ -7,7 +7,7 @@ import { BentoCard } from '@/components/grids/bento-card'
 
 export function HeroBentoItem() {
   return (
-    <BentoCard className='col-span-3 row-span-1'>
+    <BentoCard className='col-span-3 row-span-1 max-sm:col-span-2'>
       <div className='relative flex h-full w-full flex-col overflow-hidden'>
         <div className='absolute left-0 top-0 h-full w-full opacity-60'>
           <Image
