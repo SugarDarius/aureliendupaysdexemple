@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import { ReactIcon } from '@/components/icons/react-icon'
-import { NextJSIcon } from '@/components/icons/nextjs-icon'
+import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
 import { BentoCard } from '@/components/grids/bento-card'
 
@@ -43,7 +43,7 @@ export function HeroBentoItem() {
                 rel='noopener noreferrer'
                 className='inline-flex items-center rounded border border-neutral-200 bg-neutral-50 px-1.5 py-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'
               >
-                <NextJSIcon className='mr-1 inline-flex h-3 w-3' />
+                <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                 Next.js
               </a>
               .

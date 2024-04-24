@@ -1,4 +1,4 @@
-export const NextJSIcon = (props: React.HTMLAttributes<SVGElement>) => (
+export const NextJSSquareIcon = (props: React.HTMLAttributes<SVGElement>) => (
   <svg
     {...props}
     width='114'
