@@ -1,13 +1,13 @@
 'use client'
 
-import { ParticlesPage } from '@/components/particles/particles-page'
+import { ParticlesPageContent } from '@/components/particles/particles-page-content'
 
 export function ComingSoonPageContent() {
   return (
-    <ParticlesPage title='Coming soon'>
+    <ParticlesPageContent title='Coming soon'>
       <p className='text-xl font-bold tracking-tight text-muted-foreground'>
         This page will be live soon.
       </p>
-    </ParticlesPage>
+    </ParticlesPageContent>
   )
 }

@@ -2,7 +2,7 @@
 
 import { ParticlesScene } from '@/components/particles/particles-scene'
 
-export function ParticlesPage({
+export function ParticlesPageContent({
   title,
   children,
 }: {
