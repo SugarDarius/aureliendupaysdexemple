@@ -25,8 +25,8 @@ export function HeroBentoItem() {
           </h1>
           <div className='flex flex-col gap-2.5'>
             <p>
-              I&apos;m a senior frontend and creative software engineer crafting
-              interfaces and products with{' '}
+              Senior frontend and creative software engineer crafting interfaces
+              and products with{' '}
               <a
                 href='https://react.dev/'
                 target='_blank'
