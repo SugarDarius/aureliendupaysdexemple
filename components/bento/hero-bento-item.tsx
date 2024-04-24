@@ -46,7 +46,6 @@ export function HeroBentoItem() {
                 <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                 Next.js
               </a>
-              .
             </p>
             <div className='flex flex-row items-center gap-2'>
               <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
