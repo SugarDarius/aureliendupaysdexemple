@@ -13,7 +13,11 @@ import {
   MoonIcon,
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
-import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
+import {
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+  CopyIcon,
+} from '@radix-ui/react-icons'
 
 import { siteConfig } from '@/config/site-config'
 
@@ -118,6 +122,16 @@ export function CommandCenter({
                 {toUpperFirst(navigationItem.label)}
               </CommandItem>
             ))}
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading='Actions'>
+            <CommandItem
+              value='copy current url'
+              className='items-center gap-2'
+            >
+              <CopyIcon className='size-4' />
+              Copy current URL
+            </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading='Social links'>
