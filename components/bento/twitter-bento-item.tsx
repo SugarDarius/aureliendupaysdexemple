@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { siteConfig } from '@/config/site-config'
 import { BentoCard } from '@/components/grids/bento-card'
 
@@ -9,8 +11,23 @@ export function TwitterBentoItem() {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='flex aspect-square size-full flex-col bg-sky-400'>
-          <div className='flex size-full flex-col justify-between p-4 text-background dark:text-foreground'>
+        <div className='group relative flex aspect-square size-full flex-col'>
+          <div className='absolute left-0 top-0 h-full w-full opacity-60'>
+            <Image
+              src='/tokyo.jpg'
+              fill
+              alt='logo'
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                scale: 2,
+              }}
+              priority
+              sizes='720px'
+            />
+          </div>
+          <div className='flex size-full flex-col justify-between bg-gradient-to-b from-sky-200/75 to-sky-500/75 p-4 text-background backdrop-blur-sm dark:text-foreground'>
             <div className='flex flex-row items-center justify-between'>
               <h1 className='text-xl font-extrabold tracking-tighter'>
                 Twitter (X)

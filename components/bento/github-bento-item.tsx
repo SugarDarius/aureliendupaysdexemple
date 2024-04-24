@@ -14,7 +14,7 @@ export function GitHubBentoItem() {
         target='_blank'
         rel='noopener noreferrer'
       >
-        <div className='group relative flex aspect-square  flex-col'>
+        <div className='group relative flex aspect-square flex-col'>
           <div className='absolute left-0 top-0 h-full w-full opacity-60'>
             <Image
               src='/aureliendupaysdexemple-logo.png'
