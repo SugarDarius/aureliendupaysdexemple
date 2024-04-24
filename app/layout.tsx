@@ -6,6 +6,8 @@ import { GeistMono } from 'geist/font/mono'
 import { cn } from '@/lib/utils'
 import { siteConfig } from '@/config/site-config'
 import { baseUrl } from '@/app/sitemap'
+
+import { Toaster } from '@/components/ui/sonner'
 import { ProvidersTree } from '@/components/providers/providers-tree'
 import { NavigationDock } from '@/components/navigation/navigation-dock'
 
@@ -61,6 +63,7 @@ export default function RootLayout({
             </div>
             <NavigationDock />
           </main>
+          <Toaster />
         </ProvidersTree>
       </body>
     </html>
