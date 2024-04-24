@@ -29,16 +29,7 @@ export function GitHubBentoItem() {
               sizes='720px'
             />
           </div>
-          <div className='flex h-full w-full flex-col items-center justify-center backdrop-blur-md'>
-            <Image
-              src='/aureliendupaysdexemple-logo.png'
-              width={160}
-              height={160}
-              alt='logo'
-              priority
-            />
-          </div>
-          <div className='absolute left-0 top-0 flex h-full w-full flex-col justify-between bg-stone-900/65 p-4 text-background opacity-0 transition-opacity duration-150 ease-linear group-hover:opacity-100 dark:text-foreground'>
+          <div className='flex size-full flex-col justify-between bg-gradient-to-b from-stone-400/75 to-stone-700/75 p-4 text-background backdrop-blur-sm dark:text-foreground'>
             <div className='flex flex-row items-center justify-between'>
               <h1 className='text-xl font-extrabold tracking-tighter'>
                 GitHub
@@ -50,7 +41,7 @@ export function GitHubBentoItem() {
                 SugarDarius
               </h1>
               <div className='flex flex-row items-center gap-1'>
-                <p className='text-xs underline'>Check my GitHub profile</p>
+                <p className='text-xs underline'>Check my Github profile</p>
                 <ArrowTopRightOnSquareIcon className='inline-flex h-3.5 w-3.5' />
               </div>
             </div>
