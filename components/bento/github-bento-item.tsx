@@ -39,10 +39,10 @@ export function GitHubBentoItem() {
             />
           </div>
           <div className='absolute left-0 top-0 flex h-full w-full flex-col justify-end bg-stone-900/65 p-4 opacity-0 transition-opacity duration-150 ease-linear group-hover:opacity-100'>
-            <h1 className='text-md font-bold tracking-tighter text-accent dark:text-foreground'>
+            <h1 className='text-md font-bold tracking-tighter text-background dark:text-foreground'>
               SugarDarius
             </h1>
-            <div className='flex flex-row items-center gap-1 text-accent dark:text-foreground'>
+            <div className='flex flex-row items-center gap-1 text-background dark:text-foreground'>
               <p className='text-xs underline'>Check my GitHub profile</p>
               <ArrowTopRightOnSquareIcon className='inline-flex h-3.5 w-3.5' />
             </div>
