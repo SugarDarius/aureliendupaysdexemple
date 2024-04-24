@@ -7,6 +7,8 @@ import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { useTheme } from 'next-themes'
 
+import { toast } from 'sonner'
+
 import {
   ArrowRightIcon,
   SunIcon,
@@ -23,6 +25,8 @@ import { siteConfig } from '@/config/site-config'
 
 import { cn, toUpperFirst } from '@/lib/utils'
 import { NavigationItem } from '@/lib/navigation'
+
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 
 import { Button } from '@/components/ui/button'
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
@@ -50,6 +54,7 @@ export function CommandCenter({
 }) {
   const router = useRouter()
   const { setTheme } = useTheme()
+  const [, copy] = useCopyToClipboard()
 
   const [open, setOpen] = useState<boolean>(false)
 
@@ -68,6 +73,20 @@ export function CommandCenter({
   const handleSelectNavigationItem = useEvent((href: string): void => {
     setOpen(false)
     router.push(href)
+  })
+
+  const handleSelectionCopyCurrentURLItem = useEvent((): void => {
+    setOpen(false)
+    const currentURL = window.location.href
+    copy(currentURL)
+      .then((): void => {
+        toast.success('Current URL copied!')
+      })
+      .catch((): void => {
+        toast.error(
+          'Uh oh! Something went wrong while copying the current URL.'
+        )
+      })
   })
 
   const handleSelectLinkItem = useEvent((url: string): void => {
@@ -128,6 +147,9 @@ export function CommandCenter({
             <CommandItem
               value='copy current url'
               className='items-center gap-2'
+              onSelect={(): void => {
+                handleSelectionCopyCurrentURLItem()
+              }}
             >
               <CopyIcon className='size-4' />
               Copy current URL
