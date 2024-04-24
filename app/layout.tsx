@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
+
 import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 
 import { cn } from '@/lib/utils'
 import { siteConfig } from '@/config/site-config'
@@ -48,6 +50,7 @@ export default function RootLayout({
       <body
         className={cn(
           GeistSans.variable,
+          GeistMono.variable,
           'bg-background font-sans antialiased'
         )}
       >
