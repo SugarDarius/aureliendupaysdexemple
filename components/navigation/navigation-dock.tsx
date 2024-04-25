@@ -59,7 +59,10 @@ export function NavigationDock() {
         </div>
         <Separator orientation='vertical' className='h-[26px]' />
         <div className='flex flex-row items-center gap-1'>
-          <CommandCenter navigationItems={navigationItems} />
+          <CommandCenter
+            navigationItems={navigationItems}
+            className='max-sm:hidden'
+          />
           <ColorModeSwitcher />
         </div>
       </div>

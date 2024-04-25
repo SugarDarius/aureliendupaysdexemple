@@ -49,8 +49,10 @@ import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 
 export function CommandCenter({
   navigationItems,
+  className,
 }: {
   navigationItems: NavigationItem[]
+  className?: string
 }) {
   const router = useRouter()
   const { setTheme } = useTheme()
@@ -109,7 +111,8 @@ export function CommandCenter({
             variant='ghost'
             className={cn(
               navigationMenuTriggerStyle(),
-              'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
+              'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent',
+              className
             )}
             onClick={onButtonClick}
           >
