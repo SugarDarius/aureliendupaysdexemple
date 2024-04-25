@@ -3,7 +3,7 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
 
 import { cn, toUpperFirst } from '@/lib/utils'
-import type { NavigationItem } from '@/lib/navigation'
+import { type NavigationItem, navigationItemsIcons } from '@/lib/navigation'
 
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
@@ -14,6 +14,8 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 import { Button } from '@/components/ui/button'
+
+import { NavigationDockItemLink } from '@/components/navigation/navigation-dock-item-link'
 
 export function NavigationDockDrawer({
   className,
@@ -39,10 +41,33 @@ export function NavigationDockDrawer({
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className='w-full p-2'>
+        <div className='w-full px-4 pb-4'>
           <DrawerHeader>
-            <DrawerTitle></DrawerTitle>
+            <DrawerTitle>Navigation</DrawerTitle>
           </DrawerHeader>
+          <div className='grid max-w-[496px] grid-cols-2 gap-4'>
+            {navigationItems.map((navigationItem) => {
+              const isActive = navigationItem.href === pathname
+              const Icon = navigationItemsIcons[navigationItem.name]
+
+              return (
+                <div
+                  key={navigationItem.href}
+                  className='flex aspect-square flex-col'
+                >
+                  <NavigationDockItemLink
+                    href={navigationItem.href}
+                    active={isActive}
+                    variant='drawer'
+                    className='colspan-1'
+                  >
+                    <Icon className='size-6' />
+                    {toUpperFirst(navigationItem.label)}
+                  </NavigationDockItemLink>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </DrawerContent>
     </Drawer>
