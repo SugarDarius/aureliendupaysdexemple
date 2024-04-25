@@ -1,14 +1,13 @@
 'use client'
 
-import { Bars2Icon } from '@heroicons/react/24/outline'
+import { Bars3Icon } from '@heroicons/react/24/outline'
 
 import { cn, toUpperFirst } from '@/lib/utils'
-import { siteConfig } from '@/config/site-config'
+import type { NavigationItem } from '@/lib/navigation'
 
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
@@ -17,11 +16,13 @@ import {
 import { Button } from '@/components/ui/button'
 
 export function NavigationDockDrawer({
-  pathname,
   className,
+  pathname,
+  navigationItems,
 }: {
-  pathname: string
   className?: string
+  pathname: string
+  navigationItems: NavigationItem[]
 }) {
   return (
     <Drawer>
@@ -34,11 +35,11 @@ export function NavigationDockDrawer({
             className
           )}
         >
-          <Bars2Icon className='size-4' />
+          <Bars3Icon className='size-4' />
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className='mx-auto w-full max-w-sm'>
+        <div className='w-full p-2'>
           <DrawerHeader>
             <DrawerTitle></DrawerTitle>
           </DrawerHeader>
