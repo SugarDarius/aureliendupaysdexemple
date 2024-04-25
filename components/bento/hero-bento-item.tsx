@@ -34,8 +34,8 @@ export function HeroBentoItem() {
           </div>
           <div className='flex flex-col gap-2.5'>
             <p>
-              Senior frontend and creative software engineer crafting interfaces
-              and products with{' '}
+              A senior and creative software engineer crafting interfaces and
+              products with{' '}
               <a
                 href='https://react.dev/'
                 target='_blank'
