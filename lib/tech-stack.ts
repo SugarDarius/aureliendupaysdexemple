@@ -6,6 +6,7 @@ import { PHPIcon } from '@/components/icons/php-icon'
 import { SQLIcon } from '@/components/icons/sql-icon'
 
 import { ChakraUIIcon } from '@/components/icons/chakra-ui-icon'
+import { RadixUIIcon } from '@/components/icons/radix-ui-icon'
 
 type TechStackItem = {
   name: string
@@ -26,4 +27,5 @@ export const languagesTechStackItems: TechStackItem[] = [
 
 export const technologiesTechStackItems: TechStackItem[] = [
   { name: 'Chakra UI', Icon: ChakraUIIcon, tag: 'UI/UX' },
+  { name: 'Radix UI', Icon: RadixUIIcon, tag: 'UI/UX' },
 ]
