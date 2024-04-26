@@ -23,12 +23,18 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip'
 
-export function ColorModeDropdownSwitcher() {
+export function ColorModeDropdownSwitcher({
+  className,
+}: {
+  className?: string
+}) {
   const { setTheme } = useTheme()
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className='focus-visible:outline-none'>
+      <DropdownMenuTrigger
+        className={cn('focus-visible:outline-none', className)}
+      >
         <Tooltip>
           <TooltipTrigger asChild>
             <span
