@@ -8,6 +8,7 @@ import { SQLIcon } from '@/components/icons/sql-icon'
 import { ChakraUIIcon } from '@/components/icons/chakra-ui-icon'
 import { RadixUIIcon } from '@/components/icons/radix-ui-icon'
 import { TailwindCSSIcon } from '@/components/icons/tailwind-css-icon'
+import { ReactIcon } from '@/components/icons/react-icon'
 
 type TechStackItem = {
   name: string
@@ -30,4 +31,5 @@ export const technologiesTechStackItems: TechStackItem[] = [
   { name: 'Chakra UI', Icon: ChakraUIIcon, tag: 'UI/UX' },
   { name: 'Radix UI', Icon: RadixUIIcon, tag: 'UI/UX' },
   { name: 'Tailwind CSS', Icon: TailwindCSSIcon, tag: 'UI/UX' },
+  { name: 'React', Icon: ReactIcon, tag: 'frontend' },
 ]
