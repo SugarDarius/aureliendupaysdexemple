@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 
+import { Analytics } from '@vercel/analytics/react'
+
 import { cn } from '@/lib/utils'
 import { siteConfig } from '@/config/site-config'
 import { baseUrl } from '@/app/sitemap'
@@ -68,6 +70,7 @@ export default function RootLayout({
           </main>
           <Toaster />
         </ProvidersTree>
+        <Analytics />
       </body>
     </html>
   )

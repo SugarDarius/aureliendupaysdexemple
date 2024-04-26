@@ -20,6 +20,7 @@
     "@react-three/drei": "^9.105.4",
     "@react-three/fiber": "^8.16.2",
     "@types/three": "^0.163.0",
+    "@vercel/analytics": "^1.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
