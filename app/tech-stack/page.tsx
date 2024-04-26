@@ -18,7 +18,7 @@ export default function TechStackPage() {
       <div className='flex h-full w-full max-w-4xl flex-col gap-10 px-12 py-12 max-sm:px-4 min-[1025px]:px-0'>
         <Hero
           title='Tech Stack'
-          description='A look at the programming languages, libraries and dev tools I use and play with'
+          description='A look at the programming languages, libraries and dev tools I use and play with.'
         />
         <Separator />
         <TechStackGrid title='Languages'>
