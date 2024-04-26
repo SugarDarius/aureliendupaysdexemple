@@ -21,7 +21,8 @@ export default function TechStackPage() {
           description='A look at the programming languages, libraries and dev tools I use and play with.'
         />
         <Separator />
-        <TechStackGrid title='Languages'>
+        <TechStackGrid title='Technologies & Libraries'></TechStackGrid>
+        <TechStackGrid title='Programming Languages'>
           {languagesTechStackItems.map(({ name, Icon, tag }) => (
             <TechStackCard key={name} name={name} tag={tag}>
               <Icon className='size-20' />
