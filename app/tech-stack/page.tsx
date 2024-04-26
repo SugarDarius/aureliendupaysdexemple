@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { Separator } from '@/components/ui/separator'
 import { Hero } from '@/components/content/hero'
-import { TechStackGrid } from '@/components/content/tech-stack-grid'
+import { TechStackGrid } from '@/components/grids/tech-stack-grid'
 
 export const metadata: Metadata = {
   title: 'Tech Stack',
