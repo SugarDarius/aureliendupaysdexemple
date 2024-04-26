@@ -63,7 +63,7 @@ export function NavigationDockDrawer({
                     href={navigationItem.href}
                     active={isActive}
                     variant='drawer'
-                    className='colspan-1'
+                    className='col-span-1'
                     onClick={handleLinkClick}
                   >
                     <Icon className='size-6' />
