@@ -25,8 +25,8 @@ export default function TechStackPage() {
         />
         <Separator />
         <TechStackGrid title='Technologies'>
-          {technologiesTechStackItems.map(({ name, Icon, tag }) => (
-            <TechStackCard key={name} name={name} tag={tag}>
+          {technologiesTechStackItems.map(({ name, Icon, tag, href }) => (
+            <TechStackCard key={name} name={name} tag={tag} href={href}>
               <Icon className='size-20' />
             </TechStackCard>
           ))}

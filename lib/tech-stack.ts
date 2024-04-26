@@ -18,6 +18,7 @@ type TechStackItem = {
     React.PropsWithoutRef<React.HTMLAttributes<SVGElement>>
   >
   tag: string
+  href?: string
 }
 
 export const languagesTechStackItems: TechStackItem[] = [
