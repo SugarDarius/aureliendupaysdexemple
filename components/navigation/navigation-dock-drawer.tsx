@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+import useEvent from 'react-use-event-hook'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 
 import { cn, toUpperFirst } from '@/lib/utils'
@@ -26,8 +28,13 @@ export function NavigationDockDrawer({
   pathname: string
   navigationItems: NavigationItem[]
 }) {
+  const [open, setOpen] = useState<boolean>(false)
+  const handleLinkClick = useEvent((): void => {
+    setOpen(false)
+  })
+
   return (
-    <Drawer>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button
           variant='ghost'
@@ -57,6 +64,7 @@ export function NavigationDockDrawer({
                     active={isActive}
                     variant='drawer'
                     className='colspan-1'
+                    onClick={handleLinkClick}
                   >
                     <Icon className='size-6' />
                     {toUpperFirst(navigationItem.label)}

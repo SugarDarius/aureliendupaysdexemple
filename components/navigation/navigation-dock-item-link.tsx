@@ -33,12 +33,13 @@ type NavigationDockItemLinkProps = {
   active?: boolean
   className?: string
   children: React.ReactNode
+  onClick?: () => void
 } & VariantProps<typeof itemLinkVariants>
 
 export const NavigationDockItemLink = forwardRef<
   HTMLAnchorElement,
   NavigationDockItemLinkProps
->(({ href, active = false, className, variant, children }, ref) => {
+>(({ href, active = false, className, variant, onClick, children }, ref) => {
   return (
     <Link
       ref={ref}
@@ -49,6 +50,7 @@ export const NavigationDockItemLink = forwardRef<
         className
       )}
       data-active={active ? '' : undefined}
+      onClick={onClick}
     >
       {children}
     </Link>
