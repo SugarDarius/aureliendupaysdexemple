@@ -26,7 +26,7 @@ export function TechStackCard({
       <div className='flex h-full w-full flex-col justify-end p-4'>
         <div className='flex flex-row items-center justify-between'>
           <h1 className='text-md font-bold tracking-tighter'>{name}</h1>
-          <span className='flex flex-row items-center rounded-full border border-neutral-200 bg-stone-50 px-3 py-1.5 text-xs leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100'>
+          <span className='flex flex-row items-center rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 text-xs leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100'>
             {tag}
           </span>
         </div>
