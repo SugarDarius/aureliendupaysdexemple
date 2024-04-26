@@ -12,6 +12,7 @@ import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 import { ReactIcon } from '@/components/icons/react-icon'
 import { TailwindCSSIcon } from '@/components/icons/tailwind-css-icon'
 import { FramerMotionIcon } from '@/components/icons/framer-motion-icon'
+import { ZodIcon } from '@/components/icons/zod-icon'
 
 type TechStackItem = {
   name: string
@@ -73,5 +74,11 @@ export const technologiesTechStackItems: TechStackItem[] = [
     Icon: FramerMotionIcon,
     tag: 'frontend',
     href: 'https://www.framer.com/motion/',
+  },
+  {
+    name: 'Zod',
+    Icon: ZodIcon,
+    tag: 'Validation',
+    href: 'https://zod.dev/',
   },
 ]
