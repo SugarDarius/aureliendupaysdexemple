@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 
-import { languagesTechStackItems } from '@/lib/tech-stack'
+import {
+  languagesTechStackItems,
+  technologiesTechStackItems,
+} from '@/lib/tech-stack'
 
 import { Separator } from '@/components/ui/separator'
 import { Hero } from '@/components/content/hero'
@@ -21,7 +24,13 @@ export default function TechStackPage() {
           description='A look at the programming languages, technologies, libraries and dev tools I use and play with.'
         />
         <Separator />
-        <TechStackGrid title='Technologies'></TechStackGrid>
+        <TechStackGrid title='Technologies'>
+          {technologiesTechStackItems.map(({ name, Icon, tag }) => (
+            <TechStackCard key={name} name={name} tag={tag}>
+              <Icon className='size-20' />
+            </TechStackCard>
+          ))}
+        </TechStackGrid>
         <TechStackGrid title='Languages'>
           {languagesTechStackItems.map(({ name, Icon, tag }) => (
             <TechStackCard key={name} name={name} tag={tag}>

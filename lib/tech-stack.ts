@@ -5,6 +5,8 @@ import { GraphQLIcon } from '@/components/icons/graphql-icon'
 import { PHPIcon } from '@/components/icons/php-icon'
 import { SQLIcon } from '@/components/icons/sql-icon'
 
+import { ChakraUIIcon } from '@/components/icons/chakra-ui-icon'
+
 type TechStackItem = {
   name: string
   Icon: React.FunctionComponent<
@@ -20,4 +22,8 @@ export const languagesTechStackItems: TechStackItem[] = [
   { name: 'GraphQL', Icon: GraphQLIcon, tag: 'frontend/backend' },
   { name: 'PHP', Icon: PHPIcon, tag: 'backend' },
   { name: 'SQL', Icon: SQLIcon, tag: 'backend' },
+]
+
+export const technologiesTechStackItems: TechStackItem[] = [
+  { name: 'Chakra UI', Icon: ChakraUIIcon, tag: 'UI/UX' },
 ]
