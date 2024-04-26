@@ -7,6 +7,7 @@ import { SQLIcon } from '@/components/icons/sql-icon'
 
 import { ChakraUIIcon } from '@/components/icons/chakra-ui-icon'
 import { RadixUIIcon } from '@/components/icons/radix-ui-icon'
+import { ShadcnUIIcon } from '@/components/icons/shadcn-ui-icon'
 import { TailwindCSSIcon } from '@/components/icons/tailwind-css-icon'
 import { ReactIcon } from '@/components/icons/react-icon'
 
@@ -30,6 +31,7 @@ export const languagesTechStackItems: TechStackItem[] = [
 export const technologiesTechStackItems: TechStackItem[] = [
   { name: 'Chakra UI', Icon: ChakraUIIcon, tag: 'UI/UX' },
   { name: 'Radix UI', Icon: RadixUIIcon, tag: 'UI/UX' },
-  { name: 'Tailwind CSS', Icon: TailwindCSSIcon, tag: 'UI/UX' },
+  { name: 'shadcn/ui', Icon: ShadcnUIIcon, tag: 'UI/UX' },
   { name: 'React', Icon: ReactIcon, tag: 'frontend' },
+  { name: 'Tailwind CSS', Icon: TailwindCSSIcon, tag: 'UI/UX' },
 ]
