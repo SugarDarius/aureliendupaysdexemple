@@ -11,6 +11,7 @@ import { ShadcnUIIcon } from '@/components/icons/shadcn-ui-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 import { ReactIcon } from '@/components/icons/react-icon'
 import { TailwindCSSIcon } from '@/components/icons/tailwind-css-icon'
+import { FramerMotionIcon } from '@/components/icons/framer-motion-icon'
 
 type TechStackItem = {
   name: string
@@ -66,5 +67,11 @@ export const technologiesTechStackItems: TechStackItem[] = [
     Icon: TailwindCSSIcon,
     tag: 'frontend',
     href: 'https://tailwindcss.com/',
+  },
+  {
+    name: 'Framer Motion',
+    Icon: FramerMotionIcon,
+    tag: 'frontend',
+    href: 'https://www.framer.com/motion/',
   },
 ]
