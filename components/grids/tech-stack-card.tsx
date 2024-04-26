@@ -18,16 +18,20 @@ export function TechStackCard({
 }) {
   const AnchorComp = href ? 'a' : Fragment
   const anchorProps = href
-    ? { href, target: '_blank', rel: 'noopener noreferrer' }
+    ? {
+        href,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      }
     : {}
   return (
-    <div
-      className={cn(
-        'relative col-span-1 flex aspect-square flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 transition-transform duration-150 ease-linear hover:scale-[1.03] dark:border-neutral-800 dark:bg-stone-900',
-        className
-      )}
-    >
-      <AnchorComp {...anchorProps}>
+    <AnchorComp {...anchorProps}>
+      <div
+        className={cn(
+          'relative col-span-1 flex aspect-square flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 transition-transform duration-150 ease-linear hover:scale-[1.03] dark:border-neutral-800 dark:bg-stone-900',
+          className
+        )}
+      >
         <div className='absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center'>
           {children}
         </div>
@@ -39,7 +43,7 @@ export function TechStackCard({
             </span>
           </div>
         </div>
-      </AnchorComp>
-    </div>
+      </div>
+    </AnchorComp>
   )
 }

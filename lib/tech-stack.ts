@@ -31,7 +31,12 @@ export const languagesTechStackItems: TechStackItem[] = [
 ]
 
 export const technologiesTechStackItems: TechStackItem[] = [
-  { name: 'Chakra UI', Icon: ChakraUIIcon, tag: 'UI/UX' },
+  {
+    name: 'Chakra UI',
+    Icon: ChakraUIIcon,
+    tag: 'UI/UX',
+    href: 'https://chakra-ui.com/',
+  },
   { name: 'Radix UI', Icon: RadixUIIcon, tag: 'UI/UX' },
   { name: 'shadcn/ui', Icon: ShadcnUIIcon, tag: 'UI/UX' },
   { name: 'Next.js', Icon: NextJSSquareIcon, tag: 'frontend' },
