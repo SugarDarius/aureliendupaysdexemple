@@ -19,7 +19,7 @@ const itemLinkVariants = cva(
     variants: {
       variant: {
         default: 'rounded-xl',
-        drawer: 'rounded-xl border shadow gap-2 w-full h-full',
+        drawer: 'rounded-xl border shadow gap-1 w-full h-full',
       },
     },
     defaultVariants: {

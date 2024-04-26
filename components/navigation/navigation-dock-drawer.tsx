@@ -51,10 +51,7 @@ export function NavigationDockDrawer({
               const Icon = navigationItemsIcons[navigationItem.name]
 
               return (
-                <div
-                  key={navigationItem.href}
-                  className='flex aspect-square flex-col'
-                >
+                <div key={navigationItem.href} className='flex flex-col'>
                   <NavigationDockItemLink
                     href={navigationItem.href}
                     active={isActive}
