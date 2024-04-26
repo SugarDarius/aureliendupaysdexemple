@@ -3,6 +3,7 @@ import { CSS3Icon } from '@/components/icons/css3-icon'
 import { TypescriptIcon } from '@/components/icons/typescript-icon'
 import { GraphQLIcon } from '@/components/icons/graphql-icon'
 import { PHPIcon } from '@/components/icons/php-icon'
+import { SQLIcon } from '@/components/icons/sql-icon'
 
 type TechStackItem = {
   name: string
@@ -18,4 +19,5 @@ export const languagesTechStackItems: TechStackItem[] = [
   { name: 'Typescript', Icon: TypescriptIcon, tag: 'frontend/backend' },
   { name: 'GraphQL', Icon: GraphQLIcon, tag: 'frontend/backend' },
   { name: 'PHP', Icon: PHPIcon, tag: 'backend' },
+  { name: 'SQL', Icon: SQLIcon, tag: 'backend' },
 ]
