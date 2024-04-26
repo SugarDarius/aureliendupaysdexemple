@@ -16,7 +16,7 @@ export function TechStackGrid({
       <h1 className='text-4xl font-bold tracking-tight text-muted-foreground'>
         {title}
       </h1>
-      <div className='grid w-full grid-cols-4 max-sm:grid-cols-2'>
+      <div className='grid w-full grid-cols-4 gap-4 max-sm:grid-cols-2'>
         {children}
       </div>
     </div>
