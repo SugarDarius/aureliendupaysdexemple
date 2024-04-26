@@ -13,7 +13,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
-import { ColorModeSwitcher } from '@/components/color-mode/color-mode-switcher'
+import { ColorModeDropdownSwitcher } from '@/components/color-mode/color-mode-dropdown-switcher'
 import { CommandCenter } from '@/components/command-center/command-center'
 
 import { NavigationDockDrawer } from '@/components/navigation/navigation-dock-drawer'
@@ -69,7 +69,7 @@ export function NavigationDock() {
             navigationItems={navigationItems}
             className='max-sm:hidden'
           />
-          <ColorModeSwitcher />
+          <ColorModeDropdownSwitcher />
         </div>
       </div>
     </div>

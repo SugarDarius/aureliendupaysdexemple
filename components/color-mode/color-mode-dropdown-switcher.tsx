@@ -23,7 +23,7 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip'
 
-export function ColorModeSwitcher() {
+export function ColorModeDropdownSwitcher() {
   const { setTheme } = useTheme()
 
   return (
