@@ -27,8 +27,18 @@ type TechStackItem = {
 export const languagesTechStackItems: TechStackItem[] = [
   { name: 'HTML 5', Icon: HTML5Icon, tag: 'frontend' },
   { name: 'CSS 3', Icon: CSS3Icon, tag: 'frontend' },
-  { name: 'Typescript', Icon: TypescriptIcon, tag: 'frontend/backend' },
-  { name: 'GraphQL', Icon: GraphQLIcon, tag: 'frontend/backend' },
+  {
+    name: 'Typescript',
+    Icon: TypescriptIcon,
+    tag: 'frontend/backend',
+    href: 'https://www.typescriptlang.org/',
+  },
+  {
+    name: 'GraphQL',
+    Icon: GraphQLIcon,
+    tag: 'frontend/backend',
+    href: 'https://graphql.org/',
+  },
   { name: 'PHP', Icon: PHPIcon, tag: 'backend' },
   { name: 'SQL', Icon: SQLIcon, tag: 'backend' },
 ]

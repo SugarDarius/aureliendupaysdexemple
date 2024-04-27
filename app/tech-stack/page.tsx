@@ -32,8 +32,8 @@ export default function TechStackPage() {
           ))}
         </TechStackGrid>
         <TechStackGrid title='Languages'>
-          {languagesTechStackItems.map(({ name, Icon, tag }) => (
-            <TechStackCard key={name} name={name} tag={tag}>
+          {languagesTechStackItems.map(({ name, Icon, tag, href }) => (
+            <TechStackCard key={name} name={name} tag={tag} href={href}>
               <Icon className='size-20' />
             </TechStackCard>
           ))}
