@@ -13,6 +13,7 @@ import { ReactIcon } from '@/components/icons/react-icon'
 import { TailwindCSSIcon } from '@/components/icons/tailwind-css-icon'
 import { FramerMotionIcon } from '@/components/icons/framer-motion-icon'
 import { ZodIcon } from '@/components/icons/zod-icon'
+import { ZustandIcon } from '@/components/icons/zustand-icon'
 
 type TechStackItem = {
   name: string
@@ -72,7 +73,7 @@ export const technologiesTechStackItems: TechStackItem[] = [
   {
     name: 'Framer Motion',
     Icon: FramerMotionIcon,
-    tag: 'frontend',
+    tag: 'animation',
     href: 'https://www.framer.com/motion/',
   },
   {
@@ -80,5 +81,11 @@ export const technologiesTechStackItems: TechStackItem[] = [
     Icon: ZodIcon,
     tag: 'validation',
     href: 'https://zod.dev/',
+  },
+  {
+    name: 'Zustand',
+    Icon: ZustandIcon,
+    tag: 'store',
+    href: 'https://zustand-demo.pmnd.rs/',
   },
 ]
