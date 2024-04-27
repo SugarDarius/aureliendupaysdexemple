@@ -19,6 +19,7 @@ import { ReduxIcon } from '@/components/icons/redux-icon'
 
 import { NestJSIcon } from '@/components/icons/nestjs-icon'
 import { MongoDBIcon } from '@/components/icons/mongodb-icon'
+import { SupabaseIcon } from '@/components/icons/supabase-icon'
 
 import { VercelIcon } from '@/components/icons/vercel-icon'
 
@@ -131,6 +132,12 @@ export const backendTechnologiesTechStackItems: TechStackItem[] = [
     Icon: MongoDBIcon,
     tag: 'database',
     href: 'https://www.mongodb.com/',
+  },
+  {
+    name: 'Supabase',
+    Icon: SupabaseIcon,
+    tag: 'database',
+    href: 'https://supabase.com/',
   },
 ]
 
