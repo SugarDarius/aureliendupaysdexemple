@@ -26,6 +26,7 @@ import { VercelIcon } from '@/components/icons/vercel-icon'
 import { VSCodeIcon } from '@/components/icons/vscode-icon'
 import { NodeJSIcon } from '@/components/icons/nodejs-icon'
 import { GitHubSquareIcon } from '@/components/icons/github-square-icon'
+import { FigmaIcon } from '@/components/icons/figma-icon'
 
 type TechStackItem = {
   name: string
@@ -172,5 +173,11 @@ export const toolsAndSoftwaresTechStackItems: TechStackItem[] = [
     Icon: GitHubSquareIcon,
     tag: 'git',
     href: 'https://github.com/',
+  },
+  {
+    name: 'Figma',
+    Icon: FigmaIcon,
+    tag: 'design',
+    href: 'https://www.figma.com/',
   },
 ]
