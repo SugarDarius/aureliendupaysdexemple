@@ -27,6 +27,7 @@ import { VSCodeIcon } from '@/components/icons/vscode-icon'
 import { NodeJSIcon } from '@/components/icons/nodejs-icon'
 import { GitHubSquareIcon } from '@/components/icons/github-square-icon'
 import { FigmaIcon } from '@/components/icons/figma-icon'
+import { PhotoshopIcon } from '@/components/icons/photoshop-icon'
 
 type TechStackItem = {
   name: string
@@ -179,5 +180,11 @@ export const toolsAndSoftwaresTechStackItems: TechStackItem[] = [
     Icon: FigmaIcon,
     tag: 'design',
     href: 'https://www.figma.com/',
+  },
+  {
+    name: 'Photoshop',
+    Icon: PhotoshopIcon,
+    tag: 'design',
+    href: 'https://www.adobe.com/products/photoshop.html',
   },
 ]
