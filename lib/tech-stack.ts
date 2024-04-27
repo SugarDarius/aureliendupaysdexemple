@@ -25,6 +25,7 @@ import { VercelIcon } from '@/components/icons/vercel-icon'
 
 import { VSCodeIcon } from '@/components/icons/vscode-icon'
 import { NodeJSIcon } from '@/components/icons/nodejs-icon'
+import { GitHubSquareIcon } from '@/components/icons/github-square-icon'
 
 type TechStackItem = {
   name: string
@@ -165,5 +166,11 @@ export const toolsAndSoftwaresTechStackItems: TechStackItem[] = [
     Icon: NodeJSIcon,
     tag: 'runtime',
     href: 'https://nodejs.org/',
+  },
+  {
+    name: 'GitHub',
+    Icon: GitHubSquareIcon,
+    tag: 'git',
+    href: 'https://github.com/',
   },
 ]
