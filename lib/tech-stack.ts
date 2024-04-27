@@ -78,7 +78,7 @@ export const technologiesTechStackItems: TechStackItem[] = [
   {
     name: 'Zod',
     Icon: ZodIcon,
-    tag: 'Validation',
+    tag: 'validation',
     href: 'https://zod.dev/',
   },
 ]
