@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 
 import {
   languagesTechStackItems,
-  technologiesTechStackItems,
+  frontendTechnologiesTechStackItems,
+  backendTechnologiesTechStackItems,
   hoistingTechStackItems,
 } from '@/lib/tech-stack'
 
@@ -26,12 +27,17 @@ export default function TechStackPage() {
         />
         <Separator />
         <TechStackGrid title='Technologies'>
-          {technologiesTechStackItems.map(({ Icon, ...props }) => (
+          {frontendTechnologiesTechStackItems.map(({ Icon, ...props }) => (
             <TechStackCard key={props.name} {...props}>
               <Icon className='size-20' />
             </TechStackCard>
           ))}
-          <div className='col-span-1' />
+          <div className='col-span-1 aspect-square' />
+          {backendTechnologiesTechStackItems.map(({ Icon, ...props }) => (
+            <TechStackCard key={props.name} {...props}>
+              <Icon className='size-20' />
+            </TechStackCard>
+          ))}
         </TechStackGrid>
         <TechStackGrid title='Hoisting'>
           {hoistingTechStackItems.map(({ Icon, ...props }) => (

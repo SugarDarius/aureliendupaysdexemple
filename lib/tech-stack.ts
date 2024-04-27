@@ -16,6 +16,7 @@ import { ZodIcon } from '@/components/icons/zod-icon'
 import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
 import { ReduxIcon } from '@/components/icons/redux-icon'
+import { NestJSIcon } from '@/components/icons/nestjs-icon'
 
 import { VercelIcon } from '@/components/icons/vercel-icon'
 
@@ -47,7 +48,7 @@ export const languagesTechStackItems: TechStackItem[] = [
   { name: 'SQL', Icon: SQLIcon, tag: 'backend' },
 ]
 
-export const technologiesTechStackItems: TechStackItem[] = [
+export const frontendTechnologiesTechStackItems: TechStackItem[] = [
   {
     name: 'Chakra UI',
     Icon: ChakraUIIcon,
@@ -113,6 +114,15 @@ export const technologiesTechStackItems: TechStackItem[] = [
     Icon: ReduxIcon,
     tag: 'state management',
     href: 'https://redux.js.org/',
+  },
+]
+
+export const backendTechnologiesTechStackItems: TechStackItem[] = [
+  {
+    name: 'NestJS',
+    Icon: NestJSIcon,
+    tag: 'server framework',
+    href: 'https://nestjs.com/',
   },
 ]
 
