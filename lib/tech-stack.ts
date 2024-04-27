@@ -16,7 +16,9 @@ import { ZodIcon } from '@/components/icons/zod-icon'
 import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
 import { ReduxIcon } from '@/components/icons/redux-icon'
+
 import { NestJSIcon } from '@/components/icons/nestjs-icon'
+import { MongoDBIcon } from '@/components/icons/mongodb-icon'
 
 import { VercelIcon } from '@/components/icons/vercel-icon'
 
@@ -50,12 +52,6 @@ export const languagesTechStackItems: TechStackItem[] = [
 
 export const frontendTechnologiesTechStackItems: TechStackItem[] = [
   {
-    name: 'Chakra UI',
-    Icon: ChakraUIIcon,
-    tag: 'UI/UX',
-    href: 'https://chakra-ui.com/',
-  },
-  {
     name: 'Radix UI',
     Icon: RadixUIIcon,
     tag: 'UI/UX',
@@ -66,6 +62,12 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
     Icon: ShadcnUIIcon,
     tag: 'UI/UX',
     href: 'https://ui.shadcn.com/',
+  },
+  {
+    name: 'Chakra UI',
+    Icon: ChakraUIIcon,
+    tag: 'UI/UX',
+    href: 'https://chakra-ui.com/',
   },
   {
     name: 'Next.js',
@@ -123,6 +125,12 @@ export const backendTechnologiesTechStackItems: TechStackItem[] = [
     Icon: NestJSIcon,
     tag: 'server framework',
     href: 'https://nestjs.com/',
+  },
+  {
+    name: 'MongoDB',
+    Icon: MongoDBIcon,
+    tag: 'database',
+    href: 'https://www.mongodb.com/',
   },
 ]
 
