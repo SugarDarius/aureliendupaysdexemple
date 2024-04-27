@@ -14,6 +14,7 @@ import { TailwindCSSIcon } from '@/components/icons/tailwind-css-icon'
 import { FramerMotionIcon } from '@/components/icons/framer-motion-icon'
 import { ZodIcon } from '@/components/icons/zod-icon'
 import { ZustandIcon } from '@/components/icons/zustand-icon'
+import { XStateIcon } from '@/components/icons/xstate-icon'
 
 type TechStackItem = {
   name: string
@@ -97,5 +98,11 @@ export const technologiesTechStackItems: TechStackItem[] = [
     Icon: ZustandIcon,
     tag: 'store',
     href: 'https://zustand-demo.pmnd.rs/',
+  },
+  {
+    name: 'X State',
+    Icon: XStateIcon,
+    tag: 'state machine',
+    href: 'https://xstate.js.org/',
   },
 ]
