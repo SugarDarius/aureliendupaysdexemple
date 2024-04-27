@@ -24,6 +24,7 @@ import { SupabaseIcon } from '@/components/icons/supabase-icon'
 import { VercelIcon } from '@/components/icons/vercel-icon'
 
 import { VSCodeIcon } from '@/components/icons/vscode-icon'
+import { NodeJSIcon } from '@/components/icons/nodejs-icon'
 
 type TechStackItem = {
   name: string
@@ -158,5 +159,11 @@ export const toolsAndSoftwaresTechStackItems: TechStackItem[] = [
     Icon: VSCodeIcon,
     tag: 'code editor',
     href: 'https://code.visualstudio.com/',
+  },
+  {
+    name: 'Node.JS',
+    Icon: NodeJSIcon,
+    tag: 'runtime',
+    href: 'https://nodejs.org/',
   },
 ]
