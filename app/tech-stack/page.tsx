@@ -31,6 +31,7 @@ export default function TechStackPage() {
               <Icon className='size-20' />
             </TechStackCard>
           ))}
+          <div className='col-span-1' />
         </TechStackGrid>
         <TechStackGrid title='Hoisting'>
           {hoistingTechStackItems.map(({ Icon, ...props }) => (
