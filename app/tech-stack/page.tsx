@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import {
   languagesTechStackItems,
   technologiesTechStackItems,
+  hoistingTechStackItems,
 } from '@/lib/tech-stack'
 
 import { Separator } from '@/components/ui/separator'
@@ -25,15 +26,22 @@ export default function TechStackPage() {
         />
         <Separator />
         <TechStackGrid title='Technologies'>
-          {technologiesTechStackItems.map(({ name, Icon, tag, href }) => (
-            <TechStackCard key={name} name={name} tag={tag} href={href}>
+          {technologiesTechStackItems.map(({ Icon, ...props }) => (
+            <TechStackCard key={props.name} {...props}>
+              <Icon className='size-20' />
+            </TechStackCard>
+          ))}
+        </TechStackGrid>
+        <TechStackGrid title='Hoisting'>
+          {hoistingTechStackItems.map(({ Icon, ...props }) => (
+            <TechStackCard key={props.name} {...props}>
               <Icon className='size-20' />
             </TechStackCard>
           ))}
         </TechStackGrid>
         <TechStackGrid title='Languages'>
-          {languagesTechStackItems.map(({ name, Icon, tag, href }) => (
-            <TechStackCard key={name} name={name} tag={tag} href={href}>
+          {languagesTechStackItems.map(({ Icon, ...props }) => (
+            <TechStackCard key={props.name} {...props}>
               <Icon className='size-20' />
             </TechStackCard>
           ))}

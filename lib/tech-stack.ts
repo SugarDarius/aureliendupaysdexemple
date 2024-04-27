@@ -17,6 +17,8 @@ import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
 import { ReduxIcon } from '@/components/icons/redux-icon'
 
+import { VercelIcon } from '@/components/icons/vercel-icon'
+
 type TechStackItem = {
   name: string
   Icon: React.FunctionComponent<
@@ -111,5 +113,14 @@ export const technologiesTechStackItems: TechStackItem[] = [
     Icon: ReduxIcon,
     tag: 'state management',
     href: 'https://redux.js.org/',
+  },
+]
+
+export const hoistingTechStackItems: TechStackItem[] = [
+  {
+    name: 'Vercel',
+    Icon: VercelIcon,
+    tag: 'hoisting/deployment',
+    href: 'https://vercel.com/',
   },
 ]
