@@ -15,6 +15,7 @@ import { FramerMotionIcon } from '@/components/icons/framer-motion-icon'
 import { ZodIcon } from '@/components/icons/zod-icon'
 import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
+import { ReduxIcon } from '@/components/icons/redux-icon'
 
 type TechStackItem = {
   name: string
@@ -96,7 +97,7 @@ export const technologiesTechStackItems: TechStackItem[] = [
   {
     name: 'Zustand',
     Icon: ZustandIcon,
-    tag: 'store',
+    tag: 'state management',
     href: 'https://zustand-demo.pmnd.rs/',
   },
   {
@@ -104,5 +105,11 @@ export const technologiesTechStackItems: TechStackItem[] = [
     Icon: XStateIcon,
     tag: 'state machine',
     href: 'https://xstate.js.org/',
+  },
+  {
+    name: 'Redux',
+    Icon: ReduxIcon,
+    tag: 'state management',
+    href: 'https://redux.js.org/',
   },
 ]
