@@ -5,6 +5,7 @@ import {
   frontendTechnologiesTechStackItems,
   backendTechnologiesTechStackItems,
   hoistingTechStackItems,
+  toolsAndSoftwaresTechStackItems,
 } from '@/lib/tech-stack'
 
 import { Separator } from '@/components/ui/separator'
@@ -41,6 +42,13 @@ export default function TechStackPage() {
         </TechStackGrid>
         <TechStackGrid title='Hoisting'>
           {hoistingTechStackItems.map(({ Icon, ...props }) => (
+            <TechStackCard key={props.name} {...props}>
+              <Icon className='size-20' />
+            </TechStackCard>
+          ))}
+        </TechStackGrid>
+        <TechStackGrid title='Tools & Softwares'>
+          {toolsAndSoftwaresTechStackItems.map(({ Icon, ...props }) => (
             <TechStackCard key={props.name} {...props}>
               <Icon className='size-20' />
             </TechStackCard>

@@ -23,6 +23,8 @@ import { SupabaseIcon } from '@/components/icons/supabase-icon'
 
 import { VercelIcon } from '@/components/icons/vercel-icon'
 
+import { VSCodeIcon } from '@/components/icons/vscode-icon'
+
 type TechStackItem = {
   name: string
   Icon: React.FunctionComponent<
@@ -147,5 +149,14 @@ export const hoistingTechStackItems: TechStackItem[] = [
     Icon: VercelIcon,
     tag: 'hoisting/deployment',
     href: 'https://vercel.com/',
+  },
+]
+
+export const toolsAndSoftwaresTechStackItems: TechStackItem[] = [
+  {
+    name: 'VSCode',
+    Icon: VSCodeIcon,
+    tag: 'code editor',
+    href: 'https://code.visualstudio.com/',
   },
 ]
