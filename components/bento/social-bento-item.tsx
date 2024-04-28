@@ -6,7 +6,7 @@ type SocialBentoItemProps = {
   name: string
   accountName: string
   icon: React.ReactNode
-  gradientClassName?: string
+  children?: React.ReactNode
 }
 
 export function SocialBentoItem({
@@ -14,6 +14,7 @@ export function SocialBentoItem({
   name,
   accountName,
   icon,
+  children,
 }: SocialBentoItemProps) {
   return (
     <BentoCard className='col-span-1 row-span-1'>
@@ -25,14 +26,15 @@ export function SocialBentoItem({
           >
             <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-stone-900'></div>
           </div>
-          <div className={'z-10 flex size-full flex-col justify-between p-4'}>
-            <div className='flex flex-row items-center justify-between'>
+          <div className={'z-10 flex size-full flex-col p-4'}>
+            <div className='flex flex-none flex-row items-center justify-between'>
               <h1 className='text-xl font-extrabold tracking-tighter'>
                 {name}
               </h1>
               {icon}
             </div>
-            <div className='flex flex-col'>
+            <div className='flex w-full flex-auto flex-col'>{children}</div>
+            <div className='flex flex-none flex-col'>
               <h1 className='text-md font-bold tracking-tighter'>
                 {accountName}
               </h1>
