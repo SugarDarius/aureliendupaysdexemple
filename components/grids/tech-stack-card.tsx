@@ -34,14 +34,14 @@ export function TechStackCard({
       >
         <div
           /* eslint-disable-next-line prettier/prettier */
-          className='bg-dot-black/[0.2] dark:bg-dot-white/[0.2] absolute bottom-0 left-0 right-0 top-0 -z-10 m-auto h-[86%] w-[86%]'
+          className='absolute bottom-0 left-0 right-0 top-0 m-auto h-[86%] w-[86%] bg-dot-black/[0.2] dark:bg-dot-white/[0.2]'
         >
           <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-stone-900'></div>
         </div>
         <div className='absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center'>
           {children}
         </div>
-        <div className='flex h-full w-full flex-col justify-end overflow-hidden p-4 max-md:p-2'>
+        <div className='z-[2] flex h-full w-full flex-col justify-end overflow-hidden p-4 max-md:p-2'>
           <div className='flex w-full flex-row items-center justify-between overflow-hidden max-lg:justify-center'>
             <h1 className='text-md font-bold tracking-tighter'>{name}</h1>
             <span className='flex flex-row items-center rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 text-xs leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100 max-lg:hidden'>
