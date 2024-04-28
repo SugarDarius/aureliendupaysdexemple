@@ -7,13 +7,15 @@ import { LinkedInBentoItem } from '@/components/bento/linkedin-bento-item'
 
 export default function HomePage() {
   return (
-    <div className='relative flex h-full w-full flex-col items-center justify-center overflow-auto p-6'>
-      <BentoGrid>
-        <HeroBentoItem />
-        <GitHubBentoItem />
-        <TwitterBentoItem />
-        <LinkedInBentoItem />
-      </BentoGrid>
+    <div className='relative flex h-full w-full flex-col items-center'>
+      <div className='flex h-full w-full max-w-4xl flex-col justify-center gap-10 px-12 pb-24 pt-12 max-sm:px-4 min-[1025px]:px-0'>
+        <BentoGrid>
+          <HeroBentoItem />
+          <GitHubBentoItem />
+          <TwitterBentoItem />
+          <LinkedInBentoItem />
+        </BentoGrid>
+      </div>
     </div>
   )
 }
