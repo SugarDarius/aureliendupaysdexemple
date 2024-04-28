@@ -51,7 +51,7 @@ export function ColorModeDropdownSwitcher({
           <TooltipContent>Switch color mode</TooltipContent>
         </Tooltip>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
+      <DropdownMenuContent align='end' sideOffset={10} alignOffset={-4}>
         <DropdownMenuItem
           onClick={() => setTheme('light')}
           className='flex flex-row items-center gap-2'
