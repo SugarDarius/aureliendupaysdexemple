@@ -11,12 +11,11 @@ export function TechStackBentoItem() {
       <div className='flex h-full w-full flex-col items-center justify-center'>
         <div className='relative flex size-[80%] flex-col'>
           <Image
-            src='/tech-stack-preview.png'
+            src='/tech-stack-preview@4.png'
             fill
-            alt='logo'
-            priority
+            alt='preview'
             style={{ objectFit: 'contain' }}
-            sizes='110px'
+            sizes='1024px'
           />
         </div>
       </div>
