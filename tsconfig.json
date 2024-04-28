@@ -23,6 +23,7 @@
   },
   "include": [
     "next-env.d.ts",
+    "tailwind.d.ts",
     "three-fiber.d.ts",
     "**/*.ts",
     "**/*.tsx",
