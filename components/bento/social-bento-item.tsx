@@ -28,7 +28,7 @@ export function SocialBentoItem({
           </div>
           <div className='flex size-full flex-col gap-1 p-4'>
             <div className='flex flex-none flex-row items-center justify-between'>
-              <h1 className='text-xl font-extrabold tracking-tighter'>
+              <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-lg'>
                 {name}
               </h1>
               {icon}
