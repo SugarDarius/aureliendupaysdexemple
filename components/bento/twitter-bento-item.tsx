@@ -6,11 +6,9 @@ export function TwitterBentoItem() {
   return (
     <SocialBentoItem
       href={siteConfig.socialLinks.twitter.url}
-      imgSrc='/tokyo.jpg'
       name='Twitter'
       accountName={siteConfig.socialLinks.twitter.name}
       icon={<TwitterSquareIcon className='size-6' />}
-      variant='twitter'
     />
   )
 }

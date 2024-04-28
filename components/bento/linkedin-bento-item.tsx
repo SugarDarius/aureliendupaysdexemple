@@ -6,11 +6,9 @@ export function LinkedInBentoItem() {
   return (
     <SocialBentoItem
       href={siteConfig.socialLinks.linkedin.url}
-      imgSrc='/forest.jpg'
       name='LinkedIn'
       accountName='Aurélien'
       icon={<LinkedInSquareIcon className='size-6' />}
-      variant='linkedin'
     />
   )
 }

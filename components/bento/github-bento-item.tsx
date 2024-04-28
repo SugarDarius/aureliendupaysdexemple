@@ -6,11 +6,9 @@ export function GitHubBentoItem() {
   return (
     <SocialBentoItem
       href={siteConfig.socialLinks.github.url}
-      imgSrc='/aureliendupaysdexemple-logo.png'
       name='GitHub'
       accountName={siteConfig.socialLinks.github.name}
       icon={<GitHubSquareIcon className='size-6' />}
-      variant='github'
     />
   )
 }
