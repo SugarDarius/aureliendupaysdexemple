@@ -15,17 +15,12 @@ const generateContributionRateColor = (): string => {
 
 const LENGTH = 7
 
-export function generateGitHubRandomContributions(): string[][] {
-  const contributions: string[][] = []
+export function generateGitHubRandomContributionsColors(): string[] {
+  const contributions: string[] = []
 
   for (let i = 0; i < LENGTH * LENGTH; i++) {
-    const row = Math.floor(i / LENGTH)
-    if (!contributions[row]) {
-      contributions[row] = []
-    }
-
     const color = generateContributionRateColor()
-    contributions[row].push(color)
+    contributions[i] = color
   }
 
   return contributions
