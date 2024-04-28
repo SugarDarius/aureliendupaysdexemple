@@ -8,7 +8,7 @@ export function TechStackBentoItem() {
       description='Check my tech stack I use and play with'
       href='/tech-stack'
     >
-      <div className='flex h-full w-full flex-col items-center justify-center'>
+      <div className='flex h-full w-full flex-col items-center justify-end'>
         <div className='relative flex size-[80%] flex-col'>
           <Image
             src='/tech-stack-preview@4.png'
