@@ -9,6 +9,6 @@ export function GitHubBentoItem() {
       name='GitHub'
       accountName={siteConfig.socialLinks.github.name}
       icon={<GitHubSquareIcon className='size-6' />}
-    />
+    ></SocialBentoItem>
   )
 }
