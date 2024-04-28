@@ -5,7 +5,7 @@ export function TechStackBentoItem() {
   return (
     <PageBentoItem
       title='Tech Stack'
-      description='Check my tech stack I use everyday'
+      description='Check my tech stack I use and play with'
       href='/tech-stack'
     >
       <div className='flex h-full w-full flex-col items-center justify-center'>
