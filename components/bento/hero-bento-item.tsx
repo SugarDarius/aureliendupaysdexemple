@@ -11,11 +11,11 @@ export function HeroBentoItem() {
       <div className='relative flex h-full w-full flex-col overflow-hidden'>
         <div
           /* eslint-disable-next-line prettier/prettier */
-          className='bg-dot-black/[0.2] dark:bg-dot-white/[0.2] absolute bottom-0 left-0 right-0 top-0 m-auto h-[86%] w-[86%]'
+          className='bg-dot-black/[0.2] dark:bg-dot-white/[0.2] absolute bottom-0 left-0 right-0 top-0 -z-10 m-auto h-[86%] w-[86%]'
         >
           <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-stone-900'></div>
         </div>
-        <div className='z-10 flex h-full flex-col justify-between p-4'>
+        <div className='flex h-full flex-col justify-between p-4'>
           <div className='flex flex-row items-center justify-between'>
             <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-lg'>
               Hey, I&apos;m Aurélien Dupays Dexemple 👋
