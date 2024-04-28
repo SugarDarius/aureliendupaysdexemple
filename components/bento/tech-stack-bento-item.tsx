@@ -16,6 +16,7 @@ export function TechStackBentoItem() {
             alt='preview'
             style={{ objectFit: 'contain' }}
             sizes='1024px'
+            priority
           />
         </div>
       </div>
