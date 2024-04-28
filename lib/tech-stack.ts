@@ -16,6 +16,7 @@ import { ZodIcon } from '@/components/icons/zod-icon'
 import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
 import { ReduxIcon } from '@/components/icons/redux-icon'
+import { ClerkIcon } from '@/components/icons/clerk-icon'
 
 import { NestJSIcon } from '@/components/icons/nestjs-icon'
 import { MongoDBIcon } from '@/components/icons/mongodb-icon'
@@ -123,6 +124,12 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
     Icon: ReduxIcon,
     tag: 'state management',
     href: 'https://redux.js.org/',
+  },
+  {
+    name: 'Clerk',
+    Icon: ClerkIcon,
+    tag: 'authentication',
+    href: 'https://clerk.com/',
   },
 ]
 
