@@ -17,6 +17,7 @@ import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
 import { ReduxIcon } from '@/components/icons/redux-icon'
 import { ClerkIcon } from '@/components/icons/clerk-icon'
+import { ElectronIcon } from '@/components/icons/electron-icon'
 
 import { NestJSIcon } from '@/components/icons/nestjs-icon'
 import { MongoDBIcon } from '@/components/icons/mongodb-icon'
@@ -130,6 +131,12 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
     Icon: ClerkIcon,
     tag: 'authentication',
     href: 'https://clerk.com/',
+  },
+  {
+    name: 'Electron',
+    Icon: ElectronIcon,
+    tag: 'desktop',
+    href: 'https://www.electronjs.org/',
   },
 ]
 

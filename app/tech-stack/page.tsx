@@ -33,6 +33,8 @@ export default function TechStackPage() {
               <Icon className='size-20' />
             </TechStackCard>
           ))}
+          <div className='col-span-1' />
+          <div className='col-span-1' />
           {backendTechnologiesTechStackItems.map(({ Icon, ...props }) => (
             <TechStackCard key={props.name} {...props}>
               <Icon className='size-20' />
