@@ -39,7 +39,7 @@ export default function WorkPage() {
         />
         <Separator />
         <p>
-          I love crafting interfaces and products with{' '}
+          My mission is to craft interfaces and products with{' '}
           <a
             href='https://react.dev/'
             target='_blank'
