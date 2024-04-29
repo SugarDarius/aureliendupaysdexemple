@@ -5,7 +5,7 @@ import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
 import { Separator } from '@/components/ui/separator'
 import { Hero } from '@/components/content/hero'
-import { WorkItem } from '@/components/content/work-item'
+import { WorkCard } from '@/components/content/work-card'
 
 export const metadata: Metadata = {
   title: 'Work',
@@ -46,7 +46,7 @@ export default function WorkPage() {
           Here&apos;s a look at my professional work and contributions.
         </p>
         <div className='flex w-full flex-col gap-6'>
-          <WorkItem></WorkItem>
+          <WorkCard></WorkCard>
         </div>
       </div>
     </div>

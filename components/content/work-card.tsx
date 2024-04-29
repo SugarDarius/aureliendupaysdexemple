@@ -1,11 +1,11 @@
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 import { Separator } from '@/components/ui/separator'
 
-const WorkItemSeparator = () => (
+const WorkCardSeparator = () => (
   <Separator className='w-4 bg-stone-800 dark:bg-stone-500' />
 )
 
-export function WorkItem({ children }: { children?: React.ReactNode }) {
+export function WorkCard({ children }: { children?: React.ReactNode }) {
   return (
     <div className='flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 dark:border-neutral-800 dark:bg-stone-900'>
       <div className='relative flex h-full w-full flex-col overflow-hidden'>
@@ -28,13 +28,13 @@ export function WorkItem({ children }: { children?: React.ReactNode }) {
                   Claap
                 </h1>
               </a>
-              <WorkItemSeparator />
+              <WorkCardSeparator />
               <span>Senior Software engineer (remote)</span>
             </div>
             <div className='flex flex-row items-center gap-2'>
               <CalendarDaysIcon className='size-6' />
               <span>October 2021</span>
-              <WorkItemSeparator />
+              <WorkCardSeparator />
               <span>March 2024</span>
             </div>
           </div>
