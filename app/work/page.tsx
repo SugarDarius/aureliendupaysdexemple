@@ -23,7 +23,7 @@ const InlineLink = ({
     href={href}
     target='_blank'
     rel='noopener noreferrer'
-    className='font-bold underline underline-offset-2'
+    className='font-bold underline-offset-2 hover:underline'
   >
     {children}
   </a>
