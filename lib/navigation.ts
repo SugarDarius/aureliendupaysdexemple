@@ -35,8 +35,8 @@ export const navigationItems: NavigationItem[] = [
     href: '/work',
     name: 'work',
     label: 'work',
-    shortcutLabel: 'G+E',
-    shortcutKeys: 'g+e',
+    shortcutLabel: 'G+W',
+    shortcutKeys: 'g+w',
   },
   {
     href: '/craft',
