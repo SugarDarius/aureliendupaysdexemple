@@ -18,7 +18,16 @@ export function WorkItem({ children }: { children?: React.ReactNode }) {
         <div className='flex h-full flex-col justify-between gap-4 p-6'>
           <div className='flex flex-row items-center justify-between'>
             <div className='flex flex-row items-center gap-2'>
-              <h1 className='text-xl font-extrabold tracking-tighter'>Claap</h1>
+              <a
+                href='https://www.claap.io/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex underline-offset-2 hover:underline'
+              >
+                <h1 className='text-xl font-extrabold tracking-tighter'>
+                  Claap
+                </h1>
+              </a>
               <WorkItemSeparator />
               <span>Senior Software engineer (remote)</span>
             </div>
