@@ -1,5 +1,8 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+import { type Keys, useHotkeys } from 'react-hotkeys-hook'
+
 import { toUpperFirst } from '@/lib/utils'
 import { type NavigationItemName, navigationItemsIcons } from '@/lib/navigation'
 import {
@@ -19,13 +22,24 @@ export const NavigationDockItem = ({
   label,
   pathname,
   shortcutLabel,
+  shortcutKeys,
 }: {
   href: string
   name: NavigationItemName
   label: string
   pathname: string
   shortcutLabel: string
+  shortcutKeys: Keys
 }) => {
+  const router = useRouter()
+  useHotkeys(
+    shortcutKeys,
+    (e): void => {
+      e.preventDefault()
+      router.push(href)
+    },
+    [href]
+  )
   const isActive = href === pathname
   const Icon = navigationItemsIcons[name]
 
