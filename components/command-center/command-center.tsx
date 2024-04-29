@@ -43,6 +43,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
+  CommandShortcut,
 } from '@/components/ui/command'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
@@ -142,6 +143,9 @@ export function CommandCenter({
               >
                 <ArrowRightIcon className='h-4 w-4' />
                 {toUpperFirst(navigationItem.label)}
+                <CommandShortcut>
+                  {navigationItem.shortcutLabel}
+                </CommandShortcut>
               </CommandItem>
             ))}
           </CommandGroup>

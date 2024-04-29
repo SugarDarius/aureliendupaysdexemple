@@ -11,24 +11,24 @@ export type NavigationItem = {
   href: string
   name: NavigationItemName
   label: string
-  command: string[]
+  shortcutLabel: string
 }
 
 export const navigationItems: NavigationItem[] = [
-  { href: '/', name: 'home', label: 'home', command: ['⌘', '1'] },
+  { href: '/', name: 'home', label: 'home', shortcutLabel: '⌘1' },
   {
     href: '/tech-stack',
     name: 'tech-stack',
     label: 'tech stack',
-    command: ['⌘', '2'],
+    shortcutLabel: '⌘2',
   },
   {
     href: '/experience',
     name: 'experience',
     label: 'experience',
-    command: ['⌘', '3'],
+    shortcutLabel: '⌘3',
   },
-  { href: '/craft', name: 'craft', label: 'craft', command: ['⌘', '4'] },
+  { href: '/craft', name: 'craft', label: 'craft', shortcutLabel: '⌘4' },
 ]
 
 export const navigationItemsIcons: Record<NavigationItemName, HeroiconsIcon> = {
