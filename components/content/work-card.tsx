@@ -35,7 +35,7 @@ export function WorkCard({
 
   return (
     <div className='flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 dark:border-neutral-800 dark:bg-stone-900'>
-      <div className='relative flex h-full w-full flex-col overflow-hidden'>
+      <div className='relative flex flex-col overflow-hidden'>
         <div
           /* eslint-disable-next-line prettier/prettier */
           className='absolute bottom-0 left-0 right-0 top-0 m-auto h-[86%] w-[86%] bg-dot-black/[0.2] dark:bg-dot-white/[0.2]'
