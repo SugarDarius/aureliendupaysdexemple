@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 import { Separator } from '@/components/ui/separator'
 
@@ -5,7 +6,31 @@ const WorkCardSeparator = () => (
   <Separator className='w-4 bg-stone-800 dark:bg-stone-500' />
 )
 
-export function WorkCard({ children }: { children?: React.ReactNode }) {
+export function WorkCard({
+  href,
+  companyName,
+  jobTitle,
+  startDate,
+  endDate,
+  children,
+}: {
+  href?: string
+  companyName: string
+  jobTitle: string
+  startDate: string
+  endDate?: string
+  children?: React.ReactNode
+}) {
+  const AnchorComp = href ? 'a' : Fragment
+  const anchorProps = href
+    ? {
+        href,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        className: 'inline-flex underline-offset-2 hover:underline',
+      }
+    : {}
+
   return (
     <div className='flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 dark:border-neutral-800 dark:bg-stone-900'>
       <div className='relative flex h-full w-full flex-col overflow-hidden'>
@@ -18,24 +43,23 @@ export function WorkCard({ children }: { children?: React.ReactNode }) {
         <div className='flex h-full flex-col justify-between gap-4 p-6'>
           <div className='flex flex-row items-center justify-between'>
             <div className='flex flex-row items-center gap-2'>
-              <a
-                href='https://www.claap.io/'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='inline-flex underline-offset-2 hover:underline'
-              >
+              <AnchorComp {...anchorProps}>
                 <h1 className='text-xl font-extrabold tracking-tighter'>
-                  Claap
+                  {companyName}
                 </h1>
-              </a>
+              </AnchorComp>
               <WorkCardSeparator />
-              <span>Senior Software engineer (remote)</span>
+              <span>{jobTitle}</span>
             </div>
             <div className='flex flex-row items-center gap-2'>
               <CalendarDaysIcon className='size-6' />
-              <span>October 2021</span>
-              <WorkCardSeparator />
-              <span>March 2024</span>
+              <span>{startDate}</span>
+              {endDate ? (
+                <>
+                  <WorkCardSeparator />
+                  <span>{endDate}</span>
+                </>
+              ) : null}
             </div>
           </div>
           <div className='flex w-full flex-col'>{children}</div>
