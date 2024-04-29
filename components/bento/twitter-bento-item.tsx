@@ -9,14 +9,6 @@ import { TwitterPostWidget } from '@/components/widgets/twitter-post-widget'
 
 export function TwitterBentoItem() {
   return (
-    // <SocialBentoItem
-    //   href={siteConfig.socialLinks.twitter.url}
-    //   name='Twitter'
-    //   accountName={siteConfig.socialLinks.twitter.name}
-    //   icon={<TwitterSquareIcon className='size-6' />}
-    // >
-    //   <TwitterPostWidget />
-    // </SocialBentoItem>
     <BentoCard className='col-span-1 row-span-1'>
       <a
         href={siteConfig.socialLinks.twitter.url}
