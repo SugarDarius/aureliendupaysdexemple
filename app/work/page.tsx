@@ -84,7 +84,7 @@ export default function WorkPage() {
                   multiple and different features for the product&apos;s web app
                   such as:
                 </p>
-                <ul className='ml-5 list-disc font-medium'>
+                <ul className='ml-5 list-disc font-medium '>
                   <li>Video uploads</li>
                   <li>Video replies in comments</li>
                   <li>File uploads in comments</li>
