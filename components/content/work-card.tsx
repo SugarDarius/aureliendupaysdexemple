@@ -1,9 +1,11 @@
 import { Fragment } from 'react'
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
+
+import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 
-const WorkCardSeparator = () => (
-  <Separator className='w-4 bg-stone-800 dark:bg-stone-500' />
+const WorkCardSeparator = ({ className }: { className?: string }) => (
+  <Separator className={cn('w-4 bg-stone-800 dark:bg-stone-500', className)} />
 )
 
 export function WorkCard({
@@ -40,24 +42,24 @@ export function WorkCard({
         >
           <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-stone-900'></div>
         </div>
-        <div className='flex h-full flex-col justify-between gap-6 p-6'>
-          <div className='flex flex-row items-center justify-between'>
-            <div className='flex flex-row items-center gap-2'>
+        <div className='flex h-full flex-col justify-between gap-6 p-6 max-sm:gap-3 max-sm:p-2'>
+          <div className='flex flex-row items-center justify-between max-sm:flex-col max-sm:items-start max-sm:justify-start max-sm:gap-1'>
+            <div className='flex flex-row items-center gap-2 max-sm:gap-1'>
               <AnchorComp {...anchorProps}>
-                <h1 className='text-xl font-extrabold tracking-tighter'>
+                <h1 className='text-xl font-extrabold tracking-tighter max-sm:text-lg'>
                   {companyName}
                 </h1>
               </AnchorComp>
-              <WorkCardSeparator />
-              <span>{jobTitle}</span>
+              <WorkCardSeparator className='max-sm:w-3' />
+              <span className='max-sm:text-sm'>{jobTitle}</span>
             </div>
-            <div className='flex flex-row items-center gap-2'>
-              <CalendarDaysIcon className='size-6' />
-              <span>{startDate}</span>
+            <div className='flex flex-row items-center gap-2 max-sm:gap-1'>
+              <CalendarDaysIcon className='size-6 max-sm:size-4' />
+              <span className='max-sm:text-xs'>{startDate}</span>
               {endDate ? (
                 <>
-                  <WorkCardSeparator />
-                  <span>{endDate}</span>
+                  <WorkCardSeparator className='max-sm:w-3' />
+                  <span className='max-sm:text-xs'>{endDate}</span>
                 </>
               ) : null}
             </div>
