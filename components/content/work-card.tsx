@@ -51,7 +51,7 @@ export function WorkCard({
                 </h1>
               </AnchorComp>
               <WorkCardSeparator className='max-sm:w-3' />
-              <span className='text-muted-foreground max-sm:text-sm'>
+              <span className='font-semibold text-muted-foreground max-sm:text-sm'>
                 {jobTitle}
               </span>
             </div>
