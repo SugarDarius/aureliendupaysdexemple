@@ -1,7 +1,7 @@
 # aureliendupaysdexemple.com
 
 - **Framework**: [Next.js](https://nextjs.org/)
-- UI: [shadcn/ui](https://ui.shadcn.com/)
+- **UI**: [shadcn/ui](https://ui.shadcn.com/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
 - **Deployment**: [Vercel](https://vercel.com)
 
