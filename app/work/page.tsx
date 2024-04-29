@@ -8,17 +8,17 @@ import { Hero } from '@/components/content/hero'
 import { ExperienceItem } from '@/components/content/experience-item'
 
 export const metadata: Metadata = {
-  title: 'Experience',
-  description: 'Check my work experience',
+  title: 'Work',
+  description: 'Check my work and contributions',
 }
 
-export default function ExperiencePage() {
+export default function WorkPage() {
   return (
     <div className='relative flex h-full w-full flex-col items-center'>
       <div className='flex h-full w-full max-w-4xl flex-col gap-10 px-12 py-24 max-sm:px-4 min-[1025px]:px-0'>
         <Hero
-          title='Experience'
-          description='A look at my professional work experience.'
+          title='Work'
+          description='A look at my professional work and contributions.'
         />
         <Separator />
         <p>
@@ -43,7 +43,7 @@ export default function ExperiencePage() {
             Next.js
           </a>
           .<br />
-          Here&apos;s a look at my professional work experience.
+          Here&apos;s a look at my professional work and contributions.
         </p>
         <div className='flex w-full flex-col gap-6'>
           <ExperienceItem></ExperienceItem>

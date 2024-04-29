@@ -7,7 +7,7 @@ import {
 import type { HeroiconsIcon } from '@/lib/heroicons'
 import type { Keys } from 'react-hotkeys-hook'
 
-export type NavigationItemName = 'home' | 'tech-stack' | 'experience' | 'craft'
+export type NavigationItemName = 'home' | 'tech-stack' | 'work' | 'craft'
 export type NavigationItem = {
   href: string
   name: NavigationItemName
@@ -32,9 +32,9 @@ export const navigationItems: NavigationItem[] = [
     shortcutKeys: 'G+T',
   },
   {
-    href: '/experience',
-    name: 'experience',
-    label: 'experience',
+    href: '/work',
+    name: 'work',
+    label: 'work',
     shortcutLabel: 'G+E',
     shortcutKeys: 'g+e',
   },
@@ -50,6 +50,6 @@ export const navigationItems: NavigationItem[] = [
 export const navigationItemsIcons: Record<NavigationItemName, HeroiconsIcon> = {
   home: HomeIcon,
   'tech-stack': WrenchScrewdriverIcon,
-  experience: BriefcaseIcon,
+  work: BriefcaseIcon,
   craft: LightBulbIcon,
 }
