@@ -107,8 +107,8 @@ export default function WorkPage() {
               </div>
               <p>
                 Sadly my contract was ended because I was selected to be part of
-                a first batch of lay off early in January 2024 and my legal
-                notice ended in March 2024.
+                a first lay off batch early in January 2024 and my legal notice
+                ended in March 2024.
               </p>
               <p>
                 Claap has been nominated in the top 10 best designed products in
