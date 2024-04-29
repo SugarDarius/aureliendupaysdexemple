@@ -48,7 +48,7 @@ export function TwitterBentoItem() {
             <div className='flex w-full flex-auto flex-col gap-4'>
               <TwitterPostWidget />
             </div>
-            <div className='flex w-full flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2  py-2 transition-transform duration-150 ease-linear hover:scale-[1.03] dark:border-neutral-800 dark:bg-stone-900 max-sm:hidden'>
+            <div className='flex w-full flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2 py-2 dark:border-neutral-800 dark:bg-stone-900 max-sm:hidden'>
               <span className='text-xs font-semibold'>See my account</span>
               <PaperAirplaneIcon className='size-3' />
             </div>
