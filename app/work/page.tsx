@@ -12,6 +12,23 @@ export const metadata: Metadata = {
   description: 'Check my work and contributions',
 }
 
+const InlineLink = ({
+  href,
+  children,
+}: {
+  href: string
+  children: React.ReactNode
+}) => (
+  <a
+    href={href}
+    target='_blank'
+    rel='noopener noreferrer'
+    className='font-bold underline underline-offset-2'
+  >
+    {children}
+  </a>
+)
+
 export default function WorkPage() {
   return (
     <div className='relative flex h-full w-full flex-col items-center'>
@@ -53,8 +70,57 @@ export default function WorkPage() {
             startDate='October 2021'
             endDate='March 2024'
           >
-            <div className='flex w-full flex-col'></div>
+            <div className='flex w-full flex-col gap-6'>
+              <p>
+                I joined{' '}
+                <InlineLink href='https://www.claap.io/'>Claap</InlineLink>{' '}
+                early stage back in October 2021 to help teams record meetings
+                with AI powered notes, send short followup videos, and
+                centralize best practices in video library.
+              </p>
+              <div className='flex w-full flex-col gap-2'>
+                <p>
+                  During my time at Claap I&apos;ve contributed to develop
+                  multiple and different features for the product&apos;s web app
+                  such as:
+                </p>
+                <ul className='ml-5 list-disc font-medium'>
+                  <li>Video uploads</li>
+                  <li>Video replies in comments</li>
+                  <li>File uploads in comments</li>
+                  <li>Slack integration</li>
+                  <li>
+                    Video editor (trimming by timeline, trimming by transcript
+                    and stitching)
+                  </li>
+                </ul>
+                <p>
+                  My scope of contributions was extended to the implementation
+                  of Chrome extension and I&apos;ve been part of the first team
+                  of two developers who has implemented the first version of
+                  desktop app based on{' '}
+                  <InlineLink href='https://www.electronjs.org/'>
+                    Electron
+                  </InlineLink>{' '}
+                  where I played a bit with blurred background feature.
+                </p>
+              </div>
+              <p>
+                Sadly my was contract was ended because I was selected to be
+                part of a first batch of lay off early in January 2024.
+              </p>
+              <p>
+                Claap has been nominated in the top 10 best designed products in
+                2022 on ProductHunt 🚀 and recently Claap was referenced by
+                ProductHunt in{' '}
+                <InlineLink href='https://www.producthunt.com/categories/screenshots-and-screen-recording'>
+                  The best screenshots and screen recording apps in 2024
+                </InlineLink>{' '}
+                🎉.
+              </p>
+            </div>
           </WorkCard>
+          <Separator />
         </div>
       </div>
     </div>
