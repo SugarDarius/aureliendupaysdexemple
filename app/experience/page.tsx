@@ -5,6 +5,7 @@ import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
 import { Separator } from '@/components/ui/separator'
 import { Hero } from '@/components/content/hero'
+import { ExperienceItem } from '@/components/content/experience-item'
 
 export const metadata: Metadata = {
   title: 'Experience',
@@ -41,8 +42,12 @@ export default function ExperiencePage() {
             <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
             Next.js
           </a>
-          . Here&apos;s a look at my professional work experience.
+          .<br />
+          Here&apos;s a look at my professional work experience.
         </p>
+        <div className='flex w-full flex-col gap-6'>
+          <ExperienceItem></ExperienceItem>
+        </div>
       </div>
     </div>
   )
