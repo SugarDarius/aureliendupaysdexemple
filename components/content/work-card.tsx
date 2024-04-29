@@ -40,7 +40,7 @@ export function WorkCard({
         >
           <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-stone-900'></div>
         </div>
-        <div className='flex h-full flex-col justify-between gap-4 p-6'>
+        <div className='flex h-full flex-col justify-between gap-6 p-6'>
           <div className='flex flex-row items-center justify-between'>
             <div className='flex flex-row items-center gap-2'>
               <AnchorComp {...anchorProps}>

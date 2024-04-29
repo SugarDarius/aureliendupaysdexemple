@@ -52,7 +52,9 @@ export default function WorkPage() {
             jobTitle='Senior Software Engineer (remote)'
             startDate='October 2021'
             endDate='March 2024'
-          ></WorkCard>
+          >
+            <div className='flex w-full flex-col'></div>
+          </WorkCard>
         </div>
       </div>
     </div>
