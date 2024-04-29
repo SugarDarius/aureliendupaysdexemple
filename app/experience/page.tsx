@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Separator, Separator } from '@/components/ui/separator'
+import { Separator } from '@/components/ui/separator'
 import { Hero } from '@/components/content/hero'
 
 export const metadata: Metadata = {
