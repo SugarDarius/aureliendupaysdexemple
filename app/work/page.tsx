@@ -122,6 +122,15 @@ export default function WorkPage() {
             </div>
           </WorkCard>
           <Separator />
+          <WorkCard
+            href='https://www.lifen.fr/'
+            companyName='Lifen'
+            jobTitle='Senior Full Stack Engineer (remote)'
+            startDate='January 2021'
+            endDate='October 2021'
+          >
+            <div className='flex w-full flex-col gap-6'></div>
+          </WorkCard>
         </div>
       </div>
     </div>
