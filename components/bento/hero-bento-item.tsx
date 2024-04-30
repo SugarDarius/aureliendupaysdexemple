@@ -25,7 +25,7 @@ export function HeroBentoItem() {
               priority
             />
           </div>
-          <div className='flex flex-col gap-2.5'>
+          <div className='flex flex-col gap-4'>
             <p>
               A senior and creative software engineer crafting interfaces and
               products with ❤️,{' '}
@@ -50,10 +50,10 @@ export function HeroBentoItem() {
               </a>
             </p>
             <div className='flex flex-row items-center gap-2'>
-              <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
+              <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
                 frontend cloud 🧑🏻‍💻
               </span>
-              <span className='inline-flex rounded-full bg-foreground px-3 py-1 text-xs font-bold text-background'>
+              <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
                 remote club 🌎
               </span>
             </div>
