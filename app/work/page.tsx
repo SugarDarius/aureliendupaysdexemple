@@ -64,9 +64,8 @@ export default function WorkPage() {
               </p>
               <div className='flex w-full flex-col gap-2'>
                 <p>
-                  During my time at Claap I&apos;ve contributed to develop
-                  multiple and different features for the product&apos;s web app
-                  such as:
+                  During my time at Claap I contributed to develop multiple and
+                  different features for the product&apos;s web app such as:
                 </p>
                 <ul className='ml-5 list-disc font-medium '>
                   <li>Video uploads</li>
@@ -113,7 +112,27 @@ export default function WorkPage() {
             startDate='January 2021'
             endDate='October 2021'
           >
-            <div className='flex w-full flex-col gap-6'></div>
+            <div className='flex w-full flex-col gap-6'>
+              <p>
+                In 2021 I joined{' '}
+                <InlineLink href='https://www.lifen.fr/'>Lifen</InlineLink>{' '}
+                after my adventure in Luxembourg to treat better whereas caring
+                together.
+              </p>
+              <p>
+                My mission at Lifen was to help the core apps team to analyze
+                the existing and identify the pain points tp apply the good
+                practice with React. I&apos; mostly contributed to the{' '}
+                <span className='text-bold'>Lifen documents</span> web and
+                desktop app and made some proof of concepts to test the{' '}
+                <span className='text-bold'>JMAP</span> mail protocol for a new
+                mail web client.
+              </p>
+              <p>
+                I gained proficiency in and contributed to projects using the{' '}
+                <span className='text-bold'>FHIR</span> protocol
+              </p>
+            </div>
           </WorkCard>
         </div>
       </div>
