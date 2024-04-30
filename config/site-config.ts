@@ -1,8 +1,7 @@
 import { baseUrl } from '@/app/sitemap'
 export const siteConfig = {
   title: 'Aurélien Dupays Dexemple',
-  description:
-    "Hello, I'm Aurélien Dupays Dexemple and this is my personal website.",
+  description: 'Creative software engineer crafting interfaces and products.',
   socialLinks: {
     twitter: {
       url: 'https://twitter.com/azeldvin',
