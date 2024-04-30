@@ -21,7 +21,7 @@ export function PageBentoItem({
     >
       <Link href={href} className='h-full w-full'>
         <div className='relative flex h-full w-full flex-col'>
-          <div className='flex h-full flex-col justify-between p-4'>
+          <div className='nax-sm:gap-3 flex h-full flex-col justify-between p-4'>
             <div className='flex w-full flex-none flex-row items-start justify-between'>
               <div className='flex flex-col'>
                 <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-lg'>

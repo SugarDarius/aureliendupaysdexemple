@@ -8,13 +8,13 @@ import { BentoCard } from '@/components/grids/bento-card'
 export function HeroBentoItem() {
   return (
     <BentoCard
-      className='col-span-3 row-span-1 max-sm:col-span-2 max-sm:min-h-[240px]'
+      className='col-span-3 row-span-1 max-sm:col-span-2 max-sm:min-h-[200px]'
       variant='grid'
     >
       <div className='relative flex h-full w-full flex-col'>
-        <div className='flex h-full flex-col justify-between p-4'>
+        <div className='flex h-full flex-col justify-between p-4 max-sm:p-3'>
           <div className='flex flex-row items-center justify-between'>
-            <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-lg'>
+            <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-base'>
               Hey, I&apos;m Aurélien Dupays Dexemple 👋
             </h1>
             <Image
@@ -25,7 +25,7 @@ export function HeroBentoItem() {
               priority
             />
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='flex flex-col gap-4 max-sm:gap-3 max-sm:text-sm'>
             <p>
               A senior and creative software engineer crafting interfaces and
               products with{' '}
