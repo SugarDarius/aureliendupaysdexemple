@@ -123,14 +123,14 @@ export default function WorkPage() {
                 My mission at Lifen was to help the core apps team to analyze
                 the existing and identify the pain points to apply the good
                 practice with React. I&apos;ve mostly contributed to the{' '}
-                <span className='font-bold'>Lifen documents</span> web and
+                <span className='font-semibold'>Lifen documents</span> web and
                 desktop app and made a proof of concept to test the{' '}
-                <span className='font-bold'>JMAP</span> mail protocol for a new
-                mail web client.
+                <span className='font-semibold'>JMAP</span> mail protocol for a
+                new mail web client.
               </p>
               <p>
                 I gained proficiency in and contributed to projects using the{' '}
-                <span className='font-bold'>FHIR</span> protocol
+                <span className='font-semibold'>FHIR</span> protocol
               </p>
             </div>
           </WorkCard>
@@ -175,8 +175,8 @@ export default function WorkPage() {
                   <li>Integrated SiteCore CMS</li>
                   <li>
                     Implemented a backend for frontend based on{' '}
-                    <span className='font-bold'>NestJS</span> and{' '}
-                    <span className='font-bold'>GraphQL</span> to ease
+                    <span className='font-semibold'>NestJS</span> and{' '}
+                    <span className='font-semibold'>GraphQL</span> to ease
                     communication between frontend web apps and micro-services
                   </li>
                 </ul>
@@ -188,12 +188,12 @@ export default function WorkPage() {
               </div>
               <p>
                 At Sfeir I was not only a developer but I had the role of{' '}
-                <span className='font-bold'>Team Leader</span> to manage a team
-                of developers to help them grow in their careers. I was also a
-                <span className='font-bold'>technical recruiter</span> to help
-                the talent team hires new developers in the company. I completed
-                my scope by being a{' '}
-                <span className='font-bold'>React trainer</span> to help
+                <span className='font-semibold'>Team Leader</span> to manage a
+                team of developers to help them grow in their careers. I was
+                also a<span className='font-semibold'>technical recruiter</span>{' '}
+                to help the talent team hires new developers in the company. I
+                completed my scope by being a{' '}
+                <span className='font-semibold'>React trainer</span> to help
                 developers at Sfeir learn and grow on React.
               </p>
             </div>
@@ -213,9 +213,9 @@ export default function WorkPage() {
               </p>
               <p>
                 I leaned to work and play with{' '}
-                <span className='font-bold'>Neo4J</span> (a graph database) and
-                cypher to implement a recommendation engine. I contributed to
-                implement the frontend, the backend and the infrastructure to
+                <span className='font-semibold'>Neo4J</span> (a graph database)
+                and cypher to implement a recommendation engine. I contributed
+                to implement the frontend, the backend and the infrastructure to
                 deploy the social network. I also contributed to implement a
                 back-office to manager users and data.
               </p>
@@ -240,7 +240,7 @@ export default function WorkPage() {
                 marketing industry and collaborating with clients, brands and
                 agencies. I first joined Madmix Digital as an intern developer
                 back in May 2014. It was at Madmix Digital I gained my first
-                experience using React.
+                experience using <span className='font-semibold'>React</span>.
               </p>
               <p>
                 I worked a lot on website development like marketing landing
@@ -251,8 +251,8 @@ export default function WorkPage() {
               </p>
               <p>
                 I also had the chance to play with the language{' '}
-                <span className='font-bold'>Swift</span> and to contribute to an
-                iOS app for testing HTML 5 interstitial advertisements.
+                <span className='font-semibold'>Swift</span> and to contribute
+                to an iOS app for testing HTML 5 interstitial advertisements.
               </p>
             </div>
           </WorkCard>
