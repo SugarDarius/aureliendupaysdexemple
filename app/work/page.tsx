@@ -5,29 +5,13 @@ import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
 import { Separator } from '@/components/ui/separator'
 import { PageHero } from '@/components/content/page-hero'
+import { InlineLink } from '@/components/content/inline-link'
 import { WorkCard } from '@/components/grids/work-card'
 
 export const metadata: Metadata = {
   title: 'Work',
   description: 'Check my work and contributions',
 }
-
-const InlineLink = ({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) => (
-  <a
-    href={href}
-    target='_blank'
-    rel='noopener noreferrer'
-    className='font-bold underline-offset-2 hover:underline'
-  >
-    {children}
-  </a>
-)
 
 export default function WorkPage() {
   return (
