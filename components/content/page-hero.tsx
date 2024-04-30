@@ -1,4 +1,4 @@
-export function Hero({
+export function PageHero({
   title,
   description,
 }: {
