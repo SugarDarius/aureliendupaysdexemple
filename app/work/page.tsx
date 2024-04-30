@@ -79,13 +79,13 @@ export default function WorkPage() {
                 </ul>
                 <p>
                   My scope of contributions was extended to the implementation
-                  of Chrome extension and I&apos;ve been part of the first team
-                  of two developers who has implemented the first version of
-                  desktop app based on{' '}
+                  of the Chrome extension and I&apos;ve been part of the first
+                  team of two developers who has implemented and released the
+                  first version of the desktop app based on{' '}
                   <InlineLink href='https://www.electronjs.org/'>
                     Electron
                   </InlineLink>{' '}
-                  where I played a bit with blurred background feature.
+                  where I enjoyed play a bit with blurred background feature.
                 </p>
               </div>
               <p>
@@ -121,10 +121,10 @@ export default function WorkPage() {
               </p>
               <p>
                 My mission at Lifen was to help the core apps team to analyze
-                the existing and identify the pain points tp apply the good
-                practice with React. I&apos; mostly contributed to the{' '}
+                the existing and identify the pain points to apply the good
+                practice with React. I&apos;ve mostly contributed to the{' '}
                 <span className='font-bold'>Lifen documents</span> web and
-                desktop app and made some proof of concepts to test the{' '}
+                desktop app and made a proof of concept to test the{' '}
                 <span className='font-bold'>JMAP</span> mail protocol for a new
                 mail web client.
               </p>
@@ -153,15 +153,15 @@ export default function WorkPage() {
               <div className='flex w-full flex-col gap-2'>
                 <p>
                   At Luxembourg Stock Exchange I&apos;ve mostly contributed to
-                  full stack projects where my first mission was to to migrate
-                  some old monolith web apps to a new modern architecture with
-                  React and a Node.js server.
+                  full stack projects where my first mission was to migrate some
+                  old monolith web apps to a new modern architecture with React
+                  and Node.js.
                 </p>
                 <p>I did many significant contributions such as:</p>
                 <ul className='ml-5 list-disc font-medium'>
                   <li>
-                    Implemented a suite of NPM packages to used and reused
-                    across multiples web applications
+                    Implemented a suite of NPM packages in a private registry to
+                    be used and reused across multiples web applications
                   </li>
                   <li>Added unit testing in web applications </li>
                   <li>
@@ -174,14 +174,15 @@ export default function WorkPage() {
                   </li>
                   <li>Integrated SiteCore CMS</li>
                   <li>
-                    Implemented a backend for frontend based on NestJS and
-                    GraphQL to ease communication between frontend web apps and
-                    micro-services
+                    Implemented a backend for frontend based on{' '}
+                    <span className='font-bold'>NestJS</span> and{' '}
+                    <span className='font-bold'>GraphQL</span> to ease
+                    communication between frontend web apps and micro-services
                   </li>
                 </ul>
                 <p>
                   It was a great experience during these three years and a half
-                  at Luxembourg Stock Exchange. A lot of challenges to handle
+                  at Luxembourg Stock Exchange. A lot of challenges to manage
                   where I gained a lot of knowledge.
                 </p>
               </div>
@@ -207,8 +208,8 @@ export default function WorkPage() {
             <div className='flex w-full flex-col gap-6'>
               <p>
                 At PhiXL I was in charge to create and develop a new social
-                network round books theme. The startup was early stage so I had
-                to build everything from scratch.
+                network around books theme. The startup was very early stage so
+                I had to build everything from scratch.
               </p>
               <p>
                 I leaned to work and play with{' '}
@@ -220,8 +221,8 @@ export default function WorkPage() {
               </p>
               <p>
                 The experience at PhiXL was great as I leaned a lot of knowledge
-                on different subjects but sadly the company closed mid 2017 as
-                it did not meet the expected success we were looking for.
+                on different fields but sadly the company closed mid 2017 as it
+                did not meet the expected success we were looking for.
               </p>
             </div>
           </WorkCard>
@@ -233,7 +234,27 @@ export default function WorkPage() {
             startDate='May 2014'
             endDate='April 2016'
           >
-            <div className='flex w-full flex-col gap-6'></div>
+            <div className='flex w-full flex-col gap-6'>
+              <p>
+                Madmix Digital is a digital studio working in the internet
+                marketing industry and collaborating with clients, brands and
+                agencies. I first joined Madmix Digital as an intern developer
+                back in May 2014. It was at Madmix Digital I gained my first
+                experience using React.
+              </p>
+              <p>
+                I worked a lot on website development like marketing landing
+                pages and mini-websites. It was there at Madmix Digital that I
+                put in production my first web applications with databases and
+                data processing such as for example marketing game contest,
+                mini-social networks and back offices.
+              </p>
+              <p>
+                I also had the chance to play with the language{' '}
+                <span className='font-bold'>Swift</span> and to contribute to an
+                iOS app for testing HTML 5 interstitial advertisements.
+              </p>
+            </div>
           </WorkCard>
         </div>
       </div>
