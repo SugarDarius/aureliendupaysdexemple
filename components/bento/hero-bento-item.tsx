@@ -28,7 +28,7 @@ export function HeroBentoItem() {
           <div className='flex flex-col gap-4'>
             <p>
               A senior and creative software engineer crafting interfaces and
-              products with ❤️,{' '}
+              products with{' '}
               <a
                 href='https://react.dev/'
                 target='_blank'
@@ -47,7 +47,8 @@ export function HeroBentoItem() {
               >
                 <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                 Next.js
-              </a>
+              </a>{' '}
+              from 🇫🇷
             </p>
             <div className='flex flex-row items-center gap-1.5'>
               <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
