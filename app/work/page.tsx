@@ -187,6 +187,23 @@ export default function WorkPage() {
               </p>
             </div>
           </WorkCard>
+          <Separator />
+          <WorkCard
+            companyName='PhiXL'
+            jobTitle='Lead developer'
+            startDate='April 2016'
+            endDate='July 2017'
+          >
+            <div className='flex w-full flex-col gap-6'></div>
+          </WorkCard>
+          <Separator />
+          <WorkCard
+            href='https://madmix.digital'
+            companyName='Madmix Digital'
+            jobTitle='Developer'
+            startDate='May 2014'
+            endDate='April 2016'
+          ></WorkCard>
         </div>
       </div>
     </div>
