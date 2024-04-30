@@ -67,7 +67,7 @@ export default function WorkPage() {
                   During my time at Claap I contributed to develop multiple and
                   different features for the product&apos;s web app such as:
                 </p>
-                <ul className='ml-5 list-disc font-medium '>
+                <ul className='ml-5 list-disc font-medium'>
                   <li>Video uploads</li>
                   <li>Video replies in comments</li>
                   <li>File uploads in comments</li>
@@ -123,14 +123,67 @@ export default function WorkPage() {
                 My mission at Lifen was to help the core apps team to analyze
                 the existing and identify the pain points tp apply the good
                 practice with React. I&apos; mostly contributed to the{' '}
-                <span className='text-bold'>Lifen documents</span> web and
+                <span className='font-bold'>Lifen documents</span> web and
                 desktop app and made some proof of concepts to test the{' '}
-                <span className='text-bold'>JMAP</span> mail protocol for a new
+                <span className='font-bold'>JMAP</span> mail protocol for a new
                 mail web client.
               </p>
               <p>
                 I gained proficiency in and contributed to projects using the{' '}
-                <span className='text-bold'>FHIR</span> protocol
+                <span className='font-bold'>FHIR</span> protocol
+              </p>
+            </div>
+          </WorkCard>
+          <Separator />
+          <WorkCard
+            href='https://sfeir.com/en/'
+            companyName='SFEIR'
+            jobTitle='Full Stack Engineer & Team Leader'
+            startDate='July 2017'
+            endDate='December 2020'
+          >
+            <div className='flex w-full flex-col gap-6'>
+              <p>
+                SFEIR was my first and only experience in a digital services
+                company based in France 🇫🇷 and Luxembourg 🇱🇺.
+                <br />I joined it back in 2017 to work as a consultant for the
+                Luxembourg Stock Exchange where I contributed to many different
+                projects.
+              </p>
+              <div className='flex w-full flex-col gap-2'>
+                <p>
+                  At Luxembourg Stock Exchange I&apos;ve mostly contributed to
+                  full stack projects where my first mission was to to migrate
+                  some old monolith web apps to a new modern architecture with
+                  React and a Node.js server.
+                </p>
+                <p>I did many significant contributions such as:</p>
+                <ul className='ml-5 list-disc font-medium'>
+                  <li>
+                    Implemented a suite of NPM packages to used and reused
+                    across multiples web applications
+                  </li>
+                  <li>Added unit testing in web applications </li>
+                  <li>
+                    Designed a new architecture for modern web applications to
+                    be deployed in the k8s cloud infrastructure
+                  </li>
+                  <li>
+                    Implemented a new design system to be used across multiples
+                    web applications
+                  </li>
+                  <li>Integrated SiteCore CMS</li>
+                </ul>
+              </div>
+              <p>
+                At Sfeir I was not only a developer but I had the role of{' '}
+                <span className='font-bold'>Team Leader</span> to manage a team
+                of developers to help them grow in their careers. I was also a
+                <span className='font-bold'>technical recruiter</span> to help
+                the talent team hires new developers in the company. I completed
+                my scope by being a{' '}
+                <span className='font-bold'>React trainer</span> to help
+                developers at Sfeir learn and grow on React.
               </p>
             </div>
           </WorkCard>
