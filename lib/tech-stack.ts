@@ -17,6 +17,7 @@ import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
 import { ReduxIcon } from '@/components/icons/redux-icon'
 import { ClerkIcon } from '@/components/icons/clerk-icon'
+import { ApolloGraphQLIcon } from '@/components/icons/apollo-graphql-icon'
 import { ElectronIcon } from '@/components/icons/electron-icon'
 
 import { NestJSIcon } from '@/components/icons/nestjs-icon'
@@ -125,6 +126,12 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
     Icon: ReduxIcon,
     tag: 'state management',
     href: 'https://redux.js.org/',
+  },
+  {
+    name: 'Apollo GraphQL',
+    Icon: ApolloGraphQLIcon,
+    tag: 'state management',
+    href: 'https://www.apollographql.com/',
   },
   {
     name: 'Clerk',
