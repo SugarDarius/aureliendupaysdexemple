@@ -42,7 +42,7 @@ export function TwitterBentoItem() {
             <div className='flex w-full flex-auto flex-col gap-4'>
               <TwitterPostWidget />
             </div>
-            <div className='flex w-full flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 p-2 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 max-sm:p-1 max-sm:text-[10px]'>
+            <div className='flex w-full flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 p-1.5 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 max-sm:p-1 max-sm:text-[10px]'>
               <span className='text-xs font-semibold'>See my account</span>
               <PaperAirplaneIcon className='size-3' />
             </div>
