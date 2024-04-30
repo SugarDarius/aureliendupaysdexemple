@@ -173,7 +173,17 @@ export default function WorkPage() {
                     web applications
                   </li>
                   <li>Integrated SiteCore CMS</li>
+                  <li>
+                    Implemented a backend for frontend based on NestJS and
+                    GraphQL to ease communication between frontend web apps and
+                    micro-services
+                  </li>
                 </ul>
+                <p>
+                  It was a great experience during these three years and a half
+                  at Luxembourg Stock Exchange. A lot of challenges to handle
+                  where I gained a lot of knowledge.
+                </p>
               </div>
               <p>
                 At Sfeir I was not only a developer but I had the role of{' '}
