@@ -9,7 +9,7 @@ import { TwitterPostWidget } from '@/components/widgets/twitter-post-widget'
 
 export function TwitterBentoItem() {
   return (
-    <BentoCard className='col-span-1 row-span-1'>
+    <BentoCard className='col-span-1 row-span-1' variant='grid'>
       <a
         href={siteConfig.socialLinks.twitter.url}
         target='_blank'
