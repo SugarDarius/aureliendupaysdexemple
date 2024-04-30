@@ -49,7 +49,7 @@ export function HeroBentoItem() {
                 Next.js
               </a>
             </p>
-            <div className='flex flex-row items-center gap-2'>
+            <div className='flex flex-row items-center gap-1.5'>
               <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
                 frontend cloud 🧑🏻‍💻
               </span>
