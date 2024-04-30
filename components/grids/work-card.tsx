@@ -36,7 +36,7 @@ export function WorkCard({
 
   return (
     <BentoCard>
-      <div className='flex h-full flex-col justify-between gap-6 p-6 max-sm:gap-3 max-sm:p-4'>
+      <div className='flex h-full flex-col justify-between gap-6 p-6 max-sm:gap-4 max-sm:p-4'>
         <div className='flex flex-row items-center justify-between max-sm:flex-col max-sm:items-start max-sm:justify-start max-sm:gap-1'>
           <div className='flex flex-row items-center gap-2 max-sm:gap-1'>
             <AnchorComp {...anchorProps}>
