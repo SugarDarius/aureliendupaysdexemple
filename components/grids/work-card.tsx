@@ -36,14 +36,14 @@ export function WorkCard({
   return (
     <BentoCard>
       <div className='flex h-full flex-col justify-between gap-6 p-6 max-sm:gap-4 max-sm:p-4'>
-        <div className='flex flex-row items-center justify-between max-sm:flex-col max-sm:items-start max-sm:justify-start max-sm:gap-1'>
-          <div className='flex flex-row items-center gap-2 max-sm:gap-1'>
+        <div className='flex flex-row items-center justify-between max-sm:flex-col max-sm:items-start max-sm:justify-start max-sm:gap-2'>
+          <div className='flex flex-row items-center gap-2 max-sm:flex-col max-sm:items-start max-sm:gap-0'>
             <AnchorComp {...anchorProps}>
               <h1 className='text-xl font-extrabold tracking-tighter max-sm:text-lg'>
                 {companyName}
               </h1>
             </AnchorComp>
-            <WorkCardSeparator className='max-sm:w-3' />
+            <WorkCardSeparator className='max-sm:hidden' />
             <span className='font-semibold text-muted-foreground max-sm:text-sm'>
               {jobTitle}
             </span>
@@ -52,7 +52,7 @@ export function WorkCard({
             {startDate}
             {endDate ? (
               <>
-                <WorkCardSeparator className='max-sm:w-3' />
+                <WorkCardSeparator className='w-2 max-sm:w-1' />
                 {endDate}
               </>
             ) : null}
