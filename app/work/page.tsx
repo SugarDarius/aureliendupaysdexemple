@@ -46,7 +46,7 @@ export default function WorkPage() {
           .<br />
           Here&apos;s a look at my professional work and contributions.
         </p>
-        <div className='flex w-full flex-col gap-6'>
+        <div className='flex w-full flex-col gap-6 text-neutral-900 dark:text-neutral-100'>
           <WorkCard
             href='https://www.claap.io/'
             companyName='Claap'
