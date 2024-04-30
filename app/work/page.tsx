@@ -194,7 +194,26 @@ export default function WorkPage() {
             startDate='April 2016'
             endDate='July 2017'
           >
-            <div className='flex w-full flex-col gap-6'></div>
+            <div className='flex w-full flex-col gap-6'>
+              <p>
+                At PhiXL I was in charge to create and develop a new social
+                network round books theme. The startup was early stage so I had
+                to build everything from scratch.
+              </p>
+              <p>
+                I leaned to work and play with{' '}
+                <span className='font-bold'>Neo4J</span> (a graph database) and
+                cypher to implement a recommendation engine. I contributed to
+                implement the frontend, the backend and the infrastructure to
+                deploy the social network. I also contributed to implement a
+                back-office to manager users and data.
+              </p>
+              <p>
+                The experience at PhiXL was great as I leaned a lot of knowledge
+                on different subjects but sadly the company closed mid 2017 as
+                it did not meet the expected success we were looking for.
+              </p>
+            </div>
           </WorkCard>
           <Separator />
           <WorkCard
@@ -203,7 +222,9 @@ export default function WorkPage() {
             jobTitle='Developer'
             startDate='May 2014'
             endDate='April 2016'
-          ></WorkCard>
+          >
+            <div className='flex w-full flex-col gap-6'></div>
+          </WorkCard>
         </div>
       </div>
     </div>
