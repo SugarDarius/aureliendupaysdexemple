@@ -48,7 +48,7 @@ export function WorkCard({
               {jobTitle}
             </span>
           </div>
-          <div className='flex flex-row items-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 text-sm text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100 max-sm:gap-1 max-sm:text-xs'>
+          <div className='flex flex-row items-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 font-mono text-sm text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100 max-sm:gap-1 max-sm:text-xs'>
             {startDate}
             {endDate ? (
               <>
