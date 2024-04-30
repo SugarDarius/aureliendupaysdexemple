@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
@@ -49,13 +48,12 @@ export function WorkCard({
               {jobTitle}
             </span>
           </div>
-          <div className='flex flex-row items-center gap-2 max-sm:gap-1'>
-            <CalendarDaysIcon className='size-6 max-sm:size-4' />
-            <span className='max-sm:text-xs'>{startDate}</span>
+          <div className='flex flex-row items-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 text-sm text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100 max-sm:gap-1 max-sm:text-xs'>
+            <span>{startDate}</span>
             {endDate ? (
               <>
                 <WorkCardSeparator className='max-sm:w-3' />
-                <span className='max-sm:text-xs'>{endDate}</span>
+                <span>{endDate}</span>
               </>
             ) : null}
           </div>
