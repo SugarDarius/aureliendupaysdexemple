@@ -29,14 +29,14 @@ export function SocialBentoItem({
             </div>
             <div className='flex w-full flex-auto flex-col'>{children}</div>
             <div className='flex flex-none flex-col'>
-              <h1 className='text-md font-bold tracking-tighter'>
+              <h1 className='text-md font-bold tracking-tighter max-sm:text-sm'>
                 {accountName}
               </h1>
-              <div className='flex flex-row items-center gap-1 max-sm:hidden'>
-                <p className='text-xs text-muted-foreground underline'>
+              <div className='flex flex-row items-center gap-1'>
+                <p className='text-xs text-muted-foreground underline max-sm:text-[10px]'>
                   Check my {name} profile
                 </p>
-                <ArrowTopRightOnSquareIcon className='inline-flex h-3.5 w-3.5' />
+                <ArrowTopRightOnSquareIcon className='inline-flex size-3.5 max-sm:size-2.5' />
               </div>
             </div>
           </div>

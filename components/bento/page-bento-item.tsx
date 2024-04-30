@@ -29,7 +29,7 @@ export function PageBentoItem({
                 </h1>
                 <p className='text-sm text-muted-foreground'>{description}</p>
               </div>
-              <ArrowUpRightIcon className='size-6' />
+              <ArrowUpRightIcon className='size-6 max-sm:size-4' />
             </div>
             <div className='flex-ol flex w-full flex-auto'>{children}</div>
           </div>
