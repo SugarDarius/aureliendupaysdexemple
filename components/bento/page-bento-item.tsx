@@ -15,7 +15,10 @@ export function PageBentoItem({
   children?: React.ReactNode
 }) {
   return (
-    <BentoCard className='col-span-2 row-span-1 max-sm:min-h-[180px]'>
+    <BentoCard
+      className='col-span-2 row-span-1 max-sm:min-h-[180px]'
+      variant='grid'
+    >
       <Link href={href} className='h-full w-full'>
         <div className='relative flex h-full w-full flex-col'>
           <div className='flex h-full flex-col justify-between p-4'>
