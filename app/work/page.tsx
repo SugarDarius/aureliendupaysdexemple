@@ -5,7 +5,7 @@ import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
 import { Separator } from '@/components/ui/separator'
 import { Hero } from '@/components/content/hero'
-import { WorkCard } from '@/components/content/work-card'
+import { WorkCard } from '@/components/grids/work-card'
 
 export const metadata: Metadata = {
   title: 'Work',
