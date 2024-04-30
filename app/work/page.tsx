@@ -46,7 +46,7 @@ export default function WorkPage() {
           .<br />
           Here&apos;s a look at my professional work and contributions.
         </p>
-        <div className='flex w-full flex-col gap-6 text-neutral-900 dark:text-neutral-100'>
+        <div className='flex w-full flex-col gap-8 text-neutral-900 dark:text-neutral-100'>
           <WorkCard
             href='https://www.claap.io/'
             companyName='Claap'
@@ -104,7 +104,7 @@ export default function WorkPage() {
               </p>
             </div>
           </WorkCard>
-          <Separator />
+          <Separator className='mx-auto w-[90%]' />
           <WorkCard
             href='https://www.lifen.fr/'
             companyName='Lifen'
@@ -134,7 +134,7 @@ export default function WorkPage() {
               </p>
             </div>
           </WorkCard>
-          <Separator />
+          <Separator className='mx-auto w-[90%]' />
           <WorkCard
             href='https://sfeir.com/en/'
             companyName='SFEIR'
@@ -198,7 +198,7 @@ export default function WorkPage() {
               </p>
             </div>
           </WorkCard>
-          <Separator />
+          <Separator className='mx-auto w-[90%]' />
           <WorkCard
             companyName='PhiXL'
             jobTitle='Lead developer'
@@ -226,7 +226,7 @@ export default function WorkPage() {
               </p>
             </div>
           </WorkCard>
-          <Separator />
+          <Separator className='mx-auto w-[90%]' />
           <WorkCard
             href='https://madmix.digital'
             companyName='Madmix Digital'
