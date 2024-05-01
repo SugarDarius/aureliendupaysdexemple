@@ -48,18 +48,21 @@ export function NavigationDock() {
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.linkedin.url}
             tooltipLabel='LinkedIn'
+            name='LinkedIn'
           >
             <LinkedInLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.github.url}
             tooltipLabel='GitHub'
+            name='GitHub'
           >
             <GitHubLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.twitter.url}
             tooltipLabel='Twitter (X)'
+            name='Twitter (X)'
           >
             <TwitterLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>

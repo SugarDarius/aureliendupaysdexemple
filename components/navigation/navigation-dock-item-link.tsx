@@ -30,6 +30,7 @@ const itemLinkVariants = cva(
 
 type NavigationDockItemLinkProps = {
   href: string
+  name: string
   active?: boolean
   className?: string
   children: React.ReactNode
@@ -39,31 +40,38 @@ type NavigationDockItemLinkProps = {
 export const NavigationDockItemLink = forwardRef<
   HTMLAnchorElement,
   NavigationDockItemLinkProps
->(({ href, active = false, className, variant, onClick, children }, ref) => {
-  return (
-    <Link
-      ref={ref}
-      href={href}
-      className={cn(
-        navigationMenuTriggerStyle(),
-        itemLinkVariants({ variant }),
-        className
-      )}
-      data-active={active ? '' : undefined}
-      onClick={onClick}
-    >
-      {children}
-    </Link>
-  )
-})
+>(
+  (
+    { href, name, active = false, className, variant, onClick, children },
+    ref
+  ) => {
+    return (
+      <Link
+        ref={ref}
+        href={href}
+        className={cn(
+          navigationMenuTriggerStyle(),
+          itemLinkVariants({ variant, className })
+        )}
+        data-active={active ? '' : undefined}
+        onClick={onClick}
+        aria-label={name}
+      >
+        {children}
+      </Link>
+    )
+  }
+)
 NavigationDockItemLink.displayName = 'NavigationDockItemLink'
 
 export const NavigationDockItemExternalLink = ({
   href,
+  name,
   tooltipLabel,
   children,
 }: {
   href: string
+  name: string
   tooltipLabel: string
   children: React.ReactNode
 }) => {
@@ -78,6 +86,7 @@ export const NavigationDockItemExternalLink = ({
             navigationMenuTriggerStyle(),
             'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
           )}
+          aria-label={name}
         >
           {children}
         </a>

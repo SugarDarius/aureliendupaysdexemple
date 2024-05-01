@@ -116,6 +116,7 @@ export function CommandCenter({
               className
             )}
             onClick={onButtonClick}
+            aria-label='Command Center'
           >
             <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
           </Button>

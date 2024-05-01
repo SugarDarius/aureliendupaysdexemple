@@ -46,9 +46,9 @@ export const NavigationDockItem = ({
   return (
     <NavigationMenuItem>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger aria-label={name}>
           <NavigationMenuLink asChild>
-            <NavigationDockItemLink href={href} active={isActive}>
+            <NavigationDockItemLink href={href} name={name} active={isActive}>
               <Icon className='h-4 w-4' />
             </NavigationDockItemLink>
           </NavigationMenuLink>
