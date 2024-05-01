@@ -18,7 +18,12 @@ export function SocialBentoItem({
 }: SocialBentoItemProps) {
   return (
     <BentoCard className='col-span-1 row-span-1' variant='grid'>
-      <a href={href} target='_blank' rel='noopener noreferrer'>
+      <a
+        href={href}
+        target='_blank'
+        rel='noopener noreferrer'
+        aria-label={name}
+      >
         <div className='relative flex aspect-square flex-col'>
           <div className='flex size-full flex-col gap-1 p-4 max-sm:p-3'>
             <div className='flex flex-none flex-row items-center justify-between'>
