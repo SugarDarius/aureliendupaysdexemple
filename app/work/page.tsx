@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 
 import { ReactIcon } from '@/components/icons/react-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
@@ -118,6 +119,14 @@ export default function WorkPage() {
           <WorkCard
             href='https://www.lifen.fr/'
             companyName='Lifen'
+            companyLogo={
+              <Image
+                src='/lifen-logo.jpeg'
+                alt='lifen logo'
+                width={24}
+                height={24}
+              />
+            }
             jobTitle='Senior Full Stack Engineer (remote)'
             startDate='January 2021'
             endDate='October 2021'
