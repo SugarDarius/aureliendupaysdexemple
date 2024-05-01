@@ -19,7 +19,7 @@ export function PageBentoItem({
       className='col-span-2 row-span-1 max-sm:min-h-[180px]'
       variant='grid'
     >
-      <Link href={href} className='h-full w-full'>
+      <Link href={href} className='h-full w-full' aria-label={title}>
         <div className='relative flex h-full w-full flex-col'>
           <div className='nax-sm:gap-3 flex h-full flex-col justify-between p-4'>
             <div className='flex w-full flex-none flex-row items-start justify-between'>
