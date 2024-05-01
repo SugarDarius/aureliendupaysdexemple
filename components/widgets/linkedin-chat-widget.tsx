@@ -19,7 +19,7 @@ export function LinkedInChatWidget() {
           </div>
         </div>
         <div className='flex flex-row items-center justify-end'>
-          <div className='flex w-auto flex-row items-center gap-1.5 rounded-full bg-sky-500 py-1.5 pl-1.5 pr-2'>
+          <div className='flex w-auto flex-row items-center gap-1.5 rounded-full bg-sky-700 py-1.5 pl-1.5 pr-2'>
             <Image
               src='/aureliendupaysdexemple-logo.png'
               width={16}
