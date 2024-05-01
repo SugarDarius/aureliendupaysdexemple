@@ -122,7 +122,7 @@ export default function WorkPage() {
             companyLogo={
               <Image
                 src='/lifen-logo.jpeg'
-                alt='lifen logo'
+                alt='Lifen logo'
                 width={24}
                 height={24}
               />
@@ -159,6 +159,14 @@ export default function WorkPage() {
           <WorkCard
             href='https://sfeir.com/en/'
             companyName='SFEIR'
+            companyLogo={
+              <Image
+                src='/sfeir-logo.jpeg'
+                alt='Sfeir logo'
+                width={24}
+                height={24}
+              />
+            }
             jobTitle='Full Stack Engineer & Team Leader'
             startDate='July 2017'
             endDate='December 2020'
