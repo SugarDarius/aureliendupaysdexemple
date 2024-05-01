@@ -57,7 +57,9 @@ export default function WorkPage() {
             <div className='flex w-full flex-col gap-6'>
               <p>
                 I joined{' '}
-                <InlineLink href='https://www.claap.io/'>Claap</InlineLink>{' '}
+                <InlineLink href='https://www.claap.io/' name='Claap'>
+                  Claap
+                </InlineLink>{' '}
                 early stage back in October 2021 to help teams record meetings
                 with AI powered notes, send short followup videos, and
                 centralize best practices in video library.
@@ -82,7 +84,10 @@ export default function WorkPage() {
                   of the Chrome extension and I&apos;ve been part of the first
                   team of two developers who has implemented and released the
                   first version of the desktop app based on{' '}
-                  <InlineLink href='https://www.electronjs.org/'>
+                  <InlineLink
+                    href='https://www.electronjs.org/'
+                    name='Electron'
+                  >
                     Electron
                   </InlineLink>{' '}
                   where I enjoyed play a bit with blurred background feature.
@@ -97,7 +102,10 @@ export default function WorkPage() {
                 Claap has been nominated in the top 10 best designed products in
                 2022 on ProductHunt 🚀 and recently Claap was referenced by
                 ProductHunt in{' '}
-                <InlineLink href='https://www.producthunt.com/categories/screenshots-and-screen-recording'>
+                <InlineLink
+                  href='https://www.producthunt.com/categories/screenshots-and-screen-recording'
+                  name='Product Hunt | The best screenshots and screen recording apps in 2024'
+                >
                   The best screenshots and screen recording apps in 2024
                 </InlineLink>{' '}
                 🎉.
@@ -115,7 +123,9 @@ export default function WorkPage() {
             <div className='flex w-full flex-col gap-6'>
               <p>
                 In 2021 I joined{' '}
-                <InlineLink href='https://www.lifen.fr/'>Lifen</InlineLink>{' '}
+                <InlineLink href='https://www.lifen.fr/' name='Lifen'>
+                  Lifen
+                </InlineLink>{' '}
                 after my adventure in Luxembourg to treat better whereas caring
                 together.
               </p>
