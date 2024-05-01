@@ -43,6 +43,7 @@ export function NavigationDockDrawer({
             'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent',
             className
           )}
+          aria-label='burger menu'
         >
           <Bars3Icon className='size-4' />
         </Button>
@@ -61,6 +62,7 @@ export function NavigationDockDrawer({
                 <div key={navigationItem.href} className='flex flex-col'>
                   <NavigationDockItemLink
                     href={navigationItem.href}
+                    name={navigationItem.name}
                     active={isActive}
                     variant='drawer'
                     className='col-span-1'
