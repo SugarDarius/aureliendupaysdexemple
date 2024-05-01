@@ -230,6 +230,14 @@ export default function WorkPage() {
           <Separator className='mx-auto w-[90%]' />
           <WorkCard
             companyName='PhiXL'
+            companyLogo={
+              <Image
+                src='/phixl-logo.jpeg'
+                alt='PhiXL logo'
+                width={24}
+                height={24}
+              />
+            }
             jobTitle='Lead developer'
             startDate='April 2016'
             endDate='July 2017'
@@ -259,6 +267,14 @@ export default function WorkPage() {
           <WorkCard
             href='https://madmix.digital'
             companyName='Madmix Digital'
+            companyLogo={
+              <Image
+                src='/madmix-digital-logo.jpeg'
+                alt='Madmix Digital logo'
+                width={24}
+                height={24}
+              />
+            }
             jobTitle='Developer'
             startDate='May 2014'
             endDate='April 2016'
