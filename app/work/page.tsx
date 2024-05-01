@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { ReactIcon } from '@/components/icons/react-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
+import { ClaapIcon } from '@/components/icons/claap-icon'
 
 import { Separator } from '@/components/ui/separator'
 import { PageHero } from '@/components/content/page-hero'
@@ -50,6 +51,7 @@ export default function WorkPage() {
           <WorkCard
             href='https://www.claap.io/'
             companyName='Claap'
+            companyLogo={<ClaapIcon className='size-6' />}
             jobTitle='Senior Software Engineer (remote)'
             startDate='October 2021'
             endDate='March 2024'

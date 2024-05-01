@@ -40,19 +40,19 @@ export function WorkCard({
     <BentoCard>
       <div className='flex h-full flex-col justify-between gap-6 p-6 max-sm:gap-4 max-sm:p-4'>
         <div className='flex flex-row items-center justify-between max-sm:flex-col max-sm:items-start max-sm:justify-start max-sm:gap-2'>
-          <div className='flex flex-row items-center gap-2 max-sm:flex-col max-sm:items-start max-sm:gap-1'>
-            {companyLogo ? companyLogo : null}
-            <div className='flex flex-row items-center gap-2 max-sm:flex-col max-sm:items-start max-sm:gap-0'>
+          <div className='flex flex-row items-center gap-2 max-sm:flex-col max-sm:items-start max-sm:gap-0'>
+            <div className='flex flex-row items-center gap-2'>
+              {companyLogo ? companyLogo : null}
               <AnchorComp {...anchorProps}>
                 <h1 className='text-xl font-extrabold tracking-tighter max-sm:text-lg'>
                   {companyName}
                 </h1>
               </AnchorComp>
-              <WorkCardSeparator className='max-sm:hidden' />
-              <span className='font-semibold text-muted-foreground max-sm:text-sm'>
-                {jobTitle}
-              </span>
             </div>
+            <WorkCardSeparator className='max-sm:hidden' />
+            <span className='font-semibold text-muted-foreground max-sm:text-sm'>
+              {jobTitle}
+            </span>
           </div>
           <div className='flex flex-row items-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 font-mono text-sm text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100 max-sm:gap-1 max-sm:text-xs'>
             {startDate}
