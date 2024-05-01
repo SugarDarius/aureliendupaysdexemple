@@ -60,7 +60,7 @@ export default function WorkPage() {
             <div className='flex w-full flex-col gap-6'>
               <p>
                 I joined{' '}
-                <InlineLink href='https://www.claap.io/' name='Claap'>
+                <InlineLink href='https://www.claap.io/' aria-label='Claap'>
                   Claap
                 </InlineLink>{' '}
                 early stage back in October 2021 to help teams record meetings
@@ -89,7 +89,7 @@ export default function WorkPage() {
                   first version of the desktop app based on{' '}
                   <InlineLink
                     href='https://www.electronjs.org/'
-                    name='Electron'
+                    aria-label='Electron'
                   >
                     Electron
                   </InlineLink>{' '}
@@ -107,7 +107,7 @@ export default function WorkPage() {
                 ProductHunt in{' '}
                 <InlineLink
                   href='https://www.producthunt.com/categories/screenshots-and-screen-recording'
-                  name='Product Hunt | The best screenshots and screen recording apps in 2024'
+                  aria-label='Product Hunt | The best screenshots and screen recording apps in 2024'
                 >
                   The best screenshots and screen recording apps in 2024
                 </InlineLink>{' '}
@@ -134,7 +134,7 @@ export default function WorkPage() {
             <div className='flex w-full flex-col gap-6'>
               <p>
                 In 2021 I joined{' '}
-                <InlineLink href='https://www.lifen.fr/' name='Lifen'>
+                <InlineLink href='https://www.lifen.fr/' aria-label='Lifen'>
                   Lifen
                 </InlineLink>{' '}
                 after my adventure in Luxembourg to treat better whereas caring
