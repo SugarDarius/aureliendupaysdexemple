@@ -24,6 +24,7 @@ export function TechStackCard({
         href,
         target: '_blank',
         rel: 'noopener noreferrer',
+        'aria-label': name,
       }
     : {}
   return (
