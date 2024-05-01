@@ -30,6 +30,7 @@ export function WorkCard({
         target: '_blank',
         rel: 'noopener noreferrer',
         className: 'inline-flex underline-offset-2 hover:underline',
+        'aria-label': companyName,
       }
     : {}
 
