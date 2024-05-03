@@ -77,7 +77,7 @@ export default function RootLayout({
         className={cn(
           GeistSans.variable,
           GeistMono.variable,
-          'bg-background font-sans antialiased'
+          'font-sans antialiased'
         )}
       >
         <ProvidersTree>
