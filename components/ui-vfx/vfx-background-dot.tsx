@@ -7,7 +7,7 @@ export function VFXBackgroundDot({ className }: { className?: string }) {
     <div
       className={cn(
         /* eslint-disable-next-line prettier/prettier */
-        'absolute bottom-0 left-0 right-0 top-0 m-auto h-[86%] w-[86%] bg-dot-black/[0.2] dark:bg-dot-white/[0.2]',
+        'vfx-bg-dot-black/[0.2] dark:vfx-bg-dot-white/[0.2] absolute bottom-0 left-0 right-0 top-0 m-auto h-[86%] w-[86%]',
         className
       )}
     >
