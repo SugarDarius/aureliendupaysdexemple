@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { ComingSoonPageContent } from '@/components/misc/coming-soon-page-content'
+import { ComingSoonPageContent } from '@/components/content/coming-soon-page-content'
 
 export const metadata: Metadata = {
   title: 'Craft',

@@ -1,4 +1,4 @@
-import { NotFoundPageContent } from '@/components/misc/not-found-page-content'
+import { NotFoundPageContent } from '@/components/content/not-found-page-content'
 
 export default function NotFoundPage() {
   return (
