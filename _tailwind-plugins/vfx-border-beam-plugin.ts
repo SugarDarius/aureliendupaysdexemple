@@ -27,8 +27,6 @@ export const vfxBorderBeamPlugin = plugin(
     )
 
     const colors = flattenColorPalette(theme('colors'))
-    console.log(colors)
-
     matchUtilities(
       {
         'vfx-border-beam-color-from': (value: string) => ({
