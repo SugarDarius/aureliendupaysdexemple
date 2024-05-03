@@ -49,11 +49,11 @@ export function NavigationDockDrawer({
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className='w-full px-4 pb-4'>
-          <DrawerHeader>
+        <div className='flex w-full flex-col px-4 pb-4'>
+          <DrawerHeader className='sm:text-center'>
             <DrawerTitle>Navigation</DrawerTitle>
           </DrawerHeader>
-          <div className='grid max-w-[496px] grid-cols-2 gap-4'>
+          <div className='mx-auto grid w-full max-w-[496px] grid-cols-2 gap-4'>
             {navigationItems.map((navigationItem) => {
               const isActive = navigationItem.href === pathname
               const Icon = navigationItemsIcons[navigationItem.name]
