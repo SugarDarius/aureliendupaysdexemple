@@ -1,5 +1,6 @@
 import type { PluginAPI, Config } from 'tailwindcss/types/config'
 import plugin from 'tailwindcss/plugin'
+import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 
 export const vfxBorderBeamPlugin = plugin(
   ({ matchUtilities, theme }: PluginAPI): void => {
@@ -25,6 +26,9 @@ export const vfxBorderBeamPlugin = plugin(
       }
     )
 
+    const colors = flattenColorPalette(theme('colors'))
+    console.log(colors)
+
     matchUtilities(
       {
         'vfx-border-beam-color-from': (value: string) => ({
@@ -32,7 +36,10 @@ export const vfxBorderBeamPlugin = plugin(
         }),
       },
       {
-        values: theme('vfxBorderBeamColorFrom'),
+        values: {
+          ...colors,
+          DEFAULT: colors['sky-50'],
+        },
         type: 'color',
       }
     )
@@ -44,7 +51,10 @@ export const vfxBorderBeamPlugin = plugin(
         }),
       },
       {
-        values: theme('vfxBorderBeamColorTo'),
+        values: {
+          ...colors,
+          DEFAULT: colors['sky-500'],
+        },
         type: 'color',
       }
     )
@@ -92,22 +102,6 @@ export const vfxBorderBeamPlugin = plugin(
         }) => ({
           ...theme('animationDelay'),
           DEFAULT: '0',
-        }),
-        vfxBorderBeamColorFrom: ({
-          theme,
-        }: {
-          theme: (path: string) => Config['theme']
-        }) => ({
-          ...theme('colors'),
-          DEFAULT: theme('colors.sky.50'),
-        }),
-        vfxBorderBeamColorTo: ({
-          theme,
-        }: {
-          theme: (path: string) => Config['theme']
-        }) => ({
-          ...theme('colors'),
-          DEFAULT: theme('colors.sky.500'),
         }),
         vfxBorderBeamWidth: ({
           theme,
