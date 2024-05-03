@@ -2,7 +2,9 @@ import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
 import animationsPlugin from 'tailwindcss-animate'
+
 import { backgroundsPlugin } from './_tailwind-plugins/backgrounds-plugin'
+import { vfxBorderBeamPlugin } from './_tailwind-plugins/vfx-border-beam-plugin'
 
 const config = {
   darkMode: ['class'],
@@ -82,7 +84,7 @@ const config = {
       },
     },
   },
-  plugins: [animationsPlugin, backgroundsPlugin],
+  plugins: [animationsPlugin, backgroundsPlugin, vfxBorderBeamPlugin],
 } satisfies Config
 
 export default config

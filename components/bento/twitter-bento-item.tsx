@@ -3,6 +3,7 @@ import { PaperAirplaneIcon } from '@heroicons/react/24/outline'
 
 import { siteConfig } from '@/config/site-config'
 
+import { VFXBorderBeam } from '@/components/ui-vfx/vfx-border-beam'
 import { BentoCard } from '@/components/grids/bento-card'
 import { TwitterSquareIcon } from '@/components/icons/twitter-square-icon'
 import { TwitterPostWidget } from '@/components/widgets/twitter-post-widget'
@@ -45,6 +46,10 @@ export function TwitterBentoItem() {
             <div className='relative flex w-full flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 p-1.5 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 max-sm:p-1 max-sm:text-[10px]'>
               <span className='text-xs font-semibold'>See my account</span>
               <PaperAirplaneIcon className='size-3' />
+              <VFXBorderBeam
+                /* eslint-disable-next-line prettier/prettier */
+                className='vfx-border-beam-size-12 vfx-border-beam-duration-[6s]'
+              />
             </div>
           </div>
         </div>
