@@ -8,7 +8,7 @@ import { BentoCard } from '@/components/grids/bento-card'
 export function HeroBentoItem() {
   return (
     <BentoCard
-      className='col-span-3 row-span-1 max-sm:col-span-2 max-sm:min-h-[200px]'
+      className='col-span-3 row-span-1 max-lg:min-h-[220px] max-md:min-h-[200px] max-sm:col-span-2'
       variant='grid'
     >
       <div className='relative flex h-full w-full flex-col'>

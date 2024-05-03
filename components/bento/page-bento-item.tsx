@@ -16,7 +16,7 @@ export function PageBentoItem({
 }) {
   return (
     <BentoCard
-      className='col-span-2 row-span-1 max-sm:min-h-[180px]'
+      className='col-span-2 row-span-1 max-lg:min-h-[220px] max-md:min-h-[180px]'
       variant='grid'
     >
       <Link href={href} className='h-full w-full' aria-label={title}>
