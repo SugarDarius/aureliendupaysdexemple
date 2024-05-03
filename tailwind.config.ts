@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss'
 import type { PluginAPI } from 'tailwindcss/types/config'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
-import tailwindcssAnimatePlugin from 'tailwindcss-animate'
+import animationsPlugin from 'tailwindcss-animate'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 
 import svgToDataUri from 'mini-svg-data-uri'
@@ -103,7 +103,7 @@ const config = {
       },
     },
   },
-  plugins: [tailwindcssAnimatePlugin, backgroundsPlugin],
+  plugins: [animationsPlugin, backgroundsPlugin],
 } satisfies Config
 
 export default config
