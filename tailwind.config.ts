@@ -3,7 +3,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme'
 
 import animationsPlugin from 'tailwindcss-animate'
 
-import { vfxBackgroundsPlugin } from './_tailwind-plugins/backgrounds-plugin'
+import { vfxBackgroundsPlugin } from './_tailwind-plugins/vfx-backgrounds-plugin'
 import { vfxBorderBeamPlugin } from './_tailwind-plugins/vfx-border-beam-plugin'
 
 const config = {
