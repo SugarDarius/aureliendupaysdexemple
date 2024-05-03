@@ -27,7 +27,7 @@ export function NavigationDock() {
   return (
     <div className='fixed bottom-6 left-0 right-0 z-10 mx-auto my-0 w-max'>
       <div className='relative flex flex-row items-center gap-2 rounded-xl border bg-popover p-1'>
-        <NavigationMenu className='max-sm:hidden'>
+        <NavigationMenu className='max-lg:hidden'>
           <NavigationMenuList>
             {navigationItems.map((navigationItem) => (
               <NavigationDockItem
@@ -39,7 +39,7 @@ export function NavigationDock() {
           </NavigationMenuList>
         </NavigationMenu>
         <NavigationDockDrawer
-          className='md:hidden'
+          className='lg:hidden'
           pathname={pathname}
           navigationItems={navigationItems}
         />
@@ -71,10 +71,10 @@ export function NavigationDock() {
         <div className='flex flex-row items-center gap-1'>
           <CommandCenter
             navigationItems={navigationItems}
-            className='max-sm:hidden'
+            className='max-lg:hidden'
           />
-          <ColorModeDropdownSwitcher className='max-sm:hidden' />
-          <ColorModeDrawerSwitcher className='md:hidden' />
+          <ColorModeDropdownSwitcher className='max-lg:hidden' />
+          <ColorModeDrawerSwitcher className='lg:hidden' />
         </div>
       </div>
     </div>
