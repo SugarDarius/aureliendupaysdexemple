@@ -7,7 +7,7 @@ import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 
 import svgToDataUri from 'mini-svg-data-uri'
 
-const aceternityUIBackgroundsPlugin = {
+const backgroundsPlugin = {
   handler: ({ matchUtilities, theme }: PluginAPI): void => {
     matchUtilities(
       {
@@ -103,7 +103,7 @@ const config = {
       },
     },
   },
-  plugins: [tailwindcssAnimatePlugin, aceternityUIBackgroundsPlugin],
+  plugins: [tailwindcssAnimatePlugin, backgroundsPlugin],
 } satisfies Config
 
 export default config
