@@ -48,7 +48,7 @@ export function TwitterBentoItem() {
               <PaperAirplaneIcon className='size-3' />
               <VFXBorderBeam
                 /* eslint-disable-next-line prettier/prettier */
-                className='vfx-border-beam-size-[52px] vfx-border-beam-duration-[6s] vfx-border-beam-color-from-violet-400 vfx-border-beam-color-to-fuchsia-700 dark:vfx-border-beam-color-from-cyan-300 dark:vfx-border-beam-color-to-sky-600'
+                className='vfx-border-beam-size-[52px] max-sm:vfx-border-beam-size-10 vfx-border-beam-duration-[6s] vfx-border-beam-color-from-violet-400 vfx-border-beam-color-to-fuchsia-700 dark:vfx-border-beam-color-from-cyan-300 dark:vfx-border-beam-color-to-sky-600'
               />
             </div>
           </div>
