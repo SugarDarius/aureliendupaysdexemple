@@ -13,7 +13,7 @@ import { baseUrl } from '@/app/sitemap'
 import { Toaster } from '@/components/ui/sonner'
 import { ProvidersTree } from '@/components/providers/providers-tree'
 import { NavigationDock } from '@/components/navigation/navigation-dock'
-import { TailwindIndicator } from '@/components/misc/tailwind-indicator'
+import { TailwindIndicator } from '@/components/ui-helpers/tailwind-indicator'
 
 import './globals.css'
 
