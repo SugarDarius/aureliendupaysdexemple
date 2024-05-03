@@ -1,8 +1,10 @@
 # aureliendupaysdexemple.com
 
 - **Framework**: [Next.js](https://nextjs.org/)
-- **UI**: [shadcn/ui](https://ui.shadcn.com/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
+- **UI**: [shadcn/ui](https://ui.shadcn.com/)
+- **UI VFX**: Inspiration from [
+  Aceternity UI](https://ui.aceternity.com/) & [Magic UI](https://magicui.design/)
 - **Deployment**: [Vercel](https://vercel.com)
 
 ## Running locally
