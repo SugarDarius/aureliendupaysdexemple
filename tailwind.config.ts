@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss'
 import type { PluginAPI } from 'tailwindcss/types/config'
+
+import plugin from 'tailwindcss/plugin'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
 import animationsPlugin from 'tailwindcss-animate'
@@ -7,8 +9,8 @@ import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 
 import svgToDataUri from 'mini-svg-data-uri'
 
-const backgroundsPlugin = {
-  handler: ({ matchUtilities, theme }: PluginAPI): void => {
+const backgroundsPlugin = plugin(
+  ({ matchUtilities, theme }: PluginAPI): void => {
     matchUtilities(
       {
         'bg-dot': (value: string) => ({
@@ -22,8 +24,8 @@ const backgroundsPlugin = {
         type: 'color',
       }
     )
-  },
-}
+  }
+)
 
 const config = {
   darkMode: ['class'],
