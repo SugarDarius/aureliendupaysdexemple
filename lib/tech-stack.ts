@@ -128,7 +128,7 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
     href: 'https://redux.js.org/',
   },
   {
-    name: 'Apollo GraphQL',
+    name: 'Apollo',
     Icon: ApolloGraphQLIcon,
     tag: 'state management',
     href: 'https://www.apollographql.com/',
