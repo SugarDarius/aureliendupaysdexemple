@@ -22,7 +22,7 @@ export function TwitterBentoItem() {
               <div className='flex flex-row items-center gap-1.5'>
                 <div className='flex h-auto w-auto flex-col max-sm:hidden'>
                   <Image
-                    src='/aureliendupaysdexemple-logo.png'
+                    src='/medias/images/aureliendupaysdexemple-logo.png'
                     width={38}
                     height={38}
                     alt='logo'

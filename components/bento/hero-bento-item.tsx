@@ -18,7 +18,7 @@ export function HeroBentoItem() {
               Hey, I&apos;m Aurélien Dupays Dexemple 👋
             </h1>
             <Image
-              src='/aureliendupaysdexemple-logo.png'
+              src='/medias/images/aureliendupaysdexemple-logo.png'
               width={24}
               height={24}
               alt='logo'
