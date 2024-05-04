@@ -18,7 +18,9 @@
       "error",
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
     ],
-    "eqeqeq": "error"
+    "eqeqeq": "error",
+    "tailwindcss/enforces-shorthand": "off",
+    "tailwindcss/no-custom-classname": "off"
   },
   "overrides": [
     {

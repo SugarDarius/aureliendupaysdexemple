@@ -34,7 +34,7 @@ export function SocialBentoItem({
             </div>
             <div className='flex w-full flex-auto flex-col'>{children}</div>
             <div className='flex flex-none flex-col'>
-              <h1 className='text-md font-bold tracking-tighter max-md:text-sm'>
+              <h1 className='font-bold tracking-tighter max-md:text-sm'>
                 {accountName}
               </h1>
               <div className='flex flex-row items-center gap-1'>

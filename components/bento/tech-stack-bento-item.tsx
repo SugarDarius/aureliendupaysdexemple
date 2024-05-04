@@ -9,7 +9,7 @@ export function TechStackBentoItem() {
       href='/tech-stack'
     >
       <div className='flex h-full w-full flex-col items-center justify-end'>
-        <div className='relative flex size-[80%] flex-col'>
+        <div className='relative flex size-4/5 flex-col'>
           <Image
             src='/tech-stack-preview@4.png'
             fill

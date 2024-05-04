@@ -19,7 +19,7 @@ export function TwitterBentoItem() {
         <div className='relative flex aspect-square flex-col'>
           <div className='flex size-full flex-col gap-1 p-4 max-md:p-3'>
             <div className='flex flex-none flex-row items-center justify-between'>
-              <div className='gap flex flex-row items-center gap-1.5'>
+              <div className='flex flex-row items-center gap-1.5'>
                 <div className='flex h-auto w-auto flex-col max-sm:hidden'>
                   <Image
                     src='/aureliendupaysdexemple-logo.png'

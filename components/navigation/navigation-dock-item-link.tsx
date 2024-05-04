@@ -13,13 +13,13 @@ import {
 } from '@/components/ui/tooltip'
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 
-const itemLinkVariants = cva(
+const variants = cva(
   'flex flex-col items-center justify-center data-[active]:bg-accent',
   {
     variants: {
       variant: {
         default: 'rounded-xl',
-        drawer: 'rounded-xl border shadow gap-1 w-full h-full',
+        drawer: 'h-full w-full gap-1 rounded-xl border shadow',
       },
     },
     defaultVariants: {
@@ -35,7 +35,7 @@ type NavigationDockItemLinkProps = {
   className?: string
   children: React.ReactNode
   onClick?: () => void
-} & VariantProps<typeof itemLinkVariants>
+} & VariantProps<typeof variants>
 
 export const NavigationDockItemLink = forwardRef<
   HTMLAnchorElement,
@@ -51,7 +51,7 @@ export const NavigationDockItemLink = forwardRef<
         href={href}
         className={cn(
           navigationMenuTriggerStyle(),
-          itemLinkVariants({ variant, className })
+          variants({ variant, className })
         )}
         data-active={active ? '' : undefined}
         onClick={onClick}

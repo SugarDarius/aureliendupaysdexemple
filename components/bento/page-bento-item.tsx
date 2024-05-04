@@ -31,7 +31,7 @@ export function PageBentoItem({
               </div>
               <ArrowUpRightIcon className='size-6 max-sm:size-4' />
             </div>
-            <div className='flex-ol flex w-full flex-auto'>{children}</div>
+            <div className='flex w-full flex-auto flex-col'>{children}</div>
           </div>
         </div>
       </Link>
