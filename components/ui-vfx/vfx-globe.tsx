@@ -8,7 +8,7 @@ export function VFXGlobe({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'absolute inset-0 flex size-full flex-col items-center justify-center',
+        'absolute inset-0 flex size-full flex-col items-center justify-center overflow-hidden',
         className
       )}
     >
