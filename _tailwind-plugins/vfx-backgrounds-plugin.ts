@@ -5,7 +5,7 @@ import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import svgToDataUri from 'mini-svg-data-uri'
 
 export const vfxBackgroundsPlugin = plugin(
-  ({ matchUtilities, theme }: PluginAPI): void => {
+  ({ addUtilities, matchUtilities, theme }: PluginAPI): void => {
     matchUtilities(
       {
         'vfx-bg-dot': (value: string) => ({
@@ -19,5 +19,31 @@ export const vfxBackgroundsPlugin = plugin(
         type: 'color',
       }
     )
+
+    addUtilities({
+      '.vfx-bg-retro-grid-light': {
+        backgroundImage:
+          'linear-gradient(90deg, rgba(0, 0, 0, 0.25) 1px, transparent 0), linear-gradient(180deg, rgba(0, 0, 0, 0.25) 1px, transparent 0)',
+      },
+      '.vfx-bg-retro-grid-dark': {
+        backgroundImage:
+          'linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 0), linear-gradient(180deg, rgba(255,255,255,0.2) 1px, transparent 0)',
+      },
+    })
+  },
+  {
+    theme: {
+      extend: {
+        animation: {
+          'vfx-retro-grid': 'vfx-retro-grid 25s infinite linear',
+        },
+        keyframes: {
+          'vfx-retro-grid': {
+            '0%': { transform: 'translateY(-50%)' },
+            '100%': { transform: 'translateY(0)' },
+          },
+        },
+      },
+    },
   }
 )
