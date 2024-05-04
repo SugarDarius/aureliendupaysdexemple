@@ -7,7 +7,7 @@ export function LinkedInChatWidget() {
         <div className='flex flex-row items-center'>
           <div className='flex w-auto flex-row items-center gap-1.5 rounded-full bg-neutral-600 py-1.5 pl-1.5 pr-2'>
             <Image
-              src='/linkedin-contact-photo.png'
+              src='/medias/images/linkedin-contact-photo.png'
               width={16}
               height={16}
               alt='logo'
