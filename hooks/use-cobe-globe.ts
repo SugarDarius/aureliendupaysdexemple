@@ -50,6 +50,11 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
       })
 
       window.addEventListener('resize', handleResize)
+      setTimeout(() => {
+        if (canvasRef.current) {
+          canvasRef.current.style.opacity = '1'
+        }
+      })
 
       return (): void => {
         globe.destroy()
