@@ -9,7 +9,7 @@ export function VFXBorderBeam({ className }: { className?: string }) {
         /* eslint-disable-next-line prettier/prettier */
         'vfx-border-beam-size-12 vfx-border-beam-duration-[10s] vfx-border-beam-delay-75 vfx-border-beam-color-from vfx-border-beam-color-to vfx-border-beam-anchor vfx-border-beam-width',
         /* eslint-disable-next-line prettier/prettier */
-        'pointer-events-none absolute inset-0 rounded-[inherit] [border:calc(var(--tw-vfx-border-beam-width))_solid_transparent]',
+        'pointer-events-none absolute inset-0 rounded-[inherit] border-solid border-transparent [border-width:var(--tw-vfx-border-beam-width)]',
         /* eslint-disable-next-line prettier/prettier */
         '![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)]',
         /* eslint-disable-next-line prettier/prettier */
