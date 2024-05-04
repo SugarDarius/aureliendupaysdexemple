@@ -4,6 +4,8 @@ import useEvent from 'react-use-event-hook'
 import createGlobe from 'cobe'
 import { useSpring } from 'framer-motion'
 
+import { useTheme } from 'next-themes'
+
 type UseCobeGlobeReturnType = {
   canvasRef: React.RefObject<HTMLCanvasElement>
 }
@@ -12,6 +14,7 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const size = useRef<number>(0)
 
+  const { resolvedTheme } = useTheme()
   const r = useSpring(0, { mass: 1, stiffness: 280, damping: 40 })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,6 +24,7 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
 
     state.width = size.current
     state.height = size.current
+    state.dark = resolvedTheme === 'dark' ? 1 : 0
   })
 
   const handleResize = useEvent((): void => {
@@ -38,7 +42,7 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
         height: size.current,
         phi: 0,
         theta: 0.7,
-        dark: 1,
+        dark: resolvedTheme === 'dark' ? 1 : 0,
         diffuse: 1.2,
         mapSamples: 16000,
         mapBrightness: 6,
