@@ -10,6 +10,7 @@ type UseCobeGlobeReturnType = {
 
 export function useCobeGlobe(): UseCobeGlobeReturnType {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const size = useRef<number>(0)
 
   const r = useSpring(0, { mass: 1, stiffness: 280, damping: 40 })
 
@@ -17,14 +18,24 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
   const handleRender = useEvent((state: Record<string, any>): void => {
     state.phi = r.get()
     r.set(state.phi + 0.06)
+
+    state.width = size.current
+    state.height = size.current
+  })
+
+  const handleResize = useEvent((): void => {
+    if (canvasRef.current) {
+      size.current = canvasRef.current.offsetWidth * 2
+    }
   })
 
   useEffect(() => {
     if (canvasRef.current) {
+      size.current = canvasRef.current.offsetWidth * 2
       const globe = createGlobe(canvasRef.current, {
         devicePixelRatio: 2,
-        width: canvasRef.current.offsetWidth * 2,
-        height: canvasRef.current.offsetWidth * 2,
+        width: size.current,
+        height: size.current,
         phi: 0,
         theta: 0.7,
         dark: 1,
@@ -38,8 +49,11 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
         onRender: handleRender,
       })
 
+      window.addEventListener('resize', handleResize)
+
       return (): void => {
         globe.destroy()
+        window.removeEventListener('resize', handleResize)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
