@@ -23,11 +23,11 @@ export const vfxBackgroundsPlugin = plugin(
     addUtilities({
       '.vfx-bg-retro-grid-light': {
         backgroundImage:
-          'linear-gradient(90deg, rgba(0, 0, 0, 0.25) 1px, transparent 0), linear-gradient(180deg, rgba(0, 0, 0, 0.25) 1px, transparent 0)',
+          'linear-gradient(90deg, rgba(0, 0, 0, 0.3) 1px, transparent 0), linear-gradient(180deg, rgba(0, 0, 0, 0.3) 1px, transparent 0)',
       },
       '.vfx-bg-retro-grid-dark': {
         backgroundImage:
-          'linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 0), linear-gradient(180deg, rgba(255,255,255,0.2) 1px, transparent 0)',
+          'linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 0), linear-gradient(180deg, rgba(255, 255, 255, 0.4) 1px, transparent 0)',
       },
     })
   },
