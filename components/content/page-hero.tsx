@@ -13,7 +13,7 @@ export function PageHero({
         {title}
       </h1>
       <p className='text-muted-foreground'>{description}</p>
-      <VFXBackgroundRetroGrid />
+      <VFXBackgroundRetroGrid className='max-lg:hidden' />
     </div>
   )
 }
