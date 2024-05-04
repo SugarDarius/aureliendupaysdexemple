@@ -13,8 +13,7 @@ export function VFXBackgroundRetroGrid({ className }: { className?: string }) {
       <div className='absolute inset-0 [transform:rotateX(45deg)]'>
         <div
           className={cn(
-            /* eslint-disable-next-line prettier/prettier */
-            'animate-vfx-retro-grid inset-[0%_0px] -ml-[50%] h-[300vh] w-[600vw] origin-[100%_0_0] bg-[length:60px_60px] bg-repeat',
+            'inset-[0%_0px] -ml-[50%] h-[300vh] w-[600vw] origin-[100%_0_0] animate-vfx-retro-grid bg-[length:60px_60px] bg-repeat',
             'vfx-bg-retro-grid-light dark:vfx-bg-retro-grid-dark'
           )}
         />

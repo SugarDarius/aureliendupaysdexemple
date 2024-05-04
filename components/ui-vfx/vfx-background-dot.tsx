@@ -6,8 +6,7 @@ export function VFXBackgroundDot({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        /* eslint-disable-next-line prettier/prettier */
-        'vfx-bg-dot-black/[0.2] dark:vfx-bg-dot-white/[0.2] absolute bottom-0 left-0 right-0 top-0 m-auto h-[86%] w-[86%]',
+        'absolute bottom-0 left-0 right-0 top-0 m-auto h-[86%] w-[86%] vfx-bg-dot-black/[0.2] dark:vfx-bg-dot-white/[0.2]',
         className
       )}
     >
