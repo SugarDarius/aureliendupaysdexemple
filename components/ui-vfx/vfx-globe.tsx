@@ -8,15 +8,15 @@ export function VFXGlobe({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'absolute inset-0 flex size-full flex-col items-center justify-center overflow-hidden',
+        'absolute flex size-full flex-col items-center justify-center overflow-hidden',
         className
       )}
     >
       <canvas
         ref={canvasRef}
-        className='aspect-square w-4/5 opacity-0 transition-opacity'
+        className='aspect-square w-[inherit] opacity-0 transition-opacity'
       />
-      <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-stone-900'></div>
+      {/* <div className='pointer-events-none absolute inset-0 bg-stone-50 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-stone-900' /> */}
     </div>
   )
 }

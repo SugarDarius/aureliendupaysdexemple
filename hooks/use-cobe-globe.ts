@@ -25,6 +25,7 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
     state.width = size.current
     state.height = size.current
     state.dark = resolvedTheme === 'dark' ? 1 : 0
+    state.glowColor = resolvedTheme === 'dark' ? [0.1, 0.1, 0.1] : [1, 1, 1]
   })
 
   const handleResize = useEvent((): void => {
@@ -43,12 +44,12 @@ export function useCobeGlobe(): UseCobeGlobeReturnType {
         phi: 0,
         theta: 0.7,
         dark: resolvedTheme === 'dark' ? 1 : 0,
-        diffuse: 1.2,
+        diffuse: 0.4,
         mapSamples: 16000,
-        mapBrightness: 6,
-        baseColor: [0.3, 0.3, 0.3],
+        mapBrightness: 1.2,
+        baseColor: [1, 1, 1],
         markerColor: [0.1, 0.8, 1],
-        glowColor: [1, 1, 1],
+        glowColor: resolvedTheme === 'dark' ? [0.1, 0.1, 0.1] : [1, 1, 1],
         markers: [{ location: [48.1744, 6.4512], size: 0.1 }],
         onRender: handleRender,
       })

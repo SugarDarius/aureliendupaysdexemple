@@ -12,7 +12,7 @@ export function HeroBentoItem() {
       className='col-span-3 row-span-1 max-lg:min-h-[220px] max-md:min-h-[200px] max-sm:col-span-2'
       variant='grid'
     >
-      <VFXGlobe className='size-full opacity-75' />
+      <VFXGlobe className='bottom-[-150px] right-[-100px] size-[300px]' />
       <div className='relative flex h-full w-full flex-col'>
         <div className='flex h-full flex-col justify-between p-4 max-sm:p-3'>
           <div className='flex flex-row items-center justify-between'>
