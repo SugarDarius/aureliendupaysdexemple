@@ -4,7 +4,6 @@ import { ReactIcon } from '@/components/icons/react-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
 import { BentoCard } from '@/components/grids/bento-card'
-import { VFXGlobe } from '@/components/ui-vfx/vfx-globe'
 
 export function HeroBentoItem() {
   return (
@@ -12,7 +11,6 @@ export function HeroBentoItem() {
       className='col-span-3 row-span-1 max-lg:min-h-[220px] max-md:min-h-[200px] max-sm:col-span-2'
       variant='grid'
     >
-      <VFXGlobe className='bottom-[-150px] right-[-100px] size-[300px]' />
       <div className='relative flex h-full w-full flex-col'>
         <div className='flex h-full flex-col justify-between p-4 max-sm:p-3'>
           <div className='flex flex-row items-center justify-between'>
