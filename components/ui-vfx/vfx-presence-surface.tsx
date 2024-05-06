@@ -127,12 +127,7 @@ export function VFXPresenceSurface({
       <VFXPresenceSurfacePortal>
         <AnimatePresence>
           {isCursorInside ? (
-            <PresenceCursor
-              key='presenceCursor'
-              x={x}
-              y={y}
-              username={username}
-            />
+            <PresenceCursor key={username} x={x} y={y} username={username} />
           ) : null}
         </AnimatePresence>
       </VFXPresenceSurfacePortal>
