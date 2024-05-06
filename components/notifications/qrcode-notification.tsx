@@ -14,7 +14,7 @@ export function QRCodeNotification({
 }) {
   return (
     <div className='flex flex-row items-center justify-stretch rounded-xl border-2'>
-      <div className='flex flex-row items-center justify-center gap-4 border-r-2 py-3 pl-4 pr-3'>
+      <div className='flex flex-row items-center gap-4 border-r-2 py-3 pl-4 pr-3'>
         <QRCodeSVG
           value={value}
           size={42}
@@ -31,7 +31,7 @@ export function QRCodeNotification({
           </span>
         </div>
       </div>
-      <div className='flex flex-col items-center justify-center py-3 pl-3 pr-4'>
+      <div className='flex h-full flex-col items-center justify-center pl-3 pr-4'>
         <Button size='sm' variant='secondary' onClick={onClose}>
           Close
         </Button>
