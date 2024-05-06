@@ -28,11 +28,9 @@ export function BentoCard({
 }: BentoCardProps) {
   return (
     <div className={cn(bentoCardVariants({ variant, className }))}>
-      <div className='relative flex h-full w-full flex-col overflow-hidden'>
+      <div className='relative flex size-full flex-col overflow-hidden'>
         <VFXBackgroundDot />
-        <div className='relative z-[2] flex h-full w-full flex-col'>
-          {children}
-        </div>
+        <div className='relative z-[2] flex size-full flex-col'>{children}</div>
       </div>
     </div>
   )
