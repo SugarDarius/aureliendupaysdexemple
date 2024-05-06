@@ -1,36 +1,50 @@
 import Image from 'next/image'
+import { cn } from '@/lib/utils'
+
+const ChatBubble = ({
+  src,
+  alt,
+  className,
+  children,
+}: {
+  src: string
+  alt: string
+  className?: string
+  children: React.ReactNode
+}) => (
+  <div
+    className={cn(
+      'flex h-[28px] w-auto flex-row items-center gap-1.5 rounded-full bg-neutral-600 pl-1.5 pr-2',
+      className
+    )}
+  >
+    <Image src={src} width={16} height={16} alt={alt} priority />
+    <span className='mt-px text-xs font-semibold  text-background dark:text-foreground'>
+      {children}
+    </span>
+  </div>
+)
 
 export function LinkedInChatWidget() {
   return (
     <div className='flex h-full w-full flex-col items-center justify-center'>
       <div className='flex w-4/5 flex-col gap-2 max-sm:w-full max-sm:scale-[0.85]'>
         <div className='flex flex-row items-center'>
-          <div className='flex w-auto flex-row items-center gap-1.5 rounded-full bg-neutral-600 py-1.5 pl-1.5 pr-2'>
-            <Image
-              src='/medias/images/memoji-avatar.png'
-              width={16}
-              height={16}
-              alt='linkedin chat photo'
-              priority
-            />
-            <span className='text-xs font-semibold  text-background dark:text-foreground'>
-              Let&apos;s connect?
-            </span>
-          </div>
+          <ChatBubble
+            src='/medias/images/memoji-avatar.png'
+            alt='linkedin memoji'
+          >
+            Let&apos;s connect?
+          </ChatBubble>
         </div>
         <div className='flex flex-row items-center justify-end'>
-          <div className='flex w-auto flex-row items-center gap-1.5 rounded-full bg-sky-700 py-1.5 pl-1.5 pr-2'>
-            <Image
-              src='/medias/images/aureliendupaysdexemple-logo.png'
-              width={16}
-              height={16}
-              alt='logo'
-              priority
-            />
-            <span className='text-xs font-semibold text-background dark:text-foreground'>
-              Sure!
-            </span>
-          </div>
+          <ChatBubble
+            src='/medias/images/aureliendupaysdexemple-logo.png'
+            alt='logo'
+            className='bg-sky-700'
+          >
+            Sure! 🙂
+          </ChatBubble>
         </div>
       </div>
     </div>
