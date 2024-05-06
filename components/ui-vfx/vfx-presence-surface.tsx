@@ -1,7 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { useLayoutEffect, useRef, useState } from 'react'
+
+import { useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+
 import useEvent from 'react-use-event-hook'
 
 import {
@@ -13,6 +16,8 @@ import {
 
 import { cn } from '@/lib/utils'
 import { getRandomUsername } from '@/lib/random-username'
+
+import { useMounted } from '@/hooks/use-mounted'
 import { Cursor } from '@/components/ui/cursor'
 
 const PresenceCursor = ({
@@ -56,6 +61,24 @@ const PresenceCursor = ({
   )
 }
 
+const VFXPresenceSurfacePortal = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
+  const mounted = useMounted()
+  if (!mounted) {
+    return null
+  }
+
+  return createPortal(
+    <div className='pointer-events-none absolute left-0 top-0 h-screen w-screen'>
+      {children}
+    </div>,
+    document.body
+  )
+}
+
 export function VFXPresenceSurface({
   className,
   children,
@@ -66,27 +89,14 @@ export function VFXPresenceSurface({
   const surfaceRef = useRef<HTMLDivElement>(null)
 
   const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
-  const [surfaceRect, setSurfaceRect] = useState<DOMRect | null>(null)
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
-  const getSurfaceBoundingClientRect = useEvent(() => {
-    if (surfaceRef.current) {
-      const surfaceRect = surfaceRef.current.getBoundingClientRect()
-      setSurfaceRect(surfaceRect)
-    }
-  })
-
   const handleMouseMove = useEvent(
     (e: React.MouseEvent<HTMLDivElement>): void => {
-      if (surfaceRect) {
-        const scrollX = window.scrollX
-        const scrollY = window.scrollY
-
-        x.set(e.clientX - surfaceRect.left + scrollX)
-        y.set(e.clientY - surfaceRect.top + scrollY)
-      }
+      x.set(e.clientX + window.scrollX)
+      y.set(e.clientY + window.scrollY)
     }
   )
 
@@ -97,23 +107,6 @@ export function VFXPresenceSurface({
   const handleMouseLeave = useEvent((): void => {
     setIsCursorInside(false)
   })
-
-  const handleResize = useEvent((): void => {
-    getSurfaceBoundingClientRect()
-  })
-
-  useLayoutEffect(
-    () => {
-      getSurfaceBoundingClientRect()
-      window.addEventListener('resize', handleResize)
-
-      return (): void => {
-        window.removeEventListener('resize', handleResize)
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  )
 
   const username = getRandomUsername()
 
@@ -128,16 +121,18 @@ export function VFXPresenceSurface({
         className
       )}
     >
-      <AnimatePresence>
-        {isCursorInside ? (
-          <PresenceCursor
-            key='presenceCursor'
-            x={x}
-            y={y}
-            username={username}
-          />
-        ) : null}
-      </AnimatePresence>
+      <VFXPresenceSurfacePortal>
+        <AnimatePresence>
+          {isCursorInside ? (
+            <PresenceCursor
+              key='presenceCursor'
+              x={x}
+              y={y}
+              username={username}
+            />
+          ) : null}
+        </AnimatePresence>
+      </VFXPresenceSurfacePortal>
       {children}
     </div>
   )
