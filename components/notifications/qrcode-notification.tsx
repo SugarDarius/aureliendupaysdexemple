@@ -23,7 +23,7 @@ export function QRCodeNotification({
           level='L'
         />
         <div className='flex flex-col items-start justify-between'>
-          <h1 className='text-lg font-extrabold tracking-tighter'>
+          <h1 className='text-lg font-semibold tracking-tighter'>
             QR code created ✨
           </h1>
           <span className='text-xs text-muted-foreground'>
