@@ -14,7 +14,7 @@ const ChatBubble = ({
 }) => (
   <div
     className={cn(
-      'flex h-[28px] w-auto flex-row items-center gap-1.5 rounded-full bg-neutral-600 pl-1.5 pr-2',
+      'flex h-7 w-auto flex-row items-center gap-1.5 rounded-full bg-neutral-600 pl-1.5 pr-2',
       className
     )}
   >
