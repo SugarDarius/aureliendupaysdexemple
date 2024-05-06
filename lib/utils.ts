@@ -8,3 +8,10 @@ export function cn(...inputs: ClassValue[]): ReturnType<typeof twMerge> {
 export function toUpperFirst(str: string): string {
   return str[0].toUpperCase() + str.slice(1)
 }
+
+export function pick<T>(collection: T[]): T {
+  const length = collection.length
+  const index = Math.floor(Math.random() * length)
+
+  return collection[index]
+}
