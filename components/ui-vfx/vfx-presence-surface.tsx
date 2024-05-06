@@ -31,7 +31,9 @@ const PresenceCursor = ({
         stiffness: 350,
       }}
     >
-      <Cursor className='text-purple-600' />
+      <div className='flex flex-col'>
+        <Cursor className='text-purple-500 dark:text-purple-400' />
+      </div>
     </motion.div>
   )
 }
