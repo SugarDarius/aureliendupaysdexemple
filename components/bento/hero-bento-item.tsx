@@ -33,12 +33,12 @@ export function HeroBentoItem() {
               <p>
                 A senior and creative software engineer crafting interfaces and
                 products with{' '}
-                <TagLink href='https://react.dev/'>
+                <TagLink href='https://react.dev/' className='cursor-none'>
                   <ReactIcon className='mr-1 inline-flex h-3 w-3' />
                   React
                 </TagLink>{' '}
                 and{' '}
-                <TagLink href='https://nextjs.org/'>
+                <TagLink href='https://nextjs.org/' className='cursor-none'>
                   <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                   Next.js
                 </TagLink>{' '}
