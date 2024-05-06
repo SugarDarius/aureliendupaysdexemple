@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -62,6 +62,7 @@ export function CommandCenter({
   const [, copy] = useCopyToClipboard()
 
   const [open, setOpen] = useState<boolean>(false)
+  const qrCodeToastRef = useRef<number | string>()
 
   useHotkeys(
     'meta+k',
@@ -102,10 +103,14 @@ export function CommandCenter({
   const handleSelectCreateQRCodeCurrentURLItem = useEvent((): void => {
     setOpen(false)
 
+    if (qrCodeToastRef.current) {
+      return
+    }
+
     const currentURL = window.location.href
     const isDark = resolvedTheme === 'dark'
 
-    toast.custom(
+    qrCodeToastRef.current = toast.custom(
       (id) => (
         <QRCodeNotification
           value={currentURL}
