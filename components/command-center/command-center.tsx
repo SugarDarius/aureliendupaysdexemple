@@ -143,7 +143,7 @@ export function CommandCenter({
                 className='items-center gap-2'
               >
                 <ArrowRightIcon className='h-4 w-4' />
-                {toUpperFirst(navigationItem.label)}
+                Go to {toUpperFirst(navigationItem.label)}
                 <CommandShortcut>
                   {navigationItem.shortcutLabel}
                 </CommandShortcut>
