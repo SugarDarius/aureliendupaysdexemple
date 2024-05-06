@@ -117,6 +117,7 @@ export function CommandCenter({
           isDark={isDark}
           onClose={() => {
             toast.dismiss(id)
+            qrCodeToastRef.current = undefined
           }}
         />
       ),
@@ -126,6 +127,9 @@ export function CommandCenter({
         unstyled: true,
         classNames: {
           toast: 'flex',
+        },
+        onAutoClose: (): void => {
+          qrCodeToastRef.current = undefined
         },
       }
     )
