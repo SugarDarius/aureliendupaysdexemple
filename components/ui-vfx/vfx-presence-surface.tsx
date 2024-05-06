@@ -40,10 +40,10 @@ const PresenceCursor = ({
         <div className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-purple-500 py-1 pl-1 pr-1.5 dark:bg-purple-400'>
           <div className='flex size-4 items-center justify-center overflow-hidden rounded-full bg-slate-600'>
             <Image
-              src='/medias/images/linkedin-contact-photo.png'
+              src='/medias/images/memoji-avatar.png'
               width={16}
               height={16}
-              alt='logo'
+              alt='memoji avatar bubble cursor'
               priority
             />
           </div>
