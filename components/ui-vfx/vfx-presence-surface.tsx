@@ -128,7 +128,12 @@ export function VFXPresenceSurface({
     >
       <AnimatePresence>
         {isCursorInside ? (
-          <PresenceCursor x={x} y={y} username={username} />
+          <PresenceCursor
+            key='presenceCursor'
+            x={x}
+            y={y}
+            username={username}
+          />
         ) : null}
       </AnimatePresence>
       {children}
