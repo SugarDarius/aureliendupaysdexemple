@@ -33,16 +33,19 @@ const PresenceCursor = ({
     <motion.div
       className='pointer-events-none absolute left-0 top-0 z-10'
       style={{ x, y }}
-      transition={{
-        type: 'spring',
-        damping: 30,
-        mass: 0.8,
-        stiffness: 350,
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       <div className='flex flex-row gap-1'>
         <Cursor className='size-5 text-purple-400' />
-        <div className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-purple-400 py-1 pl-1 pr-1.5'>
+        <motion.div
+          className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-purple-400 py-1 pl-1 pr-1.5'
+          initial={{ opacity: 0, x: 10, y: 10 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          exit={{ opacity: 0, x: 10, y: 10 }}
+          transition={{ delay: 0.15 }}
+        >
           <div className='flex size-4 flex-col items-center justify-center overflow-hidden rounded-full'>
             <Image
               src='/medias/images/aureliendupaysdexemple-logo.png'
@@ -55,7 +58,7 @@ const PresenceCursor = ({
           <span className='text-xs font-semibold dark:text-background'>
             Hello {username} 👋
           </span>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   )
