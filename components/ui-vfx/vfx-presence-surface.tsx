@@ -36,18 +36,20 @@ const PresenceCursor = ({
       }}
     >
       <div className='flex flex-row gap-1'>
-        <Cursor className='size-5 text-purple-500 dark:text-purple-400' />
-        <div className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-purple-500 py-1 pl-1 pr-1.5 dark:bg-purple-400'>
-          <div className='flex size-4 items-center justify-center overflow-hidden rounded-full bg-slate-600'>
+        <Cursor className='size-5 text-purple-400' />
+        <div className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-purple-400 py-1 pl-1 pr-1.5'>
+          <div className='flex size-4 flex-col items-center justify-center overflow-hidden rounded-full'>
             <Image
-              src='/medias/images/memoji-avatar.png'
-              width={16}
-              height={16}
-              alt='memoji avatar bubble cursor'
+              src='/medias/images/aureliendupaysdexemple-logo.png'
+              width={22}
+              height={22}
+              alt='logo'
               priority
             />
           </div>
-          <span className='text-xs font-semibold'>Hello {username} 👋</span>
+          <span className='text-xs font-semibold dark:text-background'>
+            Hello {username} 👋
+          </span>
         </div>
       </div>
     </motion.div>
