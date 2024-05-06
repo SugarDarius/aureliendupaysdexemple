@@ -12,8 +12,8 @@ export function HeroBentoItem() {
       variant='grid'
     >
       <div className='relative flex h-full w-full flex-col'>
-        <div className='flex h-full flex-col justify-between p-4 max-sm:p-3'>
-          <div className='flex flex-row items-center justify-between'>
+        <div className='flex h-full flex-col p-4 max-sm:p-3'>
+          <div className='flex flex-none flex-row items-center justify-between'>
             <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-base'>
               Hey, I&apos;m Aurélien Dupays Dexemple 👋
             </h1>
@@ -25,7 +25,8 @@ export function HeroBentoItem() {
               priority
             />
           </div>
-          <div className='flex flex-col gap-4 max-sm:gap-3 max-sm:text-sm'>
+          <div className='flex flex-auto' />
+          <div className='flex flex-none flex-col gap-4 max-sm:gap-3 max-sm:text-sm'>
             <p>
               A senior and creative software engineer crafting interfaces and
               products with{' '}
