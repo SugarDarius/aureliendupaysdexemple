@@ -5,6 +5,7 @@ import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
 import { VFXPresenceSurface } from '@/components/ui-vfx/vfx-presence-surface'
 import { BentoCard } from '@/components/grids/bento-card'
+import { TagLink } from '@/components/content/tag-link'
 
 export function HeroBentoItem() {
   return (
@@ -32,25 +33,15 @@ export function HeroBentoItem() {
               <p>
                 A senior and creative software engineer crafting interfaces and
                 products with{' '}
-                <a
-                  href='https://react.dev/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='inline-flex items-center rounded border border-neutral-200 bg-neutral-50 px-1.5 py-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'
-                >
+                <TagLink href='https://react.dev/'>
                   <ReactIcon className='mr-1 inline-flex h-3 w-3' />
                   React
-                </a>{' '}
+                </TagLink>{' '}
                 and{' '}
-                <a
-                  href='https://nextjs.org/'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='inline-flex items-center rounded border border-neutral-200 bg-neutral-50 px-1.5 py-1 text-sm leading-4 text-neutral-900 no-underline dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'
-                >
+                <TagLink href='https://nextjs.org/'>
                   <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                   Next.js
-                </a>{' '}
+                </TagLink>{' '}
                 from 🇫🇷
               </p>
               <div className='flex flex-row items-center gap-1.5'>
