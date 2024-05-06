@@ -177,7 +177,10 @@ export function CommandCenter({
                 className='items-center gap-2'
               >
                 <ArrowRightIcon className='h-4 w-4' />
-                Go to {toUpperFirst(navigationItem.label)}
+                Go to{' '}
+                <span className='font-bold'>
+                  {toUpperFirst(navigationItem.label)}
+                </span>
                 <CommandShortcut>
                   {navigationItem.shortcutLabel}
                 </CommandShortcut>
