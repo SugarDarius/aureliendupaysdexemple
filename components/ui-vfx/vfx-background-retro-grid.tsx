@@ -18,7 +18,7 @@ export function VFXBackgroundRetroGrid({ className }: { className?: string }) {
           )}
         />
       </div>
-      <div className='absolute inset-0 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black' />
+      <div className='absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
     </div>
   )
 }
