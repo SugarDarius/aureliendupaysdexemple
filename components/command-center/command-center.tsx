@@ -85,11 +85,16 @@ export function CommandCenter({
     const currentURL = window.location.href
     copy(currentURL)
       .then((): void => {
-        toast.success('Current URL copied!')
+        toast.success('Current URL copied!', {
+          duration: 1000 * 2,
+        })
       })
       .catch((): void => {
         toast.error(
-          'Uh oh! Something went wrong while copying the current URL.'
+          'Uh oh! Something went wrong while copying the current URL.',
+          {
+            closeButton: true,
+          }
         )
       })
   })
