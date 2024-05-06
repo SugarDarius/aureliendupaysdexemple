@@ -14,6 +14,7 @@ import {
   SunIcon,
   MoonIcon,
   ComputerDesktopIcon,
+  QrCodeIcon,
 } from '@heroicons/react/24/outline'
 import {
   GitHubLogoIcon,
@@ -69,7 +70,7 @@ export function CommandCenter({
     { enabled: !open }
   )
 
-  const onButtonClick = useEvent((): void => {
+  const handleButtonClick = useEvent((): void => {
     setOpen(true)
   })
 
@@ -78,7 +79,7 @@ export function CommandCenter({
     router.push(href)
   })
 
-  const handleSelectionCopyCurrentURLItem = useEvent((): void => {
+  const handleSelectCopyCurrentURLItem = useEvent((): void => {
     setOpen(false)
     const currentURL = window.location.href
     copy(currentURL)
@@ -90,6 +91,10 @@ export function CommandCenter({
           'Uh oh! Something went wrong while copying the current URL.'
         )
       })
+  })
+
+  const handleSelectCreateQRCodeCurrentURLItem = useEvent((): void => {
+    setOpen(false)
   })
 
   const handleSelectLinkItem = useEvent((url: string): void => {
@@ -115,7 +120,7 @@ export function CommandCenter({
               'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent',
               className
             )}
-            onClick={onButtonClick}
+            onClick={handleButtonClick}
             aria-label='Command Center'
           >
             <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
@@ -156,11 +161,21 @@ export function CommandCenter({
               value='copy current url'
               className='items-center gap-2'
               onSelect={(): void => {
-                handleSelectionCopyCurrentURLItem()
+                handleSelectCopyCurrentURLItem()
               }}
             >
               <CopyIcon className='size-4' />
               Copy current URL
+            </CommandItem>
+            <CommandItem
+              value='create qr code for current url'
+              className='items-center gap-2'
+              onSelect={(): void => {
+                handleSelectCreateQRCodeCurrentURLItem()
+              }}
+            >
+              <QrCodeIcon className='size-4' />
+              Create QR code for current URL
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
