@@ -48,6 +48,7 @@ import {
 } from '@/components/ui/command'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
+import { QRCodeNotification } from '@/components/notifications/qrcode-notification'
 
 export function CommandCenter({
   navigationItems,
@@ -57,7 +58,7 @@ export function CommandCenter({
   className?: string
 }) {
   const router = useRouter()
-  const { setTheme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
   const [, copy] = useCopyToClipboard()
 
   const [open, setOpen] = useState<boolean>(false)
@@ -95,6 +96,22 @@ export function CommandCenter({
 
   const handleSelectCreateQRCodeCurrentURLItem = useEvent((): void => {
     setOpen(false)
+
+    const currentURL = window.location.href
+    const isDark = resolvedTheme === 'dark'
+
+    toast.custom(
+      (id) => (
+        <QRCodeNotification
+          value={currentURL}
+          isDark={isDark}
+          onClose={() => {
+            toast.dismiss(id)
+          }}
+        />
+      ),
+      { duration: 1000 * 60 * 2, position: 'bottom-right', unstyled: true }
+    )
   })
 
   const handleSelectLinkItem = useEvent((url: string): void => {
