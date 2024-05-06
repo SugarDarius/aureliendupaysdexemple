@@ -10,7 +10,7 @@ export function LinkedInChatWidget() {
               src='/medias/images/linkedin-contact-photo.png'
               width={16}
               height={16}
-              alt='logo'
+              alt='linkedin chat photo'
               priority
             />
             <span className='text-xs font-semibold  text-background dark:text-foreground'>

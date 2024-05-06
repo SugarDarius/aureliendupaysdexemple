@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useLayoutEffect, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
@@ -11,14 +12,17 @@ import {
 } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
+import { getRandomUsername } from '@/lib/random-username'
 import { Cursor } from '@/components/ui/cursor'
 
 const PresenceCursor = ({
   x,
   y,
+  username,
 }: {
   x: MotionValue<number>
   y: MotionValue<number>
+  username: string
 }) => {
   return (
     <motion.div
@@ -31,8 +35,20 @@ const PresenceCursor = ({
         stiffness: 350,
       }}
     >
-      <div className='flex flex-col'>
-        <Cursor className='text-purple-500 dark:text-purple-400' />
+      <div className='flex flex-row gap-1'>
+        <Cursor className='size-5 text-purple-500 dark:text-purple-400' />
+        <div className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-purple-500 py-1 pl-1 pr-1.5 dark:bg-purple-400'>
+          <div className='flex size-4 items-center justify-center overflow-hidden rounded-full bg-slate-600'>
+            <Image
+              src='/medias/images/linkedin-contact-photo.png'
+              width={16}
+              height={16}
+              alt='logo'
+              priority
+            />
+          </div>
+          <span className='text-xs font-semibold'>Hello {username} 👋</span>
+        </div>
       </div>
     </motion.div>
   )
@@ -97,6 +113,8 @@ export function VFXPresenceSurface({
     []
   )
 
+  const username = getRandomUsername()
+
   return (
     <div
       ref={surfaceRef}
@@ -109,7 +127,9 @@ export function VFXPresenceSurface({
       )}
     >
       <AnimatePresence>
-        {isCursorInside ? <PresenceCursor x={x} y={y} /> : null}
+        {isCursorInside ? (
+          <PresenceCursor x={x} y={y} username={username} />
+        ) : null}
       </AnimatePresence>
       {children}
     </div>
