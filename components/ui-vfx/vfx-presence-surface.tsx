@@ -38,9 +38,9 @@ const PresenceCursor = ({
       exit={{ opacity: 0 }}
     >
       <div className='flex flex-row gap-1'>
-        <Cursor className='size-5 text-purple-400' />
+        <Cursor className='size-5 text-violet-400' />
         <motion.div
-          className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-purple-400 py-1 pl-1 pr-1.5'
+          className='-ml-2.5 mt-3 flex flex-row items-center gap-1 rounded-full bg-violet-400 py-1 pl-1 pr-1.5'
           initial={{ opacity: 0, x: 10, y: 10 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           exit={{ opacity: 0, x: 10, y: 10 }}
