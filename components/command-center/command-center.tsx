@@ -1,7 +1,7 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -58,6 +58,8 @@ export function CommandCenter({
   className?: string
 }) {
   const router = useRouter()
+  const pathname = usePathname()
+
   const { setTheme, resolvedTheme } = useTheme()
   const [, copy] = useCopyToClipboard()
 
@@ -146,6 +148,13 @@ export function CommandCenter({
       setTheme(colorMode)
     }
   )
+
+  useEffect(() => {
+    if (qrCodeToastRef.current) {
+      toast.dismiss(qrCodeToastRef.current)
+      qrCodeToastRef.current = undefined
+    }
+  }, [pathname])
 
   return (
     <>
