@@ -80,7 +80,7 @@ async function getMDXData(dirName: string): Promise<Post[]> {
 }
 
 export async function getPosts(
-  contentSrc: 'blog' | 'craft' | 'development'
+  contentSrc: 'blog' | 'craft' | 'mdx-renderer'
 ): Promise<Post[]> {
   const dirName = path.join(process.cwd(), 'mdx-content/' + contentSrc)
   const posts = await getMDXData(dirName)

@@ -13,7 +13,7 @@ export default async function DevelopmentPostPage({
 }) {
   const slug = params.slug
 
-  const posts = await getPosts('development')
+  const posts = await getPosts('mdx-renderer')
   const post = posts.find((post) => post.slug === slug)
 
   if (!post) {
