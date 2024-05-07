@@ -1,4 +1,5 @@
 import { baseUrl } from '@/app/sitemap'
+
 export const siteConfig = {
   title: 'Aurélien Dupays Dexemple',
   description: 'Creative software engineer crafting interfaces and products.',
