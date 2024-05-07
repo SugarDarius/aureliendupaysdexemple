@@ -111,7 +111,6 @@ export function CommandCenter({
     const currentURL = window.location.href
 
     setOpen(false)
-
     setQRCodeValue(currentURL)
     setQRCodeDialogOpen(true)
   })
@@ -270,7 +269,7 @@ export function CommandCenter({
       </CommandDialog>
       <QRCodeDialog
         open={qrcodeDialogOpen}
-        value={window.location.href}
+        value={qrcodeValue}
         isDark={isDark}
         onOpenChange={setQRCodeDialogOpen}
       />
