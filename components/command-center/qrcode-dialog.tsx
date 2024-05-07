@@ -8,6 +8,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
@@ -47,6 +48,9 @@ export function QRCodeDialog({
             />
           </div>
         </div>
+        <DialogFooter className='items-center !justify-center'>
+          <span className='text-sm text-muted-foreground'>{value}</span>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   )
