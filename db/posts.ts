@@ -29,9 +29,9 @@ async function parseFrontmatter(fileContent: string): Promise<PostMDXData> {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
   const match = frontmatterRegex.exec(fileContent)
 
-  const frontMatterBlock = match![1]
+  const frontMatterBlock = match?.[1]
   const content = fileContent.replace(frontmatterRegex, '').trim()
-  const frontMatterLines = frontMatterBlock.trim().split('\n')
+  const frontMatterLines = (frontMatterBlock ?? '').trim().split('\n')
 
   const unsafePostMetadata: Record<string, string> = {}
 
