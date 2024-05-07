@@ -97,6 +97,7 @@ export function CommandCenter({
           'Uh oh! Something went wrong while copying the current URL.',
           {
             closeButton: true,
+            duration: 1000 * 2,
           }
         )
       })
