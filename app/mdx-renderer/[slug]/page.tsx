@@ -24,8 +24,8 @@ export default async function DevelopmentPostPage({
     <div className='relative flex h-full w-full flex-col items-center'>
       <div className='flex h-full w-full max-w-4xl flex-col gap-10 px-12 py-24 max-sm:px-4 min-[1025px]:px-0'>
         <PageHero
-          title={post.metadata.title ?? ''}
-          description={post.metadata.summary ?? ''}
+          title={post.metadata.title}
+          description={post.metadata.summary}
         />
         <Separator />
         <div className='flex h-auto w-full flex-col'>

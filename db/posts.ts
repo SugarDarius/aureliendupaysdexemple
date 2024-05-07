@@ -16,14 +16,20 @@ async function getMDXFiles(dirName: string): Promise<string[]> {
 }
 
 const postMetadataSchema = z.object({
-  title: z.string().optional(),
-  publishedAt: z.string().optional(),
-  summary: z.string().optional(),
+  title: z.string(),
+  publishedAt: z.string(),
+  summary: z.string(),
   image: z.string().optional(),
 })
 
 type PostMetadata = z.infer<typeof postMetadataSchema>
 type PostMDXData = { metadata: PostMetadata; content: string }
+
+const postMetadataFallback: PostMetadata = {
+  title: '[no title]',
+  publishedAt: '[no published date',
+  summary: '[no summary]',
+}
 
 async function parseFrontmatter(fileContent: string): Promise<PostMDXData> {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
@@ -39,7 +45,7 @@ async function parseFrontmatter(fileContent: string): Promise<PostMDXData> {
     const [key, ...valueArr] = line.split(': ')
     let value = valueArr.join(': ').trim()
 
-    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
+    value = value.replace(/^['"](.*)['"]$/, '$1')
     unsafePostMetadata[key.trim()] = value
   })
 
@@ -48,7 +54,7 @@ async function parseFrontmatter(fileContent: string): Promise<PostMDXData> {
     return { metadata: result.data, content }
   }
 
-  return { metadata: {}, content }
+  return { metadata: postMetadataFallback, content }
 }
 
 async function readMDXFile(filePath: string): Promise<PostMDXData> {
