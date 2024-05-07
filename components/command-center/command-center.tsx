@@ -1,34 +1,11 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
-import { useTheme } from 'next-themes'
 
-import { toast } from 'sonner'
-
-import {
-  ArrowRightIcon,
-  SunIcon,
-  MoonIcon,
-  ComputerDesktopIcon,
-  QrCodeIcon,
-} from '@heroicons/react/24/outline'
-import {
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-  CopyIcon,
-} from '@radix-ui/react-icons'
-
-import { siteConfig } from '@/config/site-config'
-
-import { cn, toUpperFirst } from '@/lib/utils'
-import { NavigationItem } from '@/lib/navigation'
-
-import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
-
+import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
@@ -36,96 +13,36 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from '@/components/ui/command'
 import { CommandIcon } from '@/components/icons/command-icon'
-import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 
+import { CommandCenterDialog } from '@/components/command-center/command-center-dialog'
 import { QRCodeDialog } from '@/components/command-center/qrcode-dialog'
 
-export function CommandCenter({
-  navigationItems,
-  className,
-}: {
-  navigationItems: NavigationItem[]
-  className?: string
-}) {
-  const router = useRouter()
-
-  const { setTheme, resolvedTheme } = useTheme()
-  const [, copy] = useCopyToClipboard()
-
-  const [open, setOpen] = useState<boolean>(false)
+export function CommandCenter({ className }: { className?: string }) {
+  const [commandDialogOpen, setCommandDialogOpen] = useState<boolean>(false)
   const [qrcodeDialogOpen, setQRCodeDialogOpen] = useState<boolean>(false)
   const [qrcodeValue, setQRCodeValue] = useState<string>('')
-
-  const isDark = resolvedTheme === 'dark'
 
   useHotkeys(
     'meta+k',
     (): void => {
-      setOpen(true)
+      setCommandDialogOpen(true)
     },
-    { enabled: !open }
+    { enabled: !commandDialogOpen }
   )
 
   const handleButtonClick = useEvent((): void => {
-    setOpen(true)
+    setCommandDialogOpen(true)
   })
 
-  const handleSelectNavigationItem = useEvent((href: string): void => {
-    setOpen(false)
-    router.push(href)
+  const handleRunCommand = useEvent((): void => {
+    setCommandDialogOpen(false)
   })
 
-  const handleSelectCopyCurrentURLItem = useEvent((): void => {
-    const currentURL = window.location.href
-
-    setOpen(false)
-    copy(currentURL)
-      .then((): void => {
-        toast.success('Current URL copied!', {
-          duration: 1000 * 2,
-        })
-      })
-      .catch((): void => {
-        toast.error(
-          'Uh oh! Something went wrong while copying the current URL.',
-          {
-            closeButton: true,
-            duration: 1000 * 2,
-          }
-        )
-      })
-  })
-
-  const handleSelectCreateQRCodeCurrentURLItem = useEvent((): void => {
-    const currentURL = window.location.href
-
-    setOpen(false)
+  const handleCreateQRCode = useEvent((currentURL): void => {
     setQRCodeValue(currentURL)
     setQRCodeDialogOpen(true)
   })
-
-  const handleSelectLinkItem = useEvent((url: string): void => {
-    setOpen(false)
-    window.open(url, '_blank')
-  })
-
-  const handleSelectColorModeItem = useEvent(
-    (colorMode: 'light' | 'dark' | 'system'): void => {
-      setOpen(false)
-      setTheme(colorMode)
-    }
-  )
 
   return (
     <>
@@ -151,126 +68,15 @@ export function CommandCenter({
           </span>
         </TooltipContent>
       </Tooltip>
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder='Type a command or search' />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading='Navigation'>
-            {navigationItems.map((navigationItem) => (
-              <CommandItem
-                key={navigationItem.name}
-                value={navigationItem.name}
-                onSelect={() => {
-                  handleSelectNavigationItem(navigationItem.href)
-                }}
-                className='items-center gap-2'
-              >
-                <ArrowRightIcon className='h-4 w-4' />
-                Go to{' '}
-                <span className='font-bold'>
-                  {toUpperFirst(navigationItem.label)}
-                </span>
-                <CommandShortcut>
-                  {navigationItem.shortcutLabel}
-                </CommandShortcut>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading='Actions'>
-            <CommandItem
-              value='copy current url'
-              className='items-center gap-2'
-              onSelect={(): void => {
-                handleSelectCopyCurrentURLItem()
-              }}
-            >
-              <CopyIcon className='size-4' />
-              Copy current URL
-            </CommandItem>
-            <CommandItem
-              value='create qr code for current url'
-              className='items-center gap-2'
-              onSelect={(): void => {
-                handleSelectCreateQRCodeCurrentURLItem()
-              }}
-            >
-              <QrCodeIcon className='size-4' />
-              Create QR code for current URL
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading='Social links'>
-            <CommandItem
-              value='linkedin'
-              className='items-center gap-2'
-              onSelect={() => {
-                handleSelectLinkItem(siteConfig.socialLinks.linkedin.url)
-              }}
-            >
-              <LinkedInLogoIcon className='h-4 w-4' />
-              LinkedIn
-            </CommandItem>
-            <CommandItem
-              value='github'
-              className='items-center gap-2'
-              onSelect={() => {
-                handleSelectLinkItem(siteConfig.socialLinks.github.url)
-              }}
-            >
-              <GitHubLogoIcon className='h-4 w-4' />
-              GitHub
-            </CommandItem>
-            <CommandItem
-              value='twitter'
-              className='items-center gap-2'
-              onSelect={() => {
-                handleSelectLinkItem(siteConfig.socialLinks.twitter.url)
-              }}
-            >
-              <TwitterLogoIcon className='h-4 w-4' />
-              Twitter (X)
-            </CommandItem>
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading='Color mode'>
-            <CommandItem
-              value='light'
-              onSelect={() => {
-                handleSelectColorModeItem('light')
-              }}
-              className='items-center gap-2'
-            >
-              <SunIcon className='h-4 w-4' />
-              Light
-            </CommandItem>
-            <CommandItem
-              value='dark'
-              onSelect={() => {
-                handleSelectColorModeItem('dark')
-              }}
-              className='items-center gap-2'
-            >
-              <MoonIcon className='h-4 w-4' />
-              Dark
-            </CommandItem>
-            <CommandItem
-              value='system'
-              onSelect={() => {
-                handleSelectColorModeItem('system')
-              }}
-              className='items-center gap-2'
-            >
-              <ComputerDesktopIcon className='h-4 w-4' />
-              System
-            </CommandItem>
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
+      <CommandCenterDialog
+        open={commandDialogOpen}
+        onOpenChange={setCommandDialogOpen}
+        onRunCommand={handleRunCommand}
+        onCreateQRCode={handleCreateQRCode}
+      />
       <QRCodeDialog
         open={qrcodeDialogOpen}
         value={qrcodeValue}
-        isDark={isDark}
         onOpenChange={setQRCodeDialogOpen}
       />
     </>

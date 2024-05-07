@@ -1,6 +1,6 @@
 'use client'
 
-// import { QrCodeIcon } from '@heroicons/react/24/outline'
+import { useTheme } from 'next-themes'
 import { QRCodeSVG } from 'qrcode.react'
 
 import { cn } from '@/lib/utils'
@@ -15,17 +15,18 @@ import {
 
 export function QRCodeDialog({
   value,
-  isDark,
   className,
   open,
   onOpenChange,
 }: {
   value: string
-  isDark: boolean
   className?: string
   open: boolean
   onOpenChange: (open: boolean) => void
 }) {
+  const { resolvedTheme } = useTheme()
+  const isDark = resolvedTheme === 'dark'
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className={cn('gap-6 overflow-hidden', className)}>
