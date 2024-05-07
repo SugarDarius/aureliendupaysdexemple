@@ -1,7 +1,7 @@
 'use client'
 
-import { useRouter, usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -48,7 +48,6 @@ import {
 } from '@/components/ui/command'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
-import { QRCodeNotification } from '@/components/notifications/qrcode-notification'
 
 export function CommandCenter({
   navigationItems,
@@ -58,13 +57,11 @@ export function CommandCenter({
   className?: string
 }) {
   const router = useRouter()
-  const pathname = usePathname()
 
   const { setTheme, resolvedTheme } = useTheme()
   const [, copy] = useCopyToClipboard()
 
   const [open, setOpen] = useState<boolean>(false)
-  const qrCodeToastRef = useRef<number | string>()
 
   useHotkeys(
     'meta+k',
@@ -106,36 +103,8 @@ export function CommandCenter({
   const handleSelectCreateQRCodeCurrentURLItem = useEvent((): void => {
     setOpen(false)
 
-    if (qrCodeToastRef.current) {
-      return
-    }
-
-    const currentURL = window.location.href
-    const isDark = resolvedTheme === 'dark'
-
-    qrCodeToastRef.current = toast.custom(
-      (id) => (
-        <QRCodeNotification
-          value={currentURL}
-          isDark={isDark}
-          onClose={() => {
-            toast.dismiss(id)
-            qrCodeToastRef.current = undefined
-          }}
-        />
-      ),
-      {
-        duration: 1000 * 60 * 2,
-        position: 'bottom-right',
-        unstyled: true,
-        classNames: {
-          toast: 'flex',
-        },
-        onAutoClose: (): void => {
-          qrCodeToastRef.current = undefined
-        },
-      }
-    )
+    // const currentURL = window.location.href
+    // const isDark = resolvedTheme === 'dark'
   })
 
   const handleSelectLinkItem = useEvent((url: string): void => {
@@ -149,13 +118,6 @@ export function CommandCenter({
       setTheme(colorMode)
     }
   )
-
-  useEffect(() => {
-    if (qrCodeToastRef.current) {
-      toast.dismiss(qrCodeToastRef.current)
-      qrCodeToastRef.current = undefined
-    }
-  }, [pathname])
 
   return (
     <>
