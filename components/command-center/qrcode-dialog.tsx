@@ -1,18 +1,16 @@
 'use client'
 
-import { QrCodeIcon } from '@heroicons/react/24/outline'
+// import { QrCodeIcon } from '@heroicons/react/24/outline'
 import { QRCodeSVG } from 'qrcode.react'
 
 import { cn } from '@/lib/utils'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogFooter,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
 
 export function QRCodeDialog({
   value,
@@ -29,26 +27,26 @@ export function QRCodeDialog({
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={cn('overflow-hidden', className)}>
+      <DialogContent className={cn('gap-6 overflow-hidden', className)}>
         <DialogHeader>
-          <DialogTitle className='text-lg font-semibold tracking-tighter'>
-            QR code created <QrCodeIcon className='size-4' />
+          <DialogTitle className='text-2xl font-extrabold tracking-tighter'>
+            Scan QR Code
           </DialogTitle>
+          <DialogDescription className='!mt-0'>
+            Scan this QR code with a scanner app on your phone
+          </DialogDescription>
         </DialogHeader>
-        <div className='flex flex-col'>
-          <QRCodeSVG
-            value={value}
-            size={128}
-            bgColor={isDark ? '#000000' : '#ffffff'}
-            fgColor={isDark ? '#ffffff' : '#000000'}
-            level='L'
-          />
+        <div className='flex flex-col items-center'>
+          <div className='flex flex-col items-center justify-center rounded-lg border p-8'>
+            <QRCodeSVG
+              value={value}
+              size={256}
+              bgColor={isDark ? '#000000' : '#ffffff'}
+              fgColor={isDark ? '#ffffff' : '#000000'}
+              level='L'
+            />
+          </div>
         </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant='secondary'>Close</Button>
-          </DialogClose>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   )

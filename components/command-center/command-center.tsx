@@ -49,6 +49,8 @@ import {
 import { CommandIcon } from '@/components/icons/command-icon'
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 
+import { QRCodeDialog } from '@/components/command-center/qrcode-dialog'
+
 export function CommandCenter({
   navigationItems,
   className,
@@ -62,6 +64,10 @@ export function CommandCenter({
   const [, copy] = useCopyToClipboard()
 
   const [open, setOpen] = useState<boolean>(false)
+  const [qrcodeDialogOpen, setQRCodeDialogOpen] = useState<boolean>(false)
+  const [qrcodeValue, setQRCodeValue] = useState<string>('')
+
+  const isDark = resolvedTheme === 'dark'
 
   useHotkeys(
     'meta+k',
@@ -81,8 +87,9 @@ export function CommandCenter({
   })
 
   const handleSelectCopyCurrentURLItem = useEvent((): void => {
-    setOpen(false)
     const currentURL = window.location.href
+
+    setOpen(false)
     copy(currentURL)
       .then((): void => {
         toast.success('Current URL copied!', {
@@ -101,10 +108,12 @@ export function CommandCenter({
   })
 
   const handleSelectCreateQRCodeCurrentURLItem = useEvent((): void => {
+    const currentURL = window.location.href
+
     setOpen(false)
 
-    // const currentURL = window.location.href
-    // const isDark = resolvedTheme === 'dark'
+    setQRCodeValue(currentURL)
+    setQRCodeDialogOpen(true)
   })
 
   const handleSelectLinkItem = useEvent((url: string): void => {
@@ -259,6 +268,12 @@ export function CommandCenter({
           </CommandGroup>
         </CommandList>
       </CommandDialog>
+      <QRCodeDialog
+        open={qrcodeDialogOpen}
+        value={window.location.href}
+        isDark={isDark}
+        onOpenChange={setQRCodeDialogOpen}
+      />
     </>
   )
 }
