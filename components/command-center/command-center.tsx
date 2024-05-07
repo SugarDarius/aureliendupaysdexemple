@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -19,9 +20,15 @@ import { CommandCenterDialog } from '@/components/command-center/command-center-
 import { QRCodeDialog } from '@/components/command-center/qrcode-dialog'
 
 export function CommandCenter({ className }: { className?: string }) {
+  const pathname = usePathname()
+
   const [commandDialogOpen, setCommandDialogOpen] = useState<boolean>(false)
   const [qrcodeDialogOpen, setQRCodeDialogOpen] = useState<boolean>(false)
   const [qrcodeValue, setQRCodeValue] = useState<string>('')
+
+  useEffect(() => {
+    setQRCodeDialogOpen(false)
+  }, [pathname])
 
   useHotkeys(
     'meta+k',
