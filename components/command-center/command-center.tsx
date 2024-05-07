@@ -35,7 +35,7 @@ export function CommandCenter({ className }: { className?: string }) {
     setCommandDialogOpen(true)
   })
 
-  const handleRunCommand = useEvent((): void => {
+  const handleExecCommand = useEvent((): void => {
     setCommandDialogOpen(false)
   })
 
@@ -71,7 +71,7 @@ export function CommandCenter({ className }: { className?: string }) {
       <CommandCenterDialog
         open={commandDialogOpen}
         onOpenChange={setCommandDialogOpen}
-        onRunCommand={handleRunCommand}
+        onExecCommand={handleExecCommand}
         onCreateQRCode={handleCreateQRCode}
       />
       <QRCodeDialog
