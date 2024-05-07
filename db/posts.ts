@@ -54,8 +54,10 @@ async function getMDXData(dirName: string): Promise<Post[]> {
   return posts
 }
 
-export async function getPosts(src: 'blog' | 'craft'): Promise<Post[]> {
-  const dirName = path.join(process.cwd(), 'content/' + src)
+export async function getPosts(
+  contentSrc: 'blog' | 'craft' | 'posts-test'
+): Promise<Post[]> {
+  const dirName = path.join(process.cwd(), 'content/' + contentSrc)
   const posts = await getMDXData(dirName)
 
   return posts
