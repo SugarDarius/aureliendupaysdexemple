@@ -45,7 +45,7 @@ export function CommandCenter({ className }: { className?: string }) {
   })
 
   return (
-    <>
+    <div className='flex flex-col'>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
@@ -79,6 +79,6 @@ export function CommandCenter({ className }: { className?: string }) {
         value={qrcodeValue}
         onOpenChange={setQRCodeDialogOpen}
       />
-    </>
+    </div>
   )
 }
