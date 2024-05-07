@@ -7,7 +7,10 @@ const HeadingOne = ({
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h1
-    className={cn('text-4xl font-bold tracking-tighter', className)}
+    className={cn(
+      'mt-2 scroll-mb-20 text-4xl font-bold tracking-tighter',
+      className
+    )}
     {...props}
   />
 )
