@@ -1,12 +1,13 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'fs/promises'
+import path from 'path'
+import { z } from 'zod'
 
-import { compileMDX } from 'next-mdx-remote/rsc'
 import { slugify } from '@/lib/utils'
 
 const POST_EXT_NAME = '.mdx'
-function getMDXFiles(dirName: string): string[] {
-  const dir = fs.readdirSync(dirName)
+
+async function getMDXFiles(dirName: string): Promise<string[]> {
+  const dir = await fs.readdir(dirName)
   const files = dir.filter(
     (file): boolean => path.extname(file) === POST_EXT_NAME
   )
@@ -14,23 +15,47 @@ function getMDXFiles(dirName: string): string[] {
   return files
 }
 
-type PostMetadata = {
-  title: string
-  publishedAt: string
-  summary: string
-  image?: string
-}
+const postMetadataSchema = z.object({
+  title: z.string().optional(),
+  publishedAt: z.string().optional(),
+  summary: z.string().optional(),
+  image: z.string().optional(),
+})
 
-type PostMDXData = { metadata: PostMetadata; content: React.ReactElement }
+type PostMetadata = z.infer<typeof postMetadataSchema>
+type PostMDXData = { metadata: PostMetadata; content: string }
 
-async function readMDXFile(filePath: string): Promise<PostMDXData> {
-  const rawContent = fs.readFileSync(filePath, 'utf-8')
-  const post = await compileMDX<PostMetadata>({
-    source: rawContent,
-    options: { parseFrontmatter: true },
+async function parseFrontmatter(fileContent: string): Promise<PostMDXData> {
+  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
+  const match = frontmatterRegex.exec(fileContent)
+
+  const frontMatterBlock = match![1]
+  const content = fileContent.replace(frontmatterRegex, '').trim()
+  const frontMatterLines = frontMatterBlock.trim().split('\n')
+
+  const unsafePostMetadata: Record<string, string> = {}
+
+  frontMatterLines.forEach((line) => {
+    const [key, ...valueArr] = line.split(': ')
+    let value = valueArr.join(': ').trim()
+
+    value = value.replace(/^['"](.*)['"]$/, '$1') // Remove quotes
+    unsafePostMetadata[key.trim()] = value
   })
 
-  return { metadata: post.frontmatter, content: post.content }
+  const result = await postMetadataSchema.safeParseAsync(unsafePostMetadata)
+  if (result.success) {
+    return { metadata: result.data, content }
+  }
+
+  return { metadata: {}, content }
+}
+
+async function readMDXFile(filePath: string): Promise<PostMDXData> {
+  const fileContent = await fs.readFile(filePath, 'utf-8')
+  const postMDXData = await parseFrontmatter(fileContent)
+
+  return postMDXData
 }
 
 type Post = PostMDXData & {
@@ -38,7 +63,7 @@ type Post = PostMDXData & {
 }
 
 async function getMDXData(dirName: string): Promise<Post[]> {
-  const files = getMDXFiles(dirName)
+  const files = await getMDXFiles(dirName)
   const posts: Post[] = []
 
   for (const file of files) {
