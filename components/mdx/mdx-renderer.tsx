@@ -103,6 +103,16 @@ const Blockquote = ({
   />
 )
 
+const Code = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+  <code
+    className={cn(
+      'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
+      className
+    )}
+    {...props}
+  />
+)
+
 const components: MDXRemoteProps['components'] = {
   h1: Heading1,
   h2: Heading2,
@@ -112,6 +122,7 @@ const components: MDXRemoteProps['components'] = {
   h6: Heading6,
   p: Paragraph,
   blockquote: Blockquote,
+  code: Code,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
