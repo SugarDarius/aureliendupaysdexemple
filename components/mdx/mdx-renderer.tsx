@@ -8,7 +8,7 @@ const HeadingOne = ({
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h1
     className={cn(
-      'mt-2 scroll-m-20 text-4xl font-bold tracking-tighter first:mt-0',
+      'mt-2 scroll-m-20 text-4xl font-extrabold tracking-tighter first:mt-0',
       className
     )}
     {...props}
@@ -21,7 +21,7 @@ const HeadingTwo = ({
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h2
     className={cn(
-      'mt-4 scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0',
+      'mt-4 scroll-m-20 text-3xl font-bold tracking-tight first:mt-0',
       className
     )}
     {...props}
@@ -67,12 +67,26 @@ const HeadingFive = ({
   />
 )
 
+const HeadingSix = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) => (
+  <h6
+    className={cn(
+      'mt-12 scroll-m-20 text-base font-semibold tracking-tight first:mt-0',
+      className
+    )}
+    {...props}
+  />
+)
+
 const components: MDXRemoteProps['components'] = {
   h1: HeadingOne,
   h2: HeadingTwo,
   h3: HeadingThree,
   h4: HeadingFour,
   h5: HeadingFive,
+  h6: HeadingSix,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
