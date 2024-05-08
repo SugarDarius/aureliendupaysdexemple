@@ -2,12 +2,12 @@
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
+    "prettier",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "prettier",
+    "plugin:mdx/recommended",
     "plugin:tailwindcss/recommended",
-    "plugin:prettier/recommended",
-    "plugin:mdx/recommended"
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["prettier", "@typescript-eslint"],

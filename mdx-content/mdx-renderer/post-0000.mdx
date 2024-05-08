@@ -26,10 +26,33 @@ This a paragraph with the Lorem ipsum dolor sit amet, consectetur adipiscing eli
 > The awesome company provides developers with a complete toolkit to embed performant collaboration features to your product remarkably fast.
 
 <br />
-``` @sugardarius/code-component ```
+```sh
+npm i @sugardarius/code-component
+```
 <br />
 <InternalLink href='/'>Go to home (internal link)</InternalLink>
 <br />
 [An external link](https://nextjs.org/)
 <br />
 <TagLink href='https://nextjs.org/'>This is a tag link</TagLink>
+<br />
+```tsx
+import { cn } from '@/lib/utils'
+
+export const InlineLink = ({
+  href,
+  className,
+  children,
+  ...props
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  <a
+    href={href}
+    target='_blank'
+    rel='noopener noreferrer'
+    className={cn('font-bold underline-offset-2 hover:underline', className)}
+    {...props}
+  >
+    {children}
+  </a>
+)
+```

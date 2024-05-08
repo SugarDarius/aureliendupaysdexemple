@@ -1,9 +1,13 @@
 import Link from 'next/link'
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 
+import { highlight } from 'sugar-high'
+
 import { cn } from '@/lib/utils'
 import { TagLink } from '@/components/content/tag-link'
 import { Callout } from '@/components/content/callout'
+
+type MDXRendererComponents = Required<MDXRemoteProps['components']>
 
 const Heading1 = ({
   className,
@@ -106,16 +110,6 @@ const Blockquote = ({
   />
 )
 
-const Code = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-  <code
-    className={cn(
-      'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
-      className
-    )}
-    {...props}
-  />
-)
-
 const InternalLink = ({
   className,
   ...props
@@ -138,7 +132,26 @@ const ExternalLink = ({
   />
 )
 
-const components: MDXRemoteProps['components'] = {
+const CodeBlock = ({
+  className,
+  children,
+  ...props
+}: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
+  const highlightedCodeHTML = highlight(children as string)
+
+  return (
+    <code
+      className={cn(
+        'relative block w-full rounded bg-muted p-4 font-mono text-sm font-semibold',
+        className
+      )}
+      {...props}
+      dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
+    />
+  )
+}
+
+const components: MDXRendererComponents = {
   h1: Heading1,
   h2: Heading2,
   h3: Heading3,
@@ -147,7 +160,7 @@ const components: MDXRemoteProps['components'] = {
   h6: Heading6,
   p: Paragraph,
   blockquote: Blockquote,
-  code: Code,
+  code: CodeBlock,
   a: ExternalLink,
   InternalLink,
   TagLink,
