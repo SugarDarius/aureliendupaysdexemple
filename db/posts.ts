@@ -27,7 +27,7 @@ type PostMDXData = { metadata: PostMetadata; content: string }
 
 const postMetadataFallback: PostMetadata = {
   title: '[no title]',
-  publishedAt: '[no published date',
+  publishedAt: '[no published date]',
   summary: '[no summary]',
 }
 
