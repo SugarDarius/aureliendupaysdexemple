@@ -136,7 +136,7 @@ const CodeBlock = ({
   className,
   children,
   ...props
-}: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
+}: React.HTMLAttributes<HTMLElement>) => {
   const highlightedCodeHTML = highlight(children as string)
 
   return (
