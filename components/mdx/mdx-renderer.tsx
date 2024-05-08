@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 import { cn } from '@/lib/utils'
@@ -113,6 +114,28 @@ const Code = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
   />
 )
 
+const InternalLink = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof Link>) => (
+  <Link
+    className={cn('font-medium underline underline-offset-4', className)}
+    {...props}
+  />
+)
+
+const ExternalLink = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLAnchorElement>) => (
+  <a
+    className={cn('font-medium underline underline-offset-4', className)}
+    target='_blank'
+    rel='noopener noreferrer'
+    {...props}
+  />
+)
+
 const components: MDXRemoteProps['components'] = {
   h1: Heading1,
   h2: Heading2,
@@ -123,6 +146,8 @@ const components: MDXRemoteProps['components'] = {
   p: Paragraph,
   blockquote: Blockquote,
   code: Code,
+  a: ExternalLink,
+  InternalLink,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
