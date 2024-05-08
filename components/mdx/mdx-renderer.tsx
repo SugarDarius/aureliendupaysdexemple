@@ -2,7 +2,7 @@ import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 import { cn } from '@/lib/utils'
 
-const HeadingOne = ({
+const Heading1 = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -15,7 +15,7 @@ const HeadingOne = ({
   />
 )
 
-const HeadingTwo = ({
+const Heading2 = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -28,7 +28,7 @@ const HeadingTwo = ({
   />
 )
 
-const HeadingThree = ({
+const Heading3 = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -41,7 +41,7 @@ const HeadingThree = ({
   />
 )
 
-const HeadingFour = ({
+const Heading4 = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -54,7 +54,7 @@ const HeadingFour = ({
   />
 )
 
-const HeadingFive = ({
+const Heading5 = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -67,7 +67,7 @@ const HeadingFive = ({
   />
 )
 
-const HeadingSix = ({
+const Heading6 = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -83,21 +83,35 @@ const HeadingSix = ({
 const Paragraph = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => (
+}: React.HTMLAttributes<HTMLParagraphElement>) => (
   <p
     className={cn('leading-6 [&:not(:first-child)]:mt-6', className)}
     {...props}
   />
 )
 
+const Blockquote = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) => (
+  <blockquote
+    className={cn(
+      'mt-6 border-l-2 pl-6 italic text-muted-foreground',
+      className
+    )}
+    {...props}
+  />
+)
+
 const components: MDXRemoteProps['components'] = {
-  h1: HeadingOne,
-  h2: HeadingTwo,
-  h3: HeadingThree,
-  h4: HeadingFour,
-  h5: HeadingFive,
-  h6: HeadingSix,
+  h1: Heading1,
+  h2: Heading2,
+  h3: Heading3,
+  h4: Heading4,
+  h5: Heading5,
+  h6: Heading6,
   p: Paragraph,
+  blockquote: Blockquote,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
