@@ -80,6 +80,16 @@ const HeadingSix = ({
   />
 )
 
+const Paragraph = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) => (
+  <p
+    className={cn('leading-6 [&:not(:first-child)]:mt-6', className)}
+    {...props}
+  />
+)
+
 const components: MDXRemoteProps['components'] = {
   h1: HeadingOne,
   h2: HeadingTwo,
@@ -87,6 +97,7 @@ const components: MDXRemoteProps['components'] = {
   h4: HeadingFour,
   h5: HeadingFive,
   h6: HeadingSix,
+  p: Paragraph,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
