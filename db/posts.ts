@@ -2,8 +2,6 @@ import fs from 'fs/promises'
 import path from 'path'
 import { z } from 'zod'
 
-import { slugify } from '@/lib/utils'
-
 const POST_EXT_NAME = '.mdx'
 
 async function getMDXFiles(dirName: string): Promise<string[]> {
@@ -74,7 +72,7 @@ async function getMDXData(dirName: string): Promise<Post[]> {
 
   for (const file of files) {
     const postMDXData = await readMDXFile(path.join(dirName, file))
-    const slug = slugify(path.basename(file, path.extname(file)))
+    const slug = path.basename(file, path.extname(file))
 
     posts.push({
       slug,
