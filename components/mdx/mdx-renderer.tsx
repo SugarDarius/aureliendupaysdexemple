@@ -21,7 +21,7 @@ const HeadingTwo = ({
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h2
     className={cn(
-      'mt-4 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0',
+      'mt-4 scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0',
       className
     )}
     {...props}
@@ -34,7 +34,7 @@ const HeadingThree = ({
 }: React.HTMLAttributes<HTMLHeadingElement>) => (
   <h3
     className={cn(
-      'mt-6 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0',
+      'mt-6 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0',
       className
     )}
     {...props}
