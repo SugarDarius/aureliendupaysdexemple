@@ -3,6 +3,7 @@ import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 import { cn } from '@/lib/utils'
 import { TagLink } from '@/components/content/tag-link'
+import { Callout } from '@/components/content/callout'
 
 const Heading1 = ({
   className,
@@ -150,6 +151,7 @@ const components: MDXRemoteProps['components'] = {
   a: ExternalLink,
   InternalLink,
   TagLink,
+  Callout,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
