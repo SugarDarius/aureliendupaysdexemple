@@ -26,6 +26,7 @@ export default async function DevelopmentPostPage({
         <PageHero
           title={post.metadata.title}
           description={post.metadata.summary}
+          variant='post'
         />
         <Separator />
         <div className='flex h-auto w-full flex-col'>
