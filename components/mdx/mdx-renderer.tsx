@@ -28,9 +28,23 @@ const HeadingTwo = ({
   />
 )
 
+const HeadingThree = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) => (
+  <h3
+    className={cn(
+      'mt-6 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0',
+      className
+    )}
+    {...props}
+  />
+)
+
 const components = {
   h1: HeadingOne,
   h2: HeadingTwo,
+  h3: HeadingThree,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
