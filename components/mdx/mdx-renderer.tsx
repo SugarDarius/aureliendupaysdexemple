@@ -41,10 +41,24 @@ const HeadingThree = ({
   />
 )
 
+const HeadingFour = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) => (
+  <h4
+    className={cn(
+      'mt-8 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0',
+      className
+    )}
+    {...props}
+  />
+)
+
 const components: MDXRemoteProps['components'] = {
   h1: HeadingOne,
   h2: HeadingTwo,
   h3: HeadingThree,
+  h4: HeadingFour,
 }
 
 export function MDXRenderer({ source }: { source: string }) {
