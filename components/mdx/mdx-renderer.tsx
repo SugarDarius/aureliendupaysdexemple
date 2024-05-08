@@ -1,4 +1,4 @@
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 import { cn } from '@/lib/utils'
 
@@ -41,7 +41,7 @@ const HeadingThree = ({
   />
 )
 
-const components = {
+const components: MDXRemoteProps['components'] = {
   h1: HeadingOne,
   h2: HeadingTwo,
   h3: HeadingThree,
