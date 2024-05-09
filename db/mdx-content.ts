@@ -68,18 +68,15 @@ type Page = PageMDXData & {
   slug: string
 }
 
-async function getMDXData(dirName: string): Promise<Page[]> {
+async function getMDXData(dirName: string): Promise<Map<string, Page>> {
   const files = await getMDXFiles(dirName)
-  const pages: Page[] = []
+  const pages: Map<string, Page> = new Map()
 
   for (const file of files) {
-    const postMDXData = await readMDXFile(path.join(dirName, file))
+    const pageMDXData = await readMDXFile(path.join(dirName, file))
     const slug = path.basename(file, path.extname(file))
 
-    pages.push({
-      slug,
-      ...postMDXData,
-    })
+    pages.set(slug, { slug, ...pageMDXData })
   }
 
   return pages
@@ -87,7 +84,7 @@ async function getMDXData(dirName: string): Promise<Page[]> {
 
 export async function getMDXPages(
   contentSrc: 'blog' | 'craft' | 'mdx-renderer'
-): Promise<Page[]> {
+): Promise<Map<string, Page>> {
   const dirName = path.join(process.cwd(), 'mdx-content/' + contentSrc)
   const pages = await getMDXData(dirName)
 
