@@ -7,6 +7,7 @@
 - **UI**: [shadcn/ui](https://ui.shadcn.com/)
 - **UI VFX**: Inspiration from [
   Aceternity UI](https://ui.aceternity.com/) & [Magic UI](https://magicui.design/)
+- **MDX and Markdown**: Inspiration from [Vercel Blog Example](https://github.com/vercel/examples/tree/main/solutions/blog)
 - **Deployment**: [Vercel](https://vercel.com)
 
 ## Running locally
