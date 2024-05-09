@@ -18,6 +18,7 @@ const pageMetadataSchema = z.object({
   publishedAt: z.string(),
   summary: z.string(),
   image: z.string().optional(),
+  category: z.string().optional(),
 })
 
 type PageMetadata = z.infer<typeof pageMetadataSchema>
