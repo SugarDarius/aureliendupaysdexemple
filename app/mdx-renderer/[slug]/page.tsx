@@ -4,7 +4,7 @@ import { getMDXPages } from '@/db/mdx-content'
 
 import { PageHero } from '@/components/content/page-hero'
 import { Separator } from '@/components/ui/separator'
-import { MDXRenderer } from '@/components/mdx/mdx-renderer'
+import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
 
 export default async function DevelopmentPostPage({
   params,
@@ -30,7 +30,7 @@ export default async function DevelopmentPostPage({
         />
         <Separator />
         <div className='flex h-auto w-full flex-col'>
-          <MDXRenderer source={page.content} />
+          <MDXContentRenderer source={page.content} />
         </div>
       </div>
     </div>

@@ -167,6 +167,6 @@ const components: MDXRendererComponents = {
   Callout,
 }
 
-export function MDXRenderer({ source }: { source: string }) {
+export function MDXContentRenderer({ source }: { source: string }) {
   return <MDXRemote source={source} components={components} />
 }
