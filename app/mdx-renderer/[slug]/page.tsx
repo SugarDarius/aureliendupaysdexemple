@@ -6,7 +6,7 @@ import { PageHero } from '@/components/content/page-hero'
 import { Separator } from '@/components/ui/separator'
 import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
 
-export default async function DevelopmentPostPage({
+export default async function MDXRendererSlugPage({
   params,
 }: {
   params: { slug: string }
