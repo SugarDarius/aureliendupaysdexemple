@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import { cn } from '@/lib/utils'
 
 export function Callout({
@@ -21,7 +22,15 @@ export function Callout({
       )}
     >
       {icon ? (
-        <div className='flex h-full flex-none flex-col items-center justify-start'>
+        <div
+          className={cn(
+            'flex h-full flex-none flex-col items-center',
+            clsx({
+              'justify-center': title === undefined,
+              'justify-start': title !== undefined,
+            })
+          )}
+        >
           {icon}
         </div>
       ) : null}
