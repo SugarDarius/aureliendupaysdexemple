@@ -6,6 +6,13 @@ import { PageHero } from '@/components/content/page-hero'
 import { Separator } from '@/components/ui/separator'
 import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
 
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const pages = await getMDXPages('craft')
+  const slugs = Array.from(pages.keys()).map((slug: string) => ({ slug }))
+
+  return slugs
+}
+
 export default async function CraftSlugPage({
   params,
 }: {
