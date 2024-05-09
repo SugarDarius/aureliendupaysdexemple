@@ -1,5 +1,7 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import { baseUrl } from '@/app/sitemap'
 import { getMDXPages } from '@/db/mdx-content'
 
 import { PageHero } from '@/components/content/page-hero'
@@ -11,6 +13,39 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const slugs = Array.from(pages.keys()).map((slug: string) => ({ slug }))
 
   return slugs
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const slug = params.slug
+
+  const pages = await getMDXPages('craft')
+  const page = pages.get(slug)
+
+  if (!page) {
+    return {}
+  }
+
+  const metadata = page.metadata
+
+  return {
+    title: metadata.title,
+    description: metadata.summary,
+    openGraph: {
+      title: metadata.title,
+      type: 'article',
+      publishedTime: metadata.publishedAt,
+      url: baseUrl + '/craft/' + page.slug,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metadata.title,
+      description: metadata.summary,
+    },
+  }
 }
 
 export default async function CraftSlugPage({
