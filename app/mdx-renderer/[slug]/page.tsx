@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 
-import { getPosts } from '@/db/posts'
+import { getMDXPages } from '@/db/mdx-content'
 
 import { PageHero } from '@/components/content/page-hero'
 import { Separator } from '@/components/ui/separator'
@@ -13,10 +13,10 @@ export default async function DevelopmentPostPage({
 }) {
   const slug = params.slug
 
-  const posts = await getPosts('mdx-renderer')
-  const post = posts.find((post) => post.slug === slug)
+  const pages = await getMDXPages('mdx-renderer')
+  const page = pages.find((page) => page.slug === slug)
 
-  if (!post) {
+  if (!page) {
     return redirect('/')
   }
 
@@ -24,13 +24,13 @@ export default async function DevelopmentPostPage({
     <div className='relative flex h-full w-full flex-col items-center'>
       <div className='flex h-full w-full max-w-4xl flex-col gap-10 px-12 py-24 max-sm:px-4 min-[1025px]:px-0'>
         <PageHero
-          title={post.metadata.title}
-          description={post.metadata.summary}
-          variant='post'
+          title={page.metadata.title}
+          description={page.metadata.summary}
+          variant='mdx'
         />
         <Separator />
         <div className='flex h-auto w-full flex-col'>
-          <MDXRenderer source={post.content} />
+          <MDXRenderer source={page.content} />
         </div>
       </div>
     </div>
