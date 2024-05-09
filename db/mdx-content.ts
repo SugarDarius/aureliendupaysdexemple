@@ -59,9 +59,9 @@ async function parseFrontmatter(fileContent: string): Promise<PageMDXData> {
 
 async function readMDXFile(filePath: string): Promise<PageMDXData> {
   const fileContent = await fs.readFile(filePath, 'utf-8')
-  const postMDXData = await parseFrontmatter(fileContent)
+  const pageMDXData = await parseFrontmatter(fileContent)
 
-  return postMDXData
+  return pageMDXData
 }
 
 type Page = PageMDXData & {
