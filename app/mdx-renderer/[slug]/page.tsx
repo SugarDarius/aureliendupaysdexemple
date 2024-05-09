@@ -17,7 +17,7 @@ export default async function MDXRendererSlugPage({
   const page = pages.find((page) => page.slug === slug)
 
   if (!page) {
-    return redirect('/')
+    redirect('/')
   }
 
   return (
