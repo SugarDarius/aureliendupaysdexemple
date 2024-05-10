@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { cn } from '@/lib/utils'
+import { env } from '@/config/env'
 import { siteConfig } from '@/config/site-config'
 import { baseUrl } from '@/app/sitemap'
 
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'k8tRezHGyZ8aImjsQhymc4X4G5vCdyqotbp7IRfBQJs',
+    google: env.NEXT_PUBLIC_GOOGLE_VERIFICATION_TOKEN,
   },
   icons: {
     icon: '/favicon.ico',
