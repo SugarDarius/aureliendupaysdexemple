@@ -211,6 +211,19 @@ const CodeBlock = ({
   )
 }
 
+const InlineCode = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) => (
+  <code
+    className={cn(
+      'relative w-max rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
+      className
+    )}
+    {...props}
+  />
+)
+
 const RoundedImage = ({ className, alt, ...props }: ImageProps) => (
   <Image alt={alt} {...props} className={cn('rounded-lg', className)} />
 )
@@ -230,6 +243,7 @@ const components: MDXRendererComponents = {
   TagLink,
   Callout,
   RoundedImage,
+  InlineCode,
 }
 
 export function MDXContentRenderer({ source }: { source: string }) {
