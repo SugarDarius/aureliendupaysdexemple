@@ -1,91 +1,148 @@
+import React from 'react'
 import Link from 'next/link'
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 
+import { clsx } from 'clsx'
 import { highlight } from 'sugar-high'
 
-import { cn } from '@/lib/utils'
+import { cn, slugify } from '@/lib/utils'
 import { TagLink } from '@/components/content/tag-link'
 import { Callout } from '@/components/content/callout'
 
 type MDXRendererComponents = Required<MDXRemoteProps['components']>
 
+const createHeading = ({ level }: { level: 1 | 2 | 3 | 4 | 5 | 6 }) => {
+  const Heading = ({
+    children,
+    className,
+    ...props
+  }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const slug = typeof children === 'string' ? slugify(children) : null
+
+    const headingProps = slug ? { ...props, id: slug } : { ...props }
+    const anchor = slug
+      ? [
+          React.createElement('a', {
+            href: `#${slug}`,
+            key: `anchor-${slug}`,
+            className:
+              'invisible absolute -ml-6 h-full w-[calc(100%+24px)] cursor-pointer pr-3 no-underline after:content-["#"] group-hover:visible',
+          }),
+        ]
+      : []
+
+    return React.createElement(
+      `h${level}`,
+      {
+        ...headingProps,
+        className: cn('relative', clsx({ group: slug !== null }), className),
+      },
+      anchor,
+      children
+    )
+  }
+  Heading.displayName = `Heading${level}`
+
+  return Heading
+}
+
 const Heading1 = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h1
-    className={cn(
-      'mt-2 scroll-m-20 text-4xl font-extrabold tracking-tighter first:mt-0',
-      className
-    )}
-    {...props}
-  />
-)
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const Heading = createHeading({ level: 1 })
+  return (
+    <Heading
+      className={cn(
+        'mt-2 scroll-m-20 text-4xl font-extrabold tracking-tighter first:mt-0',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 const Heading2 = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h2
-    className={cn(
-      'mt-4 scroll-m-20 text-3xl font-bold tracking-tight first:mt-0',
-      className
-    )}
-    {...props}
-  />
-)
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const Heading = createHeading({ level: 2 })
+  return (
+    <Heading
+      className={cn(
+        'mt-4 scroll-m-20 text-3xl font-bold tracking-tight first:mt-0',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 const Heading3 = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h3
-    className={cn(
-      'mt-6 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0',
-      className
-    )}
-    {...props}
-  />
-)
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const Heading = createHeading({ level: 3 })
+  return (
+    <Heading
+      className={cn(
+        'mt-6 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 const Heading4 = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h4
-    className={cn(
-      'mt-8 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0',
-      className
-    )}
-    {...props}
-  />
-)
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const Heading = createHeading({ level: 4 })
+
+  return (
+    <Heading
+      className={cn(
+        'mt-8 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 const Heading5 = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h5
-    className={cn(
-      'mt-10 scroll-m-20 text-lg font-semibold tracking-tight first:mt-0',
-      className
-    )}
-    {...props}
-  />
-)
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const Heading = createHeading({ level: 5 })
+  return (
+    <Heading
+      className={cn(
+        'mt-10 scroll-m-20 text-lg font-semibold tracking-tight first:mt-0',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 const Heading6 = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h6
-    className={cn(
-      'mt-12 scroll-m-20 text-base font-semibold tracking-tight first:mt-0',
-      className
-    )}
-    {...props}
-  />
-)
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const Heading = createHeading({ level: 6 })
+
+  return (
+    <Heading
+      className={cn(
+        'mt-12 scroll-m-20 text-base font-semibold tracking-tight first:mt-0',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 const Paragraph = ({
   className,
