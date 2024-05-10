@@ -57,7 +57,7 @@ const Heading1 = ({
   return (
     <Heading
       className={cn(
-        'mt-2 scroll-m-20 text-4xl font-extrabold tracking-tighter first:mt-0',
+        'mt-8 scroll-m-20 text-4xl font-extrabold tracking-tighter',
         className
       )}
       {...props}
