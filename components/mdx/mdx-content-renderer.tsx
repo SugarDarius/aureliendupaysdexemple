@@ -1,5 +1,8 @@
 import React from 'react'
+
 import Link from 'next/link'
+import Image, { type ImageProps } from 'next/image'
+
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 
 import { clsx } from 'clsx'
@@ -208,6 +211,10 @@ const CodeBlock = ({
   )
 }
 
+const RoundedImage = ({ className, alt, ...props }: ImageProps) => (
+  <Image alt={alt} {...props} className={cn('rounded-lg', className)} />
+)
+
 const components: MDXRendererComponents = {
   h1: Heading1,
   h2: Heading2,
@@ -222,6 +229,7 @@ const components: MDXRendererComponents = {
   InternalLink,
   TagLink,
   Callout,
+  RoundedImage,
 }
 
 export function MDXContentRenderer({ source }: { source: string }) {
