@@ -4,16 +4,6 @@
 
 @layer base {
   :root {
-    --sh-class: #7aa2f7;
-    --sh-identifier: #ffffff;
-    --sh-sign: #2ac3de;
-    --sh-string: #9ece6a;
-    --sh-keyword: #bb9af7;
-    --sh-comment: #565f89;
-    --sh-jsxliterals: #bb9af7;
-    --sh-property: #c0caf5;
-    --sh-entity: #f7768e;
-
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
 
@@ -43,6 +33,16 @@
     --ring: 20 14.3% 4.1%;
 
     --radius: 0.5rem;
+
+    --sh-class: #7aa2f7;
+    --sh-identifier: var(--foreground);
+    --sh-sign: #2ac3de;
+    --sh-string: #9ece6a;
+    --sh-keyword: #bb9af7;
+    --sh-comment: #565f89;
+    --sh-jsxliterals: #bb9af7;
+    --sh-property: #c0caf5;
+    --sh-entity: #f7768e;
   }
 
   .dark {
