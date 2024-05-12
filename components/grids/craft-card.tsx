@@ -33,9 +33,6 @@ export function CraftCard({
               target='_blank'
               rel='noopener noreferrer'
               href={githubURL}
-              onClick={(e): void => {
-                e.stopPropagation()
-              }}
               className='relative flex h-[30px] cursor-pointer flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 py-1.5 pl-1.5 pr-2 text-xs font-semibold text-neutral-900 transition-colors ease-linear hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700 max-md:py-1 max-md:pl-1 max-md:pr-1.5 max-md:text-[10px]'
             >
               <GitHubLogoIcon className='size-4' />
