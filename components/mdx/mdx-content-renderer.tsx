@@ -177,6 +177,7 @@ const InternalLink = ({
 }: React.ComponentProps<typeof Link>) => (
   <Link
     className={cn('font-medium underline underline-offset-4', className)}
+    aria-label='internal-link'
     {...props}
   />
 )
@@ -189,6 +190,7 @@ const ExternalLink = ({
     className={cn('font-medium underline underline-offset-4', className)}
     target='_blank'
     rel='noopener noreferrer'
+    arial-label='external-link'
     {...props}
   />
 )
