@@ -202,7 +202,7 @@ const CodeBlock = ({
   return (
     <code
       className={cn(
-        'relative block w-full rounded-xl bg-[#1a1b26] p-4 font-mono text-sm font-semibold',
+        'relative mt-2 block w-full rounded-md bg-[#1a1b26] px-4 py-2 font-mono text-sm font-semibold',
         className
       )}
       {...props}
