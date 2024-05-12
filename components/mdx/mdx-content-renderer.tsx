@@ -9,6 +9,8 @@ import { clsx } from 'clsx'
 import { highlight } from 'sugar-high'
 
 import { cn, slugify } from '@/lib/utils'
+
+import { VFXBackgroundDot } from '@/components/ui-vfx/vfx-background-dot'
 import { TagLink } from '@/components/content/tag-link'
 import { Callout } from '@/components/content/callout'
 
@@ -225,7 +227,10 @@ const InlineCode = ({
 )
 
 const RoundedImage = ({ className, alt, ...props }: ImageProps) => (
-  <Image alt={alt} {...props} className={cn('rounded-lg', className)} />
+  <div className='relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 p-8 dark:border-neutral-800 dark:bg-stone-900'>
+    <VFXBackgroundDot />
+    <Image alt={alt} {...props} className={cn('z-[2] rounded-lg', className)} />
+  </div>
 )
 
 const components: MDXRendererComponents = {
