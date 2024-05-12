@@ -17,7 +17,7 @@ export function Callout({
   return (
     <div
       className={cn(
-        'flex w-full flex-row items-stretch gap-2 rounded-lg border bg-background px-4 py-3 text-sm text-foreground',
+        'flex w-full flex-row items-stretch gap-2 rounded-lg border border-neutral-200 bg-stone-50 px-4 py-3 text-sm text-foreground dark:border-neutral-800 dark:bg-stone-900',
         className
       )}
     >
