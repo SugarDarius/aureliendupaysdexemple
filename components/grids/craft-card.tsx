@@ -34,6 +34,7 @@ export function CraftCard({
               rel='noopener noreferrer'
               href={githubURL}
               className='relative flex h-[30px] cursor-pointer flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 py-1.5 pl-1.5 pr-2 text-xs font-semibold text-neutral-900 transition-colors ease-linear hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700 max-md:py-1 max-md:pl-1 max-md:pr-1.5 max-md:text-[10px]'
+              aria-label={title + 'GitHub Repository'}
             >
               <GitHubLogoIcon className='size-4' />
               See repository
@@ -50,8 +51,8 @@ export function CraftCard({
           <div className='flex w-full flex-row items-center justify-between'>
             <Link
               href={'/craft/' + slug}
-              aria-label={title}
               className='flex h-[30px] cursor-pointer flex-row items-center justify-center gap-2 rounded-md border border-neutral-200 bg-neutral-50 p-1.5 text-xs font-semibold text-neutral-900 transition-colors ease-linear hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700 max-md:py-1 max-md:pl-1 max-md:pr-1.5 max-md:text-[10px]'
+              aria-label={'see more about ' + title}
             >
               See more
               <ArrowUpRightIcon className='size-3' />
