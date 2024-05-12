@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 
 import { GitHubRepositoryLink } from '@/components/content/github-repository-link'
+import { CategoryTag } from '@/components/content/category-tag'
 import { BentoCard } from '@/components/grids/bento-card'
 
 export function CraftCard({
@@ -46,11 +47,7 @@ export function CraftCard({
               See more
               <ArrowUpRightIcon className='size-3' />
             </Link>
-            {category ? (
-              <span className='flex flex-row items-center rounded-full border border-neutral-200 bg-stone-50 px-2 py-0.5 font-mono text-xs text-neutral-900 dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100'>
-                {category}
-              </span>
-            ) : null}
+            {category ? <CategoryTag>{category}</CategoryTag> : null}
           </div>
         </div>
       </div>
