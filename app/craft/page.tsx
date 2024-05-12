@@ -1,8 +1,13 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 
-// import { getMDXPages } from '@/db/mdx-content'
+import { getMDXPages } from '@/db/mdx-content'
+import { sortPagesByPublicationDate } from '@/lib/mdx-content'
+
 import { PageHero } from '@/components/content/page-hero'
 import { Separator } from '@/components/ui/separator'
+import { CraftGrid } from '@/components/grids/craft-grid'
+import { CraftCard } from '@/components/grids/craft-card'
 
 export const metadata: Metadata = {
   title: 'Craft',
@@ -10,7 +15,8 @@ export const metadata: Metadata = {
 }
 
 export default async function CraftPage() {
-  // const pages = await getMDXPages('craft')
+  const pages = await getMDXPages('craft')
+  const sortedPages = sortPagesByPublicationDate(pages)
 
   return (
     <div className='relative flex h-full w-full flex-col items-center'>
@@ -20,7 +26,30 @@ export default async function CraftPage() {
           description='A look at my craft and contributions'
         />
         <Separator />
-        <div className='flex h-auto w-full flex-col'></div>
+        <CraftGrid>
+          {sortedPages.map((page) => (
+            <CraftCard
+              key={page.slug}
+              slug={page.slug}
+              title={page.metadata.title}
+              summary={page.metadata.summary}
+              category={page.metadata.category}
+              githubURL={page.metadata.githubURL}
+            >
+              {page.metadata.image ? (
+                <div className='flex h-full w-full flex-col pt-8 max-lg:pt-4'>
+                  <Image
+                    alt={page.metadata.title + ' image'}
+                    src={page.metadata.image}
+                    width={240}
+                    height={80}
+                    priority
+                  />
+                </div>
+              ) : null}
+            </CraftCard>
+          ))}
+        </CraftGrid>
       </div>
     </div>
   )

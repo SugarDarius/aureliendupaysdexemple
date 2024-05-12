@@ -12,7 +12,7 @@ const variants = cva(
     variants: {
       variant: {
         default: 'bg-gradient-to-b from-sky-200 to-sky-500',
-        mdx: 'bg-gradient-to-r from-pink-500 to-violet-500',
+        mdx: 'bg-gradient-to-r from-pink-500 to-violet-500 max-lg:text-4xl',
       },
     },
     defaultVariants: {
