@@ -45,7 +45,7 @@ export function QRCodeDialog({
               size={256}
               bgColor={isDark ? '#000000' : '#ffffff'}
               fgColor={isDark ? '#ffffff' : '#000000'}
-              level='L'
+              level='H'
             />
           </div>
         </div>
