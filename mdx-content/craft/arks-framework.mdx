@@ -1,7 +1,7 @@
 ---
 title: 'Arks framework'
 publishedAt: '2024-05-10'
-summary: 'An opiniated React framework for isomorphic apps built on top of React with React Router and Apollo GraphQL'
+summary: 'An opinionated React framework for isomorphic apps built on top of React with React Router and Apollo GraphQL'
 category: 'Open Source'
 githubURL: 'https://github.com/SugarDarius/arks'
 image: '/medias/mdx-content/arks-logo.png'
@@ -15,19 +15,37 @@ image: '/medias/mdx-content/arks-logo.png'
   className='mx-auto'
   priority
 />
+
 <Callout icon='⚠️' className='mt-8'>
   Arks was an experimental project and is now unmaintained and a public archive.
 </Callout>
 
-# A word about
+# A word about Arks
 
-Arks is (or more accurately was) an **opinitated** open source [React](https://react.dev/) framework for creating, developing, building and shipping isomorphic web apps.
+Arks is (or more accurately was) an **opinionated** open source [React](https://react.dev/) framework for creating, developing, building and shipping isomorphic web apps.
 It is built on top of [React Router](https://reactrouter.com/en/main) and [Apollo GraphQL](https://www.apollographql.com/).
 
 All the parts of an Arks project are made to be used in a **strict** and **defined**
 context.
 
-The main goal of Arks was to use <InlineCode>@arks/cli</InlineCode> to mount an [Express](http://expressjs.com/) server to serve a server side rendered React app and let developers **focus more** on fast implementation wihout to be worried on all the config part to enable server rendering with the router and GrahQL.
-Akrs was project divided into several packages and server was coming with included features like monitoring.
+The main goal of Arks was to use <InlineCode>@arks/cli</InlineCode> to mount an [Express](http://expressjs.com/) server to serve a server side rendered React app and let developers **focus more** on fast implementation without to be worried on all the config part to enable server rendering with the router and GraphQL.
+Arks was a project divided into several packages and server was coming with included features like monitoring and health checks.
 
-If the experience was successful Arks was made originaly to be driven by the community.
+If the experience was successful Arks was made originally to be driven by the community.
+
+## Why the project is now a public archive?
+
+I first created Arks as a personal goal and as an experimental project. I wanted to build a tool with the ease of [Next.js](https://nextjs.org/) to use a cli to create and run projects.
+Because back at the time I was working at the Luxembourg Stock Exchange as a consultant for the front-end web apps and I saw we were struggling at bootstrapping projects using React Router and Apollo GraphQL.
+
+I wanted to open source the project as for it was important to let developers and the community to be part of it.
+
+Shortly after the release of the version <InlineCode>0.1.11</InlineCode> back in July 2020 my personal goals changed and I saw [Remix](https://remix.run/) was coming and under development.
+Based on my understanding of Remix I right away thought that Remix was a better option for what Arks was trying to reach.
+So I decided to move on and let the repository as it was (without any real communication on it) and see what happens.
+
+In May 2024 I decided to make the repo as a public archived as I didn't maintained the project at all for four years.
+
+In the end for me it was a good personal experience to implement Arks because I learnt a lot on subjects like creating and using a cli and giving developers a tool to use to easily create projects.
+
+You can check the repository of Arks [here](https://github.com/SugarDarius/arks).
