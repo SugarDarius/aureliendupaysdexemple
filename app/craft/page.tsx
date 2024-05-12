@@ -23,7 +23,7 @@ export default async function CraftPage() {
       <div className='flex h-full w-full max-w-4xl flex-col gap-10 px-12 py-24 max-sm:px-4 min-[1025px]:px-0'>
         <PageHero
           title='Craft'
-          description='A look at my craft and contributions'
+          description='A look at my personal craft and contributions '
         />
         <Separator />
         <CraftGrid>
