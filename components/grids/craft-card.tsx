@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
 
+import { GitHubRepositoryLink } from '@/components/content/github-repository-link'
 import { BentoCard } from '@/components/grids/bento-card'
 
 export function CraftCard({
@@ -28,18 +28,7 @@ export function CraftCard({
           <h1 className='text-xl font-extrabold tracking-tighter max-md:text-lg'>
             {title}
           </h1>
-          {githubURL ? (
-            <a
-              target='_blank'
-              rel='noopener noreferrer'
-              href={githubURL}
-              className='relative flex h-[30px] cursor-pointer flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 py-1.5 pl-1.5 pr-2 text-xs font-semibold text-neutral-900 transition-colors ease-linear hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700 max-md:py-1 max-md:pl-1 max-md:pr-1.5 max-md:text-[10px]'
-              aria-label={title + 'GitHub Repository'}
-            >
-              <GitHubLogoIcon className='size-4' />
-              See repository
-            </a>
-          ) : null}
+          {githubURL ? <GitHubRepositoryLink href={githubURL} /> : null}
         </div>
         {children ? (
           <div className='flex w-full flex-col'>{children}</div>
