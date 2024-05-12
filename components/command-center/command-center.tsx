@@ -35,7 +35,7 @@ export function CommandCenter({ className }: { className?: string }) {
     (): void => {
       setCommandDialogOpen(true)
     },
-    { enabled: !commandDialogOpen }
+    { enabled: !commandDialogOpen && !qrcodeDialogOpen }
   )
 
   const handleButtonClick = useEvent((): void => {
