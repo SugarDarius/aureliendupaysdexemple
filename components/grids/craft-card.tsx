@@ -44,7 +44,7 @@ export function CraftCard({
               className='flex h-[30px] cursor-pointer flex-row items-center justify-center gap-2 rounded-md border border-neutral-200 bg-neutral-50 p-1.5 text-xs font-semibold text-neutral-900 transition-colors ease-linear hover:bg-neutral-200 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:bg-neutral-700 max-md:py-1 max-md:pl-1 max-md:pr-1.5 max-md:text-[10px]'
               aria-label={'see more about ' + title}
             >
-              See more
+              Discover now
               <ArrowUpRightIcon className='size-3' />
             </Link>
             {category ? <CategoryTag>{category}</CategoryTag> : null}
