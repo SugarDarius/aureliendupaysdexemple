@@ -1,12 +1,17 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 
 import { baseUrl } from '@/app/sitemap'
 import { getMDXPages } from '@/db/mdx-content'
 
-import { PageHero } from '@/components/content/page-hero'
+import { VFXBackgroundDot } from '@/components/ui-vfx/vfx-background-dot'
 import { Separator } from '@/components/ui/separator'
+
 import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
+import { PageHero } from '@/components/content/page-hero'
+import { GitHubRepositoryLink } from '@/components/content/github-repository-link'
+import { CategoryTag } from '@/components/content/category-tag'
 
 type StaticParam = { slug: string }
 
@@ -73,6 +78,29 @@ export default async function CraftSlugPage({
           variant='mdx'
         />
         <Separator />
+        <div className='flex w-full flex-col gap-6'>
+          {page.metadata.image ? (
+            <div className='relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 p-8 dark:border-neutral-800 dark:bg-stone-900'>
+              <VFXBackgroundDot />
+              <Image
+                alt=''
+                src={page.metadata.image}
+                width={680 / 1.5}
+                height={430 / 1.5}
+                className='z-[2]'
+                priority
+              />
+            </div>
+          ) : null}
+          <div className='flex w-full flex-row items-center justify-between'>
+            {page.metadata.githubURL ? (
+              <GitHubRepositoryLink href={page.metadata.githubURL} />
+            ) : null}
+            {page.metadata.category ? (
+              <CategoryTag>{page.metadata.category}</CategoryTag>
+            ) : null}
+          </div>
+        </div>
         <div className='flex h-auto w-full flex-col'>
           <MDXContentRenderer source={page.content} />
         </div>
