@@ -75,7 +75,6 @@ export default async function CraftSlugPage({
       <PageHero
         title={page.metadata.title}
         description={page.metadata.summary}
-        variant='mdx'
       />
       <Separator />
       <div className='flex w-full flex-col gap-6'>
