@@ -34,13 +34,13 @@ export function Callout({
           {icon}
         </div>
       ) : null}
-      <div className='flex flex-auto flex-col gap-1'>
+      <div className='flex flex-auto flex-col justify-center gap-1'>
         {title ? (
           <h5 className='text-base font-bold leading-none tracking-tight'>
             {title}
           </h5>
         ) : null}
-        <div className='text-sm'>{children}</div>
+        <div className='text-sm [&_p]:leading-[18px]'>{children}</div>
       </div>
     </div>
   )
