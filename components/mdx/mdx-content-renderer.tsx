@@ -203,14 +203,21 @@ const CodeBlock = ({
   const highlightedCodeHTML = highlight(children as string)
 
   return (
-    <code
+    <div
       className={cn(
-        'relative mt-2 block w-full rounded-md border border-neutral-200 bg-stone-50 px-4 py-2 font-mono text-sm font-semibold dark:border-neutral-800 dark:bg-stone-900',
+        'relative mt-2 block w-full overflow-hidden rounded-md border border-neutral-200 bg-stone-50 font-mono text-sm font-semibold dark:border-neutral-800 dark:bg-stone-900',
         className
       )}
-      {...props}
-      dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
-    />
+    >
+      <div className='flex w-full flex-col overflow-x-auto'>
+        <div className='w-max px-4 py-2'>
+          <code
+            {...props}
+            dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
+          />
+        </div>
+      </div>
+    </div>
   )
 }
 
