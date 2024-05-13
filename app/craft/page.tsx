@@ -42,7 +42,7 @@ export default async function CraftPage() {
                   alt={page.metadata.title + ' image'}
                   src={page.metadata.image}
                   width={240}
-                  height={80}
+                  height={38}
                   priority
                 />
               </div>
