@@ -83,7 +83,7 @@ export default function RootLayout({
       >
         <ProvidersTree>
           <main className='flex h-screen w-screen flex-none flex-col overflow-hidden'>
-            <div className='flex min-h-full w-full flex-col overflow-auto'>
+            <div className='flex h-full w-full flex-col overflow-auto'>
               <div className='flex w-full flex-1 flex-col'>{children}</div>
             </div>
             <NavigationDock />
