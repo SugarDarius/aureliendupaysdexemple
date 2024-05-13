@@ -12,7 +12,7 @@ import { TechStackBentoItem } from '@/components/bento/tech-stack-bento-item'
 export default function HomePage() {
   const contributionsColors = generateGitHubRandomContributionsColors()
   return (
-    <PageContent className='gap-0'>
+    <PageContent className='justify-center gap-0'>
       <BentoGrid>
         <HeroBentoItem />
         <GitHubBentoItem contributionsColors={contributionsColors} />
