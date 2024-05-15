@@ -3,7 +3,13 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
+import {
+  motion,
+  AnimatePresence,
+  type PanInfo,
+  type Variants,
+  type Transition,
+} from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'
@@ -65,7 +71,7 @@ const DotsNavigation = ({
 
 type Custom = { direction: number; height: number }
 
-const variants = {
+const variants: Variants = {
   enter: ({ direction, height }: Custom) => ({
     zIndex: 0,
     y: direction > 0 ? height + 100 : (height + 100) * -1,
@@ -81,6 +87,11 @@ const variants = {
     y: direction < 0 ? height + 100 : (height + 100) * -1,
     scale: 0.85,
   }),
+}
+
+const transition: Transition = {
+  y: { duration: 0.8 },
+  scale: { duration: 0.8 },
 }
 
 type ItemProps = {
@@ -111,16 +122,16 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
       <motion.div
         ref={ref}
         className='absolute left-0 top-0 flex flex-col'
-        style={{ width: size[0], height: size[1] }}
+        style={{
+          width: size[0],
+          height: size[1],
+        }}
         custom={{ direction, height: size[1] }}
         variants={variants}
         initial='enter'
         animate='visible'
         exit='exit'
-        transition={{
-          y: { duration: 0.6 },
-          scale: { duration: 0.6 },
-        }}
+        transition={transition}
         drag='y'
         dragConstraints={{ top: 0, bottom: 0 }}
         dragElastic={1}
