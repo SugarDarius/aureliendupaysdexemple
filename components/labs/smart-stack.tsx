@@ -137,7 +137,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
 
 Item.displayName = 'SmartStackItem'
 
-const SWIPE_DISTANCE_THRESHOLD = 10000
+const SWIPE_DISTANCE_THRESHOLD = 600
 const getSwipeDistance = (offset: number, velocity: number): number =>
   Math.abs(offset) * velocity
 
