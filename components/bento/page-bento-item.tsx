@@ -15,13 +15,10 @@ export function PageBentoItem({
   children?: React.ReactNode
 }) {
   return (
-    <BentoCard
-      className='col-span-2 row-span-1 max-lg:min-h-[220px] max-md:min-h-[180px]'
-      variant='grid'
-    >
+    <BentoCard className='h-full'>
       <Link href={href} className='h-full w-full' aria-label={title}>
         <div className='relative flex h-full w-full flex-col'>
-          <div className='nax-sm:gap-3 flex h-full flex-col justify-between p-4'>
+          <div className='flex h-full flex-col justify-between p-4 max-sm:gap-3'>
             <div className='flex w-full flex-none flex-row items-start justify-between'>
               <div className='flex flex-col'>
                 <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-lg'>

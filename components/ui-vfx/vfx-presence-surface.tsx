@@ -120,7 +120,7 @@ export function VFXPresenceSurface({
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
       className={cn(
-        'rounded-inherit relative flex size-full cursor-none flex-col',
+        'relative flex size-full cursor-none flex-col [border-radius:inherit]',
         className
       )}
     >
