@@ -8,8 +8,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { cn } from '@/lib/utils'
 import { env } from '@/config/env'
-import { siteConfig } from '@/config/site-config'
-import { baseUrl } from '@/app/sitemap'
+import { baseUrl, siteConfig } from '@/config/site-config'
 
 import { Toaster } from '@/components/ui/sonner'
 import { ProvidersTree } from '@/components/providers/providers-tree'

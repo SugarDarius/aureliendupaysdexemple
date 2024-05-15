@@ -1,5 +1,6 @@
-import { baseUrl } from '@/app/sitemap'
+import { env } from '@/config/env'
 
+export const baseUrl = env.NEXT_PUBLIC_PROJECT_BASE_URL
 export const siteConfig = {
   title: 'Aurélien Dupays Dexemple',
   description: 'Creative software engineer crafting interfaces and products.',

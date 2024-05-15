@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 
-import { baseUrl } from '@/app/sitemap'
+import { baseUrl } from '@/config/site-config'
 import { getMDXPages } from '@/db/mdx-content'
 
 import { VFXBackgroundDot } from '@/components/ui-vfx/vfx-background-dot'
