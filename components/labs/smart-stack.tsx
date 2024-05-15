@@ -3,7 +3,7 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'
@@ -50,7 +50,7 @@ const DotsNavigation = ({
   return (
     <div className='absolute right-2 top-0 flex h-full flex-col justify-center'>
       <div className='z-10 flex min-h-[40%] flex-col justify-center gap-1.5 rounded-full p-1.5 px-1 py-1.5 opacity-25 backdrop-blur-sm transition-opacity ease-linear group-hover:opacity-100'>
-        {dots.map((dot, index) => (
+        {dots.map((dot) => (
           <DotNavigationItem
             key={dot}
             dot={dot}
@@ -87,27 +87,60 @@ const Item = ({
   direction,
   size,
   children,
+  onDragEnd,
 }: {
   direction: number
   size: [number, number]
   children: React.ReactNode
-}) => (
-  <motion.div
-    className='absolute left-0 top-0 flex flex-col'
-    style={{ width: size[0], height: size[1] }}
-    custom={{ direction, height: size[1] }}
-    variants={variants}
-    initial='enter'
-    animate='visible'
-    exit='exit'
-    transition={{
-      y: { duration: 0.6 },
-      scale: { duration: 0.6 },
-    }}
-  >
-    {children}
-  </motion.div>
-)
+  onDragEnd: (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => void
+}) => {
+  return (
+    <motion.div
+      className='absolute left-0 top-0 flex flex-col'
+      style={{ width: size[0], height: size[1] }}
+      custom={{ direction, height: size[1] }}
+      variants={variants}
+      initial='enter'
+      animate='visible'
+      exit='exit'
+      transition={{
+        y: { duration: 0.6 },
+        scale: { duration: 0.6 },
+      }}
+      drag='y'
+      dragConstraints={{ top: 0, bottom: 0 }}
+      dragElastic={1}
+      onDragEnd={onDragEnd}
+    >
+      <div className='flex h-full w-full flex-col'>{children}</div>
+    </motion.div>
+  )
+}
+
+const SWIPE_DISTANCE_THRESHOLD = 10000
+const getSwipeDistance = (offset: number, velocity: number): number =>
+  Math.abs(offset) * velocity
+
+const getNextIndex = (
+  direction: number,
+  index: number,
+  maxIndex: number
+): number => {
+  let nextIndex = 0
+
+  if (direction < 0) {
+    nextIndex = index - 1
+    return nextIndex < 0 ? maxIndex : nextIndex
+  } else if (direction > 0) {
+    nextIndex = index + 1
+    return nextIndex > maxIndex ? 0 : nextIndex
+  }
+
+  return nextIndex
+}
 
 export function SmartStack({
   className,
@@ -127,6 +160,25 @@ export function SmartStack({
   const [direction, setDirection] = useState<number>(1)
 
   const [containerSize, setContainerSize] = useState<[number, number]>([0, 0])
+
+  const handleDragEnd = useEvent(
+    (e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void => {
+      const { offset, velocity } = info
+
+      const maxIndex = count - 1
+      const distance = getSwipeDistance(offset.y, velocity.y)
+
+      if (distance < -SWIPE_DISTANCE_THRESHOLD) {
+        const nextIndex = getNextIndex(1, index, maxIndex)
+        setIndex(nextIndex)
+        setDirection(1)
+      } else if (distance > SWIPE_DISTANCE_THRESHOLD) {
+        const nextIndex = getNextIndex(-1, index, maxIndex)
+        setIndex(nextIndex)
+        setDirection(-1)
+      }
+    }
+  )
 
   const handleDotClick = useEvent((nextIndex: number): void => {
     if (index !== nextIndex) {
@@ -168,18 +220,20 @@ export function SmartStack({
         </div>
         <div className='absolute left-0 top-0 h-full w-full overflow-hidden rounded-[16px]'>
           {mounted ? (
-            <AnimatePresence initial={false} custom={custom}>
-              <Item
-                key={'smart-stack-item-' + index}
-                direction={direction}
-                size={containerSize}
-              >
-                {items[index] ?? null}
-              </Item>
-            </AnimatePresence>
+            <div className='absolute left-0 top-0 h-full w-full animate-in [&_a]:user-drag-none [&_img]:user-drag-none'>
+              <AnimatePresence initial={false} custom={custom}>
+                <Item
+                  key={'smart-stack-item-' + index}
+                  direction={direction}
+                  size={containerSize}
+                  onDragEnd={handleDragEnd}
+                >
+                  {items[index] ?? null}
+                </Item>
+              </AnimatePresence>
+            </div>
           ) : null}
         </div>
-        {/* <div className='absolute left-0 top-0 h-full w-full rounded-2xl border bg-cyan-400'></div> */}
       </div>
       {count > 1 ? (
         <DotsNavigation

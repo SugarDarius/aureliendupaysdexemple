@@ -3,6 +3,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme'
 
 import animationsPlugin from 'tailwindcss-animate'
 
+import { dragPlugin } from './_tailwind-plugins/drag-plugin'
 import { vfxBackgroundsPlugin } from './_tailwind-plugins/vfx-backgrounds-plugin'
 import { vfxBorderBeamPlugin } from './_tailwind-plugins/vfx-border-beam-plugin'
 
@@ -84,7 +85,12 @@ const config = {
       },
     },
   },
-  plugins: [animationsPlugin, vfxBackgroundsPlugin, vfxBorderBeamPlugin],
+  plugins: [
+    animationsPlugin,
+    dragPlugin,
+    vfxBackgroundsPlugin,
+    vfxBorderBeamPlugin,
+  ],
 } satisfies Config
 
 export default config
