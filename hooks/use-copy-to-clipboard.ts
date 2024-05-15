@@ -8,7 +8,7 @@ export function useCopyToClipboard(): [CopiedValue, CopyFn] {
   const [copiedText, setCopiedText] = useState<CopiedValue>(null)
 
   const copy: CopyFn = useEvent(async (text: string): Promise<boolean> => {
-    if (!navigator?.clipboard) {
+    if (!navigator.clipboard) {
       return false
     }
 
