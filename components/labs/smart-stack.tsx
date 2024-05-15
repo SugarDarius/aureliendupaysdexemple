@@ -242,8 +242,6 @@ export function SmartStack({
   }, [])
 
   const custom = { direction, height: containerSize[1] }
-  // const upperCorners = `rounded-[${roundedValuePx > 0 ? roundedValuePx + 1 : 0}px]`
-  // const lowerCorners = `rounded-[${roundedValuePx}px]`
 
   return (
     <div
