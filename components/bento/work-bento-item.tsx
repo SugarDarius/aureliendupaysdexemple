@@ -13,7 +13,7 @@ export function WorkBentoItem() {
           <Image
             src='/medias/images/work-preview@4.png'
             fill
-            alt='tech stack preview'
+            alt='work preview'
             style={{ objectFit: 'contain' }}
             sizes='1024px'
             priority
