@@ -252,7 +252,7 @@ export function SmartStack({
       <div className='absolute left-0 top-0 h-full w-full overflow-hidden !bg-transparent'>
         <div
           className={cn(
-            'absolute left-0 top-0 h-full w-full overflow-hidden rounded-[18px] bg-neutral-800',
+            'absolute left-0 top-0 h-full w-full overflow-hidden rounded-[18px] bg-neutral-700 dark:bg-neutral-800',
             clsx(`rounded-[${roundedValuePx > 0 ? roundedValuePx + 2 : 0}px]`)
           )}
         >
