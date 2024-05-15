@@ -83,14 +83,7 @@ const variants = {
   }),
 }
 
-const Item = ({
-  direction,
-  size,
-  children,
-  onDragStart,
-  onDragEnd,
-  onClickCapture,
-}: {
+type ItemProps = {
   direction: number
   size: [number, number]
   children: React.ReactNode
@@ -100,31 +93,48 @@ const Item = ({
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
   ) => void
-}) => {
-  return (
-    <motion.div
-      className='absolute left-0 top-0 flex flex-col'
-      style={{ width: size[0], height: size[1] }}
-      custom={{ direction, height: size[1] }}
-      variants={variants}
-      initial='enter'
-      animate='visible'
-      exit='exit'
-      transition={{
-        y: { duration: 0.6 },
-        scale: { duration: 0.6 },
-      }}
-      drag='y'
-      dragConstraints={{ top: 0, bottom: 0 }}
-      dragElastic={1}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-      onClickCapture={onClickCapture}
-    >
-      <div className='flex h-full w-full flex-col'>{children}</div>
-    </motion.div>
-  )
 }
+
+const Item = React.forwardRef<HTMLDivElement, ItemProps>(
+  (
+    {
+      direction,
+      size,
+      children,
+      onDragStart,
+      onDragEnd,
+      onClickCapture,
+    }: ItemProps,
+    ref
+  ) => {
+    return (
+      <motion.div
+        ref={ref}
+        className='absolute left-0 top-0 flex flex-col'
+        style={{ width: size[0], height: size[1] }}
+        custom={{ direction, height: size[1] }}
+        variants={variants}
+        initial='enter'
+        animate='visible'
+        exit='exit'
+        transition={{
+          y: { duration: 0.6 },
+          scale: { duration: 0.6 },
+        }}
+        drag='y'
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={1}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        onClickCapture={onClickCapture}
+      >
+        <div className='flex h-full w-full flex-col'>{children}</div>
+      </motion.div>
+    )
+  }
+)
+
+Item.displayName = 'SmartStackItem'
 
 const SWIPE_DISTANCE_THRESHOLD = 10000
 const getSwipeDistance = (offset: number, velocity: number): number =>
@@ -243,7 +253,7 @@ export function SmartStack({
         <div className='absolute left-0 top-0 h-full w-full overflow-hidden rounded-[16px]'>
           {mounted ? (
             <div className='absolute left-0 top-0 h-full w-full animate-in [&_a]:user-drag-none [&_img]:user-drag-none'>
-              <AnimatePresence initial={false} custom={custom}>
+              <AnimatePresence initial={false} custom={custom} mode='popLayout'>
                 <Item
                   key={'smart-stack-item-' + index}
                   direction={direction}
