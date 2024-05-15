@@ -3,7 +3,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import { clsx } from 'clsx'
 import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
@@ -243,26 +242,27 @@ export function SmartStack({
   }, [])
 
   const custom = { direction, height: containerSize[1] }
+  // const upperCorners = `rounded-[${roundedValuePx > 0 ? roundedValuePx + 1 : 0}px]`
+  // const lowerCorners = `rounded-[${roundedValuePx}px]`
 
   return (
     <div
       ref={containerRef}
       className={cn('group relative flex flex-col', className)}
     >
-      <div className='absolute left-0 top-0 h-full w-full overflow-hidden !bg-transparent'>
+      <div
+        className='absolute left-0 top-0 h-full w-full overflow-hidden !bg-transparent'
+        style={{ borderRadius: roundedValuePx }}
+      >
         <div
-          className={cn(
-            'absolute left-0 top-0 h-full w-full overflow-hidden rounded-[18px] bg-neutral-700 dark:bg-neutral-800',
-            clsx(`rounded-[${roundedValuePx > 0 ? roundedValuePx + 2 : 0}px]`)
-          )}
+          className='absolute left-0 top-0 h-full w-full overflow-hidden rounded-[18px] bg-neutral-700 dark:bg-neutral-800'
+          style={{ borderRadius: roundedValuePx > 0 ? roundedValuePx + 2 : 0 }}
         >
           <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-900 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
         </div>
         <div
-          className={cn(
-            'absolute left-0 top-0 h-full w-full overflow-hidden',
-            clsx(`rounded-[${roundedValuePx}px]`)
-          )}
+          className='absolute left-0 top-0 h-full w-full overflow-hidden'
+          style={{ borderRadius: roundedValuePx }}
         >
           {mounted ? (
             <div className='absolute left-0 top-0 h-full w-full animate-in [&_a]:user-drag-none [&_img]:user-drag-none'>
