@@ -13,7 +13,7 @@ export function TechStackBentoItem() {
           <Image
             src='/medias/images/tech-stack-preview@4.png'
             fill
-            alt='preview'
+            alt='tech stack preview'
             style={{ objectFit: 'contain' }}
             sizes='1024px'
             priority
