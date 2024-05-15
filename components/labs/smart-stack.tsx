@@ -90,8 +90,8 @@ const variants: Variants = {
 }
 
 const transition: Transition = {
-  y: { duration: 0.8 },
-  scale: { duration: 0.8 },
+  y: { duration: 0.6 },
+  scale: { duration: 0.6 },
 }
 
 type ItemProps = {
