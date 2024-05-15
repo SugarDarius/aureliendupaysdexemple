@@ -21,7 +21,10 @@ export default function HomePage() {
         <GitHubBentoItem contributionsColors={contributionsColors} />
         <TwitterBentoItem />
         <LinkedInBentoItem />
-        <SmartStack className='col-span-2 row-span-1 min-h-full max-lg:min-h-[220px] max-md:min-h-[180px]'>
+        <SmartStack
+          className='col-span-2 row-span-1 min-h-full max-lg:min-h-[220px] max-md:min-h-[180px]'
+          roundedValuePx={16}
+        >
           <TechStackBentoItem />
           <WorkBentoItem />
         </SmartStack>
