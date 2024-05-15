@@ -16,7 +16,6 @@ import {
   GitHubLogoIcon,
   LinkedInLogoIcon,
   CopyIcon,
-  TwitterLogoIcon,
 } from '@radix-ui/react-icons'
 
 import { toast } from 'sonner'
@@ -38,6 +37,7 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from '@/components/ui/command'
+import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 
 const CommandCenterDialogItem = ({
   searchValue,
