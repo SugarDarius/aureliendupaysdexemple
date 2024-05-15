@@ -8,6 +8,31 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'
 
+const DotNavigationItem = ({
+  dot,
+  selectedIndex,
+  onClick,
+}: {
+  dot: string
+  selectedIndex: number
+  onClick: (index: number) => void
+}) => {
+  const index = parseInt(dot.split('-').pop() ?? '-1')
+  const handleClick = useEvent((): void => {
+    onClick(index)
+  })
+
+  const selected = index === selectedIndex
+
+  return (
+    <div
+      className='0 size-[10px] cursor-pointer rounded-full border border-neutral-700 bg-neutral-50 transition-colors ease-linear hover:bg-neutral-700 data-[selected=true]:bg-neutral-700 dark:border-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-200 dark:data-[selected=true]:bg-neutral-200'
+      onClick={handleClick}
+      data-selected={selected}
+    />
+  )
+}
+
 const DotsNavigation = ({
   count,
   selectedIndex,
@@ -22,22 +47,18 @@ const DotsNavigation = ({
     (_, i) => 'dot-navigation-item-' + i
   )
 
-  const handleClick = useEvent((index: number): void => {
-    onClick(index)
-  })
-
   return (
-    <div className='z-10 flex min-h-[40%] flex-col justify-center gap-1.5 rounded-full p-1.5 px-1 py-1.5 opacity-25 backdrop-blur-sm transition-opacity ease-linear group-hover:opacity-100'>
-      {dots.map((dot, index) => (
-        <div
-          key={dot}
-          className='0 size-[10px] cursor-pointer rounded-full border border-neutral-700 bg-neutral-50 transition-colors ease-linear hover:bg-neutral-700 data-[selected=true]:bg-neutral-700 dark:border-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-200 dark:data-[selected=true]:bg-neutral-200'
-          onClick={(): void => {
-            handleClick(index)
-          }}
-          data-selected={index === selectedIndex}
-        />
-      ))}
+    <div className='absolute right-2 top-0 flex h-full flex-col justify-center'>
+      <div className='z-10 flex min-h-[40%] flex-col justify-center gap-1.5 rounded-full p-1.5 px-1 py-1.5 opacity-25 backdrop-blur-sm transition-opacity ease-linear group-hover:opacity-100'>
+        {dots.map((dot, index) => (
+          <DotNavigationItem
+            key={dot}
+            dot={dot}
+            selectedIndex={selectedIndex}
+            onClick={onClick}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -161,13 +182,11 @@ export function SmartStack({
         {/* <div className='absolute left-0 top-0 h-full w-full rounded-2xl border bg-cyan-400'></div> */}
       </div>
       {count > 1 ? (
-        <div className='absolute right-2 top-0 flex h-full flex-col justify-center'>
-          <DotsNavigation
-            count={count}
-            selectedIndex={index}
-            onClick={handleDotClick}
-          />
-        </div>
+        <DotsNavigation
+          count={count}
+          selectedIndex={index}
+          onClick={handleDotClick}
+        />
       ) : null}
     </div>
   )
