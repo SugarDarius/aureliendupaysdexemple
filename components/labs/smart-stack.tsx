@@ -26,7 +26,7 @@ const DotNavigationItem = ({
 
   return (
     <div
-      className='0 size-[10px] cursor-pointer rounded-full border border-neutral-700 bg-neutral-50 transition-colors ease-linear hover:bg-neutral-700 data-[selected=true]:bg-neutral-700 dark:border-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-200 dark:data-[selected=true]:bg-neutral-200'
+      className='0 size-[10px] cursor-pointer rounded-full border border-neutral-700 bg-neutral-50 transition-colors ease-linear hover:bg-neutral-600 data-[selected=true]:bg-neutral-700 dark:border-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-100 dark:data-[selected=true]:bg-neutral-200'
       onClick={handleClick}
       data-selected={selected}
     />
