@@ -11,6 +11,7 @@ import { TwitterBentoItem } from '@/components/bento/twitter-bento-item'
 import { LinkedInBentoItem } from '@/components/bento/linkedin-bento-item'
 import { TechStackBentoItem } from '@/components/bento/tech-stack-bento-item'
 import { WorkBentoItem } from '@/components/bento/work-bento-item'
+import { CraftBentoItem } from '@/components/bento/craft-bento-item'
 
 export default function HomePage() {
   const contributionsColors = generateGitHubRandomContributionsColors()
@@ -27,6 +28,7 @@ export default function HomePage() {
         >
           <TechStackBentoItem />
           <WorkBentoItem />
+          <CraftBentoItem />
         </SmartStack>
       </BentoGrid>
     </PageContent>
