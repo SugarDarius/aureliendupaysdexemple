@@ -87,11 +87,15 @@ const Item = ({
   direction,
   size,
   children,
+  onDragStart,
   onDragEnd,
+  onClickCapture,
 }: {
   direction: number
   size: [number, number]
   children: React.ReactNode
+  onClickCapture: (e: React.MouseEvent<HTMLDivElement>) => void
+  onDragStart: () => void
   onDragEnd: (
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
@@ -113,7 +117,9 @@ const Item = ({
       drag='y'
       dragConstraints={{ top: 0, bottom: 0 }}
       dragElastic={1}
+      onDragStart={onDragStart}
       onDragEnd={onDragEnd}
+      onClickCapture={onClickCapture}
     >
       <div className='flex h-full w-full flex-col'>{children}</div>
     </motion.div>
@@ -155,14 +161,19 @@ export function SmartStack({
   const mounted = useMounted()
 
   const containerRef = useRef<HTMLDivElement>(null)
+  const isDraggingRef = useRef<boolean>(false)
 
   const [index, setIndex] = useState<number>(0)
   const [direction, setDirection] = useState<number>(1)
 
   const [containerSize, setContainerSize] = useState<[number, number]>([0, 0])
 
+  const handleDragStart = useEvent((): void => {
+    isDraggingRef.current = true
+  })
+
   const handleDragEnd = useEvent(
-    (e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void => {
+    (_e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void => {
       const { offset, velocity } = info
 
       const maxIndex = count - 1
@@ -176,6 +187,17 @@ export function SmartStack({
         const nextIndex = getNextIndex(-1, index, maxIndex)
         setIndex(nextIndex)
         setDirection(-1)
+      }
+
+      isDraggingRef.current = false
+    }
+  )
+
+  const handleCaptureClick = useEvent(
+    (e: React.MouseEvent<HTMLDivElement>): void => {
+      if (isDraggingRef.current) {
+        e.preventDefault()
+        e.stopPropagation()
       }
     }
   )
@@ -226,7 +248,9 @@ export function SmartStack({
                   key={'smart-stack-item-' + index}
                   direction={direction}
                   size={containerSize}
+                  onDragStart={handleDragStart}
                   onDragEnd={handleDragEnd}
+                  onClickCapture={handleCaptureClick}
                 >
                   {items[index] ?? null}
                 </Item>
