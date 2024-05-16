@@ -15,7 +15,7 @@ import { Callout } from '@/components/content/callout'
 
 type MDXRendererComponents = Required<MDXRemoteProps['components']>
 
-const createHeading = ({ level }: { level: 1 | 2 | 3 | 4 | 5 | 6 }) => {
+const createHeading = (level: 1 | 2 | 3 | 4 | 5 | 6) => {
   const Heading = ({
     children,
     className,
@@ -30,7 +30,7 @@ const createHeading = ({ level }: { level: 1 | 2 | 3 | 4 | 5 | 6 }) => {
             href: `#${slug}`,
             key: `anchor-${slug}`,
             className:
-              'invisible absolute -ml-6 h-full w-[calc(100%+24px)] cursor-pointer pr-3 no-underline after:content-["#"] group-hover:visible',
+              'invisible absolute -ml-6 h-full w-[calc(100%+24px)] cursor-pointer pr-3 no-underline after:content-["#"] group-hover:visible max-lg:hidden',
           }),
         ]
       : []
@@ -50,174 +50,36 @@ const createHeading = ({ level }: { level: 1 | 2 | 3 | 4 | 5 | 6 }) => {
   return Heading
 }
 
-const Heading1 = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => {
-  const Heading = createHeading({ level: 1 })
-  return (
-    <Heading
-      className={cn(
-        'mt-8 scroll-m-20 text-4xl font-extrabold tracking-tighter first:mt-0',
-        className
-      )}
-      {...props}
-    />
-  )
+const Anchor = (
+  props: React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  >
+) => {
+  const href = props.href ?? ''
+
+  if (href.startsWith('/')) {
+    return <Link href={href} aria-label='internal-link' {...props} />
+  }
+
+  if (href.startsWith('#')) {
+    return <a aria-label='anchor-link' {...props} />
+  }
+
+  return <a target='_blank' rel='noopener noreferrer' {...props} />
 }
-
-const Heading2 = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => {
-  const Heading = createHeading({ level: 2 })
-  return (
-    <Heading
-      className={cn(
-        'mt-4 scroll-m-20 text-3xl font-bold tracking-tight first:mt-0',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-const Heading3 = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => {
-  const Heading = createHeading({ level: 3 })
-  return (
-    <Heading
-      className={cn(
-        'mt-6 scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-const Heading4 = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => {
-  const Heading = createHeading({ level: 4 })
-
-  return (
-    <Heading
-      className={cn(
-        'mt-8 scroll-m-20 text-xl font-semibold tracking-tight first:mt-0',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-const Heading5 = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => {
-  const Heading = createHeading({ level: 5 })
-  return (
-    <Heading
-      className={cn(
-        'mt-10 scroll-m-20 text-lg font-semibold tracking-tight first:mt-0',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-const Heading6 = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement>) => {
-  const Heading = createHeading({ level: 6 })
-
-  return (
-    <Heading
-      className={cn(
-        'mt-12 scroll-m-20 text-base font-semibold tracking-tight first:mt-0',
-        className
-      )}
-      {...props}
-    />
-  )
-}
-
-const Paragraph = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLParagraphElement>) => (
-  <p
-    className={cn('leading-6 [&:not(:first-child)]:mt-6', className)}
-    {...props}
-  />
-)
-
-const Blockquote = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLElement>) => (
-  <blockquote
-    className={cn(
-      'mt-6 border-l-2 pl-6 italic text-muted-foreground',
-      className
-    )}
-    {...props}
-  />
-)
-
-const InternalLink = ({
-  className,
-  ...props
-}: React.ComponentProps<typeof Link>) => (
-  <Link
-    className={cn('font-medium underline underline-offset-4', className)}
-    aria-label='internal-link'
-    {...props}
-  />
-)
-
-const ExternalLink = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLAnchorElement>) => (
-  <a
-    className={cn('font-medium underline underline-offset-4', className)}
-    target='_blank'
-    rel='noopener noreferrer'
-    arial-label='external-link'
-    {...props}
-  />
-)
 
 const CodeBlock = ({
-  className,
   children,
   ...props
 }: React.HTMLAttributes<HTMLElement>) => {
   const highlightedCodeHTML = highlight(children as string)
 
   return (
-    <div
-      className={cn(
-        'relative mt-2 block w-full overflow-hidden rounded-md border border-neutral-200 bg-stone-50 font-mono text-sm font-semibold dark:border-neutral-800 dark:bg-stone-900',
-        className
-      )}
-    >
-      <div className='flex w-full flex-col overflow-x-auto'>
-        <div className='w-max px-4 py-2'>
-          <code
-            {...props}
-            dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
-          />
-        </div>
-      </div>
-    </div>
+    <code
+      {...props}
+      dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
+    />
   )
 }
 
@@ -227,7 +89,7 @@ const InlineCode = ({
 }: React.HTMLAttributes<HTMLElement>) => (
   <code
     className={cn(
-      'relative w-max rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
+      'relative w-max rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm before:hidden after:hidden',
       className
     )}
     {...props}
@@ -239,17 +101,14 @@ const RoundedImage = ({ className, alt, ...props }: ImageProps) => (
 )
 
 const components: MDXRendererComponents = {
-  h1: Heading1,
-  h2: Heading2,
-  h3: Heading3,
-  h4: Heading4,
-  h5: Heading5,
-  h6: Heading6,
-  p: Paragraph,
-  blockquote: Blockquote,
+  h1: createHeading(1),
+  h2: createHeading(2),
+  h3: createHeading(3),
+  h4: createHeading(4),
+  h5: createHeading(5),
+  h6: createHeading(6),
   code: CodeBlock,
-  a: ExternalLink,
-  InternalLink,
+  a: Anchor,
   TagLink,
   Callout,
   RoundedImage,
@@ -257,5 +116,9 @@ const components: MDXRendererComponents = {
 }
 
 export function MDXContentRenderer({ source }: { source: string }) {
-  return <MDXRemote source={source} components={components} />
+  return (
+    <article className='prose max-w-none dark:prose-invert prose-a:underline-offset-4 prose-pre:bg-stone-900'>
+      <MDXRemote source={source} components={components} />
+    </article>
+  )
 }

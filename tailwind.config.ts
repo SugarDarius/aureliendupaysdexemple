@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import { fontFamily } from 'tailwindcss/defaultTheme'
 
+import typographyPlugin from '@tailwindcss/typography'
 import animationsPlugin from 'tailwindcss-animate'
 
 import { dragPlugin } from './_tailwind-plugins/drag-plugin'
@@ -86,6 +87,7 @@ const config = {
     },
   },
   plugins: [
+    typographyPlugin,
     animationsPlugin,
     dragPlugin,
     vfxBackgroundsPlugin,

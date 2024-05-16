@@ -40,7 +40,7 @@ export function Callout({
             {title}
           </h5>
         ) : null}
-        <div className='text-sm [&_p]:leading-[18px]'>{children}</div>
+        <div className='text-sm [&_p]:m-0 [&_p]:leading-[18px]'>{children}</div>
       </div>
     </div>
   )
