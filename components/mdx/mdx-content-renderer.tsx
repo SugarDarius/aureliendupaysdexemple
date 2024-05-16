@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Link from 'next/link'
+import NextLink from 'next/link'
 import Image, { type ImageProps } from 'next/image'
 
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
@@ -50,7 +50,7 @@ const createHeading = (level: 1 | 2 | 3 | 4 | 5 | 6) => {
   return Heading
 }
 
-const Anchor = (
+const Link = (
   props: React.DetailedHTMLProps<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
@@ -59,7 +59,7 @@ const Anchor = (
   const href = props.href ?? ''
 
   if (href.startsWith('/')) {
-    return <Link href={href} aria-label='internal-link' {...props} />
+    return <NextLink href={href} aria-label='internal-link' {...props} />
   }
 
   if (href.startsWith('#')) {
@@ -108,7 +108,7 @@ const components: MDXRendererComponents = {
   h5: createHeading(5),
   h6: createHeading(6),
   code: CodeBlock,
-  a: Anchor,
+  a: Link,
   TagLink,
   Callout,
   RoundedImage,
