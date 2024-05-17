@@ -29,7 +29,6 @@ const useCommandsSuggestionsStore = create<CommandsSuggestionsStore>()(
 )
 
 export function increaseScore(commandName: string): void {
-  console.log('initial state', useCommandsSuggestionsStore.getInitialState())
   useCommandsSuggestionsStore.getState().increaseScore(commandName)
 }
 
