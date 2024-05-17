@@ -86,9 +86,13 @@ const commands = new Map<string, ReturnType<typeof CommandCenterDialogItem>>()
 
 const createCommandWithSuggestion = (
   name: string,
-  props: Omit<CommandCenterDialogItemProps, 'name'> & { key?: string }
+  {
+    key: initialKey,
+    ...props
+  }: Omit<CommandCenterDialogItemProps, 'name'> & { key?: string }
 ): ReturnType<typeof CommandCenterDialogItem> => {
-  const key = dasherize(props.key ?? name)
+  const key = dasherize(initialKey ?? name)
+
   const suggestedValue = `${props.value}+suggested`
   const suggestedSearchValue = props.searchValue
     ? `${props.searchValue}+suggested`
