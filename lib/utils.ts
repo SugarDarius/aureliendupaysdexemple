@@ -26,3 +26,14 @@ export function slugify(input: string): string {
     .replace(/[^\w-]+/g, '') // Remove all non-word characters except for -
     .replace(/--+/g, '-') // Replace multiple - with single -
 }
+
+export function dasherize(input: string): string {
+  return input
+    .replace(/([a-z])([A-Z])/g, '$1-$2') // e.g., 'camelCase' -> 'camel-Case'
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2') // e.g., 'HTMLParser' -> 'HTML-Parser'
+    .replace(/([0-9])([a-zA-Z])/g, '$1-$2') // e.g., '123abc' -> '123-abc'
+    .replace(/([a-zA-Z])([0-9])/g, '$1-$2') // e.g., 'abc123' -> 'abc-123'
+    .replace(/[^a-zA-Z0-9]+/g, '-') // Replace non-alphanumeric characters with dashes
+    .replace(/^-+|-+$/g, '') // Trim dashes from the start and end of the string
+    .toLowerCase() // Convert the whole string to lowercase
+}

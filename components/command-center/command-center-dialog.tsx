@@ -24,10 +24,11 @@ import { toast } from 'sonner'
 
 import { siteConfig } from '@/config/site-config'
 
-import { cn, toUpperFirst } from '@/lib/utils'
+import { cn, toUpperFirst, dasherize } from '@/lib/utils'
 import { navigationItems } from '@/lib/navigation'
 
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
+import { useMounted } from '@/hooks/use-mounted'
 
 import {
   CommandDialog,
@@ -43,7 +44,10 @@ import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { ReturnIcon } from '@/components/icons/return-icon'
 
-import { increaseScore } from '@/components/command-center/commands-suggestions-store'
+import {
+  getHighestScoredCommands,
+  increaseScore,
+} from '@/components/command-center/commands-suggestions-store'
 
 type CommandCenterDialogItemProps = {
   name: string
@@ -79,19 +83,31 @@ const CommandCenterDialogItem = ({
 
 const commands = new Map<string, ReturnType<typeof CommandCenterDialogItem>>()
 
-const createCommand = (
+const createCommandWithSuggestion = (
   name: string,
-  {
-    key,
-    ...props
-  }: Omit<CommandCenterDialogItemProps, 'name'> & { key?: string }
+  props: Omit<CommandCenterDialogItemProps, 'name'> & { key?: string }
 ): ReturnType<typeof CommandCenterDialogItem> => {
-  const command = (
-    <CommandCenterDialogItem key={key ?? name} name={name} {...props} />
-  )
-  commands.set(name, command)
+  const key = dasherize(props.key ?? name)
+  const suggestedValue = `${props.value}+suggested`
+  const suggestedSearchValue = props.searchValue
+    ? `${props.searchValue}+suggested`
+    : undefined
 
-  return command
+  const commandSuggestion = (
+    <CommandCenterDialogItem
+      key={key + '-suggested'}
+      name={name}
+      {...props}
+      searchValue={suggestedSearchValue}
+      value={suggestedValue}
+      onSelect={(name: string, value: string) => {
+        props.onSelect(name, value.replace('+suggested', ''))
+      }}
+    />
+  )
+  commands.set(name, commandSuggestion)
+
+  return <CommandCenterDialogItem key={key} name={name} {...props} />
 }
 
 export function CommandCenterDialog({
@@ -109,6 +125,7 @@ export function CommandCenterDialog({
   const { setTheme } = useTheme()
 
   const [, copy] = useCopyToClipboard()
+  const mounted = useMounted()
 
   const execCommand = useEvent((name: string, command: () => void): void => {
     increaseScore(name)
@@ -167,6 +184,19 @@ export function CommandCenterDialog({
     })
   })
 
+  const suggestionsCommands = useMemo(() => {
+    if (mounted && open) {
+      const topCommands = getHighestScoredCommands(5)
+      const commandItems = topCommands.map(
+        (commandName) => commands.get(commandName)!
+      )
+
+      return commandItems
+    }
+
+    return []
+  }, [mounted, open])
+
   const [
     navigationCommands,
     actionsCommands,
@@ -175,7 +205,7 @@ export function CommandCenterDialog({
   ] = useMemo(
     () => [
       navigationItems.map((navigationItem) =>
-        createCommand('go-to-' + navigationItem.href, {
+        createCommandWithSuggestion('go-to-' + navigationItem.href, {
           key: navigationItem.href,
           searchValue: navigationItem.name,
           value: navigationItem.href,
@@ -193,7 +223,7 @@ export function CommandCenterDialog({
         })
       ),
       [
-        createCommand('copy-current-url', {
+        createCommandWithSuggestion('copy-current-url', {
           value: 'copy current url',
           onSelect: handleSelectCopyCurrentURL,
           children: (
@@ -203,7 +233,7 @@ export function CommandCenterDialog({
             </>
           ),
         }),
-        createCommand('create-qr-code', {
+        createCommandWithSuggestion('create-qr-code', {
           value: 'create qr code for current url',
           onSelect: handleSelectCreateQRCode,
           children: (
@@ -215,7 +245,7 @@ export function CommandCenterDialog({
         }),
       ],
       [
-        createCommand('linkedin', {
+        createCommandWithSuggestion('linkedin', {
           value: siteConfig.socialLinks.linkedin.url,
           searchValue: 'linkedin',
           onSelect: handleSelectSocialLink,
@@ -226,7 +256,7 @@ export function CommandCenterDialog({
             </>
           ),
         }),
-        createCommand('github', {
+        createCommandWithSuggestion('github', {
           value: siteConfig.socialLinks.github.url,
           searchValue: 'github',
           onSelect: handleSelectSocialLink,
@@ -237,7 +267,7 @@ export function CommandCenterDialog({
             </>
           ),
         }),
-        createCommand('twitter', {
+        createCommandWithSuggestion('twitter', {
           value: siteConfig.socialLinks.twitter.url,
           searchValue: 'twitter',
           onSelect: handleSelectSocialLink,
@@ -250,7 +280,7 @@ export function CommandCenterDialog({
         }),
       ],
       [
-        createCommand('light', {
+        createCommandWithSuggestion('light', {
           value: 'light',
           onSelect: handleSelectColorMode,
           children: (
@@ -260,7 +290,7 @@ export function CommandCenterDialog({
             </>
           ),
         }),
-        createCommand('dark', {
+        createCommandWithSuggestion('dark', {
           value: 'dark',
           onSelect: handleSelectColorMode,
           children: (
@@ -270,7 +300,7 @@ export function CommandCenterDialog({
             </>
           ),
         }),
-        createCommand('system', {
+        createCommandWithSuggestion('system', {
           value: 'system',
           onSelect: handleSelectColorMode,
           children: (
@@ -291,6 +321,11 @@ export function CommandCenterDialog({
       <CommandInput placeholder='Type a command or search' />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
+        {suggestionsCommands.length > 0 ? (
+          <CommandGroup heading='Suggestions'>
+            {suggestionsCommands}
+          </CommandGroup>
+        ) : null}
         <CommandGroup heading='Navigation'>{navigationCommands}</CommandGroup>
         <CommandSeparator />
         <CommandGroup heading='Actions'>{actionsCommands}</CommandGroup>
