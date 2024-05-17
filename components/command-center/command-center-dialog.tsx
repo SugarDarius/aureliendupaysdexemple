@@ -39,6 +39,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
+  useCommandState,
 } from '@/components/ui/command'
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
@@ -110,6 +111,19 @@ const createCommandWithSuggestion = (
   return <CommandCenterDialogItem key={key} name={name} {...props} />
 }
 
+const CommandCenterDialogSuggestions = ({
+  children,
+}: {
+  children?: React.ReactNode
+}) => {
+  const search = useCommandState((state) => state.search)
+
+  if (search.length > 0) {
+    return null
+  }
+
+  return <CommandGroup heading='Suggestions'>{children}</CommandGroup>
+}
 export function CommandCenterDialog({
   open,
   onOpenChange,
@@ -322,9 +336,9 @@ export function CommandCenterDialog({
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         {suggestionsCommands.length > 0 ? (
-          <CommandGroup heading='Suggestions'>
+          <CommandCenterDialogSuggestions>
             {suggestionsCommands}
-          </CommandGroup>
+          </CommandCenterDialogSuggestions>
         ) : null}
         <CommandGroup heading='Navigation'>{navigationCommands}</CommandGroup>
         <CommandSeparator />

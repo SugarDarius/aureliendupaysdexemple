@@ -36,7 +36,7 @@ export function getHighestScoredCommands(size: number): string[] {
   const scores = useCommandsSuggestionsStore.getState().scores
 
   const keys = Array.from(Object.keys(scores))
-  const commands = keys.slice(0, size - 1)
+  const commands = keys.slice(0, size)
 
   return commands
 }
