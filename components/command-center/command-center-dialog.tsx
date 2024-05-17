@@ -43,14 +43,16 @@ import { ReturnIcon } from '@/components/icons/return-icon'
 import { useMemo } from 'react'
 
 type CommandCenterDialogItemProps = {
+  name: string
   searchValue?: string
   value: string
-  onSelect: (value: string) => void
+  onSelect: (name: string, value: string) => void
   className?: string
   children: React.ReactNode
 }
 
 const CommandCenterDialogItem = ({
+  name,
   searchValue,
   value,
   onSelect,
@@ -58,7 +60,7 @@ const CommandCenterDialogItem = ({
   children,
 }: CommandCenterDialogItemProps) => {
   const handleSelect = useEvent((): void => {
-    onSelect(value)
+    onSelect(name, value)
   })
 
   return (
@@ -76,9 +78,14 @@ const commands = new Map<string, ReturnType<typeof CommandCenterDialogItem>>()
 
 const createCommand = (
   name: string,
-  { key, ...props }: CommandCenterDialogItemProps & { key?: string }
+  {
+    key,
+    ...props
+  }: Omit<CommandCenterDialogItemProps, 'name'> & { key?: string }
 ): ReturnType<typeof CommandCenterDialogItem> => {
-  const command = <CommandCenterDialogItem key={key ?? name} {...props} />
+  const command = (
+    <CommandCenterDialogItem key={key ?? name} name={name} {...props} />
+  )
   commands.set(name, command)
 
   return command
@@ -100,31 +107,35 @@ export function CommandCenterDialog({
 
   const [, copy] = useCopyToClipboard()
 
-  const execCommand = useEvent((command: () => void): void => {
+  const execCommand = useEvent((_name: string, command: () => void): void => {
     onExecCommand()
     command()
   })
 
-  const handleSelectNavigation = useEvent((href: string): void => {
-    execCommand((): void => {
-      router.push(href)
-    })
-  })
+  const handleSelectNavigation = useEvent(
+    (name: string, href: string): void => {
+      execCommand(name, (): void => {
+        router.push(href)
+      })
+    }
+  )
 
-  const handleSelectSocialLink = useEvent((url: string): void => {
-    execCommand((): void => {
+  const handleSelectSocialLink = useEvent((name: string, url: string): void => {
+    execCommand(name, (): void => {
       window.open(url, '_blank')
     })
   })
 
-  const handleSelectColorMode = useEvent((colorMode: string): void => {
-    execCommand((): void => {
-      setTheme(colorMode)
-    })
-  })
+  const handleSelectColorMode = useEvent(
+    (name: string, colorMode: string): void => {
+      execCommand(name, (): void => {
+        setTheme(colorMode)
+      })
+    }
+  )
 
-  const handleSelectCopyCurrentURL = useEvent((): void => {
-    execCommand((): void => {
+  const handleSelectCopyCurrentURL = useEvent((name: string): void => {
+    execCommand(name, (): void => {
       const currentURL = window.location.href
 
       copy(currentURL)
@@ -145,8 +156,8 @@ export function CommandCenterDialog({
     })
   })
 
-  const handleSelectCreateQRCode = useEvent((): void => {
-    execCommand((): void => {
+  const handleSelectCreateQRCode = useEvent((name: string): void => {
+    execCommand(name, (): void => {
       const currentURL = window.location.href
       onCreateQRCode(currentURL)
     })
