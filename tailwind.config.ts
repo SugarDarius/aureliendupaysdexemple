@@ -17,6 +17,17 @@ const config = {
     './src/**/*.{ts,tsx}',
   ],
   prefix: '',
+  safelist: [
+    // VFX Presence Cursor
+    'text-violet-700',
+    'bg-violet-700',
+    'text-orange-600',
+    'bg-orange-600',
+    'text-sky-600',
+    'bg-sky-600',
+    'text-fuchsia-500',
+    'bg-fuchsia-500',
+  ],
   theme: {
     container: {
       center: true,

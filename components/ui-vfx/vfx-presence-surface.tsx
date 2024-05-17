@@ -14,11 +14,13 @@ import {
   AnimatePresence,
 } from 'framer-motion'
 
-import { cn } from '@/lib/utils'
+import { cn, pick } from '@/lib/utils'
 import { getRandomUsername } from '@/lib/random-username'
 
 import { useMounted } from '@/hooks/use-mounted'
 import { Cursor } from '@/components/ui/cursor'
+
+const CURSOR_COLORS = ['violet-700', 'orange-600', 'sky-600', 'fuchsia-500']
 
 const PresenceCursor = ({
   x,
@@ -29,6 +31,7 @@ const PresenceCursor = ({
   y: MotionValue<number>
   username: string
 }) => {
+  const color = pick(CURSOR_COLORS)
   return (
     <motion.div
       className='pointer-events-none absolute left-0 top-0 z-10'
@@ -38,9 +41,12 @@ const PresenceCursor = ({
       exit={{ opacity: 0 }}
     >
       <div className='flex flex-row gap-1'>
-        <Cursor className='size-5 text-violet-700' />
+        <Cursor className={cn('size-5', `text-${color}`)} />
         <motion.div
-          className='-ml-2.5 mt-3 flex h-7 flex-row items-center gap-1.5 rounded-full bg-violet-700 pl-1.5 pr-2'
+          className={cn(
+            '-ml-2.5 mt-3 flex h-7 flex-row items-center gap-1.5 rounded-full pl-1.5 pr-2',
+            `bg-${color}`
+          )}
           initial={{ opacity: 0, x: 10, y: 10 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           exit={{ opacity: 0, x: 10, y: 10 }}
