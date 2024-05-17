@@ -2,7 +2,9 @@
 
 import { useRouter } from 'next/navigation'
 
+import { useMemo } from 'react'
 import useEvent from 'react-use-event-hook'
+
 import { useTheme } from 'next-themes'
 
 import {
@@ -40,7 +42,8 @@ import {
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { ReturnIcon } from '@/components/icons/return-icon'
-import { useMemo } from 'react'
+
+import { increaseScore } from '@/components/command-center/commands-suggestions-store'
 
 type CommandCenterDialogItemProps = {
   name: string
@@ -107,7 +110,8 @@ export function CommandCenterDialog({
 
   const [, copy] = useCopyToClipboard()
 
-  const execCommand = useEvent((_name: string, command: () => void): void => {
+  const execCommand = useEvent((name: string, command: () => void): void => {
+    increaseScore(name)
     onExecCommand()
     command()
   })
