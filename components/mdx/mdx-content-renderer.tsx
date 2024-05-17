@@ -30,7 +30,7 @@ const createHeading = (level: 1 | 2 | 3 | 4 | 5 | 6) => {
             href: `#${slug}`,
             key: `anchor-${slug}`,
             className:
-              'invisible absolute -ml-6 h-full w-[calc(100%+24px)] cursor-pointer pr-3 no-underline after:content-["#"] group-hover:visible max-lg:hidden',
+              'invisible absolute -ml-6 h-full w-full cursor-pointer pr-3 no-underline after:content-["#"] group-hover:visible max-lg:hidden',
           }),
         ]
       : []
