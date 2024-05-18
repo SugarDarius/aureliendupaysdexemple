@@ -50,7 +50,7 @@ export function VFXConfettiSurface({ className }: { className?: string }) {
     <div
       ref={containerRef}
       className={cn(
-        '!pointer-events-none absolute left-0 top-0 !z-[999999] h-dvh w-screen',
+        '!pointer-events-none absolute left-0 top-0 !z-[999999] h-screen w-screen',
         className
       )}
     >
