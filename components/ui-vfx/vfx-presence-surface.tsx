@@ -54,7 +54,7 @@ const PresenceCursor = ({
         >
           <div className='flex size-4 flex-col items-center justify-center overflow-hidden rounded-full'>
             <Image
-              src='/medias/images/aureliendupaysdexemple-logo.png'
+              src='/medias/images/aureliendupaysdexemple-logo.webp'
               width={16}
               height={16}
               alt='logo'

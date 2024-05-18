@@ -39,7 +39,7 @@ export function LinkedInChatWidget() {
         </div>
         <div className='flex flex-row items-center justify-end'>
           <ChatBubble
-            src='/medias/images/aureliendupaysdexemple-logo.png'
+            src='/medias/images/aureliendupaysdexemple-logo.webp'
             alt='logo'
             className='bg-sky-700'
           >
