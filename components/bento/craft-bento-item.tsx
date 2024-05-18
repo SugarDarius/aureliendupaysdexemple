@@ -15,7 +15,7 @@ export function CraftBentoItem() {
             fill
             alt='craft preview'
             style={{ objectFit: 'contain' }}
-            sizes='1024px'
+            sizes='330px'
             priority
           />
         </div>

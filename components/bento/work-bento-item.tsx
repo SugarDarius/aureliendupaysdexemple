@@ -15,7 +15,7 @@ export function WorkBentoItem() {
             fill
             alt='work preview'
             style={{ objectFit: 'contain' }}
-            sizes='1024px'
+            sizes='330px'
             priority
           />
         </div>
