@@ -70,11 +70,7 @@ const PresenceCursor = ({
   )
 }
 
-const VFXPresenceSurfacePortal = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+const Portal = ({ children }: { children: React.ReactNode }) => {
   const mounted = useMounted()
   if (!mounted) {
     return null
@@ -130,13 +126,13 @@ export function VFXPresenceSurface({
         className
       )}
     >
-      <VFXPresenceSurfacePortal>
+      <Portal>
         <AnimatePresence>
           {isCursorInside ? (
             <PresenceCursor key={username} x={x} y={y} username={username} />
           ) : null}
         </AnimatePresence>
-      </VFXPresenceSurfacePortal>
+      </Portal>
       {children}
     </div>
   )
