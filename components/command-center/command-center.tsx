@@ -14,6 +14,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
+import { VFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface'
 import { CommandIcon } from '@/components/icons/command-icon'
 
 import { CommandCenterDialog } from '@/components/command-center/command-center-dialog'
@@ -86,6 +87,7 @@ export function CommandCenter({ className }: { className?: string }) {
         value={qrcodeValue}
         onOpenChange={setQRCodeDialogOpen}
       />
+      <VFXConfettiSurface />
     </div>
   )
 }

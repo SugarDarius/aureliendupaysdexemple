@@ -41,14 +41,17 @@ import {
   CommandShortcut,
   useCommandState,
 } from '@/components/ui/command'
+
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { ReturnIcon } from '@/components/icons/return-icon'
+import { ConfettiIcon } from '@/components/icons/confetti-icon'
 
 import {
   getHighestScoredCommands,
   increaseScore,
 } from '@/components/command-center/commands-suggestions-store'
+import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
 
 type CommandCenterDialogItemProps = {
   name: string
@@ -202,6 +205,12 @@ export function CommandCenterDialog({
     })
   })
 
+  const handleSelectVFXConfetti = useEvent((name: string): void => {
+    execCommand(name, (): void => {
+      fireVFXConfettiSurface()
+    })
+  })
+
   const suggestionsCommands = useMemo(() => {
     if (mounted && open) {
       const topCommands = getHighestScoredCommands(5)
@@ -258,6 +267,16 @@ export function CommandCenterDialog({
             <>
               <QrCodeIcon className='size-4' />
               Create QR code for current URL
+            </>
+          ),
+        }),
+        createCommandWithSuggestion('vfx-confetti', {
+          value: 'celebrate with confetti',
+          onSelect: handleSelectVFXConfetti,
+          children: (
+            <>
+              <ConfettiIcon className='size-4 stroke-[1.5px]' />
+              Celebrate with confetti
             </>
           ),
         }),
