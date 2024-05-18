@@ -112,7 +112,7 @@ export default function WorkPage() {
           companyName='Lifen'
           companyLogo={
             <Image
-              src='/medias/images/lifen-logo.jpeg'
+              src='/medias/images/lifen-logo.webp'
               alt='Lifen logo'
               width={24}
               height={24}
@@ -152,7 +152,7 @@ export default function WorkPage() {
           companyName='SFEIR'
           companyLogo={
             <Image
-              src='/medias/images/sfeir-logo.jpeg'
+              src='/medias/images/sfeir-logo.webp'
               alt='Sfeir logo'
               width={24}
               height={24}
@@ -223,7 +223,7 @@ export default function WorkPage() {
           companyName='PhiXL'
           companyLogo={
             <Image
-              src='/medias/images/phixl-logo.jpeg'
+              src='/medias/images/phixl-logo.webp'
               alt='PhiXL logo'
               width={24}
               height={24}
@@ -260,7 +260,7 @@ export default function WorkPage() {
           companyName='Madmix Digital'
           companyLogo={
             <Image
-              src='/medias/images/madmix-digital-logo.jpeg'
+              src='/medias/images/madmix-digital-logo.webp'
               alt='Madmix Digital logo'
               width={24}
               height={24}
