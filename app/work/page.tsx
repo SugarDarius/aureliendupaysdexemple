@@ -222,12 +222,16 @@ export default function WorkPage() {
         <WorkCard
           companyName='PhiXL'
           companyLogo={
-            <Image
-              src='/medias/images/phixl-logo.webp'
-              alt='PhiXL logo'
-              width={24}
-              height={24}
-            />
+            <div className='relative size-6 overflow-hidden'>
+              <div className='absolute inset-0 m-auto h-full w-full scale-125 overflow-hidden'>
+                <Image
+                  src='/medias/images/phixl-logo.webp'
+                  alt='PhiXL logo'
+                  fill
+                  sizes='60px'
+                />
+              </div>
+            </div>
           }
           jobTitle='Lead developer'
           startDate='April 2016'
