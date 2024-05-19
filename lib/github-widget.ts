@@ -4,6 +4,7 @@ import { User, ContributionCalendarWeek } from '@octokit/graphql-schema'
 import { env } from '@/config/env'
 
 const TOTAL_NUMBER_OF_DAYS = 49
+const NO_CONTRIBUTIONS_COLOR = '#ebedf0'
 
 const getUserContributionsQuery = `
 query getUserContributions($username:String!) {
@@ -13,6 +14,7 @@ query getUserContributions($username:String!) {
         totalContributions
         weeks {
           contributionDays {
+            weekday
             date
             color
             contributionCount
@@ -58,16 +60,29 @@ export async function getGitHubContributions(
 
     const contributionsPerDays: ContributionsPerDay[] = weeks.reduce(
       (acc: ContributionsPerDay[], current: ContributionCalendarWeek) => {
-        const contributions = current.contributionDays.map((day) => ({
-          date: day.date,
-          count: day.contributionCount,
-          color: day.color,
-        }))
+        const contributions = current.contributionDays
+          .sort((a, b) => a.weekday - b.weekday)
+          .map((day) => ({
+            date: day.date,
+            count: day.contributionCount,
+            color: day.color,
+          }))
 
         return [...acc, ...contributions]
       },
       []
     )
+
+    const rest = Math.max(TOTAL_NUMBER_OF_DAYS - contributionsPerDays.length, 0)
+    if (rest > 0) {
+      for (let i = 0; i < rest; i++) {
+        contributionsPerDays.push({
+          date: 'XXXX-XX-XX-' + i,
+          count: 0,
+          color: NO_CONTRIBUTIONS_COLOR,
+        })
+      }
+    }
 
     return {
       totalContributions,
