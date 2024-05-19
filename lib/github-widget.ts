@@ -1,10 +1,30 @@
 import { graphql } from '@octokit/graphql'
-import { User, ContributionCalendarWeek } from '@octokit/graphql-schema'
+import { User } from '@octokit/graphql-schema'
 
 import { env } from '@/config/env'
 
 const TOTAL_NUMBER_OF_DAYS = 49
 const NO_CONTRIBUTIONS_COLOR = '#ebedf0'
+
+const completeContributionsPerWeekdays = (
+  weekdays: ContributionsPerDay[]
+): ContributionsPerDay[] => {
+  if (weekdays.length < 7) {
+    const rest = Math.max(7 - weekdays.length, 0)
+    const lastContributedWeekday = weekdays[weekdays.length - rest - 1]
+
+    for (let i = 0; i < rest; i++) {
+      const [year, month, day] = lastContributedWeekday.date.split('-')
+      weekdays.push({
+        date: `${year}-${month}-${day + i}`,
+        count: 0,
+        color: NO_CONTRIBUTIONS_COLOR,
+      })
+    }
+  }
+
+  return weekdays
+}
 
 const getUserContributionsQuery = `
 query getUserContributions($username:String!) {
@@ -32,6 +52,23 @@ type ContributionsPerDay = {
   color: string
 }
 
+type ContributionsPerWeekDays = [
+  // Sunday
+  ContributionsPerDay[],
+  // Monday
+  ContributionsPerDay[],
+  // Tuesday
+  ContributionsPerDay[],
+  // Wednesday
+  ContributionsPerDay[],
+  // Thursday
+  ContributionsPerDay[],
+  // Friday
+  ContributionsPerDay[],
+  // Saturday
+  ContributionsPerDay[],
+]
+
 type GitHubContributions = {
   totalContributions: number
   contributionsPerDays: ContributionsPerDay[]
@@ -58,31 +95,31 @@ export async function getGitHubContributions(
       Math.max(contributionCalendar.weeks.length - numberOfWeeks, 0)
     )
 
-    const contributionsPerDays: ContributionsPerDay[] = weeks.reduce(
-      (acc: ContributionsPerDay[], current: ContributionCalendarWeek) => {
-        const contributions = current.contributionDays
-          .sort((a, b) => a.weekday - b.weekday)
-          .map((day) => ({
-            date: day.date,
-            count: day.contributionCount,
-            color: day.color,
-          }))
+    const contributionDays = weeks.flatMap((week) => week.contributionDays)
 
-        return [...acc, ...contributions]
-      },
-      []
-    )
+    const contributionsPerWeekDays =
+      contributionDays.reduce<ContributionsPerWeekDays>(
+        (tuple, contributionDay) => {
+          tuple[contributionDay.weekday].push({
+            date: contributionDay.date,
+            count: contributionDay.contributionCount,
+            color: contributionDay.color,
+          })
 
-    const rest = Math.max(TOTAL_NUMBER_OF_DAYS - contributionsPerDays.length, 0)
-    if (rest > 0) {
-      for (let i = 0; i < rest; i++) {
-        contributionsPerDays.push({
-          date: 'XXXX-XX-XX-' + i,
-          count: 0,
-          color: NO_CONTRIBUTIONS_COLOR,
-        })
-      }
-    }
+          return tuple
+        },
+        [[], [], [], [], [], [], []]
+      )
+
+    const contributionsPerDays: ContributionsPerDay[] = [
+      ...completeContributionsPerWeekdays(contributionsPerWeekDays[0]),
+      ...completeContributionsPerWeekdays(contributionsPerWeekDays[1]),
+      ...completeContributionsPerWeekdays(contributionsPerWeekDays[2]),
+      ...completeContributionsPerWeekdays(contributionsPerWeekDays[3]),
+      ...completeContributionsPerWeekdays(contributionsPerWeekDays[4]),
+      ...completeContributionsPerWeekdays(contributionsPerWeekDays[5]),
+      ...completeContributionsPerWeekdays(contributionsPerWeekDays[6]),
+    ]
 
     return {
       totalContributions,
