@@ -4,11 +4,7 @@ import { GitHubSquareIcon } from '@/components/icons/github-square-icon'
 import { SocialBentoItem } from '@/components/bento/social-bento-item'
 import { GitHubContributionsWidget } from '@/components/widgets/github-contributions-widget'
 
-export function GitHubBentoItem({
-  contributionsColors,
-}: {
-  contributionsColors: string[]
-}) {
+export function GitHubBentoItem() {
   return (
     <SocialBentoItem
       href={siteConfig.socialLinks.github.url}
@@ -16,7 +12,7 @@ export function GitHubBentoItem({
       accountName={siteConfig.socialLinks.github.name}
       icon={<GitHubSquareIcon className='size-6' />}
     >
-      <GitHubContributionsWidget contributionsColors={contributionsColors} />
+      <GitHubContributionsWidget />
     </SocialBentoItem>
   )
 }

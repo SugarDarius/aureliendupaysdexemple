@@ -1,5 +1,3 @@
-import { generateGitHubRandomContributionsColors } from '@/lib/github-widget'
-
 import { PageContent } from '@/components/content/page-content'
 import { BentoGrid } from '@/components/grids/bento-grid'
 
@@ -13,13 +11,12 @@ import { TechStackBentoItem } from '@/components/bento/tech-stack-bento-item'
 import { WorkBentoItem } from '@/components/bento/work-bento-item'
 import { CraftBentoItem } from '@/components/bento/craft-bento-item'
 
-export default function HomePage() {
-  const contributionsColors = generateGitHubRandomContributionsColors()
+export default async function HomePage() {
   return (
     <PageContent className='justify-center gap-0'>
       <BentoGrid>
         <HeroBentoItem />
-        <GitHubBentoItem contributionsColors={contributionsColors} />
+        <GitHubBentoItem />
         <TwitterBentoItem />
         <LinkedInBentoItem />
         <SmartStack

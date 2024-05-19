@@ -1,27 +1,79 @@
-const contributionRateColors = [
-  '#E8EAEE',
-  '#93E7A2',
-  '#3EBE5E',
-  '#2F984A',
-  '#216435',
-]
+import { graphql } from '@octokit/graphql'
+import { User, ContributionCalendarWeek } from '@octokit/graphql-schema'
 
-const generateContributionRateColor = (): string => {
-  const index = Math.floor(Math.random() * contributionRateColors.length)
-  const color = contributionRateColors[index]
+import { env } from '@/config/env'
 
-  return color
+const TOTAL_NUMBER_OF_DAYS = 49
+
+const getUserContributionsQuery = `
+query getUserContributions($username:String!) {
+  user(login: $username){
+    contributionsCollection {
+      contributionCalendar {
+        totalContributions
+        weeks {
+          contributionDays {
+            date
+            color
+            contributionCount
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+type ContributionsPerDay = {
+  date: string
+  count: number
+  color: string
 }
 
-const LENGTH = 7
+type GitHubContributions = {
+  totalContributions: number
+  contributionsPerDays: ContributionsPerDay[]
+}
 
-export function generateGitHubRandomContributionsColors(): string[] {
-  const contributions: string[] = []
+export async function getGitHubContributions(
+  username: string
+): Promise<GitHubContributions> {
+  try {
+    const { user } = await graphql<{ user: User }>(getUserContributionsQuery, {
+      username,
+      headers: {
+        Authorization: `Bearer ${env.GITHUB_CONTRIBUTIONS_READER_TOKEN}`,
+      },
+    })
 
-  for (let i = 0; i < LENGTH * LENGTH; i++) {
-    const color = generateContributionRateColor()
-    contributions[i] = color
+    const contributionCalendar =
+      user.contributionsCollection.contributionCalendar
+
+    const totalContributions = contributionCalendar.totalContributions
+
+    const numberOfWeeks = Math.round(TOTAL_NUMBER_OF_DAYS / 7)
+    const weeks = contributionCalendar.weeks.slice(
+      Math.max(contributionCalendar.weeks.length - numberOfWeeks, 0)
+    )
+
+    const contributionsPerDays: ContributionsPerDay[] = weeks.reduce(
+      (acc: ContributionsPerDay[], current: ContributionCalendarWeek) => {
+        const contributions = current.contributionDays.map((day) => ({
+          date: day.date,
+          count: day.contributionCount,
+          color: day.color,
+        }))
+
+        return [...acc, ...contributions]
+      },
+      []
+    )
+
+    return {
+      totalContributions,
+      contributionsPerDays,
+    }
+  } catch {
+    return { totalContributions: 0, contributionsPerDays: [] }
   }
-
-  return contributions
 }
