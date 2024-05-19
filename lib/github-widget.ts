@@ -1,5 +1,5 @@
 import { graphql } from '@octokit/graphql'
-import { User } from '@octokit/graphql-schema'
+import type { User } from '@octokit/graphql-schema'
 
 import { env } from '@/config/env'
 
