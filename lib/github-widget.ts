@@ -1,6 +1,8 @@
 import { graphql } from '@octokit/graphql'
 import type { User } from '@octokit/graphql-schema'
 
+import { addDays, format } from 'date-fns'
+
 import { env } from '@/config/env'
 
 const TOTAL_NUMBER_OF_DAYS = 49
@@ -11,12 +13,12 @@ const completeContributionsPerWeekdays = (
 ): ContributionsPerDay[] => {
   if (weekdays.length < 7) {
     const rest = Math.max(7 - weekdays.length, 0)
-    const lastContributedWeekday = weekdays[weekdays.length - rest - 1]
+    const lastContributedWeekday = weekdays[weekdays.length - rest]
 
     for (let i = 0; i < rest; i++) {
-      const [year, month, day] = lastContributedWeekday.date.split('-')
+      const nextDay = addDays(new Date(lastContributedWeekday.date), 7)
       weekdays.push({
-        date: `${year}-${month}-${day + i}`,
+        date: format(nextDay, 'yyy-MM-dd'),
         count: 0,
         color: NO_CONTRIBUTIONS_COLOR,
       })
