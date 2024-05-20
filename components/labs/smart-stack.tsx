@@ -274,7 +274,7 @@ export function SmartStack({
           style={{ borderRadius: roundedValuePx }}
         >
           {mounted ? (
-            <div className='absolute left-0 top-0 h-full w-full animate-in [&_a]:user-drag-none [&_img]:user-drag-none'>
+            <div className='absolute left-0 top-0 h-full w-full animate-in fade-in [&_a]:user-drag-none [&_img]:user-drag-none'>
               <AnimatePresence initial={false} custom={custom} mode='popLayout'>
                 <Item
                   key={'smart-stack-item-' + index}
