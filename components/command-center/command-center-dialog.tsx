@@ -276,7 +276,7 @@ export function CommandCenterDialog({
           children: (
             <>
               <ConfettiIcon className='size-4 stroke-[1.5px]' />
-              Celebrate with confetti
+              Celebrate
             </>
           ),
         }),
