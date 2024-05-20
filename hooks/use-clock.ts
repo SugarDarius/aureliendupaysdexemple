@@ -1,14 +1,10 @@
 import { useState } from 'react'
-import { format } from 'date-fns'
 
+import { formatClock } from '@/lib/clock'
 import { useInterval } from '@/hooks/use-interval'
 
 // check for every seconds to be realistic
 const REFRESH_DELAY_MS = 1000
-
-const formatClock = (): string => {
-  return format(new Date(), 'h-mm-aaaa')
-}
 
 export function useClock(): [string, string] {
   const [clock, setClock] = useState<string>(formatClock())
