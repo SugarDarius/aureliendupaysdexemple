@@ -3,7 +3,12 @@ import { baseUrl } from '@/config/site-config'
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: '*' }],
+    rules: [
+      {
+        userAgent: '*',
+      },
+    ],
     sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   }
 }
