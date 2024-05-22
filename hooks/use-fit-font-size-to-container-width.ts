@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef, useState } from 'react'
-
 import { computeFontSizeToFitContainerWidth } from '@/lib/font'
 
 type UseFitFontSizeToContainerWidthReturnType = {
@@ -16,7 +15,7 @@ export function useFitFontSizeToContainerWidth(
   useLayoutEffect(() => {
     const handleResize = (): void => {
       if (containerRef.current) {
-        const { width } = containerRef.current.getBoundingClientRect()
+        const width = containerRef.current.clientWidth
         const fontSize = computeFontSizeToFitContainerWidth(width, text, {
           baseSize: 16,
         })
