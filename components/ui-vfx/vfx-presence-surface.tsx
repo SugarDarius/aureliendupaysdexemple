@@ -22,16 +22,26 @@ import { Cursor } from '@/components/ui/cursor'
 
 const CURSOR_COLORS = ['violet-700', 'orange-600', 'sky-600', 'fuchsia-500']
 
+const getRandomCursorColor = (previousCursorColor: string | null): string => {
+  const cursorColor = pick(CURSOR_COLORS)
+  if (previousCursorColor === null || previousCursorColor !== cursorColor) {
+    return cursorColor
+  }
+
+  return getRandomCursorColor(previousCursorColor)
+}
+
 const PresenceCursor = ({
   x,
   y,
   username,
+  color,
 }: {
   x: MotionValue<number>
   y: MotionValue<number>
   username: string
+  color: string
 }) => {
-  const color = pick(CURSOR_COLORS)
   return (
     <motion.div
       className='pointer-events-none absolute left-0 top-0 z-10'
@@ -92,8 +102,10 @@ export function VFXPresenceSurface({
   children?: React.ReactNode
 }) {
   const surfaceRef = useRef<HTMLDivElement>(null)
+  const previousCursorColorRef = useRef<string | null>(null)
 
   const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
+  const [cursorColor, setCursorColor] = useState<string>('')
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -106,7 +118,11 @@ export function VFXPresenceSurface({
   )
 
   const handleMouseEnter = useEvent((): void => {
+    const cursorColor = getRandomCursorColor(previousCursorColorRef.current)
+    previousCursorColorRef.current = cursorColor
+
     setIsCursorInside(true)
+    setCursorColor(cursorColor)
   })
 
   const handleMouseLeave = useEvent((): void => {
@@ -129,7 +145,13 @@ export function VFXPresenceSurface({
       <Portal>
         <AnimatePresence>
           {isCursorInside ? (
-            <PresenceCursor key={username} x={x} y={y} username={username} />
+            <PresenceCursor
+              key={username}
+              x={x}
+              y={y}
+              username={username}
+              color={cursorColor}
+            />
           ) : null}
         </AnimatePresence>
       </Portal>
