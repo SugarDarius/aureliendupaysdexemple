@@ -3,19 +3,12 @@
 import { getTimezoneOffset } from '@/lib/clock'
 import { useClock } from '@/hooks/use-clock'
 import { useFitFontSizeToContainerWidth } from '@/hooks/use-fit-font-size-to-container-width'
-import { useEffect } from 'react'
 
 const timezoneOffset = getTimezoneOffset()
 
 export function ClockWidget() {
   const [time, meridiem] = useClock()
   const { containerRef, fontSize } = useFitFontSizeToContainerWidth(time)
-
-  useEffect(() => {
-    return () => {
-      console.log('unmount')
-    }
-  }, [])
 
   return (
     <div className='flex h-full w-full flex-col items-center justify-center p-4'>

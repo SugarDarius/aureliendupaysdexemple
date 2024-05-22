@@ -7,7 +7,8 @@ type UseFitFontSizeToContainerWidthReturnType = {
 }
 
 export function useFitFontSizeToContainerWidth(
-  text: string
+  text: string,
+  baseFontSize: number = 16
 ): UseFitFontSizeToContainerWidthReturnType {
   const containerRef = useRef<HTMLDivElement>(null)
   const [fontSize, setFontSize] = useState<number>(0)
@@ -17,7 +18,7 @@ export function useFitFontSizeToContainerWidth(
       if (containerRef.current) {
         const width = containerRef.current.clientWidth
         const fontSize = computeFontSizeToFitContainerWidth(width, text, {
-          baseSize: 16,
+          baseSize: baseFontSize,
         })
 
         setFontSize(Math.round(fontSize))
@@ -30,7 +31,7 @@ export function useFitFontSizeToContainerWidth(
     return (): void => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [text])
+  }, [text, baseFontSize])
 
   return { containerRef, fontSize } as const
 }
