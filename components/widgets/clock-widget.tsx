@@ -2,11 +2,13 @@
 
 import { getTimezoneOffset } from '@/lib/clock'
 import { useClock } from '@/hooks/use-clock'
+import { useFitFontSizeToContainerWidth } from '@/hooks/use-fit-font-size-to-container-width'
 
 const timezoneOffset = getTimezoneOffset()
 
 export function ClockWidget() {
   const [time, meridiem] = useClock()
+  const { containerRef, fontSize } = useFitFontSizeToContainerWidth(time)
 
   return (
     <div className='flex h-full w-full flex-col items-center justify-center p-4'>
@@ -15,10 +17,15 @@ export function ClockWidget() {
           <span>{meridiem}</span>
           <span>{timezoneOffset}</span>
         </div>
-        <div className='flex w-full flex-col items-end'>
-          <span className='font-mono text-[62px] font-medium leading-[60px] max-md:text-[46px] max-md:leading-[48px]'>
-            {time}
-          </span>
+        <div ref={containerRef} className='flex w-full flex-col items-end'>
+          {fontSize > 0 ? (
+            <span
+              className='font-mono font-medium'
+              style={{ fontSize, lineHeight: `${fontSize + 2}px` }}
+            >
+              {time}
+            </span>
+          ) : null}
         </div>
       </div>
     </div>
