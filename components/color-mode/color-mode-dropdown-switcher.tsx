@@ -14,7 +14,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu'
 
 import {
@@ -28,7 +28,7 @@ export function ColorModeDropdownSwitcher({
 }: {
   className?: string
 }) {
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
   return (
     <DropdownMenu>
@@ -52,27 +52,30 @@ export function ColorModeDropdownSwitcher({
         </Tooltip>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' sideOffset={10} alignOffset={-4}>
-        <DropdownMenuItem
+        <DropdownMenuCheckboxItem
+          checked={theme === 'light'}
           onClick={() => setTheme('light')}
           className='flex flex-row items-center gap-2'
         >
           <SunIcon className='h-4 w-4' />
           Light
-        </DropdownMenuItem>
-        <DropdownMenuItem
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem
+          checked={theme === 'dark'}
           onClick={() => setTheme('dark')}
           className='flex flex-row items-center gap-2'
         >
           <MoonIcon className='h-4 w-4' />
           Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem
+        </DropdownMenuCheckboxItem>
+        <DropdownMenuCheckboxItem
+          checked={theme === 'system'}
           onClick={() => setTheme('system')}
           className='flex flex-row items-center gap-2'
         >
           <ComputerDesktopIcon className='h-4 w-4' />
           System
-        </DropdownMenuItem>
+        </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
