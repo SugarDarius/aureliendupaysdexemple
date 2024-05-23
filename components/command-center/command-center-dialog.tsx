@@ -41,6 +41,7 @@ import {
   CommandShortcut,
   useCommandState,
 } from '@/components/ui/command'
+import { Badge } from '@/components/ui/badge'
 
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
@@ -52,6 +53,19 @@ import {
   increaseScore,
 } from '@/components/command-center/commands-suggestions-store'
 import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
+
+const ColorModeCommandItemContent = ({
+  active = false,
+  children,
+}: {
+  active?: boolean
+  children: React.ReactNode
+}) => (
+  <div className='flex w-full flex-row items-center justify-between'>
+    <div className='flex flex-row items-center gap-2'>{children}</div>
+    {active ? <Badge variant='secondary'>active</Badge> : null}
+  </div>
+)
 
 type CommandCenterDialogItemProps = {
   name: string
@@ -143,7 +157,7 @@ export function CommandCenterDialog({
   onCreateQRCode: (currentURL: string) => void
 }) {
   const router = useRouter()
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
   const [, copy] = useCopyToClipboard()
   const mounted = useMounted()
@@ -321,36 +335,36 @@ export function CommandCenterDialog({
           value: 'light',
           onSelect: handleSelectColorMode,
           children: (
-            <>
+            <ColorModeCommandItemContent active={theme === 'light'}>
               <SunIcon className='h-4 w-4' />
               Light
-            </>
+            </ColorModeCommandItemContent>
           ),
         }),
         createCommandWithSuggestion('dark', {
           value: 'dark',
           onSelect: handleSelectColorMode,
           children: (
-            <>
+            <ColorModeCommandItemContent active={theme === 'dark'}>
               <MoonIcon className='h-4 w-4' />
-              Dark
-            </>
+              Dark Vader
+            </ColorModeCommandItemContent>
           ),
         }),
         createCommandWithSuggestion('system', {
           value: 'system',
           onSelect: handleSelectColorMode,
           children: (
-            <>
+            <ColorModeCommandItemContent active={theme === 'system'}>
               <ComputerDesktopIcon className='h-4 w-4' />
               System
-            </>
+            </ColorModeCommandItemContent>
           ),
         }),
       ],
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [theme]
   )
 
   return (
