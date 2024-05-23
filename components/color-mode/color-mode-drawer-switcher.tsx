@@ -24,20 +24,23 @@ import { Button } from '@/components/ui/button'
 
 const ColorModeDrawerItem = ({
   className,
+  selected,
   children,
   onClick,
 }: {
   className?: string
+  selected: boolean
   children?: React.ReactNode
   onClick: () => void
 }) => {
   return (
     <div
       className={cn(
-        'flex h-full w-full flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow',
+        'flex h-full w-full flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow data-[selected=true]:bg-accent/50',
         className
       )}
       onClick={onClick}
+      date-selected={`${selected}`}
     >
       {children}
     </div>
@@ -45,7 +48,7 @@ const ColorModeDrawerItem = ({
 }
 
 export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
   const [open, setOpen] = useState<boolean>(false)
 
   const handleClick = useEvent(
@@ -62,7 +65,7 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
           variant='ghost'
           className={cn(
             navigationMenuTriggerStyle(),
-            'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent',
+            'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
             className
           )}
         >
@@ -78,6 +81,7 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
           </DrawerHeader>
           <div className='mx-auto grid w-full max-w-[496px] grid-cols-2 gap-4'>
             <ColorModeDrawerItem
+              selected={theme === 'light'}
               onClick={() => {
                 handleClick('light')
               }}
@@ -87,6 +91,7 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
               Light
             </ColorModeDrawerItem>
             <ColorModeDrawerItem
+              selected={theme === 'dark'}
               onClick={() => {
                 handleClick('dark')
               }}
@@ -96,6 +101,7 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
               Dark
             </ColorModeDrawerItem>
             <ColorModeDrawerItem
+              selected={theme === 'system'}
               onClick={() => {
                 handleClick('system')
               }}
