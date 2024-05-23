@@ -347,7 +347,7 @@ export function CommandCenterDialog({
           children: (
             <ColorModeCommandItemContent active={theme === 'dark'}>
               <MoonIcon className='h-4 w-4' />
-              Dark Vader
+              Dark
             </ColorModeCommandItemContent>
           ),
         }),
