@@ -43,7 +43,7 @@ export function GlobeWidget() {
   }, [])
 
   return (
-    <div className='GlobeWidget relative flex h-full w-full flex-col items-center justify-center p-4 max-sm:gap-3'>
+    <div className='relative flex h-full w-full flex-col items-center justify-center p-4 max-sm:gap-3'>
       <div className='absolute inset-0 flex size-full flex-col items-center justify-center'>
         <canvas ref={canvasRef} className='h-full w-full' />
       </div>
