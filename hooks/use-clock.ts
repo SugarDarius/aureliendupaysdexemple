@@ -6,7 +6,16 @@ import { useInterval } from '@/hooks/use-interval'
 // check for every seconds to be realistic
 const REFRESH_DELAY_MS = 1000
 
-export function useClock(): [string, string] {
+type UseClockReturnType = [
+  // hours
+  string,
+  // minutes
+  string,
+  // meridiem
+  string,
+]
+
+export function useClock(): UseClockReturnType {
   const [clock, setClock] = useState<string>(formatClock())
 
   useInterval((): void => {
@@ -15,5 +24,5 @@ export function useClock(): [string, string] {
 
   const [hours, minutes, meridiem] = clock.split('-')
 
-  return [`${hours}:${minutes}`, meridiem] as const
+  return [hours, minutes, meridiem] as const
 }
