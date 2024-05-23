@@ -1,5 +1,6 @@
 import { BentoCard } from '@/components/grids/bento-card'
 import { ClockWidget } from '@/components/widgets/clock-widget'
+import { GlobeWidget } from '@/components/widgets/globe-widget'
 
 export function StandByBentoItem() {
   return (
@@ -8,7 +9,9 @@ export function StandByBentoItem() {
         <div className='flex h-full w-1/2 flex-col'>
           <ClockWidget />
         </div>
-        <div className='flex h-full w-1/2 flex-col'></div>
+        <div className='flex h-full w-1/2 flex-col'>
+          <GlobeWidget />
+        </div>
       </div>
     </BentoCard>
   )
