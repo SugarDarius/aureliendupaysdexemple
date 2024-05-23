@@ -8,7 +8,7 @@ import { useSpring } from 'framer-motion'
 
 export function GlobeWidget() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const r = useSpring(0, { mass: 1, stiffness: 280, damping: 40 })
+  const r = useSpring(3.9, { mass: 1, stiffness: 280, damping: 40 })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleRender = useEvent((state: Record<string, any>): void => {
@@ -22,7 +22,7 @@ export function GlobeWidget() {
         devicePixelRatio: 2,
         width: canvasRef.current.offsetWidth * 3,
         height: canvasRef.current.offsetWidth * 3,
-        phi: 0,
+        phi: 3.9,
         theta: 0.96,
         dark: 1,
         diffuse: 1.2,
@@ -44,8 +44,8 @@ export function GlobeWidget() {
 
   return (
     <div className='GlobeWidget relative flex h-full w-full flex-col items-center justify-center p-4 max-sm:gap-3'>
-      <div className='absolute left-0 top-0 flex size-full flex-col items-center justify-center'>
-        <canvas ref={canvasRef} className='aspect-square w-full' />
+      <div className='absolute inset-0 flex size-full flex-col items-center justify-center'>
+        <canvas ref={canvasRef} className='h-full w-full' />
       </div>
     </div>
   )
