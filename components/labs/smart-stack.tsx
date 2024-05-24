@@ -55,7 +55,7 @@ const DotsNavigation = ({
 
   return (
     <div className='absolute right-2 top-0 flex h-full flex-col justify-center'>
-      <div className='z-10 flex min-h-[40%] flex-col justify-center gap-1.5 rounded-full p-1.5 px-1 py-1.5 opacity-25 backdrop-blur-sm transition-opacity ease-linear group-hover:opacity-100'>
+      <div className='z-10 flex flex-col justify-center gap-1.5 rounded-full p-1 opacity-25 backdrop-blur-sm transition-opacity ease-linear group-hover:opacity-100'>
         {dots.map((dot) => (
           <DotNavigationItem
             key={dot}
