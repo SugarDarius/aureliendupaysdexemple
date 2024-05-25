@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { formatClock } from '@/lib/clock'
 import { useInterval } from '@/hooks/use-interval'
@@ -17,10 +17,32 @@ type UseClockReturnType = [
 
 export function useClock(): UseClockReturnType {
   const [clock, setClock] = useState<string>(formatClock())
+  const [refreshDelayMs, setRefreshDelay] = useState<number | null>(null)
+
+  const renderTimeRef = useRef<number>(Date.now())
 
   useInterval((): void => {
     setClock(formatClock())
-  }, REFRESH_DELAY_MS)
+  }, refreshDelayMs)
+
+  // clock drift
+  useEffect(() => {
+    const nextTick = new Date(renderTimeRef.current)
+
+    nextTick.setMilliseconds(0)
+    nextTick.setSeconds(nextTick.getSeconds() + 1)
+
+    const clockDriftDelay = nextTick.getTime() - renderTimeRef.current
+
+    const timeoutId = setTimeout((): void => {
+      setClock(formatClock())
+      setRefreshDelay(REFRESH_DELAY_MS)
+    }, clockDriftDelay)
+
+    return (): void => {
+      clearTimeout(timeoutId)
+    }
+  }, [])
 
   const [hours, minutes, meridiem] = clock.split('-')
 
