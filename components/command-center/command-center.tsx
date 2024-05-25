@@ -19,13 +19,18 @@ import { CommandIcon } from '@/components/icons/command-icon'
 
 import { CommandCenterDialog } from '@/components/command-center/command-center-dialog'
 import { QRCodeDialog } from '@/components/command-center/qrcode-dialog'
+import { KeyboardShortcutsDialog } from '@/components/command-center/keyboard-shortcuts-dialog'
 
 export function CommandCenter({ className }: { className?: string }) {
   const pathname = usePathname()
 
   const [commandDialogOpen, setCommandDialogOpen] = useState<boolean>(false)
+
   const [qrcodeDialogOpen, setQRCodeDialogOpen] = useState<boolean>(false)
   const [qrcodeValue, setQRCodeValue] = useState<string>('')
+
+  const [keyboardShortcutsDialogOpen, setKeyboardShortcutsDialogOpen] =
+    useState<boolean>(false)
 
   useEffect(() => {
     setQRCodeDialogOpen(false)
@@ -50,6 +55,10 @@ export function CommandCenter({ className }: { className?: string }) {
   const handleCreateQRCode = useEvent((currentURL): void => {
     setQRCodeValue(currentURL)
     setQRCodeDialogOpen(true)
+  })
+
+  const handleOpenKeyboardShortcutsDialog = useEvent((): void => {
+    setKeyboardShortcutsDialogOpen(true)
   })
 
   return (
@@ -80,12 +89,17 @@ export function CommandCenter({ className }: { className?: string }) {
         open={commandDialogOpen}
         onOpenChange={setCommandDialogOpen}
         onExecCommand={handleExecCommand}
-        onCreateQRCode={handleCreateQRCode}
+        createQRCode={handleCreateQRCode}
+        openKeyboardShortcutsDialog={handleOpenKeyboardShortcutsDialog}
       />
       <QRCodeDialog
         open={qrcodeDialogOpen}
         value={qrcodeValue}
         onOpenChange={setQRCodeDialogOpen}
+      />
+      <KeyboardShortcutsDialog
+        open={keyboardShortcutsDialogOpen}
+        onOpenChange={setKeyboardShortcutsDialogOpen}
       />
       <VFXConfettiSurface />
     </div>

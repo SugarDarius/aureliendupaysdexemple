@@ -47,6 +47,7 @@ import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { ReturnIcon } from '@/components/icons/return-icon'
 import { ConfettiIcon } from '@/components/icons/confetti-icon'
+import { KeyboardIcon } from '@/components/icons/keyboard-icon'
 
 import {
   getHighestScoredCommands,
@@ -149,12 +150,14 @@ export function CommandCenterDialog({
   open,
   onOpenChange,
   onExecCommand,
-  onCreateQRCode,
+  createQRCode,
+  openKeyboardShortcutsDialog,
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
   onExecCommand: () => void
-  onCreateQRCode: (currentURL: string) => void
+  createQRCode: (currentURL: string) => void
+  openKeyboardShortcutsDialog: () => void
 }) {
   const router = useRouter()
   const { setTheme, theme } = useTheme()
@@ -215,13 +218,19 @@ export function CommandCenterDialog({
   const handleSelectCreateQRCode = useEvent((name: string): void => {
     execCommand(name, (): void => {
       const currentURL = window.location.href
-      onCreateQRCode(currentURL)
+      createQRCode(currentURL)
     })
   })
 
   const handleSelectVFXConfetti = useEvent((name: string): void => {
     execCommand(name, (): void => {
       fireVFXConfettiSurface()
+    })
+  })
+
+  const handleOpenKeyboardShortcutsDialog = useEvent((name: string): void => {
+    execCommand(name, (): void => {
+      openKeyboardShortcutsDialog()
     })
   })
 
@@ -242,6 +251,7 @@ export function CommandCenterDialog({
     navigationCommands,
     actionsCommands,
     socialsCommands,
+    helpCommands,
     colorModeCommands,
   ] = useMemo(
     () => [
@@ -331,6 +341,18 @@ export function CommandCenterDialog({
         }),
       ],
       [
+        createCommandWithSuggestion('open-keyboard-shortcuts-dialog', {
+          value: 'keyboard shortcuts',
+          onSelect: handleOpenKeyboardShortcutsDialog,
+          children: (
+            <>
+              <KeyboardIcon className='size-4' />
+              Keyboard shortcuts
+            </>
+          ),
+        }),
+      ],
+      [
         createCommandWithSuggestion('light', {
           value: 'light',
           onSelect: handleSelectColorMode,
@@ -382,6 +404,8 @@ export function CommandCenterDialog({
         <CommandGroup heading='Actions'>{actionsCommands}</CommandGroup>
         <CommandSeparator />
         <CommandGroup heading='Social links'>{socialsCommands}</CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading='Help'>{helpCommands}</CommandGroup>
         <CommandSeparator />
         <CommandGroup heading='Color mode'>{colorModeCommands}</CommandGroup>
       </CommandList>
