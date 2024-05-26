@@ -46,6 +46,7 @@ import { Badge } from '@/components/ui/badge'
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { ReturnIcon } from '@/components/icons/return-icon'
+import { SelectIcon } from '@/components/icons/select-icon'
 import { ConfettiIcon } from '@/components/icons/confetti-icon'
 import { KeyboardIcon } from '@/components/icons/keyboard-icon'
 
@@ -412,9 +413,17 @@ export function CommandCenterDialog({
       <div className='flex w-full flex-row items-center justify-between border-t p-2'>
         <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
         <div className='flex flex-row items-center gap-1.5'>
-          <span className='text-xs leading-3'>Execute Command</span>
-          <div className='flex flex-col items-center justify-center rounded-sm bg-neutral-300 p-1 dark:bg-neutral-800'>
-            <ReturnIcon className='h-4 w-4 stroke-[1.5px] ' />
+          <div className='flex flex-row items-center gap-1.5'>
+            <span className='text-xs leading-3'>Select Command</span>
+            <div className='flex flex-col items-center justify-center rounded-sm bg-neutral-300 p-1 dark:bg-neutral-800'>
+              <SelectIcon className='h-4 w-4 stroke-[1.5px]' />
+            </div>
+          </div>
+          <div className='flex flex-row items-center gap-1.5'>
+            <span className='text-xs leading-3'>Execute Command</span>
+            <div className='flex flex-col items-center justify-center rounded-sm bg-neutral-300 p-1 dark:bg-neutral-800'>
+              <ReturnIcon className='h-4 w-4 stroke-[1.5px]' />
+            </div>
           </div>
         </div>
       </div>
