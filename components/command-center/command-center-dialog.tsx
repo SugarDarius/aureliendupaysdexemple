@@ -346,7 +346,7 @@ export function CommandCenterDialog({
           onSelect: handleOpenKeyboardShortcutsDialog,
           children: (
             <>
-              <KeyboardIcon className='size-4' />
+              <KeyboardIcon className='size-4 stroke-[1.5px]' />
               Keyboard shortcuts
             </>
           ),
