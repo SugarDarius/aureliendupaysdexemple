@@ -44,13 +44,20 @@ export function HeroBentoItem() {
                 </TagLink>{' '}
                 from 🇫🇷
               </p>
-              <div className='flex flex-row items-center gap-1.5'>
-                <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
-                  frontend cloud 🧑🏻‍💻
-                </span>
-                <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
-                  remote club 🌎
-                </span>
+              <div className='flex flex-row items-end justify-between gap-2 max-sm:items-center'>
+                <div className='flex flex-auto flex-row items-center gap-1.5'>
+                  <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
+                    frontend cloud 🧑🏻‍💻
+                  </span>
+                  <span className='inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
+                    remote club 🌎
+                  </span>
+                </div>
+                <div className='flex flex-none flex-row items-center'>
+                  <span className='text-[10px] leading-[10px]'>
+                    &copy; 2024
+                  </span>
+                </div>
               </div>
             </div>
           </div>
