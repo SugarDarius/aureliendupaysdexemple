@@ -37,5 +37,8 @@ next-env.d.ts
 
 certificates
 
+# todos files
 *.todo.md
+
+# user local config
 .npmrc
