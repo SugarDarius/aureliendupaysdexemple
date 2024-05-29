@@ -4,13 +4,25 @@ import { useRef, useEffect } from 'react'
 import useEvent from 'react-use-event-hook'
 import { useTheme } from 'next-themes'
 
-import createGlobe from 'cobe'
+import useSWR, { type Fetcher } from 'swr'
+
+import createGlobe, { type Marker } from 'cobe'
 import { useSpring } from 'framer-motion'
+
+const BASE_MARKERS: Marker[] = [{ location: [48.1744, 6.4512], size: 0.1 }]
+
+type Geolocation = { latitude: number; longitude: number }
+const fetcher: Fetcher<Geolocation, string> = (url: string) =>
+  fetch(url).then((res) => res.json())
 
 export function GlobeWidget() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const { resolvedTheme } = useTheme()
+  const { data: geolocationData } = useSWR<Geolocation>(
+    '/api/geolocation',
+    fetcher
+  )
   const r = useSpring(3.9, { mass: 1, stiffness: 280, damping: 40 })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,6 +38,13 @@ export function GlobeWidget() {
 
   useEffect(() => {
     if (canvasRef.current) {
+      const markers: Marker[] = BASE_MARKERS
+      if (geolocationData) {
+        markers.push({
+          location: [geolocationData.latitude, geolocationData.longitude],
+          size: 0.1,
+        })
+      }
       const globe = createGlobe(canvasRef.current, {
         devicePixelRatio: 2,
         width: canvasRef.current.offsetWidth * 3,
@@ -39,7 +58,7 @@ export function GlobeWidget() {
         baseColor: [1, 1, 1],
         markerColor: [0.1, 0.8, 1],
         glowColor: [0.15, 0.15, 0.15],
-        markers: [{ location: [48.1744, 6.4512], size: 0.1 }],
+        markers: BASE_MARKERS,
         onRender: handleRender,
       })
 
@@ -48,7 +67,7 @@ export function GlobeWidget() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [geolocationData])
 
   return (
     <div className='relative flex h-full w-full flex-col items-center justify-center p-4 max-sm:gap-3'>
