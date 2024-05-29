@@ -2,16 +2,24 @@
 
 import { useRef, useEffect } from 'react'
 import useEvent from 'react-use-event-hook'
+import { useTheme } from 'next-themes'
 
 import createGlobe from 'cobe'
 import { useSpring } from 'framer-motion'
 
 export function GlobeWidget() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  const { resolvedTheme } = useTheme()
   const r = useSpring(3.9, { mass: 1, stiffness: 280, damping: 40 })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleRender = useEvent((state: Record<string, any>): void => {
+    const isDark = resolvedTheme === 'dark'
+
+    state.dark = isDark ? 0 : 1
+    state.glowColor = isDark ? [0.85, 0.85, 0.85] : [0.15, 0.15, 0.15]
+
     state.phi = r.get()
     r.set(state.phi + 0.06)
   })
