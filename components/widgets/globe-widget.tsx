@@ -21,7 +21,12 @@ export function GlobeWidget() {
   const { resolvedTheme } = useTheme()
   const { data: geolocationData } = useSWR<Geolocation>(
     '/api/geolocation',
-    fetcher
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   )
   const r = useSpring(3.9, { mass: 1, stiffness: 280, damping: 40 })
 
