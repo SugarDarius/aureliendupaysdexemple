@@ -41,7 +41,10 @@ export function CommandCenter({ className }: { className?: string }) {
     (): void => {
       setCommandDialogOpen(true)
     },
-    { enabled: !commandDialogOpen && !qrcodeDialogOpen }
+    {
+      enabled:
+        !commandDialogOpen && !qrcodeDialogOpen && !keyboardShortcutsDialogOpen,
+    }
   )
 
   const handleButtonClick = useEvent((): void => {
