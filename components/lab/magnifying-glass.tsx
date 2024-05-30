@@ -39,6 +39,7 @@ const Glass = ({
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.125, ease: 'linear' }}
+    exit={{ opacity: 0 }}
     style={{ x, y, width: `${GLASS_SIZE}px`, height: `${GLASS_SIZE}px` }}
   >
     <path
