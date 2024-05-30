@@ -2,20 +2,19 @@ import { create } from 'zustand'
 
 type MagnifyingGlassStore = {
   isActive: boolean
-  setActiveState: (isActive: boolean) => void
+  toggle: () => void
 }
 
-export const useMagnifyingGlassStore = create<MagnifyingGlassStore>((set) => ({
-  isActive: false,
-  setActiveState: (isActive: boolean): void => {
-    set({ isActive })
-  },
-}))
+export const useMagnifyingGlassStore = create<MagnifyingGlassStore>(
+  (set, get) => ({
+    isActive: false,
+    toggle: (): void => {
+      const isActive = get().isActive
+      set({ isActive: !isActive })
+    },
+  })
+)
 
-export function enableMagnifyingGlass(): void {
-  useMagnifyingGlassStore.getState().setActiveState(true)
-}
-
-export function disableMagnifyingGlass(): void {
-  useMagnifyingGlassStore.getInitialState().setActiveState(false)
+export function toggleMagnifyingGlass(): void {
+  useMagnifyingGlassStore.getState().toggle()
 }

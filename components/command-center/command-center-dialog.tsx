@@ -13,6 +13,7 @@ import {
   MoonIcon,
   ComputerDesktopIcon,
   QrCodeIcon,
+  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
 import {
   GitHubLogoIcon,
@@ -49,6 +50,8 @@ import { ReturnIcon } from '@/components/icons/return-icon'
 import { SelectIcon } from '@/components/icons/select-icon'
 import { ConfettiIcon } from '@/components/icons/confetti-icon'
 import { KeyboardIcon } from '@/components/icons/keyboard-icon'
+
+import { toggleMagnifyingGlass } from '@/components/lab/magnifying-glass-store'
 
 import {
   addSuggestionCommand,
@@ -262,9 +265,17 @@ export function CommandCenterDialog({
     })
   })
 
-  const handleOpenKeyboardShortcutsDialog = useEvent((name: string): void => {
+  const handleSelectOpenKeyboardShortcutsDialog = useEvent(
+    (name: string): void => {
+      execCommand(name, (): void => {
+        openKeyboardShortcutsDialog()
+      })
+    }
+  )
+
+  const handleSelectToggleMagnifyingGlass = useEvent((name: string): void => {
     execCommand(name, (): void => {
-      openKeyboardShortcutsDialog()
+      toggleMagnifyingGlass()
     })
   })
 
@@ -372,11 +383,21 @@ export function CommandCenterDialog({
       [
         createCommandWithSuggestion('open-keyboard-shortcuts-dialog', {
           value: 'keyboard shortcuts',
-          onSelect: handleOpenKeyboardShortcutsDialog,
+          onSelect: handleSelectOpenKeyboardShortcutsDialog,
           children: (
             <>
               <KeyboardIcon className='size-4 stroke-[1.5px]' />
               Keyboard shortcuts
+            </>
+          ),
+        }),
+        createCommandWithSuggestion('toggle-magnifying-glass', {
+          value: 'toggle magnifying class',
+          onSelect: handleSelectToggleMagnifyingGlass,
+          children: (
+            <>
+              <MagnifyingGlassIcon className='size-4' />
+              Toggle magnifying glass
             </>
           ),
         }),
