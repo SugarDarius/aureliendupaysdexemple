@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import {
@@ -102,6 +102,7 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
 }
 
 export function MagnifyingGlass() {
+  const [isMouseMoved, setIsMouseMoved] = useState<boolean>(false)
   const isActive = useMagnifyingGlassStore((state) => state.isActive)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -112,6 +113,8 @@ export function MagnifyingGlass() {
   const handleMouseMove = useEvent((e: MouseEvent): void => {
     mouseX.set(e.clientX + window.scrollX)
     mouseY.set(e.clientY + window.scrollY)
+
+    setIsMouseMoved(true)
   })
 
   useEffect(() => {
@@ -126,7 +129,7 @@ export function MagnifyingGlass() {
     <Portal>
       <MagnifyFilter />
       <AnimatePresence>
-        {isActive ? <Glass x={x} y={y} /> : null}
+        {isActive && isMouseMoved ? <Glass x={x} y={y} /> : null}
       </AnimatePresence>
     </Portal>
   )
