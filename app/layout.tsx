@@ -13,6 +13,7 @@ import { baseUrl, siteConfig } from '@/config/site-config'
 import { Toaster } from '@/components/ui/sonner'
 import { ProvidersTree } from '@/components/providers/providers-tree'
 import { NavigationDock } from '@/components/navigation/navigation-dock'
+import { MagnifyingGlass } from '@/components/lab/magnifying-glass'
 import { TailwindIndicator } from '@/components/ui-helpers/tailwind-indicator'
 
 import './globals.css'
@@ -88,6 +89,7 @@ export default function RootLayout({
             <NavigationDock />
           </main>
           <Toaster />
+          <MagnifyingGlass />
           <TailwindIndicator />
         </ProvidersTree>
         <Analytics />
