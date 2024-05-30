@@ -65,7 +65,7 @@ const FooterShortcut = ({
 }) => (
   <div className='flex flex-row items-center gap-1.5'>
     <span className='text-xs leading-3'>{name}</span>
-    <div className='flex flex-col items-center justify-center rounded-sm bg-neutral-300 p-1 dark:bg-neutral-800'>
+    <div className='flex h-6 flex-col items-center justify-center rounded-sm bg-neutral-300 px-1 dark:bg-neutral-800'>
       {children}
     </div>
   </div>
@@ -80,6 +80,11 @@ const Footer = () => (
       </FooterShortcut>
       <FooterShortcut name='Execute'>
         <ReturnIcon className='h-4 w-4 stroke-[1.5px]' />
+      </FooterShortcut>
+      <FooterShortcut name='Close'>
+        <span className='text-xs font-light leading-none tracking-[1px]'>
+          ESC
+        </span>
       </FooterShortcut>
     </div>
   </div>
