@@ -15,6 +15,8 @@ import useEvent from 'react-use-event-hook'
 import { cn } from '@/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'
 
+import { useMagnifyingGlassStore } from '@/components/lab/magnifying-glass-store'
+
 const GLASS_SIZE = 120
 
 const Glass = ({
@@ -34,6 +36,9 @@ const Glass = ({
     xmlns='http://www.w3.org/2000/svg'
     viewBox='0 0 100 100'
     fill='none'
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.125, ease: 'linear' }}
     style={{ x, y, width: `${GLASS_SIZE}px`, height: `${GLASS_SIZE}px` }}
   >
     <path
@@ -96,6 +101,7 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
 }
 
 export function MagnifyingGlass() {
+  const isActive = useMagnifyingGlassStore((state) => state.isActive)
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
@@ -119,7 +125,7 @@ export function MagnifyingGlass() {
     <Portal>
       <MagnifyFilter />
       <AnimatePresence>
-        <Glass x={x} y={y} />
+        {isActive ? <Glass x={x} y={y} /> : null}
       </AnimatePresence>
     </Portal>
   )
