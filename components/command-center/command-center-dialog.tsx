@@ -52,7 +52,7 @@ import { KeyboardIcon } from '@/components/icons/keyboard-icon'
 
 import {
   addSuggestionCommand,
-  getSuggestionsCommands,
+  getSuggestedCommands,
   increaseCommandScore,
 } from '@/components/command-center/commands-suggestions-store'
 import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
@@ -268,9 +268,9 @@ export function CommandCenterDialog({
     })
   })
 
-  const suggestionsCommands = useMemo(() => {
+  const suggestedCommands = useMemo(() => {
     if (mounted && open) {
-      return getSuggestionsCommands(5)
+      return getSuggestedCommands(5)
     }
 
     return []
@@ -423,9 +423,9 @@ export function CommandCenterDialog({
       <CommandInput placeholder='Type a command or search' />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
-        {suggestionsCommands.length > 0 ? (
+        {suggestedCommands.length > 0 ? (
           <CommandCenterDialogSuggestions>
-            {suggestionsCommands}
+            {suggestedCommands}
           </CommandCenterDialogSuggestions>
         ) : null}
         <CommandGroup heading='Navigation'>{navigationCommands}</CommandGroup>

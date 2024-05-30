@@ -53,7 +53,7 @@ export function addSuggestionCommand(name: string, command: JSX.Element): void {
   useCommandsSuggestionsStore.getState().addCommand(name, command)
 }
 
-export function getSuggestionsCommands(size: number): JSX.Element[] {
+export function getSuggestedCommands(size: number): JSX.Element[] {
   const scores = useCommandsRanking.getState().scores
   const commands = useCommandsSuggestionsStore.getState().commands
 
