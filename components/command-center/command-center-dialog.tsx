@@ -56,6 +56,35 @@ import {
 } from '@/components/command-center/commands-suggestions-store'
 import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
 
+const FooterShortcut = ({
+  name,
+  children,
+}: {
+  name: string
+  children: React.ReactNode
+}) => (
+  <div className='flex flex-row items-center gap-1.5'>
+    <span className='text-xs leading-3'>{name}</span>
+    <div className='flex flex-col items-center justify-center rounded-sm bg-neutral-300 p-1 dark:bg-neutral-800'>
+      {children}
+    </div>
+  </div>
+)
+
+const Footer = () => (
+  <div className='flex w-full flex-row items-center justify-between border-t p-2'>
+    <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
+    <div className='flex flex-row items-center gap-1.5'>
+      <FooterShortcut name='Select'>
+        <SelectIcon className='h-4 w-4 stroke-[1.5px]' />
+      </FooterShortcut>
+      <FooterShortcut name='Execute'>
+        <ReturnIcon className='h-4 w-4 stroke-[1.5px]' />
+      </FooterShortcut>
+    </div>
+  </div>
+)
+
 const ColorModeCommandItemContent = ({
   active = false,
   children,
@@ -410,23 +439,7 @@ export function CommandCenterDialog({
         <CommandSeparator />
         <CommandGroup heading='Color mode'>{colorModeCommands}</CommandGroup>
       </CommandList>
-      <div className='flex w-full flex-row items-center justify-between border-t p-2'>
-        <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
-        <div className='flex flex-row items-center gap-1.5'>
-          <div className='flex flex-row items-center gap-1.5'>
-            <span className='text-xs leading-3'>Select Command</span>
-            <div className='flex flex-col items-center justify-center rounded-sm bg-neutral-300 p-1 dark:bg-neutral-800'>
-              <SelectIcon className='h-4 w-4 stroke-[1.5px]' />
-            </div>
-          </div>
-          <div className='flex flex-row items-center gap-1.5'>
-            <span className='text-xs leading-3'>Execute Command</span>
-            <div className='flex flex-col items-center justify-center rounded-sm bg-neutral-300 p-1 dark:bg-neutral-800'>
-              <ReturnIcon className='h-4 w-4 stroke-[1.5px]' />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </CommandDialog>
   )
 }
