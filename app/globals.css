@@ -79,6 +79,7 @@
 @layer base {
   * {
     @apply border-border;
+    @apply selection:bg-violet-400 dark:selection:bg-violet-700;
   }
   body {
     @apply bg-background text-foreground;
