@@ -109,7 +109,7 @@ const ActivatableCommandItemContent = ({
     {active ? (
       <Badge variant='secondary'>
         <div className='flex flex-row items-center gap-1.5'>
-          <div className='size-1.5 rounded-full bg-[#50e3c2] dark:bg-[#29bc9b]' />
+          <div className='mt-px size-1.5 rounded-full bg-[#50e3c2] dark:bg-[#29bc9b]' />
           active
         </div>
       </Badge>
