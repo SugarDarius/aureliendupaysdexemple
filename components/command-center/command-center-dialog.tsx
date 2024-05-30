@@ -51,8 +51,9 @@ import { ConfettiIcon } from '@/components/icons/confetti-icon'
 import { KeyboardIcon } from '@/components/icons/keyboard-icon'
 
 import {
-  getHighestScoredCommands,
-  increaseScore,
+  addSuggestionCommand,
+  getSuggestionsCommands,
+  increaseCommandScore,
 } from '@/components/command-center/commands-suggestions-store'
 import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
 
@@ -135,8 +136,6 @@ const CommandCenterDialogItem = ({
   )
 }
 
-const commands = new Map<string, ReturnType<typeof CommandCenterDialogItem>>()
-
 const createCommandWithSuggestion = (
   name: string,
   {
@@ -163,7 +162,7 @@ const createCommandWithSuggestion = (
       }}
     />
   )
-  commands.set(name, commandSuggestion)
+  addSuggestionCommand(name, commandSuggestion)
 
   return <CommandCenterDialogItem key={key} name={name} {...props} />
 }
@@ -201,7 +200,7 @@ export function CommandCenterDialog({
   const mounted = useMounted()
 
   const execCommand = useEvent((name: string, command: () => void): void => {
-    increaseScore(name)
+    increaseCommandScore(name)
     onExecCommand()
     command()
   })
@@ -271,12 +270,7 @@ export function CommandCenterDialog({
 
   const suggestionsCommands = useMemo(() => {
     if (mounted && open) {
-      const topCommands = getHighestScoredCommands(5)
-      const commandItems = topCommands.map(
-        (commandName) => commands.get(commandName)!
-      )
-
-      return commandItems
+      return getSuggestionsCommands(5)
     }
 
     return []

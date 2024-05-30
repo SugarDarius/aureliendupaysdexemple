@@ -1,14 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-const LOCAL_STORAGE_KEY = 'commands-suggestions-store'
+const LOCAL_STORAGE_KEY = 'commands-ranking-store'
 
-type CommandsSuggestionsStore = {
+type CommandsRankingStore = {
   scores: Record<string, number>
   increaseScore: (commandName: string) => void
 }
 
-const useCommandsSuggestionsStore = create<CommandsSuggestionsStore>()(
+const useCommandsRanking = create<CommandsRankingStore>()(
   persist(
     (set, get) => ({
       scores: {},
@@ -28,15 +28,46 @@ const useCommandsSuggestionsStore = create<CommandsSuggestionsStore>()(
   )
 )
 
-export function increaseScore(commandName: string): void {
-  useCommandsSuggestionsStore.getState().increaseScore(commandName)
+export function increaseCommandScore(commandName: string): void {
+  useCommandsRanking.getState().increaseScore(commandName)
 }
 
-export function getHighestScoredCommands(size: number): string[] {
-  const scores = useCommandsSuggestionsStore.getState().scores
+type CommandsSuggestionsStore = {
+  commands: Map<string, JSX.Element>
+  addCommand: (name: string, command: JSX.Element) => void
+}
+
+const useCommandsSuggestionsStore = create<CommandsSuggestionsStore>(
+  (set, get) => ({
+    commands: new Map<string, JSX.Element>(),
+    addCommand: (name: string, command: JSX.Element): void => {
+      const commands = get().commands
+      commands.set(name, command)
+
+      set({ commands })
+    },
+  })
+)
+
+export function addSuggestionCommand(name: string, command: JSX.Element): void {
+  useCommandsSuggestionsStore.getState().addCommand(name, command)
+}
+
+export function getSuggestionsCommands(size: number): JSX.Element[] {
+  const scores = useCommandsRanking.getState().scores
+  const commands = useCommandsSuggestionsStore.getState().commands
 
   const keys = Array.from(Object.keys(scores))
-  const commands = keys.slice(0, size)
+  const topRankedCommandsNames = keys.slice(0, size)
 
-  return commands
+  const suggestionsCommands: JSX.Element[] = []
+
+  for (const commandName of topRankedCommandsNames) {
+    const command = commands.get(commandName)
+    if (command) {
+      suggestionsCommands.push(command)
+    }
+  }
+
+  return suggestionsCommands
 }
