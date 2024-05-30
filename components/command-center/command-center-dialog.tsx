@@ -207,7 +207,6 @@ export function CommandCenterDialog({
   const isMagnifyingGlassActive = useMagnifyingGlassStore(
     (state) => state.isActive
   )
-  console.log('isMagnifyingGlassActive', isMagnifyingGlassActive)
   const mounted = useMounted()
 
   const execCommand = useEvent((name: string, command: () => void): void => {
