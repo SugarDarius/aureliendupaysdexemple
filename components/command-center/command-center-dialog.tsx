@@ -51,7 +51,10 @@ import { SelectIcon } from '@/components/icons/select-icon'
 import { ConfettiIcon } from '@/components/icons/confetti-icon'
 import { KeyboardIcon } from '@/components/icons/keyboard-icon'
 
-import { toggleMagnifyingGlass } from '@/components/lab/magnifying-glass-store'
+import {
+  toggleMagnifyingGlass,
+  useMagnifyingGlassStore,
+} from '@/components/lab/magnifying-glass-store'
 
 import {
   addSuggestionCommand,
@@ -94,7 +97,7 @@ const Footer = () => (
   </div>
 )
 
-const ColorModeCommandItemContent = ({
+const ActivatableCommandItemContent = ({
   active = false,
   children,
 }: {
@@ -200,6 +203,11 @@ export function CommandCenterDialog({
   const { setTheme, theme } = useTheme()
 
   const [, copy] = useCopyToClipboard()
+
+  const isMagnifyingGlassActive = useMagnifyingGlassStore(
+    (state) => state.isActive
+  )
+  console.log('isMagnifyingGlassActive', isMagnifyingGlassActive)
   const mounted = useMounted()
 
   const execCommand = useEvent((name: string, command: () => void): void => {
@@ -395,10 +403,10 @@ export function CommandCenterDialog({
           value: 'toggle magnifying class',
           onSelect: handleSelectToggleMagnifyingGlass,
           children: (
-            <>
+            <ActivatableCommandItemContent active={isMagnifyingGlassActive}>
               <MagnifyingGlassIcon className='size-4' />
               Toggle magnifying glass
-            </>
+            </ActivatableCommandItemContent>
           ),
         }),
       ],
@@ -407,36 +415,36 @@ export function CommandCenterDialog({
           value: 'light',
           onSelect: handleSelectColorMode,
           children: (
-            <ColorModeCommandItemContent active={theme === 'light'}>
+            <ActivatableCommandItemContent active={theme === 'light'}>
               <SunIcon className='h-4 w-4' />
               Light
-            </ColorModeCommandItemContent>
+            </ActivatableCommandItemContent>
           ),
         }),
         createCommandWithSuggestion('dark', {
           value: 'dark',
           onSelect: handleSelectColorMode,
           children: (
-            <ColorModeCommandItemContent active={theme === 'dark'}>
+            <ActivatableCommandItemContent active={theme === 'dark'}>
               <MoonIcon className='h-4 w-4' />
               Dark
-            </ColorModeCommandItemContent>
+            </ActivatableCommandItemContent>
           ),
         }),
         createCommandWithSuggestion('system', {
           value: 'system',
           onSelect: handleSelectColorMode,
           children: (
-            <ColorModeCommandItemContent active={theme === 'system'}>
+            <ActivatableCommandItemContent active={theme === 'system'}>
               <ComputerDesktopIcon className='h-4 w-4' />
               System
-            </ColorModeCommandItemContent>
+            </ActivatableCommandItemContent>
           ),
         }),
       ],
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme]
+    [theme, isMagnifyingGlassActive]
   )
 
   return (
