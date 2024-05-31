@@ -14,6 +14,7 @@ import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 import { cn } from '@/lib/utils'
+import { useUserAgent } from '@/hooks/useUserAgent'
 import { useMounted } from '@/hooks/use-mounted'
 
 import {
@@ -107,7 +108,10 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
 
 export function MagnifyingGlass() {
   const [isMouseMoved, setIsMouseMoved] = useState<boolean>(false)
+
+  const { isSafari, isFirefox } = useUserAgent()
   const isActive = useMagnifyingGlassStore((state) => state.isActive)
+
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
@@ -129,9 +133,13 @@ export function MagnifyingGlass() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useHotkeys('m', (): void => {
-    toggleMagnifyingGlass()
-  })
+  useHotkeys(
+    'm',
+    (): void => {
+      toggleMagnifyingGlass()
+    },
+    { enabled: !isSafari && !isFirefox }
+  )
 
   return (
     <Portal>

@@ -3,6 +3,8 @@
 import { cn, toUpperFirst } from '@/lib/utils'
 import { navigationItems } from '@/lib/navigation'
 
+import { useUserAgent } from '@/hooks/useUserAgent'
+
 import {
   Dialog,
   DialogContent,
@@ -64,6 +66,8 @@ export function KeyboardShortcutsDialog({
   open: boolean
   onOpenChange: (open: boolean) => void
 }) {
+  const { isSafari, isFirefox } = useUserAgent()
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className={cn('gap-6', className)}>
@@ -86,12 +90,14 @@ export function KeyboardShortcutsDialog({
                   </KeyboardShortcutLabel>
                   <KeyboardShortcutKeys>⌘K</KeyboardShortcutKeys>
                 </KeyboardShortcutsItem>
-                <KeyboardShortcutsItem>
-                  <KeyboardShortcutLabel>
-                    Toggle magnifying glass
-                  </KeyboardShortcutLabel>
-                  <KeyboardShortcutKeys>M</KeyboardShortcutKeys>
-                </KeyboardShortcutsItem>
+                {!isSafari && !isFirefox ? (
+                  <KeyboardShortcutsItem>
+                    <KeyboardShortcutLabel>
+                      Toggle magnifying glass
+                    </KeyboardShortcutLabel>
+                    <KeyboardShortcutKeys>M</KeyboardShortcutKeys>
+                  </KeyboardShortcutsItem>
+                ) : null}
               </KeyboardShortcutsSectionItems>
             </KeyboardShortcutsSection>
             <KeyboardShortcutsSection>
