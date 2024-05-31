@@ -19,7 +19,7 @@ const ChatBubble = ({
     )}
   >
     <Image src={src} width={16} height={16} alt={alt} priority />
-    <span className='mt-px text-xs font-semibold  text-background dark:text-foreground'>
+    <span className='mt-px text-xs font-semibold text-background dark:text-foreground'>
       {children}
     </span>
   </div>

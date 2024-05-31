@@ -14,7 +14,7 @@ export function ClockWidget() {
         <span className='text-sm leading-none text-muted-foreground'>
           {meridiem}
         </span>
-        <div className='relative flex flex-col items-center font-mono text-[74px] font-extrabold  italic leading-[74px] tracking-tighter max-sm:text-[60px] max-sm:leading-[60px]'>
+        <div className='relative flex flex-col items-center font-mono text-[74px] font-extrabold italic leading-[74px] tracking-tighter max-sm:text-[60px] max-sm:leading-[60px]'>
           <span className='max-sm:ml[-6px] ml-[-40px]'>{hours}</span>
           <span className='mt-[-16px] max-sm:mt-[-10px]'>{minutes}</span>
         </div>

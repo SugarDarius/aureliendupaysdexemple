@@ -30,7 +30,7 @@ export function TechStackCard({
   return (
     <BentoCard className='col-span-1' variant='grid'>
       <AnchorComp {...anchorProps}>
-        <div className={cn('relative flex aspect-square flex-col ', className)}>
+        <div className={cn('relative flex aspect-square flex-col', className)}>
           <div className='absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center'>
             {children}
           </div>
