@@ -418,10 +418,19 @@ export function CommandCenterDialog({
               value: 'toggle magnifying class',
               onSelect: handleSelectToggleMagnifyingGlass,
               children: (
-                <ActivatableCommandItemContent active={isMagnifyingGlassActive}>
-                  <MagnifyingGlassIcon className='size-4' />
-                  Toggle magnifying glass
-                </ActivatableCommandItemContent>
+                <>
+                  <ActivatableCommandItemContent
+                    active={isMagnifyingGlassActive}
+                  >
+                    <MagnifyingGlassIcon className='size-4' />
+                    Toggle magnifying glass
+                  </ActivatableCommandItemContent>
+                  {!isMagnifyingGlassActive ? (
+                    <CommandCenterDialogItemShortcut>
+                      M
+                    </CommandCenterDialogItemShortcut>
+                  ) : null}
+                </>
               ),
             })
           : null,

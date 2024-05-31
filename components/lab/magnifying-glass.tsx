@@ -11,11 +11,15 @@ import {
   useTransform,
 } from 'framer-motion'
 import useEvent from 'react-use-event-hook'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { cn } from '@/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'
 
-import { useMagnifyingGlassStore } from '@/components/lab/magnifying-glass-store'
+import {
+  useMagnifyingGlassStore,
+  toggleMagnifyingGlass,
+} from '@/components/lab/magnifying-glass-store'
 
 const GLASS_SIZE = 120
 
@@ -124,6 +128,10 @@ export function MagnifyingGlass() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useHotkeys('m', (): void => {
+    toggleMagnifyingGlass()
+  })
 
   return (
     <Portal>

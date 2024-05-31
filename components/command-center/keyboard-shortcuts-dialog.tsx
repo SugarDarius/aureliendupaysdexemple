@@ -86,6 +86,12 @@ export function KeyboardShortcutsDialog({
                   </KeyboardShortcutLabel>
                   <KeyboardShortcutKeys>⌘K</KeyboardShortcutKeys>
                 </KeyboardShortcutsItem>
+                <KeyboardShortcutsItem>
+                  <KeyboardShortcutLabel>
+                    Toggle magnifying glass
+                  </KeyboardShortcutLabel>
+                  <KeyboardShortcutKeys>M</KeyboardShortcutKeys>
+                </KeyboardShortcutsItem>
               </KeyboardShortcutsSectionItems>
             </KeyboardShortcutsSection>
             <KeyboardShortcutsSection>
