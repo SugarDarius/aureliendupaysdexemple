@@ -97,7 +97,11 @@ const Footer = () => (
   </div>
 )
 
-const Shortcut = ({ children }: { children: React.ReactNode }) => (
+const CommandCenterDialogItemShortcut = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => (
   <CommandShortcut className='flex items-center rounded border bg-stone-100 px-1 text-xs font-medium tracking-[2px] text-stone-600 dark:bg-stone-600 dark:text-stone-100'>
     {children}
   </CommandShortcut>
@@ -328,7 +332,9 @@ export function CommandCenterDialog({
               <span className='font-bold'>
                 {toUpperFirst(navigationItem.label)}
               </span>
-              <Shortcut>{navigationItem.shortcutLabel}</Shortcut>
+              <CommandCenterDialogItemShortcut>
+                {navigationItem.shortcutLabel}
+              </CommandCenterDialogItemShortcut>
             </>
           ),
         })
