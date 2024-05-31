@@ -28,6 +28,7 @@ import { siteConfig } from '@/config/site-config'
 import { cn, toUpperFirst, dasherize } from '@/lib/utils'
 import { navigationItems } from '@/lib/navigation'
 
+import { useUserAgent } from '@/hooks/useUserAgent'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 import { useMounted } from '@/hooks/use-mounted'
 
@@ -219,6 +220,7 @@ export function CommandCenterDialog({
   const router = useRouter()
   const { setTheme, theme } = useTheme()
 
+  const { isSafari, isFirefox } = useUserAgent()
   const [, copy] = useCopyToClipboard()
 
   const isMagnifyingGlassActive = useMagnifyingGlassStore(
@@ -303,13 +305,7 @@ export function CommandCenterDialog({
     })
   })
 
-  const suggestedCommands = useMemo(() => {
-    if (mounted && open) {
-      return getSuggestedCommands(5)
-    }
-
-    return []
-  }, [mounted, open])
+  const isMagnifyingGlassAvailable = !isSafari && !isFirefox
 
   const [
     navigationCommands,
@@ -417,16 +413,18 @@ export function CommandCenterDialog({
             </>
           ),
         }),
-        createCommandWithSuggestion('toggle-magnifying-glass', {
-          value: 'toggle magnifying class',
-          onSelect: handleSelectToggleMagnifyingGlass,
-          children: (
-            <ActivatableCommandItemContent active={isMagnifyingGlassActive}>
-              <MagnifyingGlassIcon className='size-4' />
-              Toggle magnifying glass
-            </ActivatableCommandItemContent>
-          ),
-        }),
+        isMagnifyingGlassAvailable
+          ? createCommandWithSuggestion('toggle-magnifying-glass', {
+              value: 'toggle magnifying class',
+              onSelect: handleSelectToggleMagnifyingGlass,
+              children: (
+                <ActivatableCommandItemContent active={isMagnifyingGlassActive}>
+                  <MagnifyingGlassIcon className='size-4' />
+                  Toggle magnifying glass
+                </ActivatableCommandItemContent>
+              ),
+            })
+          : null,
       ],
       [
         createCommandWithSuggestion('light', {
@@ -462,8 +460,16 @@ export function CommandCenterDialog({
       ],
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, isMagnifyingGlassActive]
+    [theme, isMagnifyingGlassAvailable, isMagnifyingGlassActive]
   )
+
+  const suggestedCommands = useMemo(() => {
+    if (mounted && open) {
+      return getSuggestedCommands(5)
+    }
+
+    return []
+  }, [mounted, open])
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
