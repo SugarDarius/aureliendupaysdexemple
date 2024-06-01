@@ -20,7 +20,7 @@ import { useMounted } from '@/hooks/use-mounted'
 import {
   useMagnifyingGlassStore,
   toggleMagnifyingGlass,
-} from '@/components/lab/magnifying-glass-store'
+} from '@/components/lab/magnifying-glass/magnifying-glass-store'
 
 const GLASS_SIZE = 120
 

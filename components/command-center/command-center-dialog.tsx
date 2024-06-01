@@ -55,7 +55,7 @@ import { KeyboardIcon } from '@/components/icons/keyboard-icon'
 import {
   toggleMagnifyingGlass,
   useMagnifyingGlassStore,
-} from '@/components/lab/magnifying-glass-store'
+} from '@/components/lab/magnifying-glass/magnifying-glass-store'
 
 import {
   addSuggestionCommand,
