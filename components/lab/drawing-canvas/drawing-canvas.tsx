@@ -1,13 +1,24 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import {
+  ReactSketchCanvas as SketchCanvas,
+  type ReactSketchCanvasRef as SketchCanvasRef,
+} from 'react-sketch-canvas'
 
 export function DrawingCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<SketchCanvasRef>(null)
+  const [strokeWidth] = useState<number>(10)
 
   return (
     <div className='relative flex size-full flex-col'>
-      <canvas ref={canvasRef} className='absolute left-0 top-0 size-full' />
+      <SketchCanvas
+        ref={canvasRef}
+        canvasColor='transparent'
+        width='100%'
+        height='100%'
+        strokeWidth={strokeWidth}
+      />
     </div>
   )
 }
