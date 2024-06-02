@@ -7,14 +7,18 @@ import {
 } from 'react-sketch-canvas'
 import useEvent from 'react-use-event-hook'
 
+import { PencilSquareIcon } from '@heroicons/react/24/outline'
+
 import { cn } from '@/lib/utils'
 import clsx from 'clsx'
 import { Button } from '@/components/ui/button'
 
 const ColorButton = ({
+  active = false,
   color,
   onClick,
 }: {
+  active?: boolean
   color: string
   onClick: (color: string) => void
 }) => {
@@ -26,8 +30,9 @@ const ColorButton = ({
     <Button
       size='icon'
       variant='secondary'
-      className='size-auto rounded-full p-1.5'
+      className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground'
       onClick={handleClick}
+      data-active={active}
     >
       <div className='size-4 rounded-full' style={{ backgroundColor: color }} />
     </Button>
@@ -42,13 +47,17 @@ const initialStyle: React.CSSProperties = {
 export function DrawingCanvas({ className }: { className?: string }) {
   const canvasRef = useRef<SketchCanvasRef>(null)
 
-  const [isLocked] = useState<boolean>(true)
+  const [isLocked, setIsLocked] = useState<boolean>(true)
 
   const [strokeWidth] = useState<number>(10)
   const [strokeColor, setStrokeColor] = useState<string>('#FF676D')
 
   const handleColorButtonClick = useEvent((color): void => {
     setStrokeColor(color)
+  })
+
+  const handlePenColorButton = useEvent((): void => {
+    setIsLocked(!isLocked)
   })
 
   return (
@@ -75,9 +84,30 @@ export function DrawingCanvas({ className }: { className?: string }) {
       </div>
       <div className='absolute bottom-0 right-4 top-0 my-auto flex flex-col items-center justify-center'>
         <div className='flex flex-col gap-1.5 rounded-full border p-2'>
-          <ColorButton color='#FF676D' onClick={handleColorButtonClick} />
-          <ColorButton color='#FFA700' onClick={handleColorButtonClick} />
-          <ColorButton color='#48AEFF' onClick={handleColorButtonClick} />
+          <Button
+            size='icon'
+            variant='secondary'
+            className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground'
+            data-active={!isLocked}
+            onClick={handlePenColorButton}
+          >
+            <PencilSquareIcon className='size-4' />
+          </Button>
+          <ColorButton
+            active={strokeColor === '#FF676D'}
+            color='#FF676D'
+            onClick={handleColorButtonClick}
+          />
+          <ColorButton
+            active={strokeColor === '#FFA700'}
+            color='#FFA700'
+            onClick={handleColorButtonClick}
+          />
+          <ColorButton
+            active={strokeColor === '#48AEFF'}
+            color='#48AEFF'
+            onClick={handleColorButtonClick}
+          />
         </div>
       </div>
     </div>
