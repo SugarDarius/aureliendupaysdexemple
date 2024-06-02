@@ -21,25 +21,26 @@ export function DrawingCanvas({ className }: { className?: string }) {
   const [strokeWidth] = useState<number>(10)
 
   return (
-    <div
-      className={cn(
-        'relative flex size-full flex-col',
-        className,
-        clsx({
-          '!pointer-events-none': isLocked,
-          'pointer-events-auto': !isLocked,
-        })
-      )}
-    >
-      <SketchCanvas
-        ref={canvasRef}
-        canvasColor='transparent'
-        style={initialStyle}
-        className='absolute left-0 top-0'
-        width='100%'
-        height='100%'
-        strokeWidth={strokeWidth}
-      />
+    <div className={cn('flex size-full flex-col', className)}>
+      <div
+        className={cn(
+          'relative flex size-full flex-col',
+          clsx({
+            '!pointer-events-none': isLocked,
+            'pointer-events-auto': !isLocked,
+          })
+        )}
+      >
+        <SketchCanvas
+          ref={canvasRef}
+          canvasColor='transparent'
+          style={initialStyle}
+          className='absolute left-0 top-0'
+          width='100%'
+          height='100%'
+          strokeWidth={strokeWidth}
+        />
+      </div>
     </div>
   )
 }
