@@ -77,17 +77,23 @@ export function SVGCanvas({
   })
 
   useLayoutEffect(() => {
-    if (containerRef.current) {
-      const { width, height, top, left } =
-        containerRef.current.getBoundingClientRect()
-      setContainerSize([width, height])
-      setContainerPosition([top, left])
-
-      document.addEventListener('mouseup', handleMouseUp)
-
-      return (): void => {
-        document.removeEventListener('mouseup', handleMouseUp)
+    const handleResize = (): void => {
+      if (containerRef.current) {
+        const { width, height, top, left } =
+          containerRef.current.getBoundingClientRect()
+        setContainerSize([width, height])
+        setContainerPosition([top, left])
       }
+    }
+
+    handleResize()
+
+    window.addEventListener('resize', handleResize)
+    document.addEventListener('mouseup', handleMouseUp)
+
+    return (): void => {
+      window.removeEventListener('resize', handleResize)
+      document.removeEventListener('mouseup', handleMouseUp)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
