@@ -6,6 +6,7 @@ import {
   type ReactSketchCanvasRef as SketchCanvasRef,
 } from 'react-sketch-canvas'
 import useEvent from 'react-use-event-hook'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { PencilSquareIcon } from '@heroicons/react/24/outline'
 
@@ -57,6 +58,10 @@ export function DrawingCanvas({ className }: { className?: string }) {
   })
 
   const handlePenColorButton = useEvent((): void => {
+    setIsLocked(!isLocked)
+  })
+
+  useHotkeys('shift+d', (): void => {
     setIsLocked(!isLocked)
   })
 
