@@ -54,7 +54,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         opacity: 1,
       }
 
-      setPaths((paths) => [...paths, path])
+      setPaths([...paths, path])
     })
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
@@ -65,7 +65,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
           points: [...currentPath.points, point],
         }
 
-        setPaths((paths) => [...paths.slice(0, -1), updatedPath])
+        setPaths([...paths.slice(0, -1), updatedPath])
       }
     })
 
