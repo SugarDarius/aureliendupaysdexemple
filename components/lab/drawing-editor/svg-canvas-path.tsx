@@ -99,7 +99,10 @@ export function SVGCanvasPath({
   ended,
   curveSmoothing,
   pathDisappearingTimeoutMs,
-}: SVGPath & { curveSmoothing: number; pathDisappearingTimeoutMs: number }) {
+}: SVGPath & {
+  curveSmoothing: number
+  pathDisappearingTimeoutMs: number | null
+}) {
   const controls = useAnimationControls()
 
   useTimeout(

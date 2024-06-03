@@ -42,7 +42,7 @@ export function SVGCanvas({
   height: React.CSSProperties['height']
   backgroundColor: React.CSSProperties['fill']
   curveSmoothing: number
-  pathDisappearingTimeoutMs: number
+  pathDisappearingTimeoutMs: number | null
   paths: SVGPath[]
   onMouseDown: (point: SVGPoint) => void
   onMouseMove: (point: SVGPoint) => void

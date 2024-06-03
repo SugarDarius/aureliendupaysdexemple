@@ -27,7 +27,7 @@ type DrawingCanvasProps = {
   strokeColor: string
   strokeWidth: number
   curveSmoothing?: number
-  pathDisappearingTimeoutMs?: number
+  pathDisappearingTimeoutMs?: number | null
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
