@@ -96,12 +96,21 @@ export function DrawingEditor({ className }: { className?: string }) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
+  const [isHoveringControls, setIsHoveringControls] = useState<boolean>(false)
 
   const [strokeWidth] = useState<number>(10)
   const [strokeColor, setStrokeColor] = useState<string>('#FF676D')
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
+
+  const handleControlsMouseEnter = useEvent((): void => {
+    setIsHoveringControls(true)
+  })
+
+  const handleControlsMouseLeave = useEvent((): void => {
+    setIsHoveringControls(false)
+  })
 
   const handleColorButtonClick = useEvent((color): void => {
     setStrokeColor(color)
@@ -128,34 +137,41 @@ export function DrawingEditor({ className }: { className?: string }) {
     setIsLocked(!isLocked)
   })
 
+  const showCursor = !isLocked && !isHoveringControls
+
   return (
-    <div
-      className={cn(
-        'relative flex size-full flex-col',
-        className,
-        clsx({
-          '!cursor-none': !isLocked,
-        })
-      )}
-      onMouseMove={handleMouseMove}
-    >
-      <div className='relative flex size-full flex-col'>
-        <DrawingCanvas
-          ref={canvasRef}
-          backgroundColor='transparent'
-          className='absolute left-0 top-0'
-          isLocked={isLocked}
-          width='100%'
-          height='100%'
-          strokeWidth={strokeWidth}
-          strokeColor={strokeColor}
-        />
-        <AnimatePresence>
-          {!isLocked ? <PencilCursor x={x} y={y} /> : null}
-        </AnimatePresence>
+    <div className={cn('relative flex size-full flex-col', className)}>
+      <div
+        className={cn(
+          'relative flex size-full flex-col',
+          clsx({
+            '!cursor-none': !isLocked,
+          })
+        )}
+        onMouseMove={handleMouseMove}
+      >
+        <div className='relative flex size-full flex-col'>
+          <DrawingCanvas
+            ref={canvasRef}
+            backgroundColor='transparent'
+            className='absolute left-0 top-0'
+            isLocked={isLocked}
+            width='100%'
+            height='100%'
+            strokeWidth={strokeWidth}
+            strokeColor={strokeColor}
+          />
+          <AnimatePresence>
+            {showCursor ? <PencilCursor x={x} y={y} /> : null}
+          </AnimatePresence>
+        </div>
       </div>
       <div className='absolute bottom-0 right-4 top-0 z-10 my-auto flex flex-col items-center justify-center'>
-        <div className='flex flex-col gap-1.5 rounded-full border bg-background p-2'>
+        <div
+          className='flex flex-col gap-1.5 rounded-full border bg-background p-2'
+          onMouseEnter={handleControlsMouseEnter}
+          onMouseLeave={handleControlsMouseLeave}
+        >
           <DrawButton active={!isLocked} onClick={handleDrawButtonClick} />
           <ColorButton
             active={strokeColor === '#FF676D'}
