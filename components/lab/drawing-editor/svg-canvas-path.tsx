@@ -7,6 +7,7 @@ export type SVGPath = {
   strokeColor: string
   strokeWidth: number
   opacity: number
+  ended: boolean
 }
 
 type SVGLine = { length: number; angle: number }
