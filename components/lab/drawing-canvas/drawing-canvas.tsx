@@ -8,7 +8,13 @@ import {
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-import clsx from 'clsx'
+import { clsx } from 'clsx'
+import {
+  type MotionValue,
+  motion,
+  useMotionValue,
+  AnimatePresence,
+} from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 import { PencilIcon } from '@/components/icons/pencil-icon'
@@ -60,6 +66,21 @@ const DrawButton = ({
   )
 }
 
+const DrawPencil = ({
+  x,
+  y,
+}: {
+  x: MotionValue<number>
+  y: MotionValue<number>
+}) => (
+  <motion.div
+    className='pointer-events-none absolute left-0 top-0'
+    style={{ x, y }}
+  >
+    <PencilIcon className='size-5 rotate-90' />
+  </motion.div>
+)
+
 const initialStyle: React.CSSProperties = {
   border: 'none',
   borderRadius: 'none',
@@ -73,6 +94,9 @@ export function DrawingCanvas({ className }: { className?: string }) {
   const [strokeWidth] = useState<number>(10)
   const [strokeColor, setStrokeColor] = useState<string>('#FF676D')
 
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
   const handleColorButtonClick = useEvent((color): void => {
     setStrokeColor(color)
   })
@@ -81,19 +105,32 @@ export function DrawingCanvas({ className }: { className?: string }) {
     setIsLocked(!isLocked)
   })
 
+  const handleMouseMove = useEvent(
+    (e: React.MouseEvent<HTMLDivElement>): void => {
+      x.set(e.clientX + window.scrollX)
+      y.set(e.clientY + window.scrollY)
+    }
+  )
+
   useHotkeys('shift+d', (): void => {
     setIsLocked(!isLocked)
   })
 
   return (
-    <div className={cn('relative flex size-full flex-col', className)}>
+    <div
+      className={cn(
+        'relative flex size-full flex-col',
+        className,
+        clsx({
+          '!cursor-none': !isLocked,
+        })
+      )}
+      onMouseMove={handleMouseMove}
+    >
       <div
         className={cn(
           'relative flex size-full flex-col',
-          clsx({
-            '!pointer-events-none': isLocked,
-            'pointer-events-auto': !isLocked,
-          })
+          clsx({ '!pointer-events-none': isLocked })
         )}
       >
         <SketchCanvas
@@ -106,6 +143,9 @@ export function DrawingCanvas({ className }: { className?: string }) {
           strokeWidth={strokeWidth}
           strokeColor={strokeColor}
         />
+        <AnimatePresence>
+          {!isLocked ? <DrawPencil x={x} y={y} /> : null}
+        </AnimatePresence>
       </div>
       <div className='absolute bottom-0 right-4 top-0 my-auto flex flex-col items-center justify-center'>
         <div className='flex flex-col gap-1.5 rounded-full border p-2'>
