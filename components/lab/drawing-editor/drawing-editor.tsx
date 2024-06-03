@@ -29,6 +29,32 @@ import {
   DrawingCanvas,
 } from '@/components/lab/drawing-editor/drawing-canvas'
 
+const ControlButton = ({
+  className,
+  active = false,
+  onClick,
+  children,
+}: {
+  className?: string
+  active: boolean
+  onClick: () => void
+  children: React.ReactNode
+}) => (
+  <Button
+    size='icon'
+    className={cn(
+      'size-auto w-max rounded-full border border-neutral-200 bg-neutral-50 p-1.5 text-neutral-900 transition-colors ease-linear hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
+      'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
+      'data-[active=true]:text-neutral-900 dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50',
+      className
+    )}
+    onClick={onClick}
+    data-active={active}
+  >
+    {children}
+  </Button>
+)
+
 const ColorButton = ({
   active = false,
   color,
@@ -43,15 +69,12 @@ const ColorButton = ({
   })
 
   return (
-    <Button
-      size='icon'
-      variant='secondary'
-      className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground'
-      onClick={handleClick}
-      data-active={active}
-    >
-      <div className='size-4 rounded-full' style={{ backgroundColor: color }} />
-    </Button>
+    <ControlButton className='p-0' active={active} onClick={handleClick}>
+      <div
+        className='size-[26px] rounded-full'
+        style={{ backgroundColor: color }}
+      />
+    </ControlButton>
   )
 }
 
@@ -71,7 +94,7 @@ const DrawButton = ({
         data-active={active}
         onClick={onClick}
       >
-        <PencilIcon className='size-4 stroke-[1.5px]' />
+        <PencilIcon className='size-4 fill-none stroke-[1.5px]' />
       </Button>
     </TooltipTrigger>
     <TooltipContent className='flex flex-row items-center gap-1'>
@@ -216,7 +239,7 @@ export function DrawingEditor({ className }: { className?: string }) {
       </div>
       <div className='absolute bottom-0 right-4 top-0 z-10 my-auto flex flex-col items-center justify-center'>
         <div
-          className='flex flex-col gap-1.5 rounded-full border bg-background p-2'
+          className='flex flex-col items-center justify-center gap-1.5 rounded-full border bg-background p-2'
           onMouseEnter={handleControlsMouseEnter}
           onMouseLeave={handleControlsMouseLeave}
         >
