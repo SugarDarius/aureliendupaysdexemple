@@ -155,15 +155,17 @@ const ClearButton = ({ onClick }: { onClick: () => void }) => (
 const PencilCursor = ({
   x,
   y,
+  color,
 }: {
   x: MotionValue<number>
   y: MotionValue<number>
+  color: string
 }) => (
   <motion.div
     className='pointer-events-none absolute left-0 top-0'
     style={{ x, y }}
   >
-    <PencilIcon className='size-5 rotate-90' />
+    <PencilIcon className='size-5 rotate-90' style={{ color }} />
   </motion.div>
 )
 
@@ -243,7 +245,9 @@ export function DrawingEditor({ className }: { className?: string }) {
             pathDisappearingTimeoutMs={isTimerActive ? 5000 : null}
           />
           <AnimatePresence>
-            {showCursor ? <PencilCursor x={x} y={y} /> : null}
+            {showCursor ? (
+              <PencilCursor x={x} y={y} color={strokeColor} />
+            ) : null}
           </AnimatePresence>
         </div>
       </div>
