@@ -66,7 +66,7 @@ const DrawButton = ({
   )
 }
 
-const DrawPencil = ({
+const PencilCursor = ({
   x,
   y,
 }: {
@@ -86,7 +86,7 @@ const initialStyle: React.CSSProperties = {
   borderRadius: 'none',
 }
 
-export function DrawingCanvas({ className }: { className?: string }) {
+export function DrawingEditor({ className }: { className?: string }) {
   const canvasRef = useRef<SketchCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
@@ -144,7 +144,7 @@ export function DrawingCanvas({ className }: { className?: string }) {
           strokeColor={strokeColor}
         />
         <AnimatePresence>
-          {!isLocked ? <DrawPencil x={x} y={y} /> : null}
+          {!isLocked ? <PencilCursor x={x} y={y} /> : null}
         </AnimatePresence>
       </div>
       <div className='absolute bottom-0 right-4 top-0 my-auto flex flex-col items-center justify-center'>
