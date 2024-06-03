@@ -58,7 +58,7 @@ export function SVGCanvas({
 
   const handleMouseDown = useEvent(
     (e: React.MouseEvent<HTMLDivElement>): void => {
-      if (!isLocked) {
+      if (!isLocked && e.button === 0) {
         const point = getPointFromEvent(e, containerPosition)
         onMouseDown(point)
       }
@@ -74,11 +74,13 @@ export function SVGCanvas({
     }
   )
 
-  const handleMouseUp = useEvent((): void => {
-    if (!isLocked) {
-      onMouseUp()
+  const handleMouseUp = useEvent(
+    (e: React.MouseEvent<HTMLDivElement> | MouseEvent): void => {
+      if (!isLocked && e.button === 0) {
+        onMouseUp()
+      }
     }
-  })
+  )
 
   useLayoutEffect(() => {
     const handleResize = (): void => {
