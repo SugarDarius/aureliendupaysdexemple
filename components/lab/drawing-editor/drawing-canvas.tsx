@@ -52,6 +52,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         strokeColor,
         strokeWidth,
         opacity: 1,
+        ended: false,
       }
 
       setPaths([...paths, path])
@@ -72,6 +73,13 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const handleMouseUp = useEvent((): void => {
       if (isDrawing) {
         setIsDrawing(false)
+        const currentPath = paths[paths.length - 1]
+        const updatedPath = {
+          ...currentPath,
+          ended: true,
+        }
+
+        setPaths([...paths.slice(0, -1), updatedPath])
       }
     })
 
