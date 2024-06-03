@@ -147,9 +147,16 @@ const DisappearingButton = ({
 )
 
 const ClearButton = ({ onClick }: { onClick: () => void }) => (
-  <ControlButton onClick={onClick}>
-    <TrashIcon className='size-4 stroke-[1.5px]' />
-  </ControlButton>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <ControlButton onClick={onClick}>
+        <TrashIcon className='size-4 stroke-[1.5px]' />
+      </ControlButton>
+    </TooltipTrigger>
+    <TooltipContent className='flex flex-row items-center gap-1' align='end'>
+      <span>Clear canvas</span>
+    </TooltipContent>
+  </Tooltip>
 )
 
 const PencilCursor = ({
