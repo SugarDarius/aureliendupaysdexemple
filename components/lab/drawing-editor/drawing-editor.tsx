@@ -11,6 +11,7 @@ import {
   useMotionValue,
   AnimatePresence,
 } from 'framer-motion'
+import { TrashIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/lib/utils'
 import { PencilIcon } from '@/components/icons/pencil-icon'
@@ -53,19 +54,28 @@ const DrawButton = ({
 }: {
   active?: boolean
   onClick: () => void
-}) => {
-  return (
-    <Button
-      size='icon'
-      variant='secondary'
-      className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
-      data-active={active}
-      onClick={onClick}
-    >
-      <PencilIcon className='size-4 stroke-[1.5px]' />
-    </Button>
-  )
-}
+}) => (
+  <Button
+    size='icon'
+    variant='secondary'
+    className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
+    data-active={active}
+    onClick={onClick}
+  >
+    <PencilIcon className='size-4 stroke-[1.5px]' />
+  </Button>
+)
+
+const ClearButton = ({ onClick }: { onClick: () => void }) => (
+  <Button
+    size='icon'
+    variant='secondary'
+    className='size-auto rounded-full p-1.5'
+    onClick={onClick}
+  >
+    <TrashIcon className='size-4 stroke-[1.5px]' />
+  </Button>
+)
 
 const PencilCursor = ({
   x,
@@ -99,6 +109,12 @@ export function DrawingEditor({ className }: { className?: string }) {
 
   const handleDrawButtonClick = useEvent((): void => {
     setIsLocked(!isLocked)
+  })
+
+  const handleClearButton = useEvent((): void => {
+    if (canvasRef.current) {
+      canvasRef.current.clear()
+    }
   })
 
   const handleMouseMove = useEvent(
@@ -156,6 +172,7 @@ export function DrawingEditor({ className }: { className?: string }) {
             color='#48AEFF'
             onClick={handleColorButtonClick}
           />
+          <ClearButton onClick={handleClearButton} />
         </div>
       </div>
     </div>
