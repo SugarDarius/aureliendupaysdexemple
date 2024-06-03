@@ -123,16 +123,12 @@ export function DrawingEditor({ className }: { className?: string }) {
       )}
       onMouseMove={handleMouseMove}
     >
-      <div
-        className={cn(
-          'relative flex size-full flex-col',
-          clsx({ '!pointer-events-none': isLocked })
-        )}
-      >
+      <div className='relative flex size-full flex-col'>
         <DrawingCanvas
           ref={canvasRef}
           backgroundColor='transparent'
           className='absolute left-0 top-0'
+          isLocked={isLocked}
           width='100%'
           height='100%'
           strokeWidth={strokeWidth}
