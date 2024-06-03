@@ -87,7 +87,7 @@ export function DrawingCanvas({ className }: { className?: string }) {
           <Button
             size='icon'
             variant='secondary'
-            className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground'
+            className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
             data-active={!isLocked}
             onClick={handlePenColorButton}
           >
