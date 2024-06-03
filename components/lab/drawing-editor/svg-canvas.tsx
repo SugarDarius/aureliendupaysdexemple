@@ -18,7 +18,7 @@ const getPointFromEvent = (
   containerPosition: [number, number]
 ): SVGPoint => ({
   x: event.pageX - containerPosition[0] - window.scrollX,
-  y: event.pageX - containerPosition[1] - window.scrollY,
+  y: event.pageY - containerPosition[1] - window.scrollY,
 })
 
 export function SVGCanvas({
