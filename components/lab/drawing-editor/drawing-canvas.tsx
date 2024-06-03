@@ -11,6 +11,9 @@ import type {
 } from '@/components/lab/drawing-editor/svg-canvas-path'
 import { SVGCanvas } from '@/components/lab/drawing-editor/svg-canvas'
 
+const DEFAULT_CURVE_SMOOTHING = 0.4
+const DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS = 5000
+
 export type DrawingCanvasRef = {
   clear: () => void
 }
@@ -24,6 +27,7 @@ type DrawingCanvasProps = {
   strokeColor: string
   strokeWidth: number
   curveSmoothing?: number
+  pathDisappearingTimeoutMs?: number
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
@@ -36,7 +40,8 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       backgroundColor,
       strokeColor,
       strokeWidth,
-      curveSmoothing = 0.4,
+      curveSmoothing = DEFAULT_CURVE_SMOOTHING,
+      pathDisappearingTimeoutMs = DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS,
     },
     ref
   ) => {
@@ -97,6 +102,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         height={height}
         backgroundColor={backgroundColor}
         curveSmoothing={curveSmoothing}
+        pathDisappearingTimeoutMs={pathDisappearingTimeoutMs}
         paths={paths}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}

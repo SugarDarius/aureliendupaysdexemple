@@ -96,9 +96,10 @@ export function SVGCanvasPath({
   points,
   strokeWidth,
   strokeColor,
-  curveSmoothing,
   ended,
-}: SVGPath & { curveSmoothing: number }) {
+  curveSmoothing,
+  pathDisappearingTimeoutMs,
+}: SVGPath & { curveSmoothing: number; pathDisappearingTimeoutMs: number }) {
   const controls = useAnimationControls()
 
   useTimeout(
@@ -114,7 +115,7 @@ export function SVGCanvasPath({
         // TODO: remove from paths state
       })
     },
-    ended ? 5000 : null
+    ended ? pathDisappearingTimeoutMs : null
   )
 
   if (points.length === 1) {
