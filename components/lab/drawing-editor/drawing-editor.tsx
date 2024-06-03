@@ -1,10 +1,6 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import {
-  ReactSketchCanvas as SketchCanvas,
-  type ReactSketchCanvasRef as SketchCanvasRef,
-} from 'react-sketch-canvas'
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 
@@ -19,6 +15,11 @@ import {
 import { cn } from '@/lib/utils'
 import { PencilIcon } from '@/components/icons/pencil-icon'
 import { Button } from '@/components/ui/button'
+
+import {
+  type DrawingCanvasRef,
+  DrawingCanvas,
+} from '@/components/lab/drawing-editor/drawing-canvas'
 
 const ColorButton = ({
   active = false,
@@ -81,13 +82,8 @@ const PencilCursor = ({
   </motion.div>
 )
 
-const initialStyle: React.CSSProperties = {
-  border: 'none',
-  borderRadius: 'none',
-}
-
 export function DrawingEditor({ className }: { className?: string }) {
-  const canvasRef = useRef<SketchCanvasRef>(null)
+  const canvasRef = useRef<DrawingCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
 
@@ -133,10 +129,9 @@ export function DrawingEditor({ className }: { className?: string }) {
           clsx({ '!pointer-events-none': isLocked })
         )}
       >
-        <SketchCanvas
+        <DrawingCanvas
           ref={canvasRef}
-          canvasColor='transparent'
-          style={initialStyle}
+          backgroundColor='transparent'
           className='absolute left-0 top-0'
           width='100%'
           height='100%'

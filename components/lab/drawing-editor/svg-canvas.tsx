@@ -24,19 +24,21 @@ const getPointFromEvent = (
 export function SVGCanvas({
   className,
   isDrawing,
-  isLocked = false,
+  isLocked,
   width,
   height,
+  backgroundColor,
   paths,
   onMouseDown,
   onMouseMove,
   onMouseUp,
 }: {
   className?: string
-  isLocked?: boolean
+  isLocked: boolean
   isDrawing: boolean
   width: React.CSSProperties['width']
   height: React.CSSProperties['height']
+  backgroundColor: React.CSSProperties['fill']
   paths: SVGPath[]
   onMouseDown: (point: SVGPoint) => void
   onMouseMove: (point: SVGPoint) => void
@@ -69,7 +71,9 @@ export function SVGCanvas({
   )
 
   const handleMouseUp = useEvent((): void => {
-    onMouseUp()
+    if (!isLocked) {
+      onMouseUp()
+    }
   })
 
   useLayoutEffect(() => {
@@ -103,6 +107,16 @@ export function SVGCanvas({
           xmlns='http://www.w3.org/2000/svg'
           viewBox={`0 0 ${containerSize[0]} ${containerSize[1]}`}
         >
+          <g id={`${SVG_CANVAS_ID}-background-group`}>
+            <rect
+              id={`${SVG_CANVAS_ID}-background-rect`}
+              x='0'
+              y='0'
+              width='100%'
+              height='100%'
+              fill={backgroundColor}
+            />
+          </g>
           <g id={`${SVG_CANVAS_ID}-paths-group`}>
             {paths.map((path: SVGPath) => (
               <SVGCanvasPath key={path.id} {...path} />

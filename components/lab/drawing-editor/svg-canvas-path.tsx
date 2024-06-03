@@ -4,8 +4,9 @@ export type SVGPoint = { x: number; y: number }
 export type SVGPath = {
   id: string
   points: SVGPoint[]
-  strokeWidth: number
   strokeColor: string
+  strokeWidth: number
+  opacity: number
 }
 
 type SVGLine = { length: number; angle: number }
@@ -81,6 +82,7 @@ export function SVGCanvasPath({
   points,
   strokeWidth,
   strokeColor,
+  opacity,
 }: SVGPath) {
   if (points.length === 1) {
     const point = points[0]
@@ -94,6 +96,7 @@ export function SVGCanvasPath({
         r={r}
         stroke={strokeColor}
         fill={strokeColor}
+        opacity={opacity}
       />
     )
   }
@@ -104,5 +107,15 @@ export function SVGCanvasPath({
       : `${d} ${getCubicBezierCurve(point, index, points)}`
   }, '')
 
-  return <path id={id} d={d} />
+  return (
+    <path
+      id={id}
+      d={d}
+      stroke={strokeColor}
+      strokeWidth={strokeWidth}
+      strokeOpacity={opacity}
+      strokeLinecap='round'
+      fill='none'
+    />
+  )
 }
