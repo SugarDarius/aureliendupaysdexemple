@@ -14,7 +14,9 @@ import {
 import { TrashIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/lib/utils'
+
 import { PencilIcon } from '@/components/icons/pencil-icon'
+import { TimerIcon } from '@/components/icons/timer-icon'
 import { Button } from '@/components/ui/button'
 
 import {
@@ -66,6 +68,24 @@ const DrawButton = ({
   </Button>
 )
 
+const DisappearingButton = ({
+  active = false,
+  onClick,
+}: {
+  active?: boolean
+  onClick: () => void
+}) => (
+  <Button
+    size='icon'
+    variant='secondary'
+    className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
+    data-active={active}
+    onClick={onClick}
+  >
+    <TimerIcon className='size-4 stroke-[1.5px]' />
+  </Button>
+)
+
 const ClearButton = ({ onClick }: { onClick: () => void }) => (
   <Button
     size='icon'
@@ -96,6 +116,7 @@ export function DrawingEditor({ className }: { className?: string }) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
+  const [isTimerActive, setIsTimerActive] = useState<boolean>(true)
   const [isHoveringControls, setIsHoveringControls] = useState<boolean>(false)
 
   const [strokeWidth] = useState<number>(10)
@@ -118,6 +139,10 @@ export function DrawingEditor({ className }: { className?: string }) {
 
   const handleDrawButtonClick = useEvent((): void => {
     setIsLocked(!isLocked)
+  })
+
+  const handleDisappearingButton = useEvent((): void => {
+    setIsTimerActive(!isTimerActive)
   })
 
   const handleClearButton = useEvent((): void => {
@@ -160,6 +185,7 @@ export function DrawingEditor({ className }: { className?: string }) {
             height='100%'
             strokeWidth={strokeWidth}
             strokeColor={strokeColor}
+            pathDisappearingTimeoutMs={isTimerActive ? 5000 : null}
           />
           <AnimatePresence>
             {showCursor ? <PencilCursor x={x} y={y} /> : null}
@@ -187,6 +213,10 @@ export function DrawingEditor({ className }: { className?: string }) {
             active={strokeColor === '#48AEFF'}
             color='#48AEFF'
             onClick={handleColorButtonClick}
+          />
+          <DisappearingButton
+            active={isTimerActive}
+            onClick={handleDisappearingButton}
           />
           <ClearButton onClick={handleClearButton} />
         </div>
