@@ -138,8 +138,8 @@ export function DrawingEditor({ className }: { className?: string }) {
           {!isLocked ? <PencilCursor x={x} y={y} /> : null}
         </AnimatePresence>
       </div>
-      <div className='absolute bottom-0 right-4 top-0 my-auto flex flex-col items-center justify-center'>
-        <div className='flex flex-col gap-1.5 rounded-full border p-2'>
+      <div className='absolute bottom-0 right-4 top-0 z-10 my-auto flex flex-col items-center justify-center'>
+        <div className='flex flex-col gap-1.5 rounded-full border bg-background p-2'>
           <DrawButton active={!isLocked} onClick={handleDrawButtonClick} />
           <ColorButton
             active={strokeColor === '#FF676D'}
