@@ -23,6 +23,7 @@ type DrawingCanvasProps = {
   backgroundColor: React.CSSProperties['fill']
   strokeColor: string
   strokeWidth: number
+  curveSmoothing?: number
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
@@ -35,6 +36,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       backgroundColor,
       strokeColor,
       strokeWidth,
+      curveSmoothing = 0.4,
     },
     ref
   ) => {
@@ -87,6 +89,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         width={width}
         height={height}
         backgroundColor={backgroundColor}
+        curveSmoothing={curveSmoothing}
         paths={paths}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}

@@ -28,6 +28,7 @@ export function SVGCanvas({
   width,
   height,
   backgroundColor,
+  curveSmoothing,
   paths,
   onMouseDown,
   onMouseMove,
@@ -39,6 +40,7 @@ export function SVGCanvas({
   width: React.CSSProperties['width']
   height: React.CSSProperties['height']
   backgroundColor: React.CSSProperties['fill']
+  curveSmoothing: number
   paths: SVGPath[]
   onMouseDown: (point: SVGPoint) => void
   onMouseMove: (point: SVGPoint) => void
@@ -125,7 +127,11 @@ export function SVGCanvas({
           </g>
           <g id={`${SVG_CANVAS_ID}-paths-group`}>
             {paths.map((path: SVGPath) => (
-              <SVGCanvasPath key={path.id} {...path} />
+              <SVGCanvasPath
+                key={path.id}
+                {...path}
+                curveSmoothing={curveSmoothing}
+              />
             ))}
           </g>
         </svg>
