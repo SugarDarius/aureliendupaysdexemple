@@ -15,6 +15,11 @@ import { TrashIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/lib/utils'
 
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 import { PencilIcon } from '@/components/icons/pencil-icon'
 import { TimerIcon } from '@/components/icons/timer-icon'
 import { Button } from '@/components/ui/button'
@@ -57,15 +62,25 @@ const DrawButton = ({
   active?: boolean
   onClick: () => void
 }) => (
-  <Button
-    size='icon'
-    variant='secondary'
-    className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
-    data-active={active}
-    onClick={onClick}
-  >
-    <PencilIcon className='size-4 stroke-[1.5px]' />
-  </Button>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button
+        size='icon'
+        variant='secondary'
+        className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
+        data-active={active}
+        onClick={onClick}
+      >
+        <PencilIcon className='size-4 stroke-[1.5px]' />
+      </Button>
+    </TooltipTrigger>
+    <TooltipContent className='flex flex-row items-center gap-1'>
+      <span>{`${active ? 'Lock' : 'Unlock'} drawing mode`}</span>
+      <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium text-muted-foreground'>
+        SHIFT + D
+      </span>
+    </TooltipContent>
+  </Tooltip>
 )
 
 const DisappearingButton = ({
@@ -75,15 +90,22 @@ const DisappearingButton = ({
   active?: boolean
   onClick: () => void
 }) => (
-  <Button
-    size='icon'
-    variant='secondary'
-    className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
-    data-active={active}
-    onClick={onClick}
-  >
-    <TimerIcon className='size-4 stroke-[1.5px]' />
-  </Button>
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <Button
+        size='icon'
+        variant='secondary'
+        className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
+        data-active={active}
+        onClick={onClick}
+      >
+        <TimerIcon className='size-4 stroke-[1.5px]' />
+      </Button>
+    </TooltipTrigger>
+    <TooltipContent className='flex flex-row items-center gap-1'>
+      <span>{`${active ? 'Disable' : 'Enabled'} path disappearing timer`}</span>
+    </TooltipContent>
+  </Tooltip>
 )
 
 const ClearButton = ({ onClick }: { onClick: () => void }) => (
