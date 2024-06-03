@@ -8,10 +8,10 @@ import {
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-import { PencilSquareIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
 
 import { cn } from '@/lib/utils'
-import clsx from 'clsx'
+import { PencilIcon } from '@/components/icons/pencil-icon'
 import { Button } from '@/components/ui/button'
 
 const ColorButton = ({
@@ -96,7 +96,7 @@ export function DrawingCanvas({ className }: { className?: string }) {
             data-active={!isLocked}
             onClick={handlePenColorButton}
           >
-            <PencilSquareIcon className='size-4' />
+            <PencilIcon className='size-4 stroke-[1.5px]' />
           </Button>
           <ColorButton
             active={strokeColor === '#FF676D'}
