@@ -51,7 +51,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         points: [point],
         strokeColor,
         strokeWidth,
-        opacity: 1,
         ended: false,
       }
 

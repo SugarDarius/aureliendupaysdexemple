@@ -1,12 +1,14 @@
 'use client'
 
+import { motion, useAnimationControls } from 'framer-motion'
+import { useTimeout } from '@/hooks/use-timeout'
+
 export type SVGPoint = { x: number; y: number }
 export type SVGPath = {
   id: string
   points: SVGPoint[]
   strokeColor: string
   strokeWidth: number
-  opacity: number
   ended: boolean
 }
 
@@ -94,22 +96,41 @@ export function SVGCanvasPath({
   points,
   strokeWidth,
   strokeColor,
-  opacity,
   curveSmoothing,
+  ended,
 }: SVGPath & { curveSmoothing: number }) {
+  const controls = useAnimationControls()
+
+  useTimeout(
+    (): void => {
+      const disappearAnimation = async (): Promise<void> => {
+        await controls.start({
+          opacity: 0,
+          transition: { duration: 1.5, ease: 'linear' },
+        })
+      }
+
+      disappearAnimation().then((): void => {
+        // TODO: remove from paths state
+      })
+    },
+    ended ? 5000 : null
+  )
+
   if (points.length === 1) {
     const point = points[0]
     const r = strokeWidth / 2
 
     return (
-      <circle
+      <motion.circle
         id={id}
         cx={point.x}
         cy={point.y}
         r={r}
         stroke={strokeColor}
         fill={strokeColor}
-        opacity={opacity}
+        animate={controls}
+        initial={{ opacity: 1 }}
       />
     )
   }
@@ -121,14 +142,15 @@ export function SVGCanvasPath({
   }, '')
 
   return (
-    <path
+    <motion.path
       id={id}
       d={d}
       stroke={strokeColor}
       strokeWidth={strokeWidth}
-      strokeOpacity={opacity}
       strokeLinecap='round'
       fill='none'
+      animate={controls}
+      initial={{ opacity: 1 }}
     />
   )
 }
