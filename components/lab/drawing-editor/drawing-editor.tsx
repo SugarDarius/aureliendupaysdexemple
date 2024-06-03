@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { forwardRef, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 
@@ -29,34 +29,38 @@ import {
   DrawingCanvas,
 } from '@/components/lab/drawing-editor/drawing-canvas'
 
-const ControlButton = ({
-  className,
-  active = false,
-  onClick,
-  children,
-}: {
+type ControlButtonProps = {
   className?: string
-  active: boolean
+  active?: boolean
+  'data-state'?: boolean
   onClick: () => void
   children: React.ReactNode
-}) => (
-  <Button
-    size='icon'
-    className={cn(
-      'size-auto w-max rounded-full border border-neutral-200 bg-neutral-50 p-1.5 text-neutral-900 transition-colors ease-linear hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
-      'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
-      'data-[active=true]:text-neutral-900 dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50',
-      className
-    )}
-    onClick={onClick}
-    data-active={active}
-  >
-    {children}
-  </Button>
+}
+
+const ControlButton = forwardRef<HTMLButtonElement, ControlButtonProps>(
+  ({ className, active = false, onClick, children, ...rest }, ref) => (
+    <Button
+      ref={ref}
+      size='icon'
+      className={cn(
+        'size-auto w-max rounded-full border border-neutral-200 bg-neutral-50 p-1.5 text-neutral-900 transition-colors ease-linear',
+        'hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
+        'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
+        'dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50 dark:data-[active=true]:text-neutral-900',
+        className
+      )}
+      onClick={onClick}
+      data-active={active}
+      {...rest}
+    >
+      {children}
+    </Button>
+  )
 )
+ControlButton.displayName = 'ControlButton'
 
 const ColorButton = ({
-  active = false,
+  active,
   color,
   onClick,
 }: {
@@ -78,68 +82,74 @@ const ColorButton = ({
   )
 }
 
-const DrawButton = ({
-  active = false,
+const ActivatableButton = ({
+  active,
   onClick,
+  children,
+  tooltipContent,
 }: {
-  active?: boolean
+  active: boolean
   onClick: () => void
+  children: React.ReactNode
+  tooltipContent: React.ReactNode
 }) => (
   <Tooltip>
     <TooltipTrigger asChild>
-      <Button
-        size='icon'
-        variant='secondary'
-        className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
-        data-active={active}
-        onClick={onClick}
-      >
-        <PencilIcon className='size-4 fill-none stroke-[1.5px]' />
-      </Button>
+      <ControlButton active={active} onClick={onClick}>
+        {children}
+      </ControlButton>
     </TooltipTrigger>
-    <TooltipContent className='flex flex-row items-center gap-1'>
-      <span>{`${active ? 'Lock' : 'Unlock'} drawing mode`}</span>
-      <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium text-muted-foreground'>
-        SHIFT + D
-      </span>
+    <TooltipContent className='flex flex-row items-center gap-1' align='end'>
+      {tooltipContent}
     </TooltipContent>
   </Tooltip>
+)
+
+const DrawButton = ({
+  active,
+  onClick,
+}: {
+  active: boolean
+  onClick: () => void
+}) => (
+  <ActivatableButton
+    active={active}
+    onClick={onClick}
+    tooltipContent={
+      <>
+        <span>{`${active ? 'Lock' : 'Unlock'} drawing mode`}</span>
+        <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium text-muted-foreground'>
+          SHIFT + D
+        </span>
+      </>
+    }
+  >
+    <PencilIcon className='size-4 fill-none stroke-[1.5px]' />
+  </ActivatableButton>
 )
 
 const DisappearingButton = ({
-  active = false,
+  active,
   onClick,
 }: {
-  active?: boolean
+  active: boolean
   onClick: () => void
 }) => (
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Button
-        size='icon'
-        variant='secondary'
-        className='size-auto rounded-full p-1.5 data-[active=true]:bg-muted-foreground data-[active=true]:text-background'
-        data-active={active}
-        onClick={onClick}
-      >
-        <TimerIcon className='size-4 stroke-[1.5px]' />
-      </Button>
-    </TooltipTrigger>
-    <TooltipContent className='flex flex-row items-center gap-1'>
+  <ActivatableButton
+    active={active}
+    onClick={onClick}
+    tooltipContent={
       <span>{`${active ? 'Disable' : 'Enabled'} path disappearing timer`}</span>
-    </TooltipContent>
-  </Tooltip>
+    }
+  >
+    <TimerIcon className='size-4 stroke-[1.5px]' />
+  </ActivatableButton>
 )
 
 const ClearButton = ({ onClick }: { onClick: () => void }) => (
-  <Button
-    size='icon'
-    variant='secondary'
-    className='size-auto rounded-full p-1.5'
-    onClick={onClick}
-  >
+  <ControlButton onClick={onClick}>
     <TrashIcon className='size-4 stroke-[1.5px]' />
-  </Button>
+  </ControlButton>
 )
 
 const PencilCursor = ({
@@ -165,7 +175,7 @@ export function DrawingEditor({ className }: { className?: string }) {
   const [isHoveringControls, setIsHoveringControls] = useState<boolean>(false)
 
   const [strokeWidth] = useState<number>(10)
-  const [strokeColor, setStrokeColor] = useState<string>('#FF676D')
+  const [strokeColor, setStrokeColor] = useState<string>('#48AEFF')
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -245,6 +255,11 @@ export function DrawingEditor({ className }: { className?: string }) {
         >
           <DrawButton active={!isLocked} onClick={handleDrawButtonClick} />
           <ColorButton
+            active={strokeColor === '#48AEFF'}
+            color='#48AEFF'
+            onClick={handleColorButtonClick}
+          />
+          <ColorButton
             active={strokeColor === '#FF676D'}
             color='#FF676D'
             onClick={handleColorButtonClick}
@@ -254,11 +269,7 @@ export function DrawingEditor({ className }: { className?: string }) {
             color='#FFA700'
             onClick={handleColorButtonClick}
           />
-          <ColorButton
-            active={strokeColor === '#48AEFF'}
-            color='#48AEFF'
-            onClick={handleColorButtonClick}
-          />
+
           <DisappearingButton
             active={isTimerActive}
             onClick={handleDisappearingButton}
