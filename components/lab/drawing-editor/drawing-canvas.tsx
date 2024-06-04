@@ -48,6 +48,10 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
     const [paths, setPaths] = useState<SVGPath[]>([])
 
+    const updatePaths = useEvent((paths: SVGPath[]): void => {
+      setPaths(paths)
+    })
+
     const handleMouseDown = useEvent((point: SVGPoint): void => {
       setIsDrawing(true)
       const id = 'drawing-svg-canvas-path-' + nanoid(10)
@@ -59,7 +63,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         ended: false,
       }
 
-      setPaths([...paths, path])
+      updatePaths([...paths, path])
     })
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
@@ -70,7 +74,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
           points: [...currentPath.points, point],
         }
 
-        setPaths([...paths.slice(0, -1), updatedPath])
+        updatePaths([...paths.slice(0, -1), updatedPath])
       }
     })
 
@@ -83,14 +87,14 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
           ended: true,
         }
 
-        setPaths([...paths.slice(0, -1), updatedPath])
+        updatePaths([...paths.slice(0, -1), updatedPath])
       }
     })
 
     const handleDisappearedPath = useEvent((pathId: string): void => {
       const index = paths.findIndex(({ id }) => id === pathId)
       if (index > -1) {
-        setPaths([...paths.slice(0, index), ...paths.slice(index + 1)])
+        updatePaths([...paths.slice(0, index), ...paths.slice(index + 1)])
       }
     })
 
@@ -98,9 +102,10 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       ref,
       () => ({
         clear: (): void => {
-          setPaths([])
+          updatePaths([])
         },
       }),
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       []
     )
 
