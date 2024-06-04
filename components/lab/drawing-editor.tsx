@@ -27,7 +27,7 @@ import { Button } from '@/components/ui/button'
 import {
   type DrawingCanvasRef,
   DrawingCanvas,
-} from '@/components/lab/drawing-editor/drawing-canvas'
+} from '@/components/lab/drawing-canvas/drawing-canvas'
 
 type ControlButtonProps = {
   className?: string

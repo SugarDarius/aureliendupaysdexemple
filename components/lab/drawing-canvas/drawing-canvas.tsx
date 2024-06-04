@@ -9,8 +9,8 @@ import { merge as deepMerge } from 'ts-deepmerge'
 import type {
   SVGPoint,
   SVGPath,
-} from '@/components/lab/drawing-editor/svg-canvas-path'
-import { SVGCanvas } from '@/components/lab/drawing-editor/svg-canvas'
+} from '@/components/lab/drawing-canvas/svg-canvas-path'
+import { SVGCanvas } from '@/components/lab/drawing-canvas/svg-canvas'
 
 const DEFAULT_CURVE_SMOOTHING = 0.4
 const DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS = 5000

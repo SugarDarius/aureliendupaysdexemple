@@ -1,4 +1,4 @@
-import { DrawingEditor } from '@/components/lab/drawing-editor/drawing-editor'
+import { DrawingEditor } from '@/components/lab/drawing-editor'
 
 export default function DrawingEditorPage() {
   return (

@@ -7,7 +7,7 @@ import {
   type SVGPoint,
   type SVGPath,
   SVGCanvasPath,
-} from '@/components/lab/drawing-editor/svg-canvas-path'
+} from '@/components/lab/drawing-canvas/svg-canvas-path'
 
 const SVG_CANVAS_ID = 'drawing-svg-canvas'
 
