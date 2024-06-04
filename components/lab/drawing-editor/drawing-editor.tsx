@@ -179,12 +179,18 @@ const PencilCursor = ({
   </motion.div>
 )
 
-export function DrawingEditor({ className }: { className?: string }) {
+export function DrawingEditor({
+  className,
+  withPathDisappearingTimer = true,
+}: {
+  className?: string
+  withPathDisappearingTimer?: boolean
+}) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
-  const [isDisappearingTimerActive, setIsDisappearingTimerActive] =
-    useState<boolean>(true)
+  const [isPathDisappearingTimerActive, setIsPathDisappearingTimerActive] =
+    useState<boolean>(withPathDisappearingTimer)
   const [isHoveringControls, setIsHoveringControls] = useState<boolean>(false)
 
   const [strokeWidth] = useState<number>(10)
@@ -210,7 +216,7 @@ export function DrawingEditor({ className }: { className?: string }) {
   })
 
   const handleDisappearingButton = useEvent((): void => {
-    setIsDisappearingTimerActive(!isDisappearingTimerActive)
+    setIsPathDisappearingTimerActive(!isPathDisappearingTimerActive)
   })
 
   const handleClearButton = useEvent((): void => {
@@ -253,7 +259,9 @@ export function DrawingEditor({ className }: { className?: string }) {
             height='100%'
             strokeWidth={strokeWidth}
             strokeColor={strokeColor}
-            pathDisappearingTimeoutMs={isDisappearingTimerActive ? 5000 : null}
+            pathDisappearingTimeoutMs={
+              isPathDisappearingTimerActive ? 5000 : null
+            }
           />
           <AnimatePresence>
             {showCursor ? (
@@ -285,10 +293,12 @@ export function DrawingEditor({ className }: { className?: string }) {
             onClick={handleColorButtonClick}
           />
 
-          <DisappearingButton
-            active={isDisappearingTimerActive}
-            onClick={handleDisappearingButton}
-          />
+          {withPathDisappearingTimer ? (
+            <DisappearingButton
+              active={isPathDisappearingTimerActive}
+              onClick={handleDisappearingButton}
+            />
+          ) : null}
           <ClearButton onClick={handleClearButton} />
         </div>
       </div>
