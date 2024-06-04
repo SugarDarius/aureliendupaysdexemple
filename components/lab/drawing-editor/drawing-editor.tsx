@@ -183,10 +183,12 @@ const PencilCursor = ({
 export function DrawingEditor({
   className,
   withPathDisappearingTimer = true,
+  canClear = true,
   onPathsChange,
 }: {
   className?: string
   withPathDisappearingTimer?: boolean
+  canClear?: boolean
   onPathsChange?: (paths: SVGPath[]) => void
 }) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
@@ -303,7 +305,7 @@ export function DrawingEditor({
               onClick={handleDisappearingButton}
             />
           ) : null}
-          <ClearButton onClick={handleClearButton} />
+          {canClear ? <ClearButton onClick={handleClearButton} /> : null}
         </div>
       </div>
     </div>
