@@ -22,7 +22,7 @@ export default function LiveblocksDrawingOnScreenPage() {
             title='Drawing on screen'
             className='h-full w-full max-w-5xl'
           >
-            <div className='flex h-full w-full flex-col'></div>
+            <div className='flex h-full w-full flex-col overflow-hidden'></div>
           </WindowFrame>
         </div>
         <div className='flex w-full flex-none flex-row items-center justify-center gap-2'>
