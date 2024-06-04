@@ -3,8 +3,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import { useMounted } from '@/hooks/use-mounted'
-
 import {
   type SVGPoint,
   type SVGPath,
@@ -55,8 +53,6 @@ export function SVGCanvas({
   const [containerPosition, setContainerPosition] = useState<[number, number]>([
     0, 0,
   ])
-
-  const mounted = useMounted()
 
   const handleMouseDown = useEvent(
     (e: React.MouseEvent<HTMLDivElement>): void => {
@@ -115,35 +111,33 @@ export function SVGCanvas({
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
-      {mounted ? (
-        <svg
-          id={SVG_CANVAS_ID}
-          xmlns='http://www.w3.org/2000/svg'
-          viewBox={`0 0 ${containerSize[0]} ${containerSize[1]}`}
-        >
-          <g id={`${SVG_CANVAS_ID}-background-group`}>
-            <rect
-              id={`${SVG_CANVAS_ID}-background-rect`}
-              x='0'
-              y='0'
-              width='100%'
-              height='100%'
-              fill={backgroundColor}
+      <svg
+        id={SVG_CANVAS_ID}
+        xmlns='http://www.w3.org/2000/svg'
+        viewBox={`0 0 ${containerSize[0]} ${containerSize[1]}`}
+      >
+        <g id={`${SVG_CANVAS_ID}-background-group`}>
+          <rect
+            id={`${SVG_CANVAS_ID}-background-rect`}
+            x='0'
+            y='0'
+            width='100%'
+            height='100%'
+            fill={backgroundColor}
+          />
+        </g>
+        <g id={`${SVG_CANVAS_ID}-paths-group`}>
+          {paths.map((path: SVGPath) => (
+            <SVGCanvasPath
+              key={path.id}
+              {...path}
+              curveSmoothing={curveSmoothing}
+              pathDisappearingTimeoutMs={pathDisappearingTimeoutMs}
+              onDisappeared={onDisappearedPath}
             />
-          </g>
-          <g id={`${SVG_CANVAS_ID}-paths-group`}>
-            {paths.map((path: SVGPath) => (
-              <SVGCanvasPath
-                key={path.id}
-                {...path}
-                curveSmoothing={curveSmoothing}
-                pathDisappearingTimeoutMs={pathDisappearingTimeoutMs}
-                onDisappeared={onDisappearedPath}
-              />
-            ))}
-          </g>
-        </svg>
-      ) : null}
+          ))}
+        </g>
+      </svg>
     </div>
   )
 }
