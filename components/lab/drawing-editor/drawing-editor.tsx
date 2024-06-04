@@ -182,20 +182,16 @@ const PencilCursor = ({
 
 export function DrawingEditor({
   className,
-  withPathDisappearingTimer = true,
-  canClear = true,
   onPathsChange,
 }: {
   className?: string
-  withPathDisappearingTimer?: boolean
-  canClear?: boolean
   onPathsChange?: (paths: SVGPath[]) => void
 }) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
   const [isPathDisappearingTimerActive, setIsPathDisappearingTimerActive] =
-    useState<boolean>(withPathDisappearingTimer)
+    useState<boolean>(true)
   const [isHoveringControls, setIsHoveringControls] = useState<boolean>(false)
 
   const [strokeWidth] = useState<number>(10)
@@ -299,13 +295,11 @@ export function DrawingEditor({
             onClick={handleColorButtonClick}
           />
 
-          {withPathDisappearingTimer ? (
-            <DisappearingButton
-              active={isPathDisappearingTimerActive}
-              onClick={handleDisappearingButton}
-            />
-          ) : null}
-          {canClear ? <ClearButton onClick={handleClearButton} /> : null}
+          <DisappearingButton
+            active={isPathDisappearingTimerActive}
+            onClick={handleDisappearingButton}
+          />
+          <ClearButton onClick={handleClearButton} />
         </div>
       </div>
     </div>
