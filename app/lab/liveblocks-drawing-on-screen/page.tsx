@@ -1,4 +1,5 @@
 import { SparklesIcon } from '@/components/icons/sparkles-icon'
+import { WindowFrame } from '@/components/lab/window-frame'
 import {
   LabPage,
   LabPageContent,
@@ -16,11 +17,18 @@ export default function LiveblocksDrawingOnScreenPage() {
             description='A lab experiment to draw on screen using liveblocks.io'
           />
         </LabPageHeader>
-        <div className='flex w-full flex-auto flex-col'></div>
+        <div className='flex w-full flex-auto flex-col items-center'>
+          <WindowFrame
+            title='Drawing on screen'
+            className='h-full w-full max-w-5xl'
+          >
+            <div className='flex h-full w-full flex-col'></div>
+          </WindowFrame>
+        </div>
         <div className='flex w-full flex-none flex-row items-center justify-center gap-2'>
           <SparklesIcon className='size-4 stroke-[1.5px]' />
           <span className='text-sm'>
-            Open this url in another window to see the magic
+            Open this url in another window and see the magic
           </span>
         </div>
       </LabPageContent>
