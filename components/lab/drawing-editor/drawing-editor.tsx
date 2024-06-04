@@ -172,7 +172,10 @@ const PencilCursor = ({
     className='pointer-events-none absolute left-0 top-0'
     style={{ x, y }}
   >
-    <PencilIcon className='size-5 rotate-90' style={{ color }} />
+    <PencilIcon
+      className='size-5 rotate-90 stroke-neutral-800 dark:stroke-neutral-50'
+      style={{ fill: color }}
+    />
   </motion.div>
 )
 
