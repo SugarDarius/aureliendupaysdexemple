@@ -94,11 +94,15 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       }
     })
 
-    useImperativeHandle(ref, () => ({
-      clear: (): void => {
-        setPaths([])
-      },
-    }))
+    useImperativeHandle(
+      ref,
+      () => ({
+        clear: (): void => {
+          setPaths([])
+        },
+      }),
+      []
+    )
 
     return (
       <SVGCanvas
