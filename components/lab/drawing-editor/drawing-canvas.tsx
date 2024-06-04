@@ -4,6 +4,7 @@ import { forwardRef, useImperativeHandle, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import { nanoid } from 'nanoid'
+import { merge as deepMerge } from 'ts-deepmerge'
 
 import type {
   SVGPoint,
@@ -16,6 +17,7 @@ const DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS = 5000
 
 export type DrawingCanvasRef = {
   clear: () => void
+  sync: (paths: SVGPath[]) => void
 }
 
 type DrawingCanvasProps = {
@@ -28,7 +30,7 @@ type DrawingCanvasProps = {
   strokeWidth: number
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
-  onChange?: (paths: SVGPath[]) => void
+  onChange?: (paths: SVGPath[], infos: { isSyncResult: boolean }) => void
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
@@ -52,7 +54,14 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
 
     const updatePaths = useEvent((paths: SVGPath[]): void => {
       setPaths(paths)
-      onChange?.(paths)
+      onChange?.(paths, { isSyncResult: false })
+    })
+
+    const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
+      const mergedPaths = deepMerge(paths, incomingPaths)
+
+      setPaths(mergedPaths)
+      onChange?.(mergedPaths, { isSyncResult: true })
     })
 
     const handleMouseDown = useEvent((point: SVGPoint): void => {
@@ -106,6 +115,9 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       () => ({
         clear: (): void => {
           updatePaths([])
+        },
+        sync: (paths: SVGPath[]): void => {
+          syncPaths(paths)
         },
       }),
       // eslint-disable-next-line react-hooks/exhaustive-deps

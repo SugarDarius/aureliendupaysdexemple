@@ -24,7 +24,6 @@ import { PencilIcon } from '@/components/icons/pencil-icon'
 import { TimerIcon } from '@/components/icons/timer-icon'
 import { Button } from '@/components/ui/button'
 
-import type { SVGPath } from '@/components/lab/drawing-editor/svg-canvas-path'
 import {
   type DrawingCanvasRef,
   DrawingCanvas,
@@ -180,13 +179,7 @@ const PencilCursor = ({
   </motion.div>
 )
 
-export function DrawingEditor({
-  className,
-  onPathsChange,
-}: {
-  className?: string
-  onPathsChange?: (paths: SVGPath[]) => void
-}) {
+export function DrawingEditor({ className }: { className?: string }) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
@@ -263,7 +256,6 @@ export function DrawingEditor({
             pathDisappearingTimeoutMs={
               isPathDisappearingTimerActive ? 5000 : null
             }
-            onChange={onPathsChange}
           />
           <AnimatePresence>
             {showCursor ? (
