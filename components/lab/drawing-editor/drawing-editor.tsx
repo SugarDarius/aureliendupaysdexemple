@@ -183,7 +183,8 @@ export function DrawingEditor({ className }: { className?: string }) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
 
   const [isLocked, setIsLocked] = useState<boolean>(true)
-  const [isTimerActive, setIsTimerActive] = useState<boolean>(true)
+  const [isDisappearingTimerActive, setIsDisappearingTimerActive] =
+    useState<boolean>(true)
   const [isHoveringControls, setIsHoveringControls] = useState<boolean>(false)
 
   const [strokeWidth] = useState<number>(10)
@@ -209,7 +210,7 @@ export function DrawingEditor({ className }: { className?: string }) {
   })
 
   const handleDisappearingButton = useEvent((): void => {
-    setIsTimerActive(!isTimerActive)
+    setIsDisappearingTimerActive(!isDisappearingTimerActive)
   })
 
   const handleClearButton = useEvent((): void => {
@@ -252,7 +253,7 @@ export function DrawingEditor({ className }: { className?: string }) {
             height='100%'
             strokeWidth={strokeWidth}
             strokeColor={strokeColor}
-            pathDisappearingTimeoutMs={isTimerActive ? 5000 : null}
+            pathDisappearingTimeoutMs={isDisappearingTimerActive ? 5000 : null}
           />
           <AnimatePresence>
             {showCursor ? (
@@ -285,7 +286,7 @@ export function DrawingEditor({ className }: { className?: string }) {
           />
 
           <DisappearingButton
-            active={isTimerActive}
+            active={isDisappearingTimerActive}
             onClick={handleDisappearingButton}
           />
           <ClearButton onClick={handleClearButton} />
