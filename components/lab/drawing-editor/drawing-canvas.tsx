@@ -28,6 +28,7 @@ type DrawingCanvasProps = {
   strokeWidth: number
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
+  onChange?: (paths: SVGPath[]) => void
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
@@ -42,6 +43,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       strokeWidth,
       curveSmoothing = DEFAULT_CURVE_SMOOTHING,
       pathDisappearingTimeoutMs = DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS,
+      onChange,
     },
     ref
   ) => {
@@ -50,6 +52,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
 
     const updatePaths = useEvent((paths: SVGPath[]): void => {
       setPaths(paths)
+      onChange?.(paths)
     })
 
     const handleMouseDown = useEvent((point: SVGPoint): void => {
