@@ -34,6 +34,7 @@ export function SVGCanvas({
   onMouseDown,
   onMouseMove,
   onMouseUp,
+  onDisappearedPath,
 }: {
   className?: string
   isLocked: boolean
@@ -47,6 +48,7 @@ export function SVGCanvas({
   onMouseDown: (point: SVGPoint) => void
   onMouseMove: (point: SVGPoint) => void
   onMouseUp: () => void
+  onDisappearedPath: (pathId: string) => void
 }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [containerSize, setContainerSize] = useState<[number, number]>([0, 0])
@@ -136,6 +138,7 @@ export function SVGCanvas({
                 {...path}
                 curveSmoothing={curveSmoothing}
                 pathDisappearingTimeoutMs={pathDisappearingTimeoutMs}
+                onDisappeared={onDisappearedPath}
               />
             ))}
           </g>

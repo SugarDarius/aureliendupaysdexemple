@@ -87,6 +87,13 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       }
     })
 
+    const handleDisappearedPath = useEvent((pathId: string): void => {
+      const index = paths.findIndex(({ id }) => id === pathId)
+      if (index > -1) {
+        setPaths([...paths.slice(0, index), ...paths.slice(index + 1)])
+      }
+    })
+
     useImperativeHandle(ref, () => ({
       clear: (): void => {
         setPaths([])
@@ -107,6 +114,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
+        onDisappearedPath={handleDisappearedPath}
       />
     )
   }

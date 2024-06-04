@@ -91,6 +91,12 @@ const getCubicBezierCurve = (
   return `C ${startControlPoint.x},${startControlPoint.y} ${endControlPoint.x},${endControlPoint.y} ${point.x},${point.y}`
 }
 
+type SVGCanvasPathProps = SVGPath & {
+  curveSmoothing: number
+  pathDisappearingTimeoutMs: number | null
+  onDisappeared: (id: string) => void
+}
+
 export function SVGCanvasPath({
   id,
   points,
@@ -99,10 +105,8 @@ export function SVGCanvasPath({
   ended,
   curveSmoothing,
   pathDisappearingTimeoutMs,
-}: SVGPath & {
-  curveSmoothing: number
-  pathDisappearingTimeoutMs: number | null
-}) {
+  onDisappeared,
+}: SVGCanvasPathProps) {
   const controls = useAnimationControls()
 
   useTimeout(
@@ -115,7 +119,7 @@ export function SVGCanvasPath({
       }
 
       disappearAnimation().then((): void => {
-        // TODO: remove from paths state
+        onDisappeared(id)
       })
     },
     ended ? pathDisappearingTimeoutMs : null
