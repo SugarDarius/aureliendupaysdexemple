@@ -4,7 +4,6 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 import { VFXBackgroundRetroGrid } from '@/components/ui-vfx/vfx-background-retro-grid'
-import { StringDecoder } from 'string_decoder'
 
 const variants = cva(
   'bg-clip-text text-6xl font-extrabold tracking-tighter text-transparent opacity-75',
@@ -24,7 +23,7 @@ const variants = cva(
 type PageHeroProps = {
   title: string
   description: string
-  className?: StringDecoder
+  className?: string
 } & VariantProps<typeof variants>
 
 export function PageHero({
