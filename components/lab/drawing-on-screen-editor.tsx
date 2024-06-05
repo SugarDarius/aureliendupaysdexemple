@@ -14,6 +14,7 @@ import {
   AnimatePresence,
 } from 'framer-motion'
 
+import { useBroadcastEvent } from '@/liveblocks.config'
 import { cn } from '@/lib/utils'
 
 import { PencilIcon } from '@/components/icons/pencil-icon'
@@ -59,6 +60,8 @@ const STROKE_COLOR = '#48AEFF'
 const STROKE_WIDTH = 6
 
 export function DrawingOnScreenEditor({ className }: { className?: string }) {
+  const broadcast = useBroadcastEvent()
+
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
@@ -82,7 +85,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   const handleCanvasChange = useEvent(
     (paths: SVGPath[], { isSyncResult }: { isSyncResult: boolean }): void => {
       if (!isSyncResult) {
-        // TODO send broadcasted events
+        broadcast({ type: 'ADD_SVG_PATHS', paths })
       }
     }
   )

@@ -1,7 +1,8 @@
-import { env } from '@/config/env'
-
 import { createClient } from '@liveblocks/client'
 import { createRoomContext } from '@liveblocks/react'
+
+import { env } from '@/config/env'
+import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 
 const client = createClient({
   publicApiKey: env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY,
@@ -13,9 +14,12 @@ type Presence = {}
 type Storage = {}
 // eslint-disable-next-line @typescript-eslint/ban-types
 type UserMeta = {}
-// eslint-disable-next-line @typescript-eslint/ban-types
-type RoomEvent = {}
+
+type RoomEvent = {
+  type: 'ADD_SVG_PATHS'
+  paths: SVGPath[]
+}
 
 export const {
-  suspense: { RoomProvider },
+  suspense: { RoomProvider, useBroadcastEvent },
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent>(client)
