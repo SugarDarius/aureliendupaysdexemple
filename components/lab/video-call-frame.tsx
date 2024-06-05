@@ -39,7 +39,7 @@ export function VideoCallFrame({
       )}
     >
       <div className='relative flex w-full flex-auto flex-row gap-4'>
-        <div className='relative flex h-full flex-auto flex-col items-center justify-center overflow-hidden rounded-md bg-neutral-800'>
+        <div className='relative flex h-full flex-auto flex-col items-center justify-center overflow-hidden rounded-md bg-neutral-800/35'>
           <div className='flex aspect-video h-auto w-full flex-col items-center justify-center'>
             {shareScreenView ? (
               shareScreenView
