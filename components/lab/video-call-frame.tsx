@@ -22,7 +22,7 @@ const Participant = ({
 }) => (
   <div
     className={cn(
-      'relative flex size-[120px] rounded-lg bg-neutral-800',
+      'relative flex aspect-square rounded-lg bg-neutral-800',
       className
     )}
   >
@@ -84,7 +84,7 @@ export function VideoCallFrame({
             )}
           </div>
         </div>
-        <div className='flex h-full flex-none flex-col justify-between'>
+        <div className='grid h-full flex-none grid-cols-1 grid-rows-4 justify-between gap-2'>
           <Participant className='border-4 border-violet-700'>
             <Image
               src='/medias/images/aureliendupaysdexemple-logo.webp'
