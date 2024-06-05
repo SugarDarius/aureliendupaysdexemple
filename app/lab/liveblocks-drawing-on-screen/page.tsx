@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { SparklesIcon } from '@/components/icons/sparkles-icon'
 import { WindowFrame } from '@/components/lab/window-frame'
 import {
@@ -24,7 +26,16 @@ export default function LiveblocksDrawingOnScreenPage() {
             className='h-full w-full max-w-5xl'
           >
             <div className='flex h-full w-full flex-col overflow-hidden'>
-              <VideoCallFrame></VideoCallFrame>
+              <VideoCallFrame>
+                <div className='relative flex h-full w-full'>
+                  <Image
+                    src='/medias/images/share-screen-view.webp'
+                    fill
+                    alt='share screen'
+                    priority
+                  />
+                </div>
+              </VideoCallFrame>
             </div>
           </WindowFrame>
         </div>

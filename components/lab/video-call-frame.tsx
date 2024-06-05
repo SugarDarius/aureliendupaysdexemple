@@ -60,11 +60,11 @@ export const ControlButton = ({
 
 export function VideoCallFrame({
   className,
-  shareScreenView,
+  additionalControls,
   children,
 }: {
   className?: string
-  shareScreenView?: React.ReactNode
+  additionalControls?: React.ReactNode
   children?: React.ReactNode
 }) {
   return (
@@ -77,11 +77,7 @@ export function VideoCallFrame({
       <div className='relative flex w-full flex-auto flex-row gap-4'>
         <div className='relative flex h-full flex-auto flex-col items-center justify-center overflow-hidden rounded-md bg-neutral-800/20'>
           <div className='flex aspect-video h-auto w-full flex-col items-center justify-center'>
-            {shareScreenView ? (
-              shareScreenView
-            ) : (
-              <ImagePlaceholder className='w-1/2' />
-            )}
+            {children ? children : <ImagePlaceholder className='w-1/2' />}
           </div>
         </div>
         <div className='grid h-full flex-none grid-cols-1 grid-rows-4 justify-between gap-2'>
@@ -99,7 +95,7 @@ export function VideoCallFrame({
               src='/medias/images/memoji-female-zero.webp'
               width={80}
               height={80}
-              alt='logo'
+              alt='memoji'
               priority
             />
           </Participant>
@@ -108,7 +104,7 @@ export function VideoCallFrame({
               src='/medias/images/memoji-male-zero.webp'
               width={80}
               height={80}
-              alt='logo'
+              alt='memoji'
               priority
             />
           </Participant>
@@ -117,7 +113,7 @@ export function VideoCallFrame({
               src='/medias/images/memoji-male-one.webp'
               width={80}
               height={80}
-              alt='logo'
+              alt='memoji'
               priority
             />
           </Participant>
@@ -137,11 +133,11 @@ export function VideoCallFrame({
           <ControlButton>
             <FaceSmileIcon className='size-5' />
           </ControlButton>
+          {additionalControls}
           <ControlButton>
             <Cog6ToothIcon className='size-5' />
           </ControlButton>
           <Button variant='destructive'>Leave</Button>
-          {children}
         </div>
       </div>
     </div>
