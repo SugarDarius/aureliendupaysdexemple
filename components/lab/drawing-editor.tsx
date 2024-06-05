@@ -186,12 +186,20 @@ export function DrawingEditor({ className }: { className?: string }) {
   const [isPathDisappearingTimerActive, setIsPathDisappearingTimerActive] =
     useState<boolean>(true)
   const [isHoveringControls, setIsHoveringControls] = useState<boolean>(false)
+  const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
 
   const [strokeWidth] = useState<number>(10)
   const [strokeColor, setStrokeColor] = useState<string>('#48AEFF')
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
+
+  const handleMouseEnter = useEvent((): void => {
+    setIsCursorInside(true)
+  })
+  const handleMouseLeave = useEvent((): void => {
+    setIsCursorInside(false)
+  })
 
   const handleControlsMouseEnter = useEvent((): void => {
     setIsHoveringControls(true)
@@ -230,7 +238,7 @@ export function DrawingEditor({ className }: { className?: string }) {
     setIsLocked(!isLocked)
   })
 
-  const showCursor = !isLocked && !isHoveringControls
+  const showCursor = !isLocked && !isHoveringControls && isCursorInside
 
   return (
     <div className={cn('relative flex size-full flex-col', className)}>
@@ -241,6 +249,8 @@ export function DrawingEditor({ className }: { className?: string }) {
             '!cursor-none': !isLocked,
           })
         )}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
       >
         <div className='relative flex size-full flex-col'>
