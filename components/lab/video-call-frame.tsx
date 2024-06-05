@@ -20,7 +20,7 @@ export function VideoCallFrame({
   return (
     <div
       className={cn(
-        'relative flex h-full max-h-full w-full flex-col gap-6 bg-gradient-to-r from-indigo-500 to-blue-500 p-4',
+        'relative flex h-full max-h-full w-full flex-col gap-6 bg-gradient-to-l from-gray-200 via-fuchsia-200 to-stone-100 p-4',
         className
       )}
     >
