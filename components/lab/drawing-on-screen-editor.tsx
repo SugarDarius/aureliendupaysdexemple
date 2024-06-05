@@ -3,7 +3,7 @@
 import Image from 'next/image'
 
 import { createPortal } from 'react-dom'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 
@@ -21,6 +21,10 @@ import {
   VideoCallFrame,
   ControlButton,
 } from '@/components/lab/video-call-frame'
+import {
+  type DrawingCanvasRef,
+  DrawingCanvas,
+} from '@/components/lab/drawing-canvas/drawing-canvas'
 
 const PencilCursor = ({
   x,
@@ -51,11 +55,13 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
   )
 
 const STROKE_COLOR = '#48AEFF'
+const STROKE_WIDTH = 6
 
 export function DrawingOnScreenEditor({ className }: { className?: string }) {
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
+  const canvasRef = useRef<DrawingCanvasRef>(null)
   const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
 
   const handleMouseEnter = useEvent((): void => {
@@ -98,6 +104,15 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
             />
           </div>
           <div className='absolute left-0 top-0 flex h-full w-full'>
+            <DrawingCanvas
+              ref={canvasRef}
+              backgroundColor='transparent'
+              className='absolute left-0 top-0'
+              width='100%'
+              height='100%'
+              strokeColor={STROKE_COLOR}
+              strokeWidth={STROKE_WIDTH}
+            />
             <Portal>
               <AnimatePresence>
                 {isCursorInside ? (
