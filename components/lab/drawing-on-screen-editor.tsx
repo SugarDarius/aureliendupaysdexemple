@@ -25,6 +25,7 @@ import {
 import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 import {
   type DrawingCanvasRef,
+  type DrawingCanvasOnChangeInfos,
   DrawingCanvas,
 } from '@/components/lab/drawing-canvas/drawing-canvas'
 
@@ -83,8 +84,14 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   )
 
   const handleCanvasChange = useEvent(
-    (paths: SVGPath[], { isSyncResult }: { isSyncResult: boolean }): void => {
-      if (!isSyncResult) {
+    (
+      paths: SVGPath[],
+      {
+        isFromSyncOperation,
+        isFromDisappearOperation,
+      }: DrawingCanvasOnChangeInfos
+    ): void => {
+      if (!isFromSyncOperation && !isFromDisappearOperation) {
         broadcast({ type: 'ADD_SVG_PATHS', paths })
       }
     }

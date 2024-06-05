@@ -4,7 +4,7 @@ import { forwardRef, useImperativeHandle, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import { nanoid } from 'nanoid'
-import { merge as deepMerge } from 'ts-deepmerge'
+// import { merge as deepMerge } from 'ts-deepmerge'
 
 import type {
   SVGPoint,
@@ -20,6 +20,11 @@ export type DrawingCanvasRef = {
   sync: (paths: SVGPath[]) => void
 }
 
+export type DrawingCanvasOnChangeInfos = {
+  isFromSyncOperation: boolean
+  isFromDisappearOperation: boolean
+}
+
 type DrawingCanvasProps = {
   className?: string
   isLocked?: boolean
@@ -30,7 +35,7 @@ type DrawingCanvasProps = {
   strokeWidth: number
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
-  onChange?: (paths: SVGPath[], infos: { isSyncResult: boolean }) => void
+  onChange?: (paths: SVGPath[], infos: DrawingCanvasOnChangeInfos) => void
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
@@ -52,16 +57,25 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
     const [paths, setPaths] = useState<SVGPath[]>([])
 
-    const updatePaths = useEvent((paths: SVGPath[]): void => {
-      setPaths(paths)
-      onChange?.(paths, { isSyncResult: false })
-    })
+    const updatePaths = useEvent(
+      (paths: SVGPath[], isFromDisappearOperation = false): void => {
+        setPaths(paths)
+        onChange?.(paths, {
+          isFromSyncOperation: false,
+          isFromDisappearOperation,
+        })
+      }
+    )
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      const mergedPaths = deepMerge(paths, incomingPaths)
+      // TODO - use deepmerge
+      const mergedPaths = paths.concat(incomingPaths)
 
       setPaths(mergedPaths)
-      onChange?.(mergedPaths, { isSyncResult: true })
+      onChange?.(mergedPaths, {
+        isFromSyncOperation: true,
+        isFromDisappearOperation: false,
+      })
     })
 
     const handleMouseDown = useEvent((point: SVGPoint): void => {
@@ -94,6 +108,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const handleMouseUp = useEvent((): void => {
       if (isDrawing) {
         setIsDrawing(false)
+
         const currentPath = paths[paths.length - 1]
         const updatedPath = {
           ...currentPath,
@@ -107,7 +122,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const handleDisappearedPath = useEvent((pathId: string): void => {
       const index = paths.findIndex(({ id }) => id === pathId)
       if (index > -1) {
-        updatePaths([...paths.slice(0, index), ...paths.slice(index + 1)])
+        updatePaths([...paths.slice(0, index), ...paths.slice(index + 1)], true)
       }
     })
 
