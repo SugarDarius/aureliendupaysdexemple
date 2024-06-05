@@ -1,18 +1,13 @@
-import Image from 'next/image'
-
 import { SparklesIcon } from '@/components/icons/sparkles-icon'
-import { WindowFrame } from '@/components/lab/window-frame'
 import {
   LabPage,
   LabPageContent,
   LabPageHeader,
 } from '@/components/content/lab-page'
-import { LiveblocksRoomProvider } from '@/components/lab/liveblocks-room-provider'
-import { VideoCallFrame } from '@/components/lab/video-call-frame'
 import { PageHero } from '@/components/content/page-hero'
 
-const ROOM_ID =
-  'aureliendupaysdexemple-lab-liveblocks-drawing-on-screenMIGfMA0GCS-qGSIb3DQEBAQ'
+import { WindowFrame } from '@/components/lab/window-frame'
+import { DrawingOnScreenFrame } from '@/components/lab/drawing-on-screen-frame'
 
 export default function LiveblocksDrawingOnScreenPage() {
   return (
@@ -30,18 +25,7 @@ export default function LiveblocksDrawingOnScreenPage() {
             className='h-full w-full max-w-5xl'
           >
             <div className='flex h-full w-full flex-col overflow-hidden'>
-              <LiveblocksRoomProvider roomId={ROOM_ID}>
-                <VideoCallFrame className='animate-in fade-in'>
-                  <div className='relative flex h-full w-full'>
-                    <Image
-                      src='/medias/images/share-screen-view.webp'
-                      fill
-                      alt='share screen'
-                      priority
-                    />
-                  </div>
-                </VideoCallFrame>
-              </LiveblocksRoomProvider>
+              <DrawingOnScreenFrame />
             </div>
           </WindowFrame>
         </div>
