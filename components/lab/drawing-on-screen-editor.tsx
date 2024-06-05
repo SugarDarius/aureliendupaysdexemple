@@ -14,7 +14,7 @@ import {
   AnimatePresence,
 } from 'framer-motion'
 
-import { useBroadcastEvent } from '@/liveblocks.config'
+import { useBroadcastEvent, useEventListener } from '@/liveblocks.config'
 import { cn } from '@/lib/utils'
 
 import { PencilIcon } from '@/components/icons/pencil-icon'
@@ -89,6 +89,12 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       }
     }
   )
+
+  useEventListener(({ event }): void => {
+    if (canvasRef.current && event.type === 'ADD_SVG_PATHS') {
+      canvasRef.current.sync(event.paths)
+    }
+  })
 
   return (
     <div className={cn('relative flex h-full w-full flex-col', className)}>
