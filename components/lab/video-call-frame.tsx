@@ -24,9 +24,11 @@ const Participant = ({
 
 export function VideoCallFrame({
   className,
+  shareScreenView,
   children,
 }: {
   className?: string
+  shareScreenView?: React.ReactNode
   children?: React.ReactNode
 }) {
   return (
@@ -39,7 +41,11 @@ export function VideoCallFrame({
       <div className='relative flex w-full flex-auto flex-row gap-4'>
         <div className='relative flex h-full flex-auto flex-col items-center justify-center overflow-hidden rounded-md bg-neutral-800'>
           <div className='flex aspect-video h-auto w-full flex-col items-center justify-center'>
-            {children ? children : <ImagePlaceholder className='w-1/2' />}
+            {shareScreenView ? (
+              shareScreenView
+            ) : (
+              <ImagePlaceholder className='w-1/2' />
+            )}
           </div>
         </div>
         <div className='flex h-full flex-none flex-col justify-between'>
@@ -82,7 +88,9 @@ export function VideoCallFrame({
         </div>
       </div>
       <div className='flex w-full flex-none flex-col gap-4'>
-        <div className='flex w-full flex-row items-center justify-center gap-6'></div>
+        <div className='flex w-full flex-row items-center justify-center gap-6'>
+          {children}
+        </div>
       </div>
     </div>
   )
