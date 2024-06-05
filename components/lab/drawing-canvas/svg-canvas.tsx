@@ -15,8 +15,8 @@ const getPointFromEvent = (
   event: React.MouseEvent<HTMLDivElement>,
   containerPosition: [number, number]
 ): SVGPoint => ({
-  x: event.pageX - containerPosition[0] - window.scrollX,
-  y: event.pageY - containerPosition[1] - window.scrollY,
+  x: event.pageX - containerPosition[1] - window.scrollX,
+  y: event.pageY - containerPosition[0] - window.scrollY,
 })
 
 export function SVGCanvas({
@@ -85,6 +85,7 @@ export function SVGCanvas({
       if (containerRef.current) {
         const { width, height, top, left } =
           containerRef.current.getBoundingClientRect()
+
         setContainerSize([width, height])
         setContainerPosition([top, left])
       }
@@ -115,6 +116,7 @@ export function SVGCanvas({
         id={SVG_CANVAS_ID}
         xmlns='http://www.w3.org/2000/svg'
         viewBox={`0 0 ${containerSize[0]} ${containerSize[1]}`}
+        className='select-none'
       >
         <g id={`${SVG_CANVAS_ID}-background-group`}>
           <rect
