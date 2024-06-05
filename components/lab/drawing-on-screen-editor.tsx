@@ -21,6 +21,7 @@ import {
   VideoCallFrame,
   ControlButton,
 } from '@/components/lab/video-call-frame'
+import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 import {
   type DrawingCanvasRef,
   DrawingCanvas,
@@ -78,6 +79,14 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     }
   )
 
+  const handleCanvasChange = useEvent(
+    (paths: SVGPath[], { isSyncResult }: { isSyncResult: boolean }): void => {
+      if (!isSyncResult) {
+        // TODO send broadcasted events
+      }
+    }
+  )
+
   return (
     <div className={cn('relative flex h-full w-full flex-col', className)}>
       <VideoCallFrame
@@ -112,6 +121,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
               height='100%'
               strokeColor={STROKE_COLOR}
               strokeWidth={STROKE_WIDTH}
+              onChange={handleCanvasChange}
             />
             <Portal>
               <AnimatePresence>

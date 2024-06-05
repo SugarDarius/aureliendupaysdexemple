@@ -66,6 +66,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
 
     const handleMouseDown = useEvent((point: SVGPoint): void => {
       setIsDrawing(true)
+
       const id = 'drawing-svg-canvas-path-' + nanoid(10)
       const path: SVGPath = {
         id,
