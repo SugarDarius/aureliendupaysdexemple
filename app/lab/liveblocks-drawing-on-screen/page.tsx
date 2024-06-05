@@ -5,6 +5,7 @@ import {
   LabPageContent,
   LabPageHeader,
 } from '@/components/content/lab-page'
+import { VideoCallFrame } from '@/components/lab/video-call-frame'
 import { PageHero } from '@/components/content/page-hero'
 
 export default function LiveblocksDrawingOnScreenPage() {
@@ -22,7 +23,9 @@ export default function LiveblocksDrawingOnScreenPage() {
             title='Drawing on screen'
             className='h-full w-full max-w-5xl'
           >
-            <div className='flex h-full w-full flex-col overflow-hidden'></div>
+            <div className='flex h-full w-full flex-col overflow-hidden'>
+              <VideoCallFrame></VideoCallFrame>
+            </div>
           </WindowFrame>
         </div>
         <div className='flex w-full flex-none flex-row items-center justify-center gap-2'>
