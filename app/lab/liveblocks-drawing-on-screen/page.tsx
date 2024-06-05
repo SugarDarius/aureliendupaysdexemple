@@ -7,8 +7,12 @@ import {
   LabPageContent,
   LabPageHeader,
 } from '@/components/content/lab-page'
+import { LiveblocksRoomProvider } from '@/components/lab/liveblocks-room-provider'
 import { VideoCallFrame } from '@/components/lab/video-call-frame'
 import { PageHero } from '@/components/content/page-hero'
+
+const ROOM_ID =
+  'aureliendupaysdexemple-lab-liveblocks-drawing-on-screenMIGfMA0GCS-qGSIb3DQEBAQ'
 
 export default function LiveblocksDrawingOnScreenPage() {
   return (
@@ -26,16 +30,18 @@ export default function LiveblocksDrawingOnScreenPage() {
             className='h-full w-full max-w-5xl'
           >
             <div className='flex h-full w-full flex-col overflow-hidden'>
-              <VideoCallFrame>
-                <div className='relative flex h-full w-full'>
-                  <Image
-                    src='/medias/images/share-screen-view.webp'
-                    fill
-                    alt='share screen'
-                    priority
-                  />
-                </div>
-              </VideoCallFrame>
+              <LiveblocksRoomProvider roomId={ROOM_ID}>
+                <VideoCallFrame className='animate-in fade-in'>
+                  <div className='relative flex h-full w-full'>
+                    <Image
+                      src='/medias/images/share-screen-view.webp'
+                      fill
+                      alt='share screen'
+                      priority
+                    />
+                  </div>
+                </VideoCallFrame>
+              </LiveblocksRoomProvider>
             </div>
           </WindowFrame>
         </div>
