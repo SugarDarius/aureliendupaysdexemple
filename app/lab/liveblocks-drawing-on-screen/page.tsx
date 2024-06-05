@@ -31,7 +31,7 @@ export default function LiveblocksDrawingOnScreenPage() {
         <div className='flex w-full flex-none flex-row items-center justify-center gap-2'>
           <SparklesIcon className='size-4 stroke-[1.5px]' />
           <span className='text-sm'>
-            Open this url in another window and see the magic
+            Open this url in another window on the side to see the magic
           </span>
         </div>
       </LabPageContent>

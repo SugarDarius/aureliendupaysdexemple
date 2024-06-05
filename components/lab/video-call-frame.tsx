@@ -1,12 +1,24 @@
+import Image from 'next/image'
+
 import { cn } from '@/lib/utils'
 import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
-const Participant = ({ children }: { children?: React.ReactNode }) => (
-  <div className='relative flex size-[120px] rounded-lg bg-neutral-800'>
-    <div className='absolute left-0 top-0 flex size-full flex-col items-center justify-center'>
+const Participant = ({
+  className,
+  children,
+}: {
+  className?: string
+  children?: React.ReactNode
+}) => (
+  <div
+    className={cn(
+      'relative flex size-[120px] rounded-lg bg-neutral-800',
+      className
+    )}
+  >
+    <div className='flex size-full flex-col items-center justify-center'>
       {children}
     </div>
-    <div className='flex size-full flex-col'></div>
   </div>
 )
 
@@ -31,10 +43,42 @@ export function VideoCallFrame({
           </div>
         </div>
         <div className='flex h-full flex-none flex-col justify-between'>
-          <Participant></Participant>
-          <Participant></Participant>
-          <Participant></Participant>
-          <Participant></Participant>
+          <Participant className='border-4 border-violet-700'>
+            <Image
+              src='/medias/images/aureliendupaysdexemple-logo.webp'
+              width={80}
+              height={80}
+              alt='logo'
+              priority
+            />
+          </Participant>
+          <Participant>
+            <Image
+              src='/medias/images/memoji-female-zero.webp'
+              width={80}
+              height={80}
+              alt='logo'
+              priority
+            />
+          </Participant>
+          <Participant>
+            <Image
+              src='/medias/images/memoji-male-zero.webp'
+              width={80}
+              height={80}
+              alt='logo'
+              priority
+            />
+          </Participant>
+          <Participant>
+            <Image
+              src='/medias/images/memoji-male-one.webp'
+              width={80}
+              height={80}
+              alt='logo'
+              priority
+            />
+          </Participant>
         </div>
       </div>
       <div className='flex w-full flex-none flex-col gap-4'>
