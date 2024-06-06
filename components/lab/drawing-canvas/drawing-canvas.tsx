@@ -65,8 +65,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
     const [paths, setPaths] = useState<SVGPath[]>([])
 
-    // TODO: add raf updates
-
     const updatePaths = useEvent(
       (paths: SVGPath[], isFromDisappearOperation = false): void => {
         setPaths(paths)
