@@ -117,7 +117,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     return (): void => {
       cancelAnimationFrame(frameRequestIdRef.current)
     }
-  })
+  }, [])
 
   return (
     <div className={cn('relative flex h-full w-full flex-col', className)}>
