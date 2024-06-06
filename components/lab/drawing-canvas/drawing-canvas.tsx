@@ -76,7 +76,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     )
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      // TODO: add new comers strategy
       const mergedPaths = mergePaths(paths, incomingPaths)
 
       setPaths(mergedPaths)
