@@ -99,7 +99,9 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
 
   useEventListener(({ event }): void => {
     if (canvasRef.current && event.type === 'ADD_SVG_PATHS') {
-      canvasRef.current.sync(event.paths)
+      const paths = event.paths
+      // TODO: update colors for incoming paths based on connection ids
+      canvasRef.current.sync(paths)
     }
   })
 

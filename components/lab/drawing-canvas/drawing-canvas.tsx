@@ -4,7 +4,6 @@ import { forwardRef, useImperativeHandle, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import { nanoid } from 'nanoid'
-// import { merge as deepMerge } from 'ts-deepmerge'
 
 import type {
   SVGPoint,
@@ -68,7 +67,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     )
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      // TODO - use deepmerge
+      // TODO: add new comers strategy
       const mergedPaths = paths.concat(incomingPaths)
 
       setPaths(mergedPaths)
