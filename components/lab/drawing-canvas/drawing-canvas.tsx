@@ -14,6 +14,15 @@ import { SVGCanvas } from '@/components/lab/drawing-canvas/svg-canvas'
 const DEFAULT_CURVE_SMOOTHING = 0.4
 const DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS = 5000
 
+const mergePaths = (existing: SVGPath[], incoming: SVGPath[]): SVGPath[] => {
+  const allPaths = [...existing, ...incoming]
+  const mergedPaths = new Map<string, SVGPath>(
+    allPaths.map((path) => [path.id, path])
+  )
+
+  return Array.from(mergedPaths.values())
+}
+
 export type DrawingCanvasRef = {
   clear: () => void
   sync: (paths: SVGPath[]) => void
@@ -68,7 +77,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
       // TODO: add new comers strategy
-      const mergedPaths = paths.concat(incomingPaths)
+      const mergedPaths = mergePaths(paths, incomingPaths)
 
       setPaths(mergedPaths)
       onChange?.(mergedPaths, {
