@@ -21,5 +21,5 @@ type RoomEvent = {
 }
 
 export const {
-  suspense: { RoomProvider, useBroadcastEvent, useEventListener },
+  suspense: { RoomProvider, useBroadcastEvent, useEventListener, useSelf },
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent>(client)

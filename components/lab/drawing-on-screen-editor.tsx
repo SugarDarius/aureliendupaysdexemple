@@ -14,7 +14,11 @@ import {
   AnimatePresence,
 } from 'framer-motion'
 
-import { useBroadcastEvent, useEventListener } from '@/liveblocks.config'
+import {
+  useBroadcastEvent,
+  useEventListener,
+  useSelf,
+} from '@/liveblocks.config'
 import { cn } from '@/lib/utils'
 
 import { PencilIcon } from '@/components/icons/pencil-icon'
@@ -60,7 +64,25 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
 const STROKE_COLOR = '#48AEFF'
 const STROKE_WIDTH = 6
 
+const CONNECTION_ID_PUBLIC_METADATA_KEY = 'liveblocks-connection-id'
+
+const injectPublicMetadata = (
+  paths: SVGPath[],
+  currentUserConnectionId: number
+): SVGPath[] => {
+  for (const path of paths) {
+    if (!path.publicMetadata?.[CONNECTION_ID_PUBLIC_METADATA_KEY]) {
+      path.publicMetadata = {
+        [CONNECTION_ID_PUBLIC_METADATA_KEY]: currentUserConnectionId,
+      }
+    }
+  }
+
+  return paths
+}
+
 export function DrawingOnScreenEditor({ className }: { className?: string }) {
+  const currentUserConnectionId = useSelf((me) => me.connectionId)
   const broadcast = useBroadcastEvent()
 
   const x = useMotionValue(0)
@@ -94,7 +116,10 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       }: DrawingCanvasOnChangeInfos
     ): void => {
       if (!isFromSyncOperation && !isFromDisappearOperation) {
-        broadcast({ type: 'ADD_SVG_PATHS', paths })
+        broadcast({
+          type: 'ADD_SVG_PATHS',
+          paths: injectPublicMetadata(paths, currentUserConnectionId),
+        })
       }
     }
   )
@@ -102,9 +127,9 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   useEventListener(({ event }): void => {
     if (event.type === 'ADD_SVG_PATHS') {
       cancelAnimationFrame(frameRequestIdRef.current)
+      // TODO: update colors for incoming paths based on connection ids
       const paths = event.paths
 
-      // TODO: update colors for incoming paths based on connection ids
       frameRequestIdRef.current = requestAnimationFrame((): void => {
         if (canvasRef.current) {
           canvasRef.current.sync(paths)

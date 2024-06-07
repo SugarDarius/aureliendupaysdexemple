@@ -10,6 +10,7 @@ export type SVGPath = {
   strokeColor: string
   strokeWidth: number
   ended: boolean
+  publicMetadata?: Record<string, string | boolean>
 }
 
 type SVGLine = { length: number; angle: number }
