@@ -68,7 +68,7 @@ const CONNECTION_ID_PUBLIC_METADATA_KEY = 'liveblocks-connection-id'
 const CONNECTION_STROKE_COLOR_PUBLIC_METADATA_KEY =
   'liveblocks-connection-stroke-color'
 
-const strokeColorsColors = [
+const STOKE_COLORS = [
   '#E57373',
   '#9575CD',
   '#4FC3F7',
@@ -134,8 +134,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
 
   const currentUserStrokeColor = useMemo(
-    (): string =>
-      strokeColorsColors[currentUserConnectionId % strokeColorsColors.length],
+    (): string => STOKE_COLORS[currentUserConnectionId % STOKE_COLORS.length],
     [currentUserConnectionId]
   )
 
