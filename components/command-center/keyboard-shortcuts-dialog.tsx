@@ -3,7 +3,7 @@
 import { cn, toUpperFirst } from '@/lib/utils'
 import { navigationItems } from '@/lib/navigation'
 
-import { useUserAgent } from '@/hooks/useUserAgent'
+import { useUserAgent } from '@/hooks/use-user-agent'
 
 import {
   Dialog,

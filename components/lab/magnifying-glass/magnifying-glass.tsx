@@ -14,7 +14,7 @@ import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 
 import { cn } from '@/lib/utils'
-import { useUserAgent } from '@/hooks/useUserAgent'
+import { useUserAgent } from '@/hooks/use-user-agent'
 import { useMounted } from '@/hooks/use-mounted'
 
 import {

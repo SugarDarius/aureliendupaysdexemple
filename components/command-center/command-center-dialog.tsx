@@ -28,7 +28,7 @@ import { siteConfig } from '@/config/site-config'
 import { cn, toUpperFirst, dasherize } from '@/lib/utils'
 import { navigationItems } from '@/lib/navigation'
 
-import { useUserAgent } from '@/hooks/useUserAgent'
+import { useUserAgent } from '@/hooks/use-user-agent'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 import { useMounted } from '@/hooks/use-mounted'
 
