@@ -3,7 +3,7 @@
 import Image from 'next/image'
 
 import { createPortal } from 'react-dom'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 
@@ -129,8 +129,6 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   const y = useMotionValue(0)
 
   const canvasRef = useRef<DrawingCanvasRef>(null)
-  const frameRequestIdRef = useRef<number>(0)
-
   const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
 
   const currentUserStrokeColor = useMemo(
@@ -174,27 +172,16 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   )
 
   useEventListener(({ event }): void => {
-    if (event.type === 'ADD_SVG_PATHS') {
+    if (canvasRef.current && event.type === 'ADD_SVG_PATHS') {
       const paths = updatePathsColors(
         event.paths,
         currentUserConnectionId,
         STROKE_COLOR
       )
 
-      cancelAnimationFrame(frameRequestIdRef.current)
-      frameRequestIdRef.current = requestAnimationFrame((): void => {
-        if (canvasRef.current) {
-          canvasRef.current.sync(paths)
-        }
-      })
+      canvasRef.current.sync(paths)
     }
   })
-
-  useEffect(() => {
-    return (): void => {
-      cancelAnimationFrame(frameRequestIdRef.current)
-    }
-  }, [])
 
   return (
     <div className={cn('relative flex h-full w-full flex-col', className)}>
