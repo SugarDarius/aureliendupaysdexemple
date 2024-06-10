@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { VFXBackgroundRetroGrid } from '@/components/ui-vfx/vfx-background-retro-grid'
 
 const variants = cva(
-  'bg-clip-text text-6xl font-extrabold tracking-tighter text-transparent opacity-75',
+  'bg-clip-text py-0.5 text-6xl font-extrabold tracking-tighter text-transparent opacity-75',
   {
     variants: {
       variant: {
