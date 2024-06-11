@@ -22,18 +22,22 @@ export function CraftCard({
   githubURL?: string
   children?: React.ReactNode
 }) {
+  const isLab = category?.includes('Lab')
+
   return (
     <BentoCard className='col-span-2'>
-      <div className='relative flex flex-col gap-4 p-4 max-lg:gap-3'>
+      <div className='relative flex h-full w-full flex-col gap-4 p-4 max-lg:gap-3'>
         <div className='flex flex-none flex-row items-center justify-between'>
           <h1 className='text-xl font-extrabold tracking-tighter max-md:text-lg'>
             {title}
           </h1>
-          {githubURL ? <GitHubRepositoryLink href={githubURL} /> : null}
+          {githubURL ? (
+            <GitHubRepositoryLink href={githubURL} isLab={isLab} />
+          ) : null}
         </div>
-        {children ? (
-          <div className='flex w-full flex-col'>{children}</div>
-        ) : null}
+        <div className='flex w-full flex-auto flex-col'>
+          {children ? children : null}
+        </div>
         <div className='flex w-full flex-none flex-col gap-4'>
           <p className='line-clamp-3 text-base font-medium leading-5 text-muted-foreground max-md:text-sm'>
             {summary}

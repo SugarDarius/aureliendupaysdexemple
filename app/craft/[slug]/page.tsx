@@ -70,6 +70,8 @@ export default async function CraftSlugPage({
     notFound()
   }
 
+  const isLab = page.metadata.category?.includes('Lab')
+
   return (
     <PageContent>
       <PageHero
@@ -93,7 +95,10 @@ export default async function CraftSlugPage({
         ) : null}
         <div className='flex w-full flex-row items-center justify-between'>
           {page.metadata.githubURL ? (
-            <GitHubRepositoryLink href={page.metadata.githubURL} />
+            <GitHubRepositoryLink
+              href={page.metadata.githubURL}
+              isLab={isLab}
+            />
           ) : null}
           {page.metadata.category ? (
             <CategoryTag>{page.metadata.category}</CategoryTag>

@@ -5,9 +5,11 @@ import { cn } from '@/lib/utils'
 
 export function GitHubRepositoryLink({
   href,
+  isLab = false,
   className,
 }: {
   href: string
+  isLab?: boolean
   className?: string
 }) {
   return (
@@ -22,7 +24,7 @@ export function GitHubRepositoryLink({
       aria-label='GitHub repository link'
     >
       <GitHubLogoIcon className='size-4' />
-      See repository
+      See {isLab ? 'code' : 'repository'}
     </a>
   )
 }
