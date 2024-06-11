@@ -34,15 +34,15 @@
 
     --radius: 0.5rem;
 
-    --sh-class: #7aa2f7;
-    --sh-identifier: var(--foreground);
-    --sh-sign: #2ac3de;
-    --sh-string: #9ece6a;
-    --sh-keyword: #bb9af7;
-    --sh-comment: #565f89;
-    --sh-jsxliterals: #bb9af7;
-    --sh-property: #c0caf5;
-    --sh-entity: #f7768e;
+    --sh-class: #96f4e2;
+    --sh-identifier: #ea99a5;
+    --sh-sign: #b8bdc5;
+    --sh-string: #7dd3fc;
+    --sh-keyword: #c3b6fd;
+    --sh-comment: #d1d5db;
+    --sh-jsxliterals: #f8f9fa;
+    --sh-property: #d1d5db;
+    --sh-entity: #f471b5;
   }
 
   .dark {

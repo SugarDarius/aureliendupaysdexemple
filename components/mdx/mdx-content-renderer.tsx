@@ -117,7 +117,7 @@ const components: MDXRendererComponents = {
 
 export function MDXContentRenderer({ source }: { source: string }) {
   return (
-    <article className='prose max-w-none dark:prose-invert prose-a:underline-offset-4 prose-pre:bg-stone-900'>
+    <article className='prose max-w-none dark:prose-invert prose-a:underline-offset-4 prose-pre:bg-[#1B293D]'>
       <MDXRemote source={source} components={components} />
     </article>
   )
