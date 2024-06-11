@@ -1,9 +1,68 @@
 ---
 title: 'Liveblocks drawing on screen'
 publishedAt: '2024-06-24'
-summary: 'An experiment with Liveblocks broadcast events to draw on screen'
+summary: 'An experiment with Liveblocks broadcasted events to draw on screen'
 category: 'Lab / Open Source'
 githubURL: 'https://github.com/SugarDarius/aureliendupaysdexemple/blob/main/components/lab/drawing-on-screen-editor.tsx'
 ---
 
-# Liveblocks drawing on screen
+# An experiment to draw on screen
+
+This experiment comes from my use of Slack Huddle when someone was sharing his screen and we were drawing on it with a pen tool.
+
+I wanted to re-create it using a great collaborative tool to do it.
+So I chosen to use [Liveblocks](https://liveblocks.io/) and implement it on my personal website as a Lab 🙂.
+
+## Why drawing on screen?
+
+Drawing on screen is to me a great feature. It brings value and accessibility to users especially when share a screen in an application.
+It makes easier to communicate and express yourself when your pointing something present in the shared screen.
+
+From a collaborative standpoint, drawing on screen in real-time brings some great benefits such as:
+
+- Enhanced communication
+- Improved collaboration
+- Users engagement
+- Visual clarity
+- Real-time feedback
+- Interactive learning
+- Memory aid
+
+Having this feature in your product when you let users sharing their screen to each others make the collaborative side more stronger.
+
+## Let's talk about Liveblocks
+
+[Liveblocks](https://liveblocks.io/) is for me a great product providing a complete toolkit to developers to integrate collaborative experiences seamlessly with pace.
+
+Benefits of using **Liveblocks** as developers are you can integrates with your frontend framework while Liveblocks is managing all the infrastructure and scaling for you.
+As a developer deeply believing in frontend cloud it's for me a good match.
+
+Adding **Liveblocks** into your project is very straightforward.
+First your need to create an account on the web app and then your install the packages you need in your app.
+In my case on my personal website:
+
+```sh
+npm i @liveblocks/client @liveblocks/react
+```
+
+Once you've installed the dependencies you can now create config file with your public key created on the **Liveblocks** dashboard:
+
+```ts
+import { createClient } from '@liveblocks/client'
+import { createRoomContext } from '@liveblocks/react'
+
+const client = createClient({
+  publicApiKey: 'your_liveblocks_public_key',
+})
+
+type Presence = {}
+type Storage = {}
+type UserMeta = {}
+type RoomEvent = {}
+
+export const {
+  suspense: { RoomProvider, useBroadcastEvent, useEventListener, useSelf },
+} = createRoomContext<Presence, Storage, UserMeta, RoomEvent>(client)
+```
+
+And you're good to go 🚀
