@@ -3,9 +3,9 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
   style-src 'self' 'unsafe-inline';
   img-src 'self' blob: data:;
-  media-src 'none';
+  media-src 'self';
   font-src 'self' data:;
-  object-src 'none';
+  object-src 'self';
   connect-src *;
   frame-src 'self' data:;
   frame-ancestors 'none';

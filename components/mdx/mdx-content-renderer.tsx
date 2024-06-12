@@ -100,6 +100,24 @@ const RoundedImage = ({ className, alt, ...props }: ImageProps) => (
   <Image alt={alt} {...props} className={cn('z-[2] rounded-lg', className)} />
 )
 
+const RoundedVideo = ({ src }: { src: string }) => (
+  <div className='relative flex h-auto w-full flex-col overflow-hidden rounded-xl border'>
+    <div className='absolute left-0 top-0 h-full w-full overflow-hidden bg-neutral-700 dark:bg-neutral-800'>
+      <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-900 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
+    </div>
+    <video
+      className='z-[2] !my-0 aspect-video w-full'
+      playsInline
+      muted
+      autoPlay
+      preload='none'
+      loop
+    >
+      <source src={src} type='video/webm' />
+    </video>
+  </div>
+)
+
 const components: MDXRendererComponents = {
   h1: createHeading(1),
   h2: createHeading(2),
@@ -111,8 +129,9 @@ const components: MDXRendererComponents = {
   a: Link,
   TagLink,
   Callout,
-  RoundedImage,
   InlineCode,
+  RoundedImage,
+  RoundedVideo,
 }
 
 export function MDXContentRenderer({ source }: { source: string }) {
