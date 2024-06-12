@@ -45,7 +45,7 @@ export function CraftCard({
           {children ? children : null}
         </div>
         <div className='flex w-full flex-none flex-col gap-4'>
-          <p className='line-clamp-3 text-base font-medium leading-5 text-muted-foreground max-md:text-sm'>
+          <p className='line-clamp-2 text-base font-medium leading-5 text-muted-foreground max-md:text-sm'>
             {summary}
           </p>
           <div className='flex w-full flex-row items-center justify-between'>
