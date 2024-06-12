@@ -42,12 +42,12 @@ First your need to create an account on the web app and then your install the pa
 In my case on my personal website:
 
 ```sh
-npm i @liveblocks/client @liveblocks/react
+$ npm i @liveblocks/client @liveblocks/react
 ```
 
 Once you've installed the dependencies you can now create config file with your public key created on the **Liveblocks** dashboard:
 
-```ts
+```tsx
 import { createClient } from '@liveblocks/client'
 import { createRoomContext } from '@liveblocks/react'
 
@@ -66,3 +66,52 @@ export const {
 ```
 
 And you're good to go 🚀
+
+## Drawing paths on screen with an svg canvas
+
+Drawing on screen when sharing screen should stay simple and light in my opinion.
+So I though that instead of using a <InlineCode>canvas</InlineCode> element it would be much better and efficient to use an <InlineCode>svg</InlineCode> element.
+
+When users draw on screen with their mouses, the mouse event can be easily translated into an <InlineCode>SVGPoint</InlineCode> and then assembly theses points to create an <InlineCode>SVGPath</InlineCode>:
+
+```tsx
+type SVGPoint = { x: number; y: number }
+type SVGPath = {
+  id: string
+  points: SVGPoint[]
+  strokeColor: string
+  strokeWidth: number
+  ended: boolean
+}
+```
+
+So our svg canvas will render an array of <InlineCode>SVGPath</InlineCode> by computing the path shape thanks to the array of <InlineCode>SVGPoint</InlineCode> with applying on it a `cubic bezier curve`:
+
+```tsx
+const d = points.reduce<string>((d, point, index, points) => {
+  return index === 0
+    ? `M ${point.x},${point.y}`
+    : `${d} ${getCubicBezierCurve(point, index, points, curveSmoothing)}`
+}, '')
+```
+
+<Callout icon='💡'>
+  Curve smoothing is here to help to define the coordinates of the control
+  points for the cubic bezier curve
+</Callout>
+
+And our svg canvas can just expose in the end an <InlineCode>onChange</InlineCode> prop to let parent components to apply some logic when paths are changing in the canvas:
+
+```tsx
+<DrawingCanvas
+  ref={canvasRef}
+  backgroundColor='transparent'
+  className='absolute left-0 top-0'
+  width='100%'
+  height='100%'
+  strokeColor={STROKE_COLOR}
+  strokeWidth={STROKE_WIDTH}
+  onChange={handleCanvasChange}
+  pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
+/>
+```
