@@ -41,7 +41,7 @@ Benefits of using **Liveblocks** as developers are you can integrates with your 
 As a developer deeply believing in frontend cloud it's for me a good match.
 
 Adding **Liveblocks** into your project is very straightforward.
-First your need to create an account on the web app and then your install the packages you need in your app.
+First you need to create an account on the web app and then you install the packages you need in your app.
 In my case on my personal website:
 
 ```sh
@@ -64,7 +64,7 @@ type UserMeta = {}
 type RoomEvent = {}
 
 export const {
-  suspense: { RoomProvider, useBroadcastEvent, useEventListener, useSelf },
+  suspense: { RoomProvider, useBroadcastEvent, useEventListener },
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent>(client)
 ```
 
@@ -125,3 +125,112 @@ You can [check out](https://www.aureliendupaysdexemple.com/lab/drawing-editor) t
 <RoundedVideo src='/medias/mdx-content/drawing-editor.webm' />
 
 And [check the code](https://github.com/SugarDarius/aureliendupaysdexemple/blob/main/components/lab/drawing-editor.tsx) on GitHub 🙂
+
+## Broadcasting events for real-time collaboration
+
+Thanks to the exposed <InlineCode>onChange</InlineCode> prop on the drawing we can simply broadcast events using the <InlineCode>useBroadcastEvent</InlineCode> hook exported from the Liveblocks config.
+
+Let's start by adding a new room event in our config:
+
+```ts
+import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
+
+// liveblocks.config.ts
+type RoomEvent = {
+  type: 'ADD_SVG_PATHS'
+  paths: SVGPath[]
+}
+```
+
+After having wrapped the drawing on screen editor with <InlineCode>RoomProvider</InlineCode> you can call the <InlineCode>useBroadcastEvent</InlineCode> React hook to broadcast events:
+
+```tsx
+import { useBroadcastEvent } from '@/liveblocks.config'
+import type {
+  DrawingCanvasRef,
+  DrawingCanvas,
+} from '@/components/lab/drawing-canvas/drawing-canvas'
+
+function DrawingOnScreenEditor() {
+  /** @type DrawingCanvasRef */
+  const canvasRef = useRef(null)
+  const broadcast = useBroadcastEvent()
+
+  const handleCanvasChange = useEvent(
+    (
+      paths: SVGPath[],
+      // Note: options to keep it clean
+      // and to avoid infinite loop when syncing paths
+      { isFromSyncOperation, isFromDisappearOperation }
+    ): void => {
+      if (!isFromSyncOperation && !isFromDisappearOperation) {
+        broadcast({
+          type: 'ADD_SVG_PATHS',
+          paths,
+        })
+      }
+    }
+  )
+
+  return (
+    <DrawingCanvas
+      ref={canvasRef}
+      backgroundColor='transparent'
+      className='absolute left-0 top-0'
+      width='100%'
+      height='100%'
+      strokeColor={STROKE_COLOR}
+      strokeWidth={STROKE_WIDTH}
+      onChange={handleCanvasChange}
+      pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
+    />
+  )
+}
+```
+
+## Listening on broadcasted events
+
+Once the events are broadcasted we can listen on them using the <InlineCode>useEventListener</InlineCode> React hook an sync the paths:
+
+```tsx
+import { useEventListener } from '@/liveblocks.config'
+import type {
+  DrawingCanvasRef,
+  DrawingCanvas,
+} from '@/components/lab/drawing-canvas/drawing-canvas'
+
+function DrawingOnScreenEditor() {
+  /** @type DrawingCanvasRef */
+  const canvasRef = useRef(null)
+
+  const handleCanvasChange = useEvent((): void => {
+    /* ... */
+  })
+
+  useEventListener(({ event }): void => {
+    if (canvasRef.current && event.type === 'ADD_SVG_PATHS') {
+      // NOTE: `canvasRef` is an imperative handle to allow
+      // to do operations using a custom handle exposed as ref.
+      // It simplify the need to sync paths in the drawing canvas when
+      // listening on events
+      canvasRef.current.sync(event.paths)
+    }
+  })
+
+  return (
+    <DrawingCanvas
+      ref={canvasRef}
+      backgroundColor='transparent'
+      className='absolute left-0 top-0'
+      width='100%'
+      height='100%'
+      strokeColor={STROKE_COLOR}
+      strokeWidth={STROKE_WIDTH}
+      onChange={handleCanvasChange}
+      pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
+    />
+  )
+}
+```
+
+And here we go 🚀
