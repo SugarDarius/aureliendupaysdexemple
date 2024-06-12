@@ -37,7 +37,7 @@ export default async function CraftPage() {
             githubURL={page.metadata.githubURL}
           >
             {page.metadata.image ? (
-              <div className='flex h-full w-full flex-col pt-8 max-lg:pt-4'>
+              <div className='flex h-full w-full flex-col items-center py-4'>
                 <Image
                   alt={page.metadata.title + ' image'}
                   src={page.metadata.image}
