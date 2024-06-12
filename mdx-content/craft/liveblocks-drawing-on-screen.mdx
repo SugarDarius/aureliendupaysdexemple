@@ -7,8 +7,6 @@ githubURL: 'https://github.com/SugarDarius/aureliendupaysdexemple/blob/main/comp
 image: '/medias/mdx-content/liveblocks-drawing-on-screen.webp'
 ---
 
-<Callout icon='⚠️'>Under construction</Callout>
-
 # An experiment to draw on screen
 
 This experiment comes from my use of Slack Huddle when someone was sharing his screen and we were drawing on it with a pen tool.
@@ -37,7 +35,7 @@ Having this feature in your product when you let users sharing their screen to e
 
 [Liveblocks](https://liveblocks.io/) is for me a great product providing a complete toolkit to developers to integrate collaborative experiences seamlessly with pace.
 
-Benefits of using **Liveblocks** as developers are you can integrates with your frontend framework while Liveblocks is managing all the infrastructure and scaling for you.
+Benefits of using **Liveblocks** as a developer are you can integrates with your frontend framework while Liveblocks is managing all the infrastructure and scaling for you.
 As a developer deeply believing in frontend cloud it's for me a good match.
 
 Adding **Liveblocks** into your project is very straightforward.
@@ -68,14 +66,14 @@ export const {
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent>(client)
 ```
 
-And you're good to go 🚀
+And we're good to go 🚀
 
 ## Drawing paths on screen with an svg canvas
 
 Drawing on screen when sharing screen should stay simple and light in my opinion.
 So I though that instead of using a <InlineCode>canvas</InlineCode> element it would be much better and efficient to use an <InlineCode>svg</InlineCode> element.
 
-When users draw on screen with their mouses, the mouse event can be easily translated into an <InlineCode>SVGPoint</InlineCode> and then assembly theses points to create an <InlineCode>SVGPath</InlineCode>:
+When users draw on screen with their mouses, the mouse event can be easily translated into an <InlineCode>SVGPoint</InlineCode> and then we can assemble theses points to create an <InlineCode>SVGPath</InlineCode>:
 
 ```tsx
 type SVGPoint = { x: number; y: number }
@@ -124,7 +122,7 @@ You can [check out](https://www.aureliendupaysdexemple.com/lab/drawing-editor) t
 
 <RoundedVideo src='/medias/mdx-content/drawing-editor.webm' />
 
-And [check the code](https://github.com/SugarDarius/aureliendupaysdexemple/blob/main/components/lab/drawing-editor.tsx) on GitHub 🙂
+You can [check the code](https://github.com/SugarDarius/aureliendupaysdexemple/blob/main/components/lab/drawing-editor.tsx) on GitHub 🙂
 
 ## Broadcasting events for real-time collaboration
 
@@ -233,4 +231,25 @@ function DrawingOnScreenEditor() {
 }
 ```
 
-And here we go 🚀
+And here we go 🚀 we can now broadcast and listen on events to draw on scree 🙂
+
+## Demo
+
+<RoundedVideo src='/medias/mdx-content/liveblocks-drawing-on-screen.webm' />
+
+[Check out](https://www.aureliendupaysdexemple.com/lab/liveblocks-drawing-on-screen) the Liveblocks drawing on screen experiment on his page.
+
+## Conclusion
+
+Thanks to **Liveblocks** as a developer we don't have to care all about the stuff on broadcasting and listening events. It's simple with a few lines of code 🚀.
+
+**Liveblocks** allows to bring with a fast pace collaboration on your product and this is amazing 😃.
+No more headaches about how to design the infrastructure nor create the code to handle websocket in your frontend app with a good level of abstraction.
+You can just focus on what's matter the most to bring a super user experience to your customers in your product.
+And this feels really good 😊
+
+<hr />
+
+### Additional notes
+
+This experiment is very straightforward and focus on the main collaborative side logic. Still their is room for improvements like performances when syncing the paths in the drawing canvas.
