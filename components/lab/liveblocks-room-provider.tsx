@@ -25,7 +25,7 @@ export function LiveblocksRoomProvider({
     <LiveblocksProvider publicApiKey={env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY}>
       <RoomProvider id={roomId} initialPresence={{}}>
         <ClientSideSuspense fallback={<SuspenseFallback />}>
-          {() => children}
+          {children}
         </ClientSideSuspense>
       </RoomProvider>
     </LiveblocksProvider>
