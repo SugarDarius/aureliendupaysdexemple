@@ -35,7 +35,7 @@ export function CraftCard({
             <GitHubRepositoryLink href={githubURL} isLab={isLab} />
           ) : null}
         </div>
-        <div className='flex w-full flex-auto flex-col'>
+        <div className='flex w-full flex-auto flex-col items-center'>
           {children ? children : null}
         </div>
         <div className='flex w-full flex-none flex-col gap-4'>
