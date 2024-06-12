@@ -64,6 +64,8 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
 const STROKE_COLOR = '#48AEFF'
 const STROKE_WIDTH = 6
 
+const PATH_DISAPPEARING_TIMEOUT_MS = 10 * 1000 // 10s
+
 const CONNECTION_ID_PUBLIC_METADATA_KEY = 'liveblocks-connection-id'
 const CONNECTION_STROKE_COLOR_PUBLIC_METADATA_KEY =
   'liveblocks-connection-stroke-color'
@@ -218,7 +220,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
               strokeColor={STROKE_COLOR}
               strokeWidth={STROKE_WIDTH}
               onChange={handleCanvasChange}
-              pathDisappearingTimeoutMs={10 * 1000}
+              pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
             />
             <Portal>
               <AnimatePresence>
