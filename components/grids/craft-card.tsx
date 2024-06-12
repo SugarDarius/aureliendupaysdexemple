@@ -27,12 +27,18 @@ export function CraftCard({
   return (
     <BentoCard className='col-span-2'>
       <div className='relative flex h-full w-full flex-col gap-4 p-4 max-lg:gap-3'>
-        <div className='flex flex-none flex-row items-center justify-between'>
-          <h1 className='text-xl font-extrabold tracking-tighter max-md:text-lg'>
-            {title}
-          </h1>
+        <div className='flex flex-none flex-row items-center gap-4'>
+          <div className='flex flex-auto flex-row items-center truncate'>
+            <h1 className='truncate text-xl font-extrabold tracking-tighter max-md:text-lg'>
+              {title}
+            </h1>
+          </div>
           {githubURL ? (
-            <GitHubRepositoryLink href={githubURL} isLab={isLab} />
+            <GitHubRepositoryLink
+              className='flex-none'
+              href={githubURL}
+              isLab={isLab}
+            />
           ) : null}
         </div>
         <div className='flex w-full flex-auto flex-col items-center'>
