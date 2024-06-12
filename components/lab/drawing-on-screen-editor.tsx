@@ -18,7 +18,8 @@ import {
   useBroadcastEvent,
   useEventListener,
   useSelf,
-} from '@/liveblocks.config'
+} from '@liveblocks/react/suspense'
+
 import { cn } from '@/lib/utils'
 
 import { PencilIcon } from '@/components/icons/pencil-icon'

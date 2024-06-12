@@ -1,7 +1,12 @@
 'use client'
 
-import { ClientSideSuspense } from '@liveblocks/react'
-import { RoomProvider } from '@/liveblocks.config'
+import {
+  LiveblocksProvider,
+  RoomProvider,
+  ClientSideSuspense,
+} from '@liveblocks/react/suspense'
+
+import { env } from '@/config/env'
 
 const SuspenseFallback = () => (
   <div className='flex h-full w-full flex-col items-center justify-center'>
@@ -17,10 +22,12 @@ export function LiveblocksRoomProvider({
   children?: React.ReactNode
 }) {
   return (
-    <RoomProvider id={roomId} initialPresence={{}}>
-      <ClientSideSuspense fallback={<SuspenseFallback />}>
-        {() => children}
-      </ClientSideSuspense>
-    </RoomProvider>
+    <LiveblocksProvider publicApiKey={env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY}>
+      <RoomProvider id={roomId} initialPresence={{}}>
+        <ClientSideSuspense fallback={<SuspenseFallback />}>
+          {() => children}
+        </ClientSideSuspense>
+      </RoomProvider>
+    </LiveblocksProvider>
   )
 }
