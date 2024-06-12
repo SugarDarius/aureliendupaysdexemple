@@ -46,24 +46,29 @@ In my case on my personal website:
 $ npm i @liveblocks/client @liveblocks/react
 ```
 
-Once you've installed the dependencies you can now create config file with your public key created on the **Liveblocks** dashboard:
+Once you've installed the dependencies and got your public key created on the **Liveblocks** dashboard then you can set up your custom types in your <InlineCode>liveblocks.config.ts</InlineCode>:
 
 ```tsx
-import { createClient } from '@liveblocks/client'
-import { createRoomContext } from '@liveblocks/react'
+declare global {
+  interface Liveblocks {
+    Presence: MyPresence
+    RoomEvent: MyRoomEvent
+  }
+}
+```
 
-const client = createClient({
-  publicApiKey: 'your_liveblocks_public_key',
-})
+And setting up your <InlineCode>LiveblocksProvider</InlineCode> in your app:
 
-type Presence = {}
-type Storage = {}
-type UserMeta = {}
-type RoomEvent = {}
+```tsx
+import { LiveblocksProvider } from '@liveblocks/react/suspense'
 
-export const {
-  suspense: { RoomProvider, useBroadcastEvent, useEventListener },
-} = createRoomContext<Presence, Storage, UserMeta, RoomEvent>(client)
+function MyApp({ children }: { children: React.ReactNode }) {
+  return (
+    <LiveblocksProvider publicApiKey='your-public-api-key'>
+      {children}
+    </LiveblocksProvider>
+  )
+}
 ```
 
 And we're good to go 🚀
@@ -107,12 +112,11 @@ And our svg canvas can just expose in the end an <InlineCode>onChange</InlineCod
 <DrawingCanvas
   ref={canvasRef}
   backgroundColor='transparent'
-  className='absolute left-0 top-0'
   width='100%'
   height='100%'
   strokeColor={STROKE_COLOR}
   strokeWidth={STROKE_WIDTH}
-  onChange={handleCanvasChange}
+  onChange={() => {}}
   pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
 />
 ```
@@ -128,22 +132,27 @@ You can [check the code](https://github.com/SugarDarius/aureliendupaysdexemple/b
 
 Thanks to the exposed <InlineCode>onChange</InlineCode> prop on the drawing we can simply broadcast events using the <InlineCode>useBroadcastEvent</InlineCode> hook exported from the Liveblocks config.
 
-Let's start by adding a new room event in our config:
+Let's start by adding a new room event in our <InlineCode>liveblocks.config.ts</InlineCode> file:
 
 ```ts
-import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
+import type { SVGPath } from './components/lab/drawing-canvas/svg-canvas-path'
 
-// liveblocks.config.ts
 type RoomEvent = {
   type: 'ADD_SVG_PATHS'
   paths: SVGPath[]
 }
+
+declare global {
+  interface Liveblocks {
+    RoomEvent: RoomEvent
+  }
+}
 ```
 
-After having wrapped the drawing on screen editor with <InlineCode>RoomProvider</InlineCode> you can call the <InlineCode>useBroadcastEvent</InlineCode> React hook to broadcast events:
+After having wrapped the drawing on screen editor with <InlineCode>RoomProvider</InlineCode> component you can call the <InlineCode>useBroadcastEvent</InlineCode> React hook to broadcast events:
 
 ```tsx
-import { useBroadcastEvent } from '@/liveblocks.config'
+import { useBroadcastEvent } from '@liveblocks/react/suspense'
 import type {
   DrawingCanvasRef,
   DrawingCanvas,
@@ -174,7 +183,6 @@ function DrawingOnScreenEditor() {
     <DrawingCanvas
       ref={canvasRef}
       backgroundColor='transparent'
-      className='absolute left-0 top-0'
       width='100%'
       height='100%'
       strokeColor={STROKE_COLOR}
@@ -191,7 +199,7 @@ function DrawingOnScreenEditor() {
 Once the events are broadcasted we can listen on them using the <InlineCode>useEventListener</InlineCode> React hook an sync the paths:
 
 ```tsx
-import { useEventListener } from '@/liveblocks.config'
+import { useEventListener } from '@liveblocks/react/suspense'
 import type {
   DrawingCanvasRef,
   DrawingCanvas,
@@ -219,7 +227,6 @@ function DrawingOnScreenEditor() {
     <DrawingCanvas
       ref={canvasRef}
       backgroundColor='transparent'
-      className='absolute left-0 top-0'
       width='100%'
       height='100%'
       strokeColor={STROKE_COLOR}
@@ -231,19 +238,19 @@ function DrawingOnScreenEditor() {
 }
 ```
 
-And here we go 🚀 we can now broadcast and listen on events to draw on scree 🙂
+And here we go 🚀 we can now broadcast and listen on events to draw on screen 🙂
 
 ## Demo
 
 <RoundedVideo src='/medias/mdx-content/liveblocks-drawing-on-screen.webm' />
 
-[Check out](https://www.aureliendupaysdexemple.com/lab/liveblocks-drawing-on-screen) the Liveblocks drawing on screen experiment on his page.
+[Check out](https://www.aureliendupaysdexemple.com/lab/liveblocks-drawing-on-screen) the Liveblocks drawing on screen experiment on his lab page.
 
 ## Conclusion
 
 Thanks to **Liveblocks** as a developer we don't have to care all about the stuff on broadcasting and listening events. It's simple with a few lines of code 🚀.
 
-**Liveblocks** allows to bring with a fast pace collaboration on your product and this is amazing 😃.
+**Liveblocks** allows to bring collaboration with a fast pace on your product and this is amazing 😃.
 No more headaches about how to design the infrastructure nor create the code to handle websocket in your frontend app with a good level of abstraction.
 You can just focus on what's matter the most to bring a super user experience to your customers in your product.
 And this feels really good 😊
@@ -251,5 +258,7 @@ And this feels really good 😊
 <hr />
 
 ### Additional notes
+
+This experiment is using **Liveblocks 2.0**. [Check out](https://liveblocks.io/docs/platform/upgrading/2.0) the upgrading guide if you're coming from the first version as there are a lot of breaking changes.
 
 This experiment is very straightforward and focus on the main collaborative side logic. Still their is room for improvements like performances when syncing the paths in the drawing canvas.

@@ -1,4 +1,4 @@
-import type { SVGPath } from './components/lab/drawing-canvas/svg-canvas-path'
+import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 
 type RoomEvent = {
   type: 'ADD_SVG_PATHS'
