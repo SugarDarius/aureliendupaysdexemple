@@ -157,6 +157,7 @@ export function SVGCanvasPath({
       stroke={strokeColor}
       strokeWidth={strokeWidth}
       strokeLinecap='round'
+      strokeLinejoin='round'
       fill='none'
       animate={controls}
       initial={{ opacity: 1 }}
