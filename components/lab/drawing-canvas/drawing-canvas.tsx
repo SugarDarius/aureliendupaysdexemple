@@ -49,6 +49,7 @@ type DrawingCanvasProps = {
   strokeWidth: number
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
+  paths?: SVGPath[]
   onChange?: (paths: SVGPath[], infos: DrawingCanvasOnChangeInfos) => void
 }
 
@@ -64,6 +65,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       strokeWidth,
       curveSmoothing = DEFAULT_CURVE_SMOOTHING,
       pathDisappearingTimeoutMs = DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS,
+      paths: pathsProp,
       onChange,
     },
     ref
@@ -71,11 +73,16 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const frameRequestIdRef = useRef<number>(0)
 
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
-    const [paths, setPaths] = useState<SVGPath[]>([])
+    const [pathsState, setPaths] = useState<SVGPath[]>([])
+
+    const isControlled = pathsProp !== undefined
+    const paths = isControlled ? pathsProp : pathsState
 
     const updatePaths = useEvent(
       (paths: SVGPath[], isFromDisappearOperation = false): void => {
-        setPaths(paths)
+        if (!isControlled) {
+          setPaths(paths)
+        }
         onChange?.(paths, {
           isFromSyncOperation: false,
           isFromDisappearOperation,
@@ -84,16 +91,18 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     )
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      cancelAnimationFrame(frameRequestIdRef.current)
-      frameRequestIdRef.current = requestAnimationFrame((): void => {
-        const mergedPaths = mergePaths(paths, incomingPaths)
+      if (!isControlled) {
+        cancelAnimationFrame(frameRequestIdRef.current)
+        frameRequestIdRef.current = requestAnimationFrame((): void => {
+          const mergedPaths = mergePaths(paths, incomingPaths)
 
-        setPaths(mergedPaths)
-        onChange?.(mergedPaths, {
-          isFromSyncOperation: true,
-          isFromDisappearOperation: false,
+          setPaths(mergedPaths)
+          onChange?.(mergedPaths, {
+            isFromSyncOperation: true,
+            isFromDisappearOperation: false,
+          })
         })
-      })
+      }
     })
 
     const handleMouseDown = useEvent((point: SVGPoint): void => {
