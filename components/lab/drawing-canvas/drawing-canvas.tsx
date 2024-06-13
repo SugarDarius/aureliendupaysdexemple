@@ -50,7 +50,6 @@ type DrawingCanvasProps = {
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
   publicMetadata?: SVGPath['publicMetadata']
-  paths?: SVGPath[]
   onChange?: (paths: SVGPath[], infos?: DrawingCanvasOnChangeInfos) => void
 }
 
@@ -67,7 +66,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       curveSmoothing = DEFAULT_CURVE_SMOOTHING,
       pathDisappearingTimeoutMs = DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS,
       publicMetadata,
-      paths: pathsProp,
       onChange,
     },
     ref
@@ -75,31 +73,24 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const frameRequestIdRef = useRef<number>(0)
 
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
-    const [pathsState, setPaths] = useState<SVGPath[]>([])
-
-    const isControlled = pathsProp !== undefined
-    const paths = isControlled ? pathsProp : pathsState
+    const [paths, setPaths] = useState<SVGPath[]>([])
 
     const updatePaths = useEvent(
       (paths: SVGPath[], changeInfos?: DrawingCanvasOnChangeInfos): void => {
-        if (!isControlled) {
-          setPaths(paths)
-        }
+        setPaths(paths)
         onChange?.(paths, changeInfos)
       }
     )
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      if (!isControlled) {
-        cancelAnimationFrame(frameRequestIdRef.current)
-        frameRequestIdRef.current = requestAnimationFrame((): void => {
-          const mergedPaths = mergePaths(paths, incomingPaths)
+      cancelAnimationFrame(frameRequestIdRef.current)
+      frameRequestIdRef.current = requestAnimationFrame((): void => {
+        const mergedPaths = mergePaths(paths, incomingPaths)
 
-          updatePaths(mergedPaths, {
-            isSync: true,
-          })
+        updatePaths(mergedPaths, {
+          isSync: true,
         })
-      }
+      })
     })
 
     const handleMouseDown = useEvent((point: SVGPoint): void => {
