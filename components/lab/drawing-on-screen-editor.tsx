@@ -17,6 +17,7 @@ import {
 import {
   useBroadcastEvent,
   useEventListener,
+  useLostConnectionListener,
   useSelf,
 } from '@liveblocks/react/suspense'
 
@@ -153,6 +154,12 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       )
 
       canvasRef.current.sync(paths)
+    }
+  })
+
+  useLostConnectionListener((event): void => {
+    if (event === 'lost') {
+      canvasRef.current?.clear()
     }
   })
 
