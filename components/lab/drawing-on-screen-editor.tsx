@@ -82,26 +82,6 @@ const STROKE_COLORS = [
   '#7986CB',
 ]
 
-const injectPublicMetadata = (
-  paths: SVGPath[],
-  currentUserConnectionId: number,
-  strokeColor: string
-): SVGPath[] => {
-  for (const path of paths) {
-    const connectionId =
-      path.publicMetadata?.[CONNECTION_ID_PUBLIC_METADATA_KEY]
-
-    if (connectionId === undefined) {
-      path.publicMetadata = {
-        [CONNECTION_ID_PUBLIC_METADATA_KEY]: currentUserConnectionId,
-        [CONNECTION_STROKE_COLOR_PUBLIC_METADATA_KEY]: strokeColor,
-      }
-    }
-  }
-
-  return paths
-}
-
 const updatePathsColors = (
   paths: SVGPath[],
   currentUserConnectionId: number,
@@ -158,11 +138,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       if (!changeInfos?.isSync && !changeInfos?.isRemove) {
         broadcast({
           type: 'ADD_SVG_PATHS',
-          paths: injectPublicMetadata(
-            paths,
-            currentUserConnectionId,
-            currentUserStrokeColor
-          ),
+          paths,
         })
       }
     }
@@ -216,6 +192,11 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
               strokeWidth={STROKE_WIDTH}
               onChange={handleCanvasChange}
               pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
+              publicMetadata={{
+                [CONNECTION_ID_PUBLIC_METADATA_KEY]: currentUserConnectionId,
+                [CONNECTION_STROKE_COLOR_PUBLIC_METADATA_KEY]:
+                  currentUserStrokeColor,
+              }}
             />
             <Portal>
               <AnimatePresence>

@@ -49,6 +49,7 @@ type DrawingCanvasProps = {
   strokeWidth: number
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
+  publicMetadata?: SVGPath['publicMetadata']
   paths?: SVGPath[]
   onChange?: (paths: SVGPath[], infos?: DrawingCanvasOnChangeInfos) => void
 }
@@ -65,6 +66,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       strokeWidth,
       curveSmoothing = DEFAULT_CURVE_SMOOTHING,
       pathDisappearingTimeoutMs = DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS,
+      publicMetadata,
       paths: pathsProp,
       onChange,
     },
@@ -110,6 +112,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         strokeColor,
         strokeWidth,
         ended: false,
+        publicMetadata,
       }
 
       updatePaths([...paths, path])
