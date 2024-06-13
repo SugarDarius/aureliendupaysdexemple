@@ -154,14 +154,8 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   )
 
   const handleCanvasChange = useEvent(
-    (
-      paths: SVGPath[],
-      {
-        isFromSyncOperation,
-        isFromDisappearOperation,
-      }: DrawingCanvasOnChangeInfos
-    ): void => {
-      if (!isFromSyncOperation && !isFromDisappearOperation) {
+    (paths: SVGPath[], changeInfos?: DrawingCanvasOnChangeInfos): void => {
+      if (!changeInfos?.isSync && !changeInfos?.isRemove) {
         broadcast({
           type: 'ADD_SVG_PATHS',
           paths: injectPublicMetadata(

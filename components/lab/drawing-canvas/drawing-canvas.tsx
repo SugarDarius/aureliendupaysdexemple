@@ -35,8 +35,8 @@ export type DrawingCanvasRef = {
 }
 
 export type DrawingCanvasOnChangeInfos = {
-  isFromSyncOperation: boolean
-  isFromDisappearOperation: boolean
+  isSync?: boolean
+  isRemove?: boolean
 }
 
 type DrawingCanvasProps = {
@@ -50,7 +50,7 @@ type DrawingCanvasProps = {
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
   paths?: SVGPath[]
-  onChange?: (paths: SVGPath[], infos: DrawingCanvasOnChangeInfos) => void
+  onChange?: (paths: SVGPath[], infos?: DrawingCanvasOnChangeInfos) => void
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
@@ -79,14 +79,11 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const paths = isControlled ? pathsProp : pathsState
 
     const updatePaths = useEvent(
-      (paths: SVGPath[], isFromDisappearOperation = false): void => {
+      (paths: SVGPath[], changeInfos?: DrawingCanvasOnChangeInfos): void => {
         if (!isControlled) {
           setPaths(paths)
         }
-        onChange?.(paths, {
-          isFromSyncOperation: false,
-          isFromDisappearOperation,
-        })
+        onChange?.(paths, changeInfos)
       }
     )
 
@@ -96,10 +93,8 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         frameRequestIdRef.current = requestAnimationFrame((): void => {
           const mergedPaths = mergePaths(paths, incomingPaths)
 
-          setPaths(mergedPaths)
-          onChange?.(mergedPaths, {
-            isFromSyncOperation: true,
-            isFromDisappearOperation: false,
+          updatePaths(mergedPaths, {
+            isSync: true,
           })
         })
       }
@@ -149,7 +144,9 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const handleDisappearedPath = useEvent((pathId: string): void => {
       const index = paths.findIndex(({ id }) => id === pathId)
       if (index > -1) {
-        updatePaths([...paths.slice(0, index), ...paths.slice(index + 1)], true)
+        updatePaths([...paths.slice(0, index), ...paths.slice(index + 1)], {
+          isRemove: true,
+        })
       }
     })
 
