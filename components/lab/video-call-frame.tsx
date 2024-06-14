@@ -35,11 +35,13 @@ const Participant = ({
 export const ControlButton = ({
   className,
   active = false,
+  disabled = false,
   children,
   onClick,
 }: {
   className?: string
   active?: boolean
+  disabled?: boolean
   children: React.ReactNode
   onClick?: () => void
 }) => (
@@ -53,6 +55,7 @@ export const ControlButton = ({
     )}
     data-active={active}
     onClick={onClick}
+    disabled={disabled}
   >
     {children}
   </Button>
@@ -121,20 +124,20 @@ export function VideoCallFrame({
       </div>
       <div className='flex w-full flex-none flex-col gap-4'>
         <div className='flex w-full flex-row items-center justify-center gap-2'>
-          <ControlButton>
+          <ControlButton disabled>
             <MicrophoneIcon className='size-5' />
           </ControlButton>
-          <ControlButton>
+          <ControlButton disabled>
             <VideoCameraIcon className='size-5' />
           </ControlButton>
           <ControlButton active>
             <PresentationIcon className='size-5 stroke-[1.5px]' />
           </ControlButton>
-          <ControlButton>
+          <ControlButton disabled>
             <FaceSmileIcon className='size-5' />
           </ControlButton>
           {additionalControls}
-          <ControlButton>
+          <ControlButton disabled>
             <Cog6ToothIcon className='size-5' />
           </ControlButton>
           <Button variant='destructive'>Leave</Button>
