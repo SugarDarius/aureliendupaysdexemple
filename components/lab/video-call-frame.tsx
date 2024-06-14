@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import { useState } from 'react'
+
 import {
   Cog6ToothIcon,
   FaceSmileIcon,
@@ -9,6 +11,11 @@ import {
 import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip'
 import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
 import { PresentationIcon } from '@/components/icons/presentation-icon'
@@ -36,30 +43,40 @@ export const ControlButton = ({
   className,
   active = false,
   disabled = false,
+  tooltipContent,
   children,
   onClick,
 }: {
   className?: string
   active?: boolean
   disabled?: boolean
+  tooltipContent?: React.ReactNode
   children: React.ReactNode
   onClick?: () => void
-}) => (
-  <Button
-    className={cn(
-      'size-[36px] border border-neutral-200 bg-neutral-50 p-0 text-neutral-900 transition-colors ease-linear',
-      'hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
-      'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
-      'dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50 dark:data-[active=true]:text-neutral-900',
-      className
-    )}
-    data-active={active}
-    onClick={onClick}
-    disabled={disabled}
-  >
-    {children}
-  </Button>
-)
+}) => {
+  const [open, setOpen] = useState<boolean>(false)
+  return (
+    <Tooltip open={!!tooltipContent && open} onOpenChange={setOpen}>
+      <TooltipTrigger asChild>
+        <Button
+          className={cn(
+            'size-[36px] border border-neutral-200 bg-neutral-50 p-0 text-neutral-900 transition-colors ease-linear',
+            'hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
+            'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
+            'dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50 dark:data-[active=true]:text-neutral-900',
+            className
+          )}
+          data-active={active}
+          onClick={onClick}
+          disabled={disabled}
+        >
+          {children}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>{tooltipContent}</TooltipContent>
+    </Tooltip>
+  )
+}
 
 export function VideoCallFrame({
   className,
@@ -130,7 +147,7 @@ export function VideoCallFrame({
           <ControlButton disabled>
             <VideoCameraIcon className='size-5' />
           </ControlButton>
-          <ControlButton active>
+          <ControlButton active tooltipContent={<>Someone is presenting 🚀</>}>
             <PresentationIcon className='size-5 stroke-[1.5px]' />
           </ControlButton>
           <ControlButton disabled>
