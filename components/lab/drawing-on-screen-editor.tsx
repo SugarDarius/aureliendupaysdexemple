@@ -7,6 +7,7 @@ import { useMemo, useRef, useState } from 'react'
 
 import useEvent from 'react-use-event-hook'
 
+import { clsx } from 'clsx'
 import {
   type MotionValue,
   motion,
@@ -162,6 +163,8 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   const canvasRef = useRef<DrawingCanvasRef>(null)
   const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
 
+  const [isLocked, setIsLocked] = useState<boolean>(false)
+
   const currentUserStrokeColor = useMemo(
     (): string => STROKE_COLORS[currentUserConnectionId % STROKE_COLORS.length],
     [currentUserConnectionId]
@@ -180,6 +183,10 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       y.set(e.clientY + window.scrollY)
     }
   )
+
+  const handleDrawButtonClick = useEvent((): void => {
+    setIsLocked(!isLocked)
+  })
 
   const handleCanvasChange = useEvent(
     (paths: SVGPath[], changeInfos?: DrawingCanvasOnChangeInfos): void => {
@@ -218,13 +225,24 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       <VideoCallFrame
         className='animate-in fade-in'
         additionalControls={
-          <ControlButton active>
+          <ControlButton
+            active={!isLocked}
+            tooltipContent={
+              <>{`${isLocked ? 'Enable' : 'Disable'} drawing mode`}</>
+            }
+            onClick={handleDrawButtonClick}
+          >
             <PencilIcon className='size-4 fill-none stroke-[1.5px]' />
           </ControlButton>
         }
       >
         <div
-          className='relative flex h-full w-full !cursor-none'
+          className={cn(
+            'relative flex h-full w-full',
+            clsx({
+              '!cursor-none': !isLocked,
+            })
+          )}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onMouseMove={handleMouseMove}
@@ -241,6 +259,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
           <div className='absolute left-0 top-0 flex h-full w-full'>
             <DrawingCanvas
               ref={canvasRef}
+              isLocked={isLocked}
               backgroundColor='transparent'
               className='absolute left-0 top-0'
               width='100%'
@@ -256,7 +275,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
             />
             <Portal>
               <AnimatePresence>
-                {isCursorInside ? (
+                {isCursorInside && !isLocked ? (
                   <PencilCursor x={x} y={y} color={STROKE_COLOR} />
                 ) : null}
               </AnimatePresence>
