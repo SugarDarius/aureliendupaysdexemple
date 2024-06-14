@@ -69,8 +69,8 @@ const STROKE_WIDTH = 6
 const PATH_DISAPPEARING_TIMEOUT_MS = 10 * 1000 // 10s
 
 const CONNECTION_ID_PUBLIC_METADATA_KEY = 'liveblocks-connection-id'
-const CONNECTION_STROKE_COLOR_PUBLIC_METADATA_KEY =
-  'liveblocks-connection-stroke-color'
+const STROKE_COLOR_PUBLIC_METADATA_KEY = 'liveblocks-stroke-color'
+const SENT_FLAG_PUBLIC_METADATA_KEY = 'liveblocks-sent-flag'
 
 const STROKE_COLORS = [
   '#E57373',
@@ -83,7 +83,54 @@ const STROKE_COLORS = [
   '#7986CB',
 ]
 
-const updatePathsColors = (
+const getBooleanMetadata = (
+  metadata: SVGPath['publicMetadata'] = {},
+  key: string
+): boolean => {
+  const value = metadata[key]
+  if (!(typeof value === 'boolean')) {
+    return false
+  }
+
+  return value
+}
+
+const markPathsAsSent = (paths: SVGPath[]): SVGPath[] => {
+  return paths.map((path): SVGPath => {
+    const metadata = path.publicMetadata ?? {}
+    const markedAsSent = getBooleanMetadata(
+      metadata,
+      SENT_FLAG_PUBLIC_METADATA_KEY
+    )
+
+    if (path.ended && !markedAsSent) {
+      metadata[SENT_FLAG_PUBLIC_METADATA_KEY] = true
+      path.publicMetadata = { ...metadata }
+    }
+
+    return path
+  })
+}
+
+const getUnsentPaths = (paths: SVGPath[]): SVGPath[] => {
+  const unsentPaths: SVGPath[] = []
+
+  for (const path of paths) {
+    const metadata = path.publicMetadata ?? {}
+    const markedAsSent = getBooleanMetadata(
+      metadata,
+      SENT_FLAG_PUBLIC_METADATA_KEY
+    )
+
+    if (!markedAsSent) {
+      unsentPaths.push(path)
+    }
+  }
+
+  return unsentPaths
+}
+
+const updatePathsStrokeColor = (
   paths: SVGPath[],
   currentUserConnectionId: number,
   defaultStrokeColor: string
@@ -93,7 +140,7 @@ const updatePathsColors = (
       path.publicMetadata?.[CONNECTION_ID_PUBLIC_METADATA_KEY]
     if (connectionId && connectionId !== currentUserConnectionId) {
       const strokeColor =
-        path.publicMetadata?.[CONNECTION_STROKE_COLOR_PUBLIC_METADATA_KEY]
+        path.publicMetadata?.[STROKE_COLOR_PUBLIC_METADATA_KEY]
       if (strokeColor && typeof strokeColor === 'string') {
         path.strokeColor = strokeColor
       }
@@ -137,9 +184,12 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
   const handleCanvasChange = useEvent(
     (paths: SVGPath[], changeInfos?: DrawingCanvasOnChangeInfos): void => {
       if (!changeInfos?.isSync && !changeInfos?.isRemove) {
+        const unsentPaths = getUnsentPaths(paths)
+        const svgPaths = markPathsAsSent(unsentPaths)
+
         broadcast({
           type: 'ADD_SVG_PATHS',
-          paths,
+          svgPaths: svgPaths,
         })
       }
     }
@@ -147,8 +197,8 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
 
   useEventListener(({ event }): void => {
     if (canvasRef.current && event.type === 'ADD_SVG_PATHS') {
-      const paths = updatePathsColors(
-        event.paths,
+      const paths = updatePathsStrokeColor(
+        event.svgPaths,
         currentUserConnectionId,
         STROKE_COLOR
       )
@@ -201,8 +251,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
               pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
               publicMetadata={{
                 [CONNECTION_ID_PUBLIC_METADATA_KEY]: currentUserConnectionId,
-                [CONNECTION_STROKE_COLOR_PUBLIC_METADATA_KEY]:
-                  currentUserStrokeColor,
+                [STROKE_COLOR_PUBLIC_METADATA_KEY]: currentUserStrokeColor,
               }}
             />
             <Portal>

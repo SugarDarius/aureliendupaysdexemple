@@ -103,7 +103,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         strokeColor,
         strokeWidth,
         ended: false,
-        publicMetadata,
+        publicMetadata: { ...publicMetadata },
       }
 
       updatePaths([...paths, path])
