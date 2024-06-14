@@ -1,5 +1,8 @@
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+
 import { useState } from 'react'
+import useEvent from 'react-use-event-hook'
 
 import {
   Cog6ToothIcon,
@@ -87,6 +90,10 @@ export function VideoCallFrame({
   additionalControls?: React.ReactNode
   children?: React.ReactNode
 }) {
+  const router = useRouter()
+  const handleLeaveButtonClick = useEvent((): void => {
+    router.push('/')
+  })
   return (
     <div
       className={cn(
@@ -157,7 +164,9 @@ export function VideoCallFrame({
           <ControlButton disabled>
             <Cog6ToothIcon className='size-5' />
           </ControlButton>
-          <Button variant='destructive'>Leave</Button>
+          <Button variant='destructive' onClick={handleLeaveButtonClick}>
+            Leave
+          </Button>
         </div>
       </div>
     </div>
