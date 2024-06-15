@@ -20,6 +20,7 @@ import {
   useEventListener,
   useLostConnectionListener,
   useSelf,
+  useUpdateMyPresence,
 } from '@liveblocks/react/suspense'
 
 import { cn } from '@/lib/utils'
@@ -155,6 +156,8 @@ const updatePathsStrokeColor = (
 
 export function DrawingOnScreenEditor({ className }: { className?: string }) {
   const currentUserConnectionId = useSelf((user) => user.connectionId)
+  const updateMyPresence = useUpdateMyPresence()
+
   const broadcast = useBroadcastEvent()
 
   const x = useMotionValue(0)
@@ -201,6 +204,14 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       }
     }
   )
+
+  const handleDrawStart = useEvent((): void => {
+    updateMyPresence({ isDrawing: true })
+  })
+
+  const handleDrawEnd = useEvent((): void => {
+    updateMyPresence({ isDrawing: false })
+  })
 
   useEventListener(({ event }): void => {
     if (canvasRef.current && event.type === 'ADD_SVG_PATHS') {
@@ -267,6 +278,8 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
               strokeColor={STROKE_COLOR}
               strokeWidth={STROKE_WIDTH}
               onChange={handleCanvasChange}
+              onDrawStart={handleDrawStart}
+              onDrawEnd={handleDrawEnd}
               pathDisappearingTimeoutMs={PATH_DISAPPEARING_TIMEOUT_MS}
               publicMetadata={{
                 [CONNECTION_ID_PUBLIC_METADATA_KEY]: currentUserConnectionId,
