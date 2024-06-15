@@ -1,12 +1,6 @@
 'use client'
 
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react'
+import { forwardRef, useImperativeHandle, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import { nanoid } from 'nanoid'
@@ -77,8 +71,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     },
     ref
   ) => {
-    const frameRequestIdRef = useRef<number>(0)
-
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
     const [paths, setPaths] = useState<SVGPath[]>([])
 
@@ -94,13 +86,10 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     })
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      cancelAnimationFrame(frameRequestIdRef.current)
-      frameRequestIdRef.current = requestAnimationFrame((): void => {
-        const mergedPaths = mergePaths(paths, incomingPaths)
+      const mergedPaths = mergePaths(paths, incomingPaths)
 
-        updatePaths(mergedPaths, {
-          isSync: true,
-        })
+      updatePaths(mergedPaths, {
+        isSync: true,
       })
     })
 
@@ -170,12 +159,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
       []
     )
-
-    useEffect(() => {
-      return (): void => {
-        cancelAnimationFrame(frameRequestIdRef.current)
-      }
-    }, [])
 
     return (
       <SVGCanvas
