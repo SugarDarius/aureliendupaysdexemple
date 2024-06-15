@@ -39,6 +39,7 @@ export type DrawingCanvasRef = {
 export type DrawingCanvasOnChangeInfos = {
   isSync?: boolean
   isRemove?: boolean
+  isClear?: boolean
 }
 
 type DrawingCanvasProps = {
@@ -87,6 +88,10 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         onChange?.(paths, changeInfos)
       }
     )
+
+    const clearPaths = useEvent((): void => {
+      updatePaths([], { isClear: true })
+    })
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
       cancelAnimationFrame(frameRequestIdRef.current)
@@ -156,7 +161,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       ref,
       () => ({
         clear: (): void => {
-          updatePaths([])
+          clearPaths()
         },
         sync: (paths: SVGPath[]): void => {
           syncPaths(paths)
