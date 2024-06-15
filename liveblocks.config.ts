@@ -5,8 +5,13 @@ type DrawingOnScreenRoomEvent = {
   svgPaths: SVGPath[]
 }
 
+type DrawingOnScreenPresence = {
+  isDrawing: boolean
+}
+
 declare global {
   interface Liveblocks {
     RoomEvent: DrawingOnScreenRoomEvent
+    Presence: DrawingOnScreenPresence
   }
 }

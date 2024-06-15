@@ -23,7 +23,7 @@ export function LiveblocksRoomProvider({
 }) {
   return (
     <LiveblocksProvider publicApiKey={env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY}>
-      <RoomProvider id={roomId} initialPresence={{}}>
+      <RoomProvider id={roomId} initialPresence={{ isDrawing: false }}>
         <ClientSideSuspense fallback={<SuspenseFallback />}>
           {children}
         </ClientSideSuspense>
