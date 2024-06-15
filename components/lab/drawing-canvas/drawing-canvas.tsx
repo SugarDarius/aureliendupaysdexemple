@@ -51,6 +51,8 @@ type DrawingCanvasProps = {
   pathDisappearingTimeoutMs?: number | null
   publicMetadata?: SVGPath['publicMetadata']
   onChange?: (paths: SVGPath[], infos?: DrawingCanvasOnChangeInfos) => void
+  onDrawStart?: () => void
+  onDrawEnd?: () => void
 }
 
 export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
@@ -67,6 +69,8 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       pathDisappearingTimeoutMs = DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS,
       publicMetadata,
       onChange,
+      onDrawStart,
+      onDrawEnd,
     },
     ref
   ) => {
@@ -107,6 +111,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       }
 
       updatePaths([...paths, path])
+      onDrawStart?.()
     })
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
@@ -132,6 +137,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         }
 
         updatePaths([...paths.slice(0, -1), updatedPath])
+        onDrawEnd?.()
       }
     })
 
