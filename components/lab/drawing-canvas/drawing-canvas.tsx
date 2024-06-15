@@ -21,10 +21,12 @@ const DEFAULT_CURVE_SMOOTHING = 0.4
 const DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS = 5000
 
 const mergePaths = (existing: SVGPath[], incoming: SVGPath[]): SVGPath[] => {
+  const allPaths = [...existing, ...incoming]
   const mergedPaths = new Map<string, SVGPath>()
 
-  existing.forEach((path) => mergedPaths.set(path.id, path))
-  incoming.forEach((path) => mergedPaths.set(path.id, path))
+  allPaths.forEach((path) => {
+    mergedPaths.set(path.id, path)
+  })
 
   return Array.from(mergedPaths.values())
 }
