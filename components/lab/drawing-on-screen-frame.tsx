@@ -2,7 +2,7 @@ import { LiveblocksRoomProvider } from '@/components/lab/liveblocks-room-provide
 import { DrawingOnScreenEditor } from '@/components/lab/drawing-on-screen-editor'
 
 const ROOM_ID =
-  'aureliendupaysdexemple-lab-liveblocks-drawing-on-screenMIGfMA0GCS-qGSIb3DQEBAQ'
+  'aureliendupaysdexemple-lab-liveblocks-drawing-on-screen-MIGfMA0GCS-qGSIb3DQEBAQ'
 
 export function DrawingOnScreenFrame() {
   return (
