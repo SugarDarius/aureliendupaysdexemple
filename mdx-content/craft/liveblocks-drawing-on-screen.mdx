@@ -154,7 +154,6 @@ After having wrapped the drawing on screen editor with <InlineCode>RoomProvider<
 ```tsx
 import { useBroadcastEvent } from '@liveblocks/react/suspense'
 import {
-  type DrawingCanvasOnChangeInfos,
   type DrawingCanvasRef,
   DrawingCanvas,
 } from '@/components/lab/drawing-canvas/drawing-canvas'
@@ -164,21 +163,12 @@ function DrawingOnScreenEditor() {
   const canvasRef = useRef(null)
   const broadcast = useBroadcastEvent()
 
-  const handleCanvasChange = useEvent(
-    (
-      paths: SVGPath[],
-      // Note: options to keep it clean
-      // and to avoid infinite loop when syncing paths
-      changeInfos: DrawingCanvasOnChangeInfos
-    ): void => {
-      if (!changeInfos?.isSync && !changeInfos?.isRemove) {
-        broadcast({
-          type: 'ADD_SVG_PATHS',
-          paths,
-        })
-      }
-    }
-  )
+  const handleCanvasChange = useEvent((paths: SVGPath[]): void => {
+    broadcast({
+      type: 'ADD_SVG_PATHS',
+      paths,
+    })
+  })
 
   return (
     <DrawingCanvas
