@@ -33,7 +33,6 @@ import {
 import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 import {
   type DrawingCanvasRef,
-  type DrawingCanvasOnChangeInfos,
   DrawingCanvas,
 } from '@/components/lab/drawing-canvas/drawing-canvas'
 
@@ -191,19 +190,15 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     setIsLocked(!isLocked)
   })
 
-  const handleCanvasChange = useEvent(
-    (paths: SVGPath[], changeInfos?: DrawingCanvasOnChangeInfos): void => {
-      if (!changeInfos?.isSync && !changeInfos?.isRemove) {
-        const unsentPaths = getUnsentPaths(paths)
-        const svgPaths = markPathsAsSent(unsentPaths)
+  const handleCanvasChange = useEvent((paths: SVGPath[]): void => {
+    const unsentPaths = getUnsentPaths(paths)
+    const svgPaths = markPathsAsSent(unsentPaths)
 
-        broadcast({
-          type: 'ADD_SVG_PATHS',
-          svgPaths: svgPaths,
-        })
-      }
-    }
-  )
+    broadcast({
+      type: 'ADD_SVG_PATHS',
+      svgPaths: svgPaths,
+    })
+  })
 
   const handleDrawStart = useEvent((): void => {
     updateMyPresence({ isDrawing: true })

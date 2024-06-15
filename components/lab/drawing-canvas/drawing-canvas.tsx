@@ -30,12 +30,6 @@ export type DrawingCanvasRef = {
   sync: (paths: SVGPath[]) => void
 }
 
-export type DrawingCanvasOnChangeInfos = {
-  isSync?: boolean
-  isRemove?: boolean
-  isClear?: boolean
-}
-
 type DrawingCanvasProps = {
   className?: string
   isLocked?: boolean
@@ -47,7 +41,7 @@ type DrawingCanvasProps = {
   curveSmoothing?: number
   pathDisappearingTimeoutMs?: number | null
   publicMetadata?: SVGPath['publicMetadata']
-  onChange?: (paths: SVGPath[], infos?: DrawingCanvasOnChangeInfos) => void
+  onChange?: (paths: SVGPath[]) => void
   onDrawStart?: () => void
   onDrawEnd?: () => void
 }
@@ -74,22 +68,19 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
     const [paths, setPaths] = useState<SVGPath[]>([])
 
-    const updatePaths = useEvent(
-      (paths: SVGPath[], changeInfos?: DrawingCanvasOnChangeInfos): void => {
-        setPaths(paths)
-        onChange?.(paths, changeInfos)
-      }
-    )
+    const updatePathsWithChange = useEvent((paths: SVGPath[]): void => {
+      setPaths(paths)
+      onChange?.(paths)
+    })
 
     const clearPaths = useEvent((): void => {
-      updatePaths([], { isClear: true })
+      setPaths([])
     })
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      const mergedPaths = mergePaths(paths, incomingPaths)
-
-      updatePaths(mergedPaths, {
-        isSync: true,
+      setPaths((paths) => {
+        const mergedPaths = mergePaths(paths, incomingPaths)
+        return mergedPaths
       })
     })
 
@@ -107,7 +98,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         publicMetadata: { ...publicMetadata },
       }
 
-      updatePaths([...paths, path])
+      updatePathsWithChange([...paths, path])
     })
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
@@ -118,7 +109,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
           points: [...currentPath.points, point],
         }
 
-        updatePaths([...paths.slice(0, -1), updatedPath])
+        updatePathsWithChange([...paths.slice(0, -1), updatedPath])
       }
     })
 
@@ -133,17 +124,19 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
           ended: true,
         }
 
-        updatePaths([...paths.slice(0, -1), updatedPath])
+        updatePathsWithChange([...paths.slice(0, -1), updatedPath])
       }
     })
 
     const handleDisappearedPath = useEvent((pathId: string): void => {
-      const index = paths.findIndex(({ id }) => id === pathId)
-      if (index > -1) {
-        updatePaths([...paths.slice(0, index), ...paths.slice(index + 1)], {
-          isRemove: true,
-        })
-      }
+      setPaths((paths) => {
+        const index = paths.findIndex(({ id }) => id === pathId)
+        if (index > -1) {
+          return [...paths.slice(0, index), ...paths.slice(index + 1)]
+        }
+
+        return paths
+      })
     })
 
     useImperativeHandle(
