@@ -106,6 +106,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
 
     const handleMouseDown = useEvent((point: SVGPoint): void => {
       setIsDrawing(true)
+      onDrawStart?.()
 
       const id = 'drawing-svg-canvas-path-' + nanoid(10)
       const path: SVGPath = {
@@ -118,7 +119,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       }
 
       updatePaths([...paths, path])
-      onDrawStart?.()
     })
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
@@ -136,6 +136,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     const handleMouseUp = useEvent((): void => {
       if (isDrawing) {
         setIsDrawing(false)
+        onDrawEnd?.()
 
         const currentPath = paths[paths.length - 1]
         const updatedPath = {
@@ -144,7 +145,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         }
 
         updatePaths([...paths.slice(0, -1), updatedPath])
-        onDrawEnd?.()
       }
     })
 
