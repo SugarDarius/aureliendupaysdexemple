@@ -199,11 +199,11 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     currentUserAvatarSrc,
     currentUserStrokeColor,
   ] = useSelf(
-    (user) => [
-      user.connectionId,
-      user.presence.isDrawing,
-      user.info.avatarSrc,
-      user.info.strokeColor,
+    (me) => [
+      me.connectionId,
+      me.presence.isDrawing,
+      me.info.avatarSrc,
+      me.info.strokeColor,
     ],
     shallow
   )
