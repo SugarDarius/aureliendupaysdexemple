@@ -48,7 +48,7 @@
     "react-hotkeys-hook": "^4.5.0",
     "react-use-event-hook": "^0.9.6",
     "sonner": "^1.5.0",
-    "sugar-high": "^0.6.1",
+    "sugar-high": "^0.7.0",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
