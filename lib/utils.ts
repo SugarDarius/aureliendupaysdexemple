@@ -37,3 +37,21 @@ export function dasherize(input: string): string {
     .replace(/^-+|-+$/g, '') // Trim dashes from the start and end of the string
     .toLowerCase() // Convert the whole string to lowercase
 }
+
+export function unique<T = string | number>(left: T[], right: T[]): T[] {
+  const diff: T[] = []
+
+  for (const item of left) {
+    if (!right.includes(item)) {
+      diff.push(item)
+    }
+  }
+
+  for (const item of right) {
+    if (!left.includes(item)) {
+      diff.push(item)
+    }
+  }
+
+  return diff
+}
