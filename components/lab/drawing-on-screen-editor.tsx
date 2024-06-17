@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import { createPortal } from 'react-dom'
 import { useMemo, useRef, useState } from 'react'
@@ -23,11 +24,22 @@ import {
   useUpdateMyPresence,
   shallow,
   useOthers,
+  useErrorListener,
 } from '@liveblocks/react/suspense'
 
 import { cn } from '@/lib/utils'
 
 import { PencilIcon } from '@/components/icons/pencil-icon'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+
 import {
   VideoCallFrame,
   Participant,
@@ -38,6 +50,41 @@ import {
   type DrawingCanvasRef,
   DrawingCanvas,
 } from '@/components/lab/drawing-canvas/drawing-canvas'
+
+const RoomFullAlert = () => {
+  const [open, setOpen] = useState<boolean>(false)
+
+  const router = useRouter()
+
+  const handleGoHomeButtonClick = useEvent((): void => {
+    router.push('/')
+  })
+
+  useErrorListener((err): void => {
+    if (err.code === 4005) {
+      setOpen(true)
+    }
+  })
+
+  return (
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Room is full 😔</AlertDialogTitle>
+          <AlertDialogDescription>
+            The room has reached is maximum number of participants. Please come
+            back in a few minutes 🙂
+          </AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={handleGoHomeButtonClick}>
+              Go home
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogHeader>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+}
 
 const PencilCursor = ({
   x,
@@ -323,6 +370,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
           </div>
         </div>
       </VideoCallFrame>
+      <RoomFullAlert />
     </div>
   )
 }
