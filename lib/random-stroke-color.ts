@@ -9,6 +9,8 @@ const strokeColors = [
   '#FF8A65',
   '#F06292',
   '#7986CB',
+  '#DEB887',
+  '#D2691E',
 ]
 
 export function getRandomStrokeColor(

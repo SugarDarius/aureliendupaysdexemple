@@ -35,6 +35,8 @@ const participantGradients: Record<string, string> = {
   '#FF8A65': 'bg-gradient-to-r from-red-500 to-orange-500',
   '#F06292': 'bg-gradient-to-r from-pink-500 to-rose-500',
   '#7986CB': 'bg-gradient-to-r from-indigo-500 to-blue-500',
+  '#DEB887': 'bg-gradient-to-r from-orange-400 to-red-500',
+  '#D2691E': 'bg-gradient-to-r from-amber-500 to-amber-700',
 }
 
 const variants: Variants = {
