@@ -1,6 +1,6 @@
 import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 
-type DrawingOnScreenUserMeta = {
+type UserMeta = {
   id: string
   info: {
     username: string
@@ -9,19 +9,19 @@ type DrawingOnScreenUserMeta = {
   }
 }
 
-type DrawingOnScreenRoomEvent = {
+type RoomEvent = {
   type: 'ADD_SVG_PATHS'
   svgPaths: SVGPath[]
 }
 
-type DrawingOnScreenPresence = {
+type Presence = {
   isDrawing: boolean
 }
 
 declare global {
   interface Liveblocks {
-    UserMeta: DrawingOnScreenUserMeta
-    RoomEvent: DrawingOnScreenRoomEvent
-    Presence: DrawingOnScreenPresence
+    UserMeta: UserMeta
+    RoomEvent: RoomEvent
+    Presence: Presence
   }
 }
