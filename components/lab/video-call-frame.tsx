@@ -88,13 +88,19 @@ const variants: Variants = {
 export type Participant = {
   id: string
   isActive: boolean
+  isCurrentUser: boolean
 }
 
 type ParticipantItemProps = Participant & {
   className?: string
 }
 
-const ParticipantItem = ({ id, isActive, className }: ParticipantItemProps) => {
+const ParticipantItem = ({
+  id,
+  isActive,
+  isCurrentUser,
+  className,
+}: ParticipantItemProps) => {
   const avatarSrc = useMemo(() => avatarSelector.getRandomAvatar(), [])
 
   return (
@@ -122,7 +128,7 @@ const ParticipantItem = ({ id, isActive, className }: ParticipantItemProps) => {
           priority
         />
       </div>
-      {isActive ? (
+      {isActive && !isCurrentUser ? (
         <VFXBorderBeam className='vfx-border-beam-duration-[6s] vfx-border-beam-color-from-cyan-300 vfx-border-beam-color-to-sky-600 vfx-border-beam-width-[3px] vfx-border-beam-size-[60px]' />
       ) : null}
     </motion.div>

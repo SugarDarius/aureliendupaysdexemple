@@ -167,6 +167,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       others.map((other) => ({
         id: `participant-${other.connectionId}`,
         isActive: other.presence.isDrawing,
+        isCurrentUser: false,
       })),
     shallow
   )
@@ -192,6 +193,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     const currentParticipant: Participant = {
       id: `participant-${currentUserConnectionId}`,
       isActive: currentUserIsDrawing,
+      isCurrentUser: true,
     }
 
     return [currentParticipant, ...otherParticipants]
