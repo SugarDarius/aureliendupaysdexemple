@@ -61,6 +61,7 @@ export type Participant = {
   isCurrentUser: boolean
   avatarSrc: string
   strokeColor?: string
+  username: string
 }
 
 type ParticipantItemProps = Participant & {
@@ -74,6 +75,7 @@ const ParticipantItem = ({
   avatarSrc,
   className,
   strokeColor = 'unknown',
+  username,
 }: ParticipantItemProps) => {
   const gradient = useMemo(() => {
     if (isCurrentUser) {
@@ -88,7 +90,7 @@ const ParticipantItem = ({
   return (
     <motion.div
       className={cn(
-        'relative flex aspect-square rounded-lg bg-neutral-800 p-2',
+        'relative flex aspect-square rounded-lg bg-neutral-800/90 p-2',
         className
       )}
       variants={variants}
@@ -101,20 +103,25 @@ const ParticipantItem = ({
         duration: 0.15,
       }}
     >
-      <div
-        className={cn(
-          'flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full',
-          gradient
-        )}
-      >
-        <Image
-          src={avatarSrc}
-          width={80}
-          height={80}
-          alt={'participant avatar ' + id}
-          priority
-        />
-      </div>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div
+            className={cn(
+              'flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full',
+              gradient
+            )}
+          >
+            <Image
+              src={avatarSrc}
+              width={80}
+              height={80}
+              alt={'participant avatar ' + id}
+              priority
+            />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>{username}</TooltipContent>
+      </Tooltip>
       {isActive && !isCurrentUser ? (
         <VFXBorderBeam className='vfx-border-beam-duration-[6s] vfx-border-beam-color-from-cyan-300 vfx-border-beam-color-to-sky-600 vfx-border-beam-width-[3px] vfx-border-beam-size-[60px]' />
       ) : null}

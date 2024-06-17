@@ -169,6 +169,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
         isCurrentUser: false,
         avatarSrc: other.info.avatarSrc,
         strokeColor: other.info.strokeColor,
+        username: other.info.username,
       })),
     shallow
   )
@@ -191,6 +192,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       isActive: currentUserIsDrawing,
       isCurrentUser: true,
       avatarSrc: currentUserAvatarSrc,
+      username: 'Me',
     }
 
     return [currentParticipant, ...otherParticipants]
