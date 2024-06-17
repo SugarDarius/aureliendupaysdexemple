@@ -11,6 +11,8 @@ import {
   VideoCameraIcon,
 } from '@heroicons/react/24/outline'
 
+import { type Variants, motion, AnimatePresence } from 'framer-motion'
+
 import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
@@ -23,64 +25,61 @@ import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
 import { PresentationIcon } from '@/components/icons/presentation-icon'
 
-export const Participant = ({
-  className,
-  children,
-}: {
+const variants: Variants = {
+  enter: {
+    y: 100,
+    scale: 0.85,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    scale: 1,
+    opacity: 1,
+  },
+  exit: {
+    y: 100,
+    scale: 0.85,
+    opacity: 0,
+  },
+}
+
+export type Participant = {
+  id: string
+  avatarSrc?: string
+  isActive: boolean
+}
+
+type ParticipantItemProps = Participant & {
   className?: string
-  children?: React.ReactNode
-}) => (
-  <div
+}
+
+const ParticipantItem = ({
+  id,
+  className,
+  avatarSrc,
+}: ParticipantItemProps) => (
+  <motion.div
     className={cn(
-      'relative flex aspect-square rounded-lg bg-neutral-800',
+      'relative flex aspect-square rounded-lg bg-neutral-800 p-2',
       className
     )}
+    variants={variants}
+    initial='enter'
+    animate='visible'
+    exit='exit'
   >
-    <div className='flex size-full flex-col items-center justify-center'>
-      {children}
+    <div className='flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-teal-200 to-teal-500'>
+      {avatarSrc ? (
+        <Image
+          src={avatarSrc}
+          width={80}
+          height={80}
+          alt={'participant avatar ' + id}
+          priority
+        />
+      ) : null}
     </div>
-  </div>
-)
-
-const StaticParticipants = () => (
-  <>
-    <Participant className='border-4 border-violet-700'>
-      <Image
-        src='/medias/images/aureliendupaysdexemple-logo.webp'
-        width={80}
-        height={80}
-        alt='logo'
-        priority
-      />
-    </Participant>
-    <Participant>
-      <Image
-        src='/medias/images/memoji-female-zero.webp'
-        width={80}
-        height={80}
-        alt='memoji'
-        priority
-      />
-    </Participant>
-    <Participant>
-      <Image
-        src='/medias/images/memoji-male-zero.webp'
-        width={80}
-        height={80}
-        alt='memoji'
-        priority
-      />
-    </Participant>
-    <Participant>
-      <Image
-        src='/medias/images/memoji-male-one.webp'
-        width={80}
-        height={80}
-        alt='memoji'
-        priority
-      />
-    </Participant>
-  </>
+  </motion.div>
 )
 
 export const ControlButton = ({
@@ -125,18 +124,20 @@ export const ControlButton = ({
 export function VideoCallFrame({
   className,
   additionalControls,
-  participants = <StaticParticipants />,
+  participants = [],
   children,
 }: {
   className?: string
-  participants?: React.ReactNode
+  participants?: Participant[]
   additionalControls?: React.ReactNode
   children?: React.ReactNode
 }) {
   const router = useRouter()
+
   const handleLeaveButtonClick = useEvent((): void => {
     router.push('/')
   })
+
   return (
     <div
       className={cn(
@@ -152,7 +153,11 @@ export function VideoCallFrame({
         </div>
         <div className='relative flex h-full flex-none flex-col overflow-y-auto'>
           <div className='grid w-max grid-flow-row auto-rows-fr gap-2'>
-            {participants}
+            <AnimatePresence initial={false}>
+              {participants.map((participant) => (
+                <ParticipantItem key={participant.id} {...participant} />
+              ))}
+            </AnimatePresence>
           </div>
         </div>
       </div>

@@ -21,6 +21,8 @@ import {
   useLostConnectionListener,
   useSelf,
   useUpdateMyPresence,
+  shallow,
+  useOthers,
 } from '@liveblocks/react/suspense'
 
 import { cn } from '@/lib/utils'
@@ -28,6 +30,7 @@ import { cn } from '@/lib/utils'
 import { PencilIcon } from '@/components/icons/pencil-icon'
 import {
   VideoCallFrame,
+  Participant,
   ControlButton,
 } from '@/components/lab/video-call-frame'
 import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
@@ -154,7 +157,20 @@ const updatePathsStrokeColor = (
 }
 
 export function DrawingOnScreenEditor({ className }: { className?: string }) {
-  const currentUserConnectionId = useSelf((user) => user.connectionId)
+  const [currentUserConnectionId, currentUserIsDrawing] = useSelf(
+    (user) => [user.connectionId, user.presence.isDrawing],
+    shallow
+  )
+
+  const otherParticipants = useOthers(
+    (others): Participant[] =>
+      others.map((other) => ({
+        id: `participant-${other.connectionId}`,
+        isActive: other.presence.isDrawing,
+      })),
+    shallow
+  )
+
   const updateMyPresence = useUpdateMyPresence()
 
   const broadcast = useBroadcastEvent()
@@ -171,6 +187,15 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     (): string => STROKE_COLORS[currentUserConnectionId % STROKE_COLORS.length],
     [currentUserConnectionId]
   )
+
+  const participants: Participant[] = useMemo(() => {
+    const currentParticipant: Participant = {
+      id: `participant-${currentUserConnectionId}`,
+      isActive: currentUserIsDrawing,
+    }
+
+    return [currentParticipant, ...otherParticipants]
+  }, [currentUserConnectionId, currentUserIsDrawing, otherParticipants])
 
   const handleMouseEnter = useEvent((): void => {
     setIsCursorInside(true)
@@ -241,6 +266,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
             <PencilIcon className='size-4 fill-none stroke-[1.5px]' />
           </ControlButton>
         }
+        participants={participants}
       >
         <div
           className={cn(
