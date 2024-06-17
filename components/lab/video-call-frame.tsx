@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import {
@@ -26,6 +26,17 @@ import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
 import { PresentationIcon } from '@/components/icons/presentation-icon'
 
+const participantGradients: Record<string, string> = {
+  '#E57373': 'bg-gradient-to-r from-rose-400 to-red-500',
+  '#9575CD': 'bg-gradient-to-r from-purple-500 to-purple-900',
+  '#4FC3F7': 'bg-gradient-to-r from-blue-200 to-cyan-200',
+  '#81C784': 'bg-gradient-to-r from-lime-400 to-lime-500',
+  '#FFF176': 'bg-gradient-to-r from-amber-200 to-yellow-400',
+  '#FF8A65': 'bg-gradient-to-r from-red-500 to-orange-500',
+  '#F06292': 'bg-gradient-to-r from-pink-500 to-rose-500',
+  '#7986CB': 'bg-gradient-to-r from-indigo-500 to-blue-500',
+}
+
 const variants: Variants = {
   enter: {
     y: 40,
@@ -49,6 +60,7 @@ export type Participant = {
   isActive: boolean
   isCurrentUser: boolean
   avatarSrc: string
+  strokeColor?: string
 }
 
 type ParticipantItemProps = Participant & {
@@ -61,7 +73,18 @@ const ParticipantItem = ({
   isCurrentUser,
   avatarSrc,
   className,
+  strokeColor = 'unknown',
 }: ParticipantItemProps) => {
+  const gradient = useMemo(() => {
+    if (isCurrentUser) {
+      return 'bg-gradient-to-r from-indigo-400 to-cyan-400'
+    }
+
+    return (
+      participantGradients[strokeColor] ??
+      'bg-gradient-to-r from-teal-200 to-teal-500'
+    )
+  }, [isCurrentUser, strokeColor])
   return (
     <motion.div
       className={cn(
@@ -78,7 +101,12 @@ const ParticipantItem = ({
         duration: 0.15,
       }}
     >
-      <div className='flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-teal-200 to-teal-500'>
+      <div
+        className={cn(
+          'flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full',
+          gradient
+        )}
+      >
         <Image
           src={avatarSrc}
           width={80}

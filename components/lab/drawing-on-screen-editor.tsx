@@ -168,6 +168,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
         isActive: other.presence.isDrawing,
         isCurrentUser: false,
         avatarSrc: other.info.avatarSrc,
+        strokeColor: other.info.strokeColor,
       })),
     shallow
   )
