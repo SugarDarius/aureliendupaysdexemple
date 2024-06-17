@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import {
@@ -25,6 +25,47 @@ import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
 import { PresentationIcon } from '@/components/icons/presentation-icon'
 
+class RandomAvatarSelector {
+  private readonly avatars = [
+    '/medias/images/memoji-avatar-zero.webp',
+    '/medias/images/memoji-avatar-one.webp',
+    '/medias/images/memoji-avatar-two.webp',
+    '/medias/images/memoji-avatar-three.webp',
+    '/medias/images/memoji-avatar-four.webp',
+    '/medias/images/memoji-avatar-five.webp',
+    '/medias/images/memoji-avatar-six.webp',
+    '/medias/images/memoji-avatar-seven.webp',
+    '/medias/images/memoji-avatar-eight.webp',
+    '/medias/images/memoji-avatar-nine.webp',
+  ]
+
+  private availableAvatars: string[] = []
+
+  constructor() {
+    this.availableAvatars = [...this.avatars]
+  }
+
+  getRandomAvatar(): string {
+    if (this.availableAvatars.length <= 0) {
+      this.availableAvatars = [...this.avatars]
+    }
+
+    const availableAvatars = [...this.availableAvatars]
+
+    const index = Math.floor(Math.random() * availableAvatars.length)
+    const avatar = this.avatars[index]
+
+    this.availableAvatars = [
+      ...availableAvatars.slice(0, index),
+      ...availableAvatars.slice(index + 1),
+    ]
+
+    return avatar
+  }
+}
+
+const avatarSelector = new RandomAvatarSelector()
+
 const variants: Variants = {
   enter: {
     y: 100,
@@ -45,7 +86,6 @@ const variants: Variants = {
 
 export type Participant = {
   id: string
-  avatarSrc?: string
   isActive: boolean
 }
 
@@ -53,23 +93,21 @@ type ParticipantItemProps = Participant & {
   className?: string
 }
 
-const ParticipantItem = ({
-  id,
-  className,
-  avatarSrc,
-}: ParticipantItemProps) => (
-  <motion.div
-    className={cn(
-      'relative flex aspect-square rounded-lg bg-neutral-800 p-2',
-      className
-    )}
-    variants={variants}
-    initial='enter'
-    animate='visible'
-    exit='exit'
-  >
-    <div className='flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-teal-200 to-teal-500'>
-      {avatarSrc ? (
+const ParticipantItem = ({ id, className }: ParticipantItemProps) => {
+  const avatarSrc = useMemo(() => avatarSelector.getRandomAvatar(), [])
+
+  return (
+    <motion.div
+      className={cn(
+        'relative flex aspect-square rounded-lg bg-neutral-800 p-2',
+        className
+      )}
+      variants={variants}
+      initial='enter'
+      animate='visible'
+      exit='exit'
+    >
+      <div className='flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-teal-200 to-teal-500'>
         <Image
           src={avatarSrc}
           width={80}
@@ -77,10 +115,10 @@ const ParticipantItem = ({
           alt={'participant avatar ' + id}
           priority
         />
-      ) : null}
-    </div>
-  </motion.div>
-)
+      </div>
+    </motion.div>
+  )
+}
 
 export const ControlButton = ({
   className,
