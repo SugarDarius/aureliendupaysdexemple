@@ -21,6 +21,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
+import { VFXBorderBeam } from '@/components/ui-vfx/vfx-border-beam'
 import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
 import { PresentationIcon } from '@/components/icons/presentation-icon'
@@ -93,7 +94,7 @@ type ParticipantItemProps = Participant & {
   className?: string
 }
 
-const ParticipantItem = ({ id, className }: ParticipantItemProps) => {
+const ParticipantItem = ({ id, isActive, className }: ParticipantItemProps) => {
   const avatarSrc = useMemo(() => avatarSelector.getRandomAvatar(), [])
 
   return (
@@ -121,6 +122,9 @@ const ParticipantItem = ({ id, className }: ParticipantItemProps) => {
           priority
         />
       </div>
+      {isActive ? (
+        <VFXBorderBeam className='vfx-border-beam-duration-[6s] vfx-border-beam-color-from-cyan-300 vfx-border-beam-color-to-sky-600 vfx-border-beam-width-[3px] vfx-border-beam-size-[52px]' />
+      ) : null}
     </motion.div>
   )
 }
@@ -147,7 +151,7 @@ export const ControlButton = ({
         <Button
           className={cn(
             'size-[36px] border border-neutral-200 bg-neutral-50 p-0 text-neutral-900 transition-colors ease-linear',
-            'hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
+            'border-neutral-700 hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
             'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
             'dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50 dark:data-[active=true]:text-neutral-900',
             className
