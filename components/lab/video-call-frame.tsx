@@ -42,6 +42,47 @@ const Participant = ({
   </div>
 )
 
+const StaticParticipants = () => (
+  <>
+    <Participant className='border-4 border-violet-700'>
+      <Image
+        src='/medias/images/aureliendupaysdexemple-logo.webp'
+        width={80}
+        height={80}
+        alt='logo'
+        priority
+      />
+    </Participant>
+    <Participant>
+      <Image
+        src='/medias/images/memoji-female-zero.webp'
+        width={80}
+        height={80}
+        alt='memoji'
+        priority
+      />
+    </Participant>
+    <Participant>
+      <Image
+        src='/medias/images/memoji-male-zero.webp'
+        width={80}
+        height={80}
+        alt='memoji'
+        priority
+      />
+    </Participant>
+    <Participant>
+      <Image
+        src='/medias/images/memoji-male-one.webp'
+        width={80}
+        height={80}
+        alt='memoji'
+        priority
+      />
+    </Participant>
+  </>
+)
+
 export const ControlButton = ({
   className,
   active = false,
@@ -84,9 +125,11 @@ export const ControlButton = ({
 export function VideoCallFrame({
   className,
   additionalControls,
+  participants = <StaticParticipants />,
   children,
 }: {
   className?: string
+  participants?: React.ReactNode
   additionalControls?: React.ReactNode
   children?: React.ReactNode
 }) {
@@ -108,42 +151,7 @@ export function VideoCallFrame({
           </div>
         </div>
         <div className='grid h-full flex-none grid-cols-1 grid-rows-4 justify-between gap-2'>
-          <Participant className='border-4 border-violet-700'>
-            <Image
-              src='/medias/images/aureliendupaysdexemple-logo.webp'
-              width={80}
-              height={80}
-              alt='logo'
-              priority
-            />
-          </Participant>
-          <Participant>
-            <Image
-              src='/medias/images/memoji-female-zero.webp'
-              width={80}
-              height={80}
-              alt='memoji'
-              priority
-            />
-          </Participant>
-          <Participant>
-            <Image
-              src='/medias/images/memoji-male-zero.webp'
-              width={80}
-              height={80}
-              alt='memoji'
-              priority
-            />
-          </Participant>
-          <Participant>
-            <Image
-              src='/medias/images/memoji-male-one.webp'
-              width={80}
-              height={80}
-              alt='memoji'
-              priority
-            />
-          </Participant>
+          {participants}
         </div>
       </div>
       <div className='flex w-full flex-none flex-col gap-4'>
