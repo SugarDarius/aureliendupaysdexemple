@@ -76,17 +76,6 @@ const CONNECTION_ID_PUBLIC_METADATA_KEY = 'liveblocks-connection-id'
 const STROKE_COLOR_PUBLIC_METADATA_KEY = 'liveblocks-stroke-color'
 const SENT_FLAG_PUBLIC_METADATA_KEY = 'liveblocks-sent-flag'
 
-const STROKE_COLORS = [
-  '#E57373',
-  '#9575CD',
-  '#4FC3F7',
-  '#81C784',
-  '#FFF176',
-  '#FF8A65',
-  '#F06292',
-  '#7986CB',
-]
-
 const getBooleanMetadata = (
   metadata: SVGPath['publicMetadata'] = {},
   key: string
@@ -157,8 +146,18 @@ const updatePathsStrokeColor = (
 }
 
 export function DrawingOnScreenEditor({ className }: { className?: string }) {
-  const [currentUserConnectionId, currentUserIsDrawing] = useSelf(
-    (user) => [user.connectionId, user.presence.isDrawing],
+  const [
+    currentUserConnectionId,
+    currentUserIsDrawing,
+    currentUserAvatarSrc,
+    currentUserStrokeColor,
+  ] = useSelf(
+    (user) => [
+      user.connectionId,
+      user.presence.isDrawing,
+      user.info.avatarSrc,
+      user.info.strokeColor,
+    ],
     shallow
   )
 
@@ -168,6 +167,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
         id: `participant-${other.connectionId}`,
         isActive: other.presence.isDrawing,
         isCurrentUser: false,
+        avatarSrc: other.info.avatarSrc,
       })),
     shallow
   )
@@ -184,20 +184,21 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
 
   const [isLocked, setIsLocked] = useState<boolean>(false)
 
-  const currentUserStrokeColor = useMemo(
-    (): string => STROKE_COLORS[currentUserConnectionId % STROKE_COLORS.length],
-    [currentUserConnectionId]
-  )
-
   const participants: Participant[] = useMemo(() => {
     const currentParticipant: Participant = {
       id: `participant-${currentUserConnectionId}`,
       isActive: currentUserIsDrawing,
       isCurrentUser: true,
+      avatarSrc: currentUserAvatarSrc,
     }
 
     return [currentParticipant, ...otherParticipants]
-  }, [currentUserConnectionId, currentUserIsDrawing, otherParticipants])
+  }, [
+    currentUserConnectionId,
+    currentUserIsDrawing,
+    currentUserAvatarSrc,
+    otherParticipants,
+  ])
 
   const handleMouseEnter = useEvent((): void => {
     setIsCursorInside(true)

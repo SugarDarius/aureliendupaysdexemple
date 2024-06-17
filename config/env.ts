@@ -5,11 +5,11 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_PROJECT_BASE_URL: z.string().url(),
     NEXT_PUBLIC_GOOGLE_VERIFICATION_TOKEN: z.string(),
-    NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY: z.string(),
   },
   server: {
     GITHUB_GRAPHQL_API_URL: z.string().url(),
     GITHUB_CONTRIBUTIONS_READER_TOKEN: z.string(),
+    LIVEBLOCKS_SECRET_KEY: z.string(),
   },
   runtimeEnv: {
     NEXT_PUBLIC_PROJECT_BASE_URL: process.env.NEXT_PUBLIC_PROJECT_BASE_URL,
@@ -18,7 +18,6 @@ export const env = createEnv({
     GITHUB_GRAPHQL_API_URL: process.env.GITHUB_GRAPHQL_API_URL,
     GITHUB_CONTRIBUTIONS_READER_TOKEN:
       process.env.GITHUB_CONTRIBUTIONS_READER_TOKEN,
-    NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY:
-      process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY,
+    LIVEBLOCKS_SECRET_KEY: process.env.LIVEBLOCKS_SECRET_KEY,
   },
 })

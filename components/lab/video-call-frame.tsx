@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import {
@@ -26,47 +26,6 @@ import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
 import { PresentationIcon } from '@/components/icons/presentation-icon'
 
-class RandomAvatarSelector {
-  private readonly avatars = [
-    '/medias/images/memoji-avatar-zero.webp',
-    '/medias/images/memoji-avatar-one.webp',
-    '/medias/images/memoji-avatar-two.webp',
-    '/medias/images/memoji-avatar-three.webp',
-    '/medias/images/memoji-avatar-four.webp',
-    '/medias/images/memoji-avatar-five.webp',
-    '/medias/images/memoji-avatar-six.webp',
-    '/medias/images/memoji-avatar-seven.webp',
-    '/medias/images/memoji-avatar-eight.webp',
-    '/medias/images/memoji-avatar-nine.webp',
-  ]
-
-  private availableAvatars: string[] = []
-
-  constructor() {
-    this.availableAvatars = [...this.avatars]
-  }
-
-  getRandomAvatar(): string {
-    if (this.availableAvatars.length <= 0) {
-      this.availableAvatars = [...this.avatars]
-    }
-
-    const availableAvatars = [...this.availableAvatars]
-
-    const index = Math.floor(Math.random() * availableAvatars.length)
-    const avatar = this.availableAvatars[index]
-
-    this.availableAvatars = [
-      ...availableAvatars.slice(0, index),
-      ...availableAvatars.slice(index + 1),
-    ]
-
-    return avatar
-  }
-}
-
-const avatarSelector = new RandomAvatarSelector()
-
 const variants: Variants = {
   enter: {
     y: 40,
@@ -89,6 +48,7 @@ export type Participant = {
   id: string
   isActive: boolean
   isCurrentUser: boolean
+  avatarSrc: string
 }
 
 type ParticipantItemProps = Participant & {
@@ -99,10 +59,9 @@ const ParticipantItem = ({
   id,
   isActive,
   isCurrentUser,
+  avatarSrc,
   className,
 }: ParticipantItemProps) => {
-  const avatarSrc = useMemo(() => avatarSelector.getRandomAvatar(), [])
-
   return (
     <motion.div
       className={cn(
