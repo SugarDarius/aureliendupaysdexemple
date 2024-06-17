@@ -23,7 +23,7 @@ import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 
 import { PresentationIcon } from '@/components/icons/presentation-icon'
 
-const Participant = ({
+export const Participant = ({
   className,
   children,
 }: {
