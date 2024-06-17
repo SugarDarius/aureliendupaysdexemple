@@ -77,7 +77,7 @@ const RoomFullAlert = () => {
           </AlertDialogDescription>
           <AlertDialogFooter>
             <AlertDialogAction onClick={handleGoHomeButtonClick}>
-              Go home
+              Go to Home
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogHeader>
