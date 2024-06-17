@@ -150,8 +150,10 @@ export function VideoCallFrame({
             {children ? children : <ImagePlaceholder className='w-1/2' />}
           </div>
         </div>
-        <div className='grid h-full flex-none grid-cols-1 grid-rows-4 justify-between gap-2'>
-          {participants}
+        <div className='relative flex h-full flex-none flex-col overflow-y-auto'>
+          <div className='grid w-max grid-flow-row auto-rows-fr gap-2'>
+            {participants}
+          </div>
         </div>
       </div>
       <div className='flex w-full flex-none flex-col gap-4'>
