@@ -53,7 +53,7 @@ class RandomAvatarSelector {
     const availableAvatars = [...this.availableAvatars]
 
     const index = Math.floor(Math.random() * availableAvatars.length)
-    const avatar = this.avatars[index]
+    const avatar = this.availableAvatars[index]
 
     this.availableAvatars = [
       ...availableAvatars.slice(0, index),
@@ -68,7 +68,7 @@ const avatarSelector = new RandomAvatarSelector()
 
 const variants: Variants = {
   enter: {
-    y: 100,
+    y: 40,
     scale: 0.85,
     opacity: 0,
   },
@@ -78,7 +78,7 @@ const variants: Variants = {
     opacity: 1,
   },
   exit: {
-    y: 100,
+    y: 40,
     scale: 0.85,
     opacity: 0,
   },
@@ -106,6 +106,11 @@ const ParticipantItem = ({ id, className }: ParticipantItemProps) => {
       initial='enter'
       animate='visible'
       exit='exit'
+      transition={{
+        type: 'tween',
+        ease: 'easeInOut',
+        duration: 0.15,
+      }}
     >
       <div className='flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-teal-200 to-teal-500'>
         <Image
