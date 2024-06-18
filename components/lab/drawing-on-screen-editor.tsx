@@ -250,9 +250,15 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     otherParticipants,
   ])
 
-  const handleMouseEnter = useEvent((): void => {
-    setIsCursorInside(true)
-  })
+  const handleMouseEnter = useEvent(
+    (e: React.MouseEvent<HTMLDivElement>): void => {
+      setIsCursorInside(true)
+
+      x.set(e.clientX + window.scrollX)
+      y.set(e.clientY + window.scrollY)
+    }
+  )
+
   const handleMouseLeave = useEvent((): void => {
     setIsCursorInside(false)
   })
