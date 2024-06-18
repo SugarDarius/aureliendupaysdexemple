@@ -13,8 +13,8 @@ export type SVGPath = {
   publicMetadata?: Record<string, string | number | boolean>
 }
 
-type SVGLine = { length: number; angle: number }
-const getVectorLine = (p0: SVGPoint, p1: SVGPoint): SVGLine => {
+type SVGVectorLine = { length: number; angle: number }
+const getVectorLine = (p0: SVGPoint, p1: SVGPoint): SVGVectorLine => {
   const distanceX = p1.x - p0.x
   const distanceY = p1.y - p0.y
 
