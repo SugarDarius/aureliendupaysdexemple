@@ -125,7 +125,7 @@ const ParticipantItem = ({
         <TooltipContent>{username}</TooltipContent>
       </Tooltip>
       {isActive && !isCurrentUser ? (
-        <VFXBorderBeam className='vfx-border-beam-duration-[6s] vfx-border-beam-color-from-cyan-300 vfx-border-beam-color-to-sky-600 vfx-border-beam-width-[3px] vfx-border-beam-size-[60px]' />
+        <VFXBorderBeam className='vfx-border-beam-duration-[6s] vfx-border-beam-color-from-cyan-300 vfx-border-beam-color-to-sky-600 vfx-border-beam-width-[3px] vfx-border-beam-size-[80px]' />
       ) : null}
     </motion.div>
   )
