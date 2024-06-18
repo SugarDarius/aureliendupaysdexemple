@@ -1,16 +1,16 @@
 import { pick, unique } from '@/lib/utils'
 
 const strokeColors = [
-  '#E57373',
-  '#9575CD',
-  '#4FC3F7',
-  '#81C784',
-  '#FFF176',
-  '#FF8A65',
-  '#F06292',
-  '#7986CB',
-  '#DEB887',
-  '#D2691E',
+  '#fb7185',
+  '#a855f7',
+  '#bfdbfe',
+  '#a3e635',
+  '#fde68a',
+  '#ef4444',
+  '#ec4899',
+  '#6366f1',
+  '#fb923c',
+  '#f59e0b',
 ]
 
 export function getRandomStrokeColor(

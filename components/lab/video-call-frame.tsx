@@ -27,16 +27,16 @@ import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 import { PresentationIcon } from '@/components/icons/presentation-icon'
 
 const participantGradients: Record<string, string> = {
-  '#E57373': 'bg-gradient-to-r from-rose-400 to-red-500',
-  '#9575CD': 'bg-gradient-to-r from-purple-500 to-purple-900',
-  '#4FC3F7': 'bg-gradient-to-r from-blue-200 to-cyan-200',
-  '#81C784': 'bg-gradient-to-r from-lime-400 to-lime-500',
-  '#FFF176': 'bg-gradient-to-r from-amber-200 to-yellow-400',
-  '#FF8A65': 'bg-gradient-to-r from-red-500 to-orange-500',
-  '#F06292': 'bg-gradient-to-r from-pink-500 to-rose-500',
-  '#7986CB': 'bg-gradient-to-r from-indigo-500 to-blue-500',
-  '#DEB887': 'bg-gradient-to-r from-orange-400 to-red-500',
-  '#D2691E': 'bg-gradient-to-r from-amber-500 to-amber-700',
+  '#fb7185': 'bg-gradient-to-r from-rose-400 to-red-500',
+  '#a855f7': 'bg-gradient-to-r from-purple-500 to-purple-900',
+  '#bfdbfe': 'bg-gradient-to-r from-blue-200 to-cyan-200',
+  '#a3e635': 'bg-gradient-to-r from-lime-400 to-lime-500',
+  '#fde68a': 'bg-gradient-to-r from-amber-200 to-yellow-400',
+  '#ef4444': 'bg-gradient-to-r from-red-500 to-orange-500',
+  '#ec4899': 'bg-gradient-to-r from-pink-500 to-rose-500',
+  '#6366f1': 'bg-gradient-to-r from-indigo-500 to-blue-500',
+  '#fb923c': 'bg-gradient-to-r from-orange-400 to-red-500',
+  '#f59e0b': 'bg-gradient-to-r from-amber-500 to-amber-700',
 }
 
 const variants: Variants = {
