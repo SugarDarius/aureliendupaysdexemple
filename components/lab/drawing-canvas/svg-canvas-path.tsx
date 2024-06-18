@@ -139,7 +139,6 @@ export function SVGCanvasPath({
   onDisappeared,
 }: SVGCanvasPathProps) {
   const controls = useAnimationControls()
-  const scaledPoints = getScaledPoints(points, originViewBox, svgViewBox)
 
   useTimeout(
     (): void => {
@@ -157,8 +156,8 @@ export function SVGCanvasPath({
     ended ? pathDisappearingTimeoutMs : null
   )
 
-  if (scaledPoints.length === 1) {
-    const point = scaledPoints[0]
+  if (points.length === 1) {
+    const point = getScaledPoint(points[0], originViewBox, svgViewBox)
     const r = strokeWidth / 2
 
     return (
@@ -175,6 +174,7 @@ export function SVGCanvasPath({
     )
   }
 
+  const scaledPoints = getScaledPoints(points, originViewBox, svgViewBox)
   const d = scaledPoints.reduce<string>((d, point, index, points) => {
     return index === 0
       ? `M ${point.x},${point.y}`
