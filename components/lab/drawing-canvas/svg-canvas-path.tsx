@@ -10,6 +10,7 @@ export type SVGPath = {
   strokeColor: string
   strokeWidth: number
   ended: boolean
+  originViewBox: [number, number]
   publicMetadata?: Record<string, string | number | boolean>
 }
 
@@ -92,9 +93,36 @@ const getCubicBezierCurve = (
   return `C ${startControlPoint.x},${startControlPoint.y} ${endControlPoint.x},${endControlPoint.y} ${point.x},${point.y}`
 }
 
+const getScaledPoint = (
+  point: SVGPoint,
+  pathOriginViewBox: [number, number],
+  svgViewBox: [number, number]
+): SVGPoint => {
+  return {
+    x: (point.x / pathOriginViewBox[0]) * svgViewBox[0],
+    y: (point.y / pathOriginViewBox[1]) * svgViewBox[1],
+  }
+}
+
+const getScaledPoints = (
+  points: SVGPoint[],
+  pathOriginViewBox: [number, number],
+  svgViewBox: [number, number]
+): SVGPoint[] => {
+  const scaledPoints: SVGPoint[] = []
+
+  for (const point of points) {
+    const scaledPoint = getScaledPoint(point, pathOriginViewBox, svgViewBox)
+    scaledPoints.push(scaledPoint)
+  }
+
+  return scaledPoints
+}
+
 type SVGCanvasPathProps = SVGPath & {
   curveSmoothing: number
   pathDisappearingTimeoutMs: number | null
+  svgViewBox: [number, number]
   onDisappeared: (id: string) => void
 }
 
@@ -103,12 +131,15 @@ export function SVGCanvasPath({
   points,
   strokeWidth,
   strokeColor,
+  originViewBox,
   ended,
   curveSmoothing,
   pathDisappearingTimeoutMs,
+  svgViewBox,
   onDisappeared,
 }: SVGCanvasPathProps) {
   const controls = useAnimationControls()
+  const scaledPoints = getScaledPoints(points, originViewBox, svgViewBox)
 
   useTimeout(
     (): void => {
@@ -126,8 +157,8 @@ export function SVGCanvasPath({
     ended ? pathDisappearingTimeoutMs : null
   )
 
-  if (points.length === 1) {
-    const point = points[0]
+  if (scaledPoints.length === 1) {
+    const point = scaledPoints[0]
     const r = strokeWidth / 2
 
     return (
@@ -144,7 +175,7 @@ export function SVGCanvasPath({
     )
   }
 
-  const d = points.reduce<string>((d, point, index, points) => {
+  const d = scaledPoints.reduce<string>((d, point, index, points) => {
     return index === 0
       ? `M ${point.x},${point.y}`
       : `${d} ${getCubicBezierCurve(point, index, points, curveSmoothing)}`

@@ -84,22 +84,25 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       })
     })
 
-    const handleMouseDown = useEvent((point: SVGPoint): void => {
-      setIsDrawing(true)
-      onDrawStart?.()
+    const handleMouseDown = useEvent(
+      (point: SVGPoint, originViewBox: [number, number]): void => {
+        setIsDrawing(true)
+        onDrawStart?.()
 
-      const id = 'drawing-svg-canvas-path-' + nanoid(10)
-      const path: SVGPath = {
-        id,
-        points: [point],
-        strokeColor,
-        strokeWidth,
-        ended: false,
-        publicMetadata: { ...publicMetadata },
+        const id = 'drawing-svg-canvas-path-' + nanoid(10)
+        const path: SVGPath = {
+          id,
+          points: [point],
+          strokeColor,
+          strokeWidth,
+          ended: false,
+          originViewBox,
+          publicMetadata: { ...publicMetadata },
+        }
+
+        updatePathsWithChange([...paths, path])
       }
-
-      updatePathsWithChange([...paths, path])
-    })
+    )
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
       if (isDrawing) {

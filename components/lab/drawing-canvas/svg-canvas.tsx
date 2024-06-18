@@ -43,13 +43,13 @@ export function SVGCanvas({
   curveSmoothing: number
   pathDisappearingTimeoutMs: number | null
   paths: SVGPath[]
-  onMouseDown: (point: SVGPoint) => void
+  onMouseDown: (point: SVGPoint, viewBox: [number, number]) => void
   onMouseMove: (point: SVGPoint) => void
   onMouseUp: () => void
   onDisappearedPath: (pathId: string) => void
 }) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [containerSize, setContainerSize] = useState<[number, number]>([0, 0])
+  const [viewBox, setViewBox] = useState<[number, number]>([0, 0])
   const [containerPosition, setContainerPosition] = useState<[number, number]>([
     0, 0,
   ])
@@ -58,7 +58,7 @@ export function SVGCanvas({
     (e: React.MouseEvent<HTMLDivElement>): void => {
       if (!isLocked && e.button === 0) {
         const point = getPointFromEvent(e, containerPosition)
-        onMouseDown(point)
+        onMouseDown(point, viewBox)
       }
     }
   )
@@ -86,7 +86,7 @@ export function SVGCanvas({
         const { width, height, top, left } =
           containerRef.current.getBoundingClientRect()
 
-        setContainerSize([width, height])
+        setViewBox([width, height])
         setContainerPosition([top, left])
       }
     }
@@ -115,7 +115,7 @@ export function SVGCanvas({
       <svg
         id={SVG_CANVAS_ID}
         xmlns='http://www.w3.org/2000/svg'
-        viewBox={`0 0 ${containerSize[0]} ${containerSize[1]}`}
+        viewBox={`0 0 ${viewBox[0]} ${viewBox[1]}`}
         className='h-full w-full select-none'
       >
         <g id={`${SVG_CANVAS_ID}-background-group`}>
@@ -135,6 +135,7 @@ export function SVGCanvas({
               {...path}
               curveSmoothing={curveSmoothing}
               pathDisappearingTimeoutMs={pathDisappearingTimeoutMs}
+              svgViewBox={viewBox}
               onDisappeared={onDisappearedPath}
             />
           ))}
