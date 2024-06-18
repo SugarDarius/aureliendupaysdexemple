@@ -116,7 +116,7 @@ export function SVGCanvas({
         id={SVG_CANVAS_ID}
         xmlns='http://www.w3.org/2000/svg'
         viewBox={`0 0 ${containerSize[0]} ${containerSize[1]}`}
-        className='select-none'
+        className='h-full w-full select-none'
       >
         <g id={`${SVG_CANVAS_ID}-background-group`}>
           <rect
