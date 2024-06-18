@@ -1,4 +1,4 @@
-import { Liveblocks, type RoomUser } from '@liveblocks/node'
+import { Liveblocks } from '@liveblocks/node'
 import { nanoid } from 'nanoid'
 
 import { env } from '@/config/env'
@@ -11,39 +11,40 @@ import { getRandomStrokeColor } from '@/lib/random-stroke-color'
 const liveblocks = new Liveblocks({ secret: env.LIVEBLOCKS_SECRET_KEY })
 
 export async function POST(): Promise<Response> {
-  const userId = nanoid(16)
+  let isRoomExists = true
 
-  let users: RoomUser[] = []
-  let roomExists = true
+  let pickedAvatars: string[] = []
+  let pickedStrokeColors: string[] = []
 
   try {
-    const activeUsers = await liveblocks.getActiveUsers(
+    const room = await liveblocks.getRoom(
       labsConfig.liveblocksDrawingOnScreen.roomId
     )
-    users = activeUsers.data
-  } catch (err) {
-    console.error(err)
-    roomExists = false
+    const activeUsers = await liveblocks.getActiveUsers(room.id)
+
+    const pickedItems = activeUsers.data.reduce<[string[], string[]]>(
+      (acc, current) => {
+        acc[0].push(current.info.avatarSrc)
+        acc[1].push(current.info.strokeColor)
+
+        return acc
+      },
+      [[], []]
+    )
+
+    pickedAvatars = pickedItems[0]
+    pickedStrokeColors = pickedItems[1]
+  } catch {
+    isRoomExists = false
   }
 
-  if (!roomExists) {
+  if (!isRoomExists) {
     await liveblocks.createRoom(labsConfig.liveblocksDrawingOnScreen.roomId, {
       defaultAccesses: ['room:read', 'room:presence:write'],
     })
   }
 
-  const [pickedAvatars, pickedStrokeColors] = users.reduce<
-    [string[], string[]]
-  >(
-    (acc, current) => {
-      acc[0].push(current.info.avatarSrc)
-      acc[1].push(current.info.strokeColor)
-
-      return acc
-    },
-    [[], []]
-  )
-
+  const userId = nanoid(16)
   const username = getRandomUsername()
   const avatarSrc = getRandomAvatar(pickedAvatars)
   const strokeColor = getRandomStrokeColor(pickedStrokeColors)
