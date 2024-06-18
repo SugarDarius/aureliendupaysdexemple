@@ -1,4 +1,4 @@
-import { Liveblocks } from '@liveblocks/node'
+import { Liveblocks, type RoomUser } from '@liveblocks/node'
 import { nanoid } from 'nanoid'
 
 import { env } from '@/config/env'
@@ -13,11 +13,26 @@ const liveblocks = new Liveblocks({ secret: env.LIVEBLOCKS_SECRET_KEY })
 export async function POST(): Promise<Response> {
   const userId = nanoid(16)
 
-  const activeUsers = await liveblocks.getActiveUsers(
-    labsConfig.liveblocksDrawingOnScreen.roomId
-  )
+  let users: RoomUser[] = []
+  let roomExists = true
 
-  const [pickedAvatars, pickedStrokeColors] = activeUsers.data.reduce<
+  try {
+    const activeUsers = await liveblocks.getActiveUsers(
+      labsConfig.liveblocksDrawingOnScreen.roomId
+    )
+    users = activeUsers.data
+  } catch (err) {
+    console.error(err)
+    roomExists = false
+  }
+
+  if (!roomExists) {
+    await liveblocks.createRoom(labsConfig.liveblocksDrawingOnScreen.roomId, {
+      defaultAccesses: ['room:read', 'room:presence:write'],
+    })
+  }
+
+  const [pickedAvatars, pickedStrokeColors] = users.reduce<
     [string[], string[]]
   >(
     (acc, current) => {
