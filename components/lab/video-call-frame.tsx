@@ -119,6 +119,7 @@ const ParticipantItem = ({
               height={80}
               alt={'participant avatar ' + id}
               priority
+              style={{ width: 80, height: 80 }}
             />
           </div>
         </TooltipTrigger>
