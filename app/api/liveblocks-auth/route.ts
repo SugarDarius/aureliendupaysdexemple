@@ -20,6 +20,9 @@ export async function POST(): Promise<Response> {
     const room = await liveblocks.getRoom(
       labsConfig.liveblocksDrawingOnScreen.roomId
     )
+    // NOTE: to get the picked items (avatars & stroke colors)
+    // to ensure randomness, instead of using `getActiveUsers`
+    // we should store somewhere else the data
     const activeUsers = await liveblocks.getActiveUsers(room.id)
 
     const pickedItems = activeUsers.data.reduce<[string[], string[]]>(
