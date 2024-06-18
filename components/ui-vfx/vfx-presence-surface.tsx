@@ -117,13 +117,18 @@ export function VFXPresenceSurface({
     }
   )
 
-  const handleMouseEnter = useEvent((): void => {
-    const cursorColor = getRandomCursorColor(previousCursorColorRef.current)
-    previousCursorColorRef.current = cursorColor
+  const handleMouseEnter = useEvent(
+    (e: React.MouseEvent<HTMLDivElement>): void => {
+      const cursorColor = getRandomCursorColor(previousCursorColorRef.current)
+      previousCursorColorRef.current = cursorColor
 
-    setIsCursorInside(true)
-    setCursorColor(cursorColor)
-  })
+      setIsCursorInside(true)
+      setCursorColor(cursorColor)
+
+      x.set(e.clientX + window.scrollX)
+      y.set(e.clientY + window.scrollY)
+    }
+  )
 
   const handleMouseLeave = useEvent((): void => {
     setIsCursorInside(false)
