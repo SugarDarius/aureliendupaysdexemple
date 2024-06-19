@@ -13,6 +13,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 
+const LOGO_SRC = '/medias/images/aureliendupaysdexemple-logo.webp'
+
 export function QRCodeDialog({
   value,
   className,
@@ -46,6 +48,12 @@ export function QRCodeDialog({
               bgColor={isDark ? '#000000' : '#ffffff'}
               fgColor={isDark ? '#ffffff' : '#000000'}
               level='H'
+              imageSettings={{
+                src: LOGO_SRC,
+                width: 64,
+                height: 64,
+                excavate: true,
+              }}
             />
           </div>
         </div>
