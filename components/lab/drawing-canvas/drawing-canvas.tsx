@@ -1,6 +1,6 @@
 'use client'
 
-import { forwardRef, useImperativeHandle, useState } from 'react'
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
 import { nanoid } from 'nanoid'
@@ -66,15 +66,16 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     ref
   ) => {
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
+
+    const [currentPathId, setCurrentPathId] = useState<string | null>(null)
     const [paths, setPaths] = useState<SVGPath[]>([])
 
-    const updatePathsWithChange = useEvent((paths: SVGPath[]): void => {
-      setPaths(paths)
-      onChange?.(paths)
-    })
+    const [shouldNotifyChanges, setShouldNotifyChanges] =
+      useState<boolean>(false)
 
     const clearPaths = useEvent((): void => {
       setPaths([])
+      setShouldNotifyChanges(false)
     })
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
@@ -82,6 +83,11 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         const mergedPaths = mergePaths(paths, incomingPaths)
         return mergedPaths
       })
+      setShouldNotifyChanges(false)
+    })
+
+    const notifyChanges = useEvent((paths: SVGPath[]): void => {
+      onChange?.(paths)
     })
 
     const handleMouseDown = useEvent(
@@ -100,38 +106,70 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
           publicMetadata: { ...publicMetadata },
         }
 
-        updatePathsWithChange([...paths, path])
+        setCurrentPathId(id)
+        setShouldNotifyChanges(true)
+        setPaths((paths) => [...paths, path])
       }
     )
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
-      if (isDrawing) {
-        const currentPath = paths[paths.length - 1]
-        const updatedPath = {
-          ...currentPath,
-          points: [...currentPath.points, point],
-        }
+      if (isDrawing && currentPathId !== null) {
+        setShouldNotifyChanges(true)
+        setPaths((paths) => {
+          const currentPathIndex = paths.findIndex(
+            (path) => path.id === currentPathId
+          )
+          if (currentPathIndex >= 0) {
+            const currentPath = paths[currentPathIndex]
+            const updatedPath = {
+              ...currentPath,
+              points: [...currentPath.points, point],
+            }
 
-        updatePathsWithChange([...paths.slice(0, -1), updatedPath])
+            return [
+              ...paths.slice(0, currentPathIndex),
+              updatedPath,
+              ...paths.slice(currentPathIndex + 1),
+            ]
+          }
+
+          return paths
+        })
       }
     })
 
     const handleMouseUp = useEvent((): void => {
-      if (isDrawing) {
+      if (isDrawing && currentPathId !== null) {
         setIsDrawing(false)
         onDrawEnd?.()
 
-        const currentPath = paths[paths.length - 1]
-        const updatedPath = {
-          ...currentPath,
-          ended: true,
-        }
+        setShouldNotifyChanges(true)
+        setPaths((paths) => {
+          const currentPathIndex = paths.findIndex(
+            (path) => path.id === currentPathId
+          )
+          if (currentPathIndex >= 0) {
+            const currentPath = paths[currentPathIndex]
+            const updatedPath = {
+              ...currentPath,
+              ended: true,
+            }
 
-        updatePathsWithChange([...paths.slice(0, -1), updatedPath])
+            return [
+              ...paths.slice(0, currentPathIndex),
+              updatedPath,
+              ...paths.slice(currentPathIndex + 1),
+            ]
+          }
+
+          return paths
+        })
+        setCurrentPathId(null)
       }
     })
 
     const handleDisappearedPath = useEvent((pathId: string): void => {
+      setShouldNotifyChanges(false)
       setPaths((paths) => {
         const index = paths.findIndex(({ id }) => id === pathId)
         if (index > -1) {
@@ -155,6 +193,13 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
       []
     )
+
+    useEffect(() => {
+      if (shouldNotifyChanges) {
+        notifyChanges(paths)
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [paths, shouldNotifyChanges])
 
     return (
       <SVGCanvas
