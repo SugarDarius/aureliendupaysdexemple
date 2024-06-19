@@ -3,7 +3,9 @@ import Image from 'next/image'
 import { ReactIcon } from '@/components/icons/react-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 
+import { VFXWavingHand } from '@/components/ui-vfx/vfx-waving-hand'
 import { VFXPresenceSurface } from '@/components/ui-vfx/vfx-presence-surface'
+
 import { BentoCard } from '@/components/grids/bento-card'
 import { TagLink } from '@/components/content/tag-link'
 
@@ -18,7 +20,7 @@ export function HeroBentoItem() {
           <div className='flex h-full flex-col p-4 max-sm:p-3'>
             <div className='flex flex-none flex-row items-center justify-between'>
               <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-base'>
-                Hey, I&apos;m Aurélien Dupays Dexemple 👋
+                Hey, I&apos;m Aurélien Dupays Dexemple <VFXWavingHand />
               </h1>
               <Image
                 src='/medias/images/aureliendupaysdexemple-logo.webp'
