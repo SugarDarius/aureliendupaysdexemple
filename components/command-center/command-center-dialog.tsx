@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import { useTheme } from 'next-themes'
-
 import {
   ArrowRightIcon,
   SunIcon,
@@ -28,6 +26,7 @@ import { siteConfig } from '@/config/site-config'
 import { cn, toUpperFirst, dasherize } from '@/lib/utils'
 import { navigationItems } from '@/lib/navigation'
 
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 import { useUserAgent } from '@/hooks/use-user-agent'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 import { useMounted } from '@/hooks/use-mounted'
@@ -218,7 +217,7 @@ export function CommandCenterDialog({
   openKeyboardShortcutsDialog: () => void
 }) {
   const router = useRouter()
-  const { setTheme, theme } = useTheme()
+  const { setColorMode, theme } = useSwitchColorMode()
 
   const { isSafari, isFirefox } = useUserAgent()
   const [, copy] = useCopyToClipboard()
@@ -251,7 +250,7 @@ export function CommandCenterDialog({
   const handleSelectColorMode = useEvent(
     (name: string, colorMode: string): void => {
       execCommand(name, (): void => {
-        setTheme(colorMode)
+        setColorMode(colorMode)
       })
     }
   )

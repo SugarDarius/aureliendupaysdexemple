@@ -2,12 +2,13 @@
 
 import { useRef, useEffect } from 'react'
 import useEvent from 'react-use-event-hook'
-import { useTheme } from 'next-themes'
 
 import useSWR, { type Fetcher } from 'swr'
 
 import createGlobe, { type Marker } from 'cobe'
 import { useSpring } from 'framer-motion'
+
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 
 const BASE_MARKERS: Marker[] = [{ location: [48.1744, 6.4512], size: 0.1 }]
 
@@ -18,7 +19,7 @@ const fetcher: Fetcher<Geolocation, string> = (url: string) =>
 export function GlobeWidget() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  const { resolvedTheme } = useTheme()
+  const { resolvedTheme } = useSwitchColorMode()
   const { data: geolocationData } = useSWR<Geolocation>(
     '/api/geolocation',
     fetcher,

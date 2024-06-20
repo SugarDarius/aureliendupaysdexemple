@@ -8,9 +8,10 @@ import {
   MoonIcon,
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
-import { useTheme } from 'next-themes'
 
 import { cn } from '@/lib/utils'
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
+
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 
 import {
@@ -48,15 +49,13 @@ const ColorModeDrawerItem = ({
 }
 
 export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
-  const { setTheme, theme } = useTheme()
+  const { setColorMode, theme } = useSwitchColorMode()
   const [open, setOpen] = useState<boolean>(false)
 
-  const handleClick = useEvent(
-    (colorMode: 'light' | 'dark' | 'system'): void => {
-      setOpen(false)
-      setTheme(colorMode)
-    }
-  )
+  const handleClick = useEvent((colorMode: string): void => {
+    setOpen(false)
+    setColorMode(colorMode)
+  })
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>

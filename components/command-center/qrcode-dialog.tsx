@@ -1,9 +1,9 @@
 'use client'
 
-import { useTheme } from 'next-themes'
 import { QRCodeSVG } from 'qrcode.react'
 
 import { cn } from '@/lib/utils'
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 import {
   Dialog,
   DialogContent,
@@ -26,7 +26,7 @@ export function QRCodeDialog({
   open: boolean
   onOpenChange: (open: boolean) => void
 }) {
-  const { resolvedTheme } = useTheme()
+  const { resolvedTheme } = useSwitchColorMode()
   const isDark = resolvedTheme === 'dark'
 
   return (

@@ -5,18 +5,17 @@ import {
   MoonIcon,
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
-import { useTheme } from 'next-themes'
 
 import { cn } from '@/lib/utils'
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu'
-
 import {
   Tooltip,
   TooltipTrigger,
@@ -28,7 +27,7 @@ export function ColorModeDropdownSwitcher({
 }: {
   className?: string
 }) {
-  const { setTheme, theme } = useTheme()
+  const { setColorMode, theme } = useSwitchColorMode()
 
   return (
     <DropdownMenu>
@@ -54,7 +53,7 @@ export function ColorModeDropdownSwitcher({
       <DropdownMenuContent align='end' sideOffset={10} alignOffset={-4}>
         <DropdownMenuCheckboxItem
           checked={theme === 'light'}
-          onClick={() => setTheme('light')}
+          onClick={() => setColorMode('light')}
           className='flex flex-row items-center gap-2'
         >
           <SunIcon className='h-4 w-4' />
@@ -62,7 +61,7 @@ export function ColorModeDropdownSwitcher({
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={theme === 'dark'}
-          onClick={() => setTheme('dark')}
+          onClick={() => setColorMode('dark')}
           className='flex flex-row items-center gap-2'
         >
           <MoonIcon className='h-4 w-4' />
@@ -70,7 +69,7 @@ export function ColorModeDropdownSwitcher({
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={theme === 'system'}
-          onClick={() => setTheme('system')}
+          onClick={() => setColorMode('system')}
           className='flex flex-row items-center gap-2'
         >
           <ComputerDesktopIcon className='h-4 w-4' />
