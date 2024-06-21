@@ -20,6 +20,7 @@ import {
 } from '@radix-ui/react-icons'
 
 import { toast } from 'sonner'
+import clsx from 'clsx'
 
 import { siteConfig } from '@/config/site-config'
 
@@ -194,13 +195,15 @@ const CommandCenterDialogSuggestions = ({
 }: {
   children?: React.ReactNode
 }) => {
-  const search = useCommandState((state) => state.search)
-
-  if (search.length > 0) {
-    return null
-  }
-
-  return <CommandGroup heading='Suggestions'>{children}</CommandGroup>
+  const hidden = useCommandState((state) => state.search.length > 0)
+  return (
+    <CommandGroup
+      heading='Suggestions'
+      className={clsx({ 'mb-1 !h-0 !p-0': hidden })}
+    >
+      {children}
+    </CommandGroup>
+  )
 }
 export function CommandCenterDialog({
   open,
