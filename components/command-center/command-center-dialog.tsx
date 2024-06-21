@@ -29,7 +29,6 @@ import { navigationItems } from '@/lib/navigation'
 import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 import { useUserAgent } from '@/hooks/use-user-agent'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
-import { useMounted } from '@/hooks/use-mounted'
 
 import {
   CommandDialog,
@@ -225,7 +224,6 @@ export function CommandCenterDialog({
   const isMagnifyingGlassActive = useMagnifyingGlassStore(
     (state) => state.isActive
   )
-  const mounted = useMounted()
 
   const execCommand = useEvent((name: string, command: () => void): void => {
     increaseCommandScore(name)
@@ -471,13 +469,7 @@ export function CommandCenterDialog({
     [theme, isMagnifyingGlassAvailable, isMagnifyingGlassActive]
   )
 
-  const suggestedCommands = useMemo(() => {
-    if (mounted && open) {
-      return getSuggestedCommands(5)
-    }
-
-    return []
-  }, [mounted, open])
+  const suggestedCommands = getSuggestedCommands(5)
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
