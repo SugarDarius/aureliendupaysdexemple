@@ -110,16 +110,16 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
     href: 'https://zod.dev/',
   },
   {
-    name: 'Zustand',
-    Icon: ZustandIcon,
-    tag: 'state management',
-    href: 'https://zustand-demo.pmnd.rs/',
-  },
-  {
     name: 'X State',
     Icon: XStateIcon,
     tag: 'state machine',
     href: 'https://xstate.js.org/',
+  },
+  {
+    name: 'Zustand',
+    Icon: ZustandIcon,
+    tag: 'state management',
+    href: 'https://zustand-demo.pmnd.rs/',
   },
   {
     name: 'Redux',
