@@ -4,7 +4,7 @@ import {
   languagesTechStackItems,
   frontendTechnologiesTechStackItems,
   backendTechnologiesTechStackItems,
-  hoistingTechStackItems,
+  hoistingAndDeploymentTechStackItems,
   toolsAndSoftwaresTechStackItems,
 } from '@/lib/tech-stack'
 
@@ -40,8 +40,8 @@ export default function TechStackPage() {
           </TechStackCard>
         ))}
       </TechStackGrid>
-      <TechStackGrid title='Hoisting'>
-        {hoistingTechStackItems.map(({ Icon, ...props }) => (
+      <TechStackGrid title='Hoisting & Deployment'>
+        {hoistingAndDeploymentTechStackItems.map(({ Icon, ...props }) => (
           <TechStackCard key={props.name} {...props}>
             <Icon className='size-20' />
           </TechStackCard>

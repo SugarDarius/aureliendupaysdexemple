@@ -168,7 +168,7 @@ export const backendTechnologiesTechStackItems: TechStackItem[] = [
   },
 ]
 
-export const hoistingTechStackItems: TechStackItem[] = [
+export const hoistingAndDeploymentTechStackItems: TechStackItem[] = [
   {
     name: 'Vercel',
     Icon: VercelIcon,
