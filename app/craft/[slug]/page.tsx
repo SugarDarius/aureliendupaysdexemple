@@ -23,6 +23,8 @@ export async function generateStaticParams(): Promise<StaticParam[]> {
   return slugs
 }
 
+const OG_IMG_SRC = '/opengraph-image.png'
+
 export async function generateMetadata({
   params,
 }: {
@@ -47,11 +49,13 @@ export async function generateMetadata({
       type: 'article',
       publishedTime: metadata.publishedAt,
       url: baseUrl + '/craft/' + page.slug,
+      images: [OG_IMG_SRC],
     },
     twitter: {
       card: 'summary_large_image',
       title: metadata.title,
       description: metadata.summary,
+      images: [OG_IMG_SRC],
     },
   }
 }
