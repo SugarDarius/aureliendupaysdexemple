@@ -14,7 +14,7 @@
     "@liveblocks/node": "^2.1.0",
     "@liveblocks/react": "^2.1.0",
     "@octokit/graphql": "^8.1.1",
-    "@octokit/graphql-schema": "^15.22.0",
+    "@octokit/graphql-schema": "^15.23.0",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
