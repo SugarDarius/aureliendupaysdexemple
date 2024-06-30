@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 
+import { siteConfig } from '@/config/site-config'
+
 import { baseUrl } from '@/config/site-config'
 import { getMDXPages } from '@/db/mdx-content'
 
@@ -45,9 +47,12 @@ export async function generateMetadata({
     title: metadata.title,
     description: metadata.summary,
     openGraph: {
-      title: metadata.title,
       type: 'article',
+      locale: 'en_US',
+      title: metadata.title,
+      description: metadata.summary,
       publishedTime: metadata.publishedAt,
+      siteName: siteConfig.title,
       url: baseUrl + '/craft/' + page.slug,
       images: [OG_IMG_SRC],
     },
@@ -55,6 +60,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: metadata.title,
       description: metadata.summary,
+      creator: siteConfig.socialLinks.twitter.name,
       images: [OG_IMG_SRC],
     },
   }
