@@ -53,7 +53,10 @@ export const NavigationDockItem = ({
             </NavigationDockItemLink>
           </NavigationMenuLink>
         </TooltipTrigger>
-        <TooltipContent className='flex flex-row items-center gap-1'>
+        <TooltipContent
+          className='flex flex-row items-center gap-1'
+          sideOffset={8}
+        >
           <span>{toUpperFirst(label)}</span>
           <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium tracking-[2px] text-muted-foreground'>
             {shortcutLabel}

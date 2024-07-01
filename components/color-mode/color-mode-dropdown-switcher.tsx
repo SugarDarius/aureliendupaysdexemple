@@ -47,7 +47,7 @@ export function ColorModeDropdownSwitcher({
               <span className='sr-only'>Toggle color mode</span>
             </span>
           </TooltipTrigger>
-          <TooltipContent>Switch color mode</TooltipContent>
+          <TooltipContent sideOffset={8}>Switch color mode</TooltipContent>
         </Tooltip>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' sideOffset={10} alignOffset={-4}>

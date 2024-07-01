@@ -91,7 +91,7 @@ export const NavigationDockItemExternalLink = ({
           {children}
         </a>
       </TooltipTrigger>
-      <TooltipContent>{tooltipLabel}</TooltipContent>
+      <TooltipContent sideOffset={8}>{tooltipLabel}</TooltipContent>
     </Tooltip>
   )
 }

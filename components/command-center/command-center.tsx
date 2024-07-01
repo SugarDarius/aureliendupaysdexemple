@@ -81,7 +81,10 @@ export function CommandCenter({ className }: { className?: string }) {
             <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
           </Button>
         </TooltipTrigger>
-        <TooltipContent className='flex flex-row items-center gap-1'>
+        <TooltipContent
+          className='flex flex-row items-center gap-1'
+          sideOffset={8}
+        >
           <span>Command center</span>
           <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium tracking-[2px] text-muted-foreground'>
             ⌘K
