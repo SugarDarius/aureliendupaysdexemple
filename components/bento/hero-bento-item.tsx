@@ -52,7 +52,7 @@ export function HeroBentoItem() {
             <div className='flex flex-auto' />
             <div className='flex flex-none flex-col gap-4 max-sm:gap-3 max-sm:text-sm'>
               <p>
-                A senior and creative software engineer crafting interfaces and
+                A Senior and Creative Software Engineer crafting interfaces and
                 products with{' '}
                 <TagLink href='https://react.dev/' className='cursor-none'>
                   <ReactIcon className='mr-1 inline-flex h-3 w-3' />
