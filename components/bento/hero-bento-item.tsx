@@ -65,12 +65,14 @@ export function HeroBentoItem() {
                 <TagLink href='https://nextjs.org/' className='cursor-none'>
                   <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                   Next.js
-                </TagLink>{' '}
-                {/* - Currently at{' '}
+                </TagLink>
+                {/* {' '}
+                - Currently at{' '}
                 <TagLink href='https://liveblocks.io/' className='cursor-none'>
                   <LiveblocksLogoIcon className='mr-1 inline-flex size-3' />
                   Liveblocks
-                </TagLink> */}
+                </TagLink>{' '}
+                🚀 */}
               </p>
               <div className='flex flex-row items-end justify-between gap-2 max-sm:items-center'>
                 <div className='flex flex-auto flex-row items-center gap-1.5'>
