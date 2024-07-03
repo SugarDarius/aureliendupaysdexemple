@@ -52,8 +52,9 @@ export function HeroBentoItem() {
             <div className='flex flex-auto' />
             <div className='flex flex-none flex-col gap-4 max-sm:gap-3 max-sm:text-sm'>
               <p>
-                A Senior and Creative Software Engineer crafting interfaces and
-                products with{' '}
+                A creative software engineer from 🇫🇷 crafting interfaces and
+                products with
+                <br />
                 <TagLink href='https://react.dev/' className='cursor-none'>
                   <ReactIcon className='mr-1 inline-flex h-3 w-3' />
                   React
@@ -62,8 +63,7 @@ export function HeroBentoItem() {
                 <TagLink href='https://nextjs.org/' className='cursor-none'>
                   <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                   Next.js
-                </TagLink>{' '}
-                from 🇫🇷
+                </TagLink>
               </p>
               <div className='flex flex-row items-end justify-between gap-2 max-sm:items-center'>
                 <div className='flex flex-auto flex-row items-center gap-1.5'>
