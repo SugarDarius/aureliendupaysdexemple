@@ -51,7 +51,7 @@ export default function WorkPage() {
             <div className='size-6 rounded-md border-neutral-700 bg-neutral-800 dark:border-neutral-200 dark:bg-neutral-50' />
           }
           companyName='L . . . . . . . ks'
-          jobTitle='Senior Software Engineer (remote)'
+          jobTitle='Software Engineer (remote)'
           startDate='July 2024'
         >
           <p>My new journey starts very soon 🙂</p>
