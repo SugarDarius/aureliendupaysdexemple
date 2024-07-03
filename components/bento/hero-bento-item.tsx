@@ -8,6 +8,8 @@ import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 import { VFXWavingHand } from '@/components/ui-vfx/vfx-waving-hand'
 import { VFXPresenceSurface } from '@/components/ui-vfx/vfx-presence-surface'
 
+// import { LiveblocksLogoIcon } from '@/components/icons/liveblocks-logo-icon'
+
 import { BentoCard } from '@/components/grids/bento-card'
 import { TagLink } from '@/components/content/tag-link'
 
@@ -63,7 +65,12 @@ export function HeroBentoItem() {
                 <TagLink href='https://nextjs.org/' className='cursor-none'>
                   <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
                   Next.js
-                </TagLink>
+                </TagLink>{' '}
+                {/* - Currently at{' '}
+                <TagLink href='https://liveblocks.io/' className='cursor-none'>
+                  <LiveblocksLogoIcon className='mr-1 inline-flex size-3' />
+                  Liveblocks
+                </TagLink> */}
               </p>
               <div className='flex flex-row items-end justify-between gap-2 max-sm:items-center'>
                 <div className='flex flex-auto flex-row items-center gap-1.5'>
