@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 import { baseUrl } from '@/config/site-config'
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,9 +6,10 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
+        allow: '/',
+        disallow: ['/api/', '/mdx-renderer/'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
-    host: baseUrl,
   }
 }
