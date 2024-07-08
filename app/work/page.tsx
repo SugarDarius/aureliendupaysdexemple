@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 
 import { ReactIcon } from '@/components/icons/react-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
+import { LiveblocksLogoIcon } from '@/components/icons/liveblocks-logo-icon'
 import { ClaapIcon } from '@/components/icons/claap-icon'
 
 import { Separator } from '@/components/ui/separator'
@@ -47,14 +48,33 @@ export default function WorkPage() {
       </p>
       <div className='flex w-full flex-col gap-8 text-neutral-900 dark:text-neutral-100'>
         <WorkCard
-          companyLogo={
-            <div className='size-6 rounded-md border-neutral-700 bg-neutral-800 dark:border-neutral-200 dark:bg-neutral-50' />
-          }
-          companyName='L . . . . . . . ks'
+          companyLogo={<LiveblocksLogoIcon className='size-6' />}
+          companyName='Liveblocks'
           jobTitle='Software Engineer (remote)'
           startDate='July 2024'
         >
-          <p>My new journey starts very soon 🙂</p>
+          <div className='flex w-full flex-col gap-6'>
+            <p>
+              I&apos;m very happy to start a new journey at{' '}
+              <InlineLink href='https://liveblocks.io/' aria-label='Liveblocks'>
+                Liveblocks
+              </InlineLink>{' '}
+              beginning July 2024.
+            </p>
+            <div className='flex w-full flex-col gap-2'>
+              <p>My role will involve contributing on:</p>
+              <ul className='ml-5 list-disc font-medium'>
+                <li>Liveblocks Platform</li>
+                <li>Implementing and maintaining existing ones</li>
+                <li>Interact with the community and customers</li>
+              </ul>
+            </div>
+            <p>
+              I think we will innovate and create a seamless experience for all
+              developers! Let&apos;s go for this exciting new adventure at
+              Liveblocks 🚀
+            </p>
+          </div>
         </WorkCard>
         <ItemsSeparator />
         <WorkCard
