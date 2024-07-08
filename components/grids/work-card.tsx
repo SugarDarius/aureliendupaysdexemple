@@ -56,12 +56,8 @@ export function WorkCard({
           </div>
           <div className='flex flex-row items-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 font-mono text-sm text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100 max-md:gap-1 max-md:text-xs'>
             {startDate}
-            {endDate ? (
-              <>
-                <WorkCardSeparator className='w-2 max-md:w-1' />
-                {endDate}
-              </>
-            ) : null}
+            <WorkCardSeparator className='w-2 max-md:w-1' />
+            {endDate ?? 'Now'}
           </div>
         </div>
         <div className='flex w-full flex-col'>{children}</div>
