@@ -96,9 +96,11 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
 
 export function VFXPresenceSurface({
   className,
+  disabled,
   children,
 }: {
   className?: string
+  disabled?: boolean
   children?: React.ReactNode
 }) {
   const surfaceRef = useRef<HTMLDivElement>(null)
@@ -112,21 +114,25 @@ export function VFXPresenceSurface({
 
   const handleMouseMove = useEvent(
     (e: React.MouseEvent<HTMLDivElement>): void => {
-      x.set(e.clientX + window.scrollX)
-      y.set(e.clientY + window.scrollY)
+      if (!disabled) {
+        x.set(e.clientX + window.scrollX)
+        y.set(e.clientY + window.scrollY)
+      }
     }
   )
 
   const handleMouseEnter = useEvent(
     (e: React.MouseEvent<HTMLDivElement>): void => {
-      const cursorColor = getRandomCursorColor(previousCursorColorRef.current)
-      previousCursorColorRef.current = cursorColor
+      if (!disabled) {
+        const cursorColor = getRandomCursorColor(previousCursorColorRef.current)
+        previousCursorColorRef.current = cursorColor
 
-      setIsCursorInside(true)
-      setCursorColor(cursorColor)
+        setIsCursorInside(true)
+        setCursorColor(cursorColor)
 
-      x.set(e.clientX + window.scrollX)
-      y.set(e.clientY + window.scrollY)
+        x.set(e.clientX + window.scrollX)
+        y.set(e.clientY + window.scrollY)
+      }
     }
   )
 

@@ -1,6 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
+import { useUserAgent } from '@/hooks/use-user-agent'
 
 import { ReactIcon } from '@/components/icons/react-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
@@ -31,12 +34,13 @@ const TagPill = ({
 )
 
 export function HeroBentoItem() {
+  const { isMobile } = useUserAgent()
   return (
     <BentoCard
       className='col-span-3 row-span-1 max-lg:min-h-[220px] max-md:min-h-[200px] max-sm:col-span-2'
       variant='grid'
     >
-      <VFXPresenceSurface>
+      <VFXPresenceSurface disabled={isMobile}>
         <div className='relative flex h-full w-full flex-col'>
           <div className='flex h-full flex-col p-4 max-sm:p-3'>
             <div className='flex flex-none flex-row items-center justify-between'>
