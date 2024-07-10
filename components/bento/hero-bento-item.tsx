@@ -74,7 +74,7 @@ export function HeroBentoItem() {
                   - Currently at
                   <TagLink
                     href='https://liveblocks.io/'
-                    className='mx-[5px] cursor-none'
+                    className='mx-1.5 cursor-none'
                   >
                     <LiveblocksLogoIcon className='mr-1 inline-flex size-3' />
                     Liveblocks
