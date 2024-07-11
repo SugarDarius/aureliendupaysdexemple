@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^2.1.4",
+    "@heroicons/react": "^2.1.5",
     "@liveblocks/client": "^2.2.2",
     "@liveblocks/node": "^2.2.2",
     "@liveblocks/react": "^2.2.2",
