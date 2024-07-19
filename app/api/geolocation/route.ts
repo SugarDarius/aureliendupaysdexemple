@@ -1,4 +1,4 @@
-import { geolocation } from '@vercel/edge'
+import { geolocation } from '@vercel/functions'
 
 // NOTE:
 // Fallback on San Francisco (randomly selected for testing).
