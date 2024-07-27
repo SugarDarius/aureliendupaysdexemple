@@ -20,7 +20,6 @@ import {
 } from '@radix-ui/react-icons'
 
 import { toast } from 'sonner'
-import clsx from 'clsx'
 
 import { siteConfig } from '@/config/site-config'
 
@@ -63,7 +62,7 @@ import {
 } from '@/components/command-center/commands-suggestions-store'
 import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
 
-const FooterShortcut = ({
+const CommandCenterFooterShortcut = ({
   name,
   children,
 }: {
@@ -78,21 +77,21 @@ const FooterShortcut = ({
   </div>
 )
 
-const Footer = () => (
+const CommandCenterFooter = () => (
   <div className='flex w-full flex-row items-center justify-between border-t p-2'>
     <CommandIcon className='h-4 w-4 stroke-[1.5px]' />
     <div className='flex flex-row items-center gap-1.5'>
-      <FooterShortcut name='Select'>
+      <CommandCenterFooterShortcut name='Select'>
         <SelectIcon className='h-4 w-4 stroke-[1.5px]' />
-      </FooterShortcut>
-      <FooterShortcut name='Execute'>
+      </CommandCenterFooterShortcut>
+      <CommandCenterFooterShortcut name='Execute'>
         <ReturnIcon className='h-4 w-4 stroke-[1.5px]' />
-      </FooterShortcut>
-      <FooterShortcut name='Close'>
+      </CommandCenterFooterShortcut>
+      <CommandCenterFooterShortcut name='Close'>
         <span className='text-xs font-light leading-none tracking-[1px]'>
           ESC
         </span>
-      </FooterShortcut>
+      </CommandCenterFooterShortcut>
     </div>
   </div>
 )
@@ -196,14 +195,10 @@ const CommandCenterDialogSuggestions = ({
   children?: React.ReactNode
 }) => {
   const hidden = useCommandState((state) => state.search.length > 0)
-  return (
-    <CommandGroup
-      heading='Suggestions'
-      className={clsx({ 'mb-1 !h-0 !p-0': hidden })}
-    >
-      {children}
-    </CommandGroup>
-  )
+  if (hidden) {
+    return null
+  }
+  return <CommandGroup heading='Suggestions'>{children}</CommandGroup>
 }
 export function CommandCenterDialog({
   open,
@@ -494,7 +489,7 @@ export function CommandCenterDialog({
         <CommandSeparator />
         <CommandGroup heading='Color mode'>{colorModeCommands}</CommandGroup>
       </CommandList>
-      <Footer />
+      <CommandCenterFooter />
     </CommandDialog>
   )
 }
