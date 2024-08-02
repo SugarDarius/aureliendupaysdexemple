@@ -75,17 +75,20 @@ const variants: Variants = {
   enter: ({ direction, height }: Custom) => ({
     zIndex: 0,
     y: direction > 0 ? height + 100 : (height + 100) * -1,
-    scale: 0.85,
+    scale: 0.65,
+    rotateX: direction > 0 ? -45 : 45,
   }),
   visible: {
     zIndex: 4,
     y: 0,
     scale: 1,
+    rotateX: 0,
   },
   exit: ({ direction, height }: Custom) => ({
     zIndex: 0,
     y: direction < 0 ? height + 100 : (height + 100) * -1,
-    scale: 0.85,
+    scale: 0.65,
+    rotateX: direction < 0 ? -45 : 45,
   }),
 }
 
