@@ -11,7 +11,11 @@ export function toUpperFirst(str: string): string {
 
 export function pick<T>(collection: T[], coefficient = 1): T {
   const length = collection.length
-  const index = Math.floor((Math.random() * coefficient) % length)
+
+  const index =
+    coefficient === 1
+      ? Math.floor(Math.random() * length)
+      : Math.floor((Math.random() * coefficient) % length)
 
   return collection[index]
 }
