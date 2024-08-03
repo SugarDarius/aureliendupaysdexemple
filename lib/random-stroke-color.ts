@@ -1,4 +1,4 @@
-import { pick, unique } from '@/lib/utils'
+import { pick } from '@/lib/utils'
 
 const strokeColors = [
   '#fb7185',
@@ -13,8 +13,6 @@ const strokeColors = [
   '#f59e0b',
 ]
 
-export function getRandomStrokeColor(
-  excludedStrokeColors: string[] = []
-): string {
-  return pick(unique(strokeColors, excludedStrokeColors))
+export function getRandomStrokeColor(): string {
+  return pick(strokeColors, 10)
 }

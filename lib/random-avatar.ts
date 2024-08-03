@@ -1,4 +1,4 @@
-import { pick, unique } from '@/lib/utils'
+import { pick } from '@/lib/utils'
 
 const avatars = [
   '/medias/images/memoji-avatar-zero.webp',
@@ -13,6 +13,6 @@ const avatars = [
   '/medias/images/memoji-avatar-nine.webp',
 ]
 
-export function getRandomAvatar(excludedAvatars: string[] = []): string {
-  return pick(unique(avatars, excludedAvatars))
+export function getRandomAvatar(): string {
+  return pick(avatars, 10)
 }

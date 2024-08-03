@@ -1,10 +1,16 @@
 'use client'
 
+import { ClientSideSuspense } from '@liveblocks/react/suspense'
+
+import { labsConfig } from '@/config/labs-config'
 import {
   LiveblocksProvider,
   RoomProvider,
-  ClientSideSuspense,
-} from '@liveblocks/react/suspense'
+} from '@/components/lab/drawing-on-screen/liveblocks.config'
+
+const useRoomId = (): string => {
+  return labsConfig.liveblocksDrawingOnScreen.roomId
+}
 
 const SuspenseFallback = () => (
   <div className='flex h-full w-full flex-col items-center justify-center'>
@@ -13,14 +19,13 @@ const SuspenseFallback = () => (
 )
 
 export function LiveblocksRoomProvider({
-  roomId,
   children,
 }: {
-  roomId: string
   children?: React.ReactNode
 }) {
+  const roomId = useRoomId()
   return (
-    <LiveblocksProvider authEndpoint='/api/liveblocks-auth'>
+    <LiveblocksProvider>
       <RoomProvider id={roomId} initialPresence={{ isDrawing: false }}>
         <ClientSideSuspense fallback={<SuspenseFallback />}>
           {children}

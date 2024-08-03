@@ -16,16 +16,16 @@ import {
   AnimatePresence,
 } from 'framer-motion'
 
+import { shallow } from '@liveblocks/react/suspense'
 import {
   useBroadcastEvent,
   useEventListener,
   useLostConnectionListener,
   useSelf,
   useUpdateMyPresence,
-  shallow,
   useOthers,
   useErrorListener,
-} from '@liveblocks/react/suspense'
+} from '@/components/lab/drawing-on-screen/liveblocks.config'
 
 import { cn } from '@/lib/utils'
 
