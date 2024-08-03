@@ -7,7 +7,7 @@ import {
 import { PageHero } from '@/components/content/page-hero'
 
 import { WindowFrame } from '@/components/lab/window-frame'
-import { DrawingOnScreenFrame } from '@/components/lab/drawing-on-screen-frame'
+import { DrawingOnScreenFrame } from '@/components/lab/drawing-on-screen/drawing-on-screen-frame'
 
 export default function LiveblocksDrawingOnScreenPage() {
   return (
