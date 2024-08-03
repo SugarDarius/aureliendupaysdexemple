@@ -29,6 +29,7 @@ type ThreadMetadata = {}
 
 const client = createClient({
   authEndpoint: '/api/liveblocks-auth-drawing-on-screen',
+  throttle: 16,
 })
 
 export const {
