@@ -117,7 +117,7 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
 const STROKE_COLOR = '#48AEFF'
 const STROKE_WIDTH = 6
 
-const PATH_DISAPPEARING_TIMEOUT_MS = 10 * 1000 // 10s
+const PATH_DISAPPEARING_TIMEOUT_MS = 5 * 1000 // 5s
 
 const CONNECTION_ID_PUBLIC_METADATA_KEY = 'liveblocks-connection-id'
 const STROKE_COLOR_PUBLIC_METADATA_KEY = 'liveblocks-stroke-color'
