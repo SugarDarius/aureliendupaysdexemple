@@ -125,9 +125,19 @@ export function MagnifyingGlass() {
     setIsMouseMoved(true)
   })
 
+  const handleMouseEnter = useEvent((e: MouseEvent): void => {
+    mouseX.set(e.clientX + window.scrollX)
+    mouseY.set(e.clientY + window.scrollY)
+
+    setIsMouseMoved(true)
+  })
+
   useEffect(() => {
+    window.addEventListener('mouseenter', handleMouseEnter)
     window.addEventListener('mousemove', handleMouseMove)
+
     return (): void => {
+      window.removeEventListener('mouseenter', handleMouseEnter)
       window.removeEventListener('mousemove', handleMouseMove)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
