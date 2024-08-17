@@ -126,7 +126,7 @@ You can [check out](https://www.aureliendupaysdexemple.com/lab/drawing-editor) t
 
 <RoundedVideo src='/medias/mdx-content/drawing-editor.webm' />
 
-You can [check the code](https://github.com/SugarDarius/aureliendupaysdexemple/blob/main/components/lab/drawing-editor.tsx) on GitHub 🙂
+You can [check the code](https://github.com/SugarDarius/aureliendupaysdexemple/blob/main/components/lab/drawing-on-screen/drawing-editor.tsx) on GitHub 🙂
 
 ## Broadcasting events for real-time collaboration
 
@@ -135,7 +135,7 @@ Thanks to the exposed <InlineCode>onChange</InlineCode> prop on the drawing we c
 Let's start by adding a new room event in our <InlineCode>liveblocks.config.ts</InlineCode> file:
 
 ```ts
-import type { SVGPath } from './components/lab/drawing-canvas/svg-canvas-path'
+import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 
 type RoomEvent = {
   type: 'ADD_SVG_PATHS'
