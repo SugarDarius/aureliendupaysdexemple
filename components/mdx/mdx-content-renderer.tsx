@@ -12,6 +12,7 @@ import { cn, slugify } from '@/lib/utils'
 
 import { TagLink } from '@/components/content/tag-link'
 import { Callout } from '@/components/content/callout'
+import { CopyCodeButton } from '@/components/content/copy-code-button'
 
 type MDXRendererComponents = Required<MDXRemoteProps['components']>
 
@@ -76,10 +77,16 @@ const CodeBlock = ({
   const highlightedCodeHTML = highlight(children as string)
 
   return (
-    <code
-      {...props}
-      dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
-    />
+    <React.Fragment>
+      <code
+        {...props}
+        dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
+      />
+      <CopyCodeButton
+        className='absolute right-2.5 top-2.5'
+        code={children as string}
+      />
+    </React.Fragment>
   )
 }
 
@@ -136,7 +143,7 @@ const components: MDXRendererComponents = {
 
 export function MDXContentRenderer({ source }: { source: string }) {
   return (
-    <article className='prose max-w-none dark:prose-invert prose-a:underline-offset-4 prose-pre:bg-[#1B293D]'>
+    <article className='prose max-w-none dark:prose-invert prose-a:underline-offset-4 prose-pre:relative prose-pre:bg-[#1B293D]'>
       <MDXRemote source={source} components={components} />
     </article>
   )

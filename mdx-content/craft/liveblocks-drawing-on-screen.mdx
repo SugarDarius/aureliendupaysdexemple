@@ -91,7 +91,7 @@ type SVGPath = {
 }
 ```
 
-So our svg canvas will render an array of <InlineCode>SVGPath</InlineCode> by computing the path shape thanks to the array of <InlineCode>SVGPoint</InlineCode> with applying on it a `cubic bezier curve`:
+So our svg canvas will render an array of <InlineCode>SVGPath</InlineCode> by computing the path shape thanks to the array of <InlineCode>SVGPoint</InlineCode> with applying on it a <InlineCode>cubic bezier curve</InlineCode>:
 
 ```tsx
 const d = points.reduce<string>((d, point, index, points) => {
