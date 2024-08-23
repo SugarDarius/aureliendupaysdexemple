@@ -46,4 +46,6 @@ export const {
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(
   client
 )
-export const { LiveblocksProvider } = createLiveblocksContext(client)
+export const {
+  suspense: { LiveblocksProvider },
+} = createLiveblocksContext(client)
