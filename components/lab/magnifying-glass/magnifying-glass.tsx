@@ -144,10 +144,7 @@ export function MagnifyingGlass() {
 
   useHotkeys(
     'esc',
-    (e: KeyboardEvent): void => {
-      e.stopImmediatePropagation()
-      e.stopPropagation()
-      e.preventDefault()
+    (): void => {
       toggleMagnifyingGlass()
     },
     { enabled: isActive }
