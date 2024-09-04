@@ -22,5 +22,6 @@ export function toggleMagnifyingGlass(): void {
 useMagnifyingGlassStore.subscribe(({ isActive }): void => {
   toast.info(`Magnifying glass ${isActive ? 'activated' : 'deactivated'}!`, {
     duration: 1000 * 2,
+    closeButton: true,
   })
 })
