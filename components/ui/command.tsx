@@ -24,12 +24,21 @@ const Command = React.forwardRef<
 ))
 Command.displayName = CommandPrimitive.displayName
 
-type CommandDialogProps = DialogProps
+type CommandDialogProps = DialogProps & {
+  onEscapeKeyDown?: (e: KeyboardEvent) => void
+}
 
-const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
+const CommandDialog = ({
+  children,
+  onEscapeKeyDown,
+  ...props
+}: CommandDialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent className='overflow-hidden p-0'>
+      <DialogContent
+        className='overflow-hidden p-0'
+        onEscapeKeyDown={onEscapeKeyDown}
+      >
         <VisuallyHidden.Root>
           <DialogTitle>Command Dialog</DialogTitle>
         </VisuallyHidden.Root>

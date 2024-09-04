@@ -223,6 +223,13 @@ export function CommandCenterDialog({
     (state) => state.isActive
   )
 
+  const handleEscapeKeyDown = useEvent((e: KeyboardEvent): void => {
+    if (isMagnifyingGlassActive) {
+      e.preventDefault()
+      toggleMagnifyingGlass()
+    }
+  })
+
   const execCommand = useEvent((name: string, command: () => void): void => {
     increaseCommandScore(name)
     onExecCommand()
@@ -470,7 +477,11 @@ export function CommandCenterDialog({
   const suggestedCommands = getSuggestedCommands(5)
 
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange}>
+    <CommandDialog
+      open={open}
+      onOpenChange={onOpenChange}
+      onEscapeKeyDown={handleEscapeKeyDown}
+    >
       <CommandInput placeholder='Type a command or search' />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
