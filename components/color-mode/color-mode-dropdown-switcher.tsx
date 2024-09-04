@@ -6,6 +6,7 @@ import {
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
 import useEvent from 'react-use-event-hook'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { cn } from '@/lib/utils'
 import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
@@ -23,6 +24,7 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip'
 import { useMagnifyingGlassStore } from '@/components/lab/magnifying-glass/magnifying-glass-store'
+import { useState } from 'react'
 
 export function ColorModeDropdownSwitcher({
   className,
@@ -33,14 +35,21 @@ export function ColorModeDropdownSwitcher({
   const isMagnifyingGlassActive = useMagnifyingGlassStore(
     (state) => state.isActive
   )
+
+  const [open, setOpen] = useState<boolean>(false)
+
   const handleEscapeKeyDown = useEvent((e: KeyboardEvent): void => {
     if (isMagnifyingGlassActive) {
       e.preventDefault()
     }
   })
 
+  useHotkeys('t', (): void => {
+    setOpen(!open)
+  })
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger
         className={cn('focus-visible:outline-none', className)}
       >
@@ -57,7 +66,15 @@ export function ColorModeDropdownSwitcher({
               <span className='sr-only'>Toggle color mode</span>
             </span>
           </TooltipTrigger>
-          <TooltipContent sideOffset={8}>Switch color mode</TooltipContent>
+          <TooltipContent
+            className='flex flex-row items-center gap-1'
+            sideOffset={8}
+          >
+            Switch color mode
+            <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium tracking-[2px] text-muted-foreground'>
+              T
+            </span>
+          </TooltipContent>
         </Tooltip>
       </DropdownMenuTrigger>
       <DropdownMenuContent
