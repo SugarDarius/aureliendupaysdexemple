@@ -142,6 +142,17 @@ export function MagnifyingGlass() {
     { enabled: !isSafari && !isFirefox }
   )
 
+  useHotkeys(
+    'esc',
+    (e: KeyboardEvent): void => {
+      e.stopImmediatePropagation()
+      e.stopPropagation()
+      e.preventDefault()
+      toggleMagnifyingGlass()
+    },
+    { enabled: isActive }
+  )
+
   return (
     <Portal>
       <MagnifyFilter />

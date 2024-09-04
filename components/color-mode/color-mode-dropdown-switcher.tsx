@@ -5,6 +5,7 @@ import {
   MoonIcon,
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
+import useEvent from 'react-use-event-hook'
 
 import { cn } from '@/lib/utils'
 import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
@@ -21,6 +22,7 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
+import { useMagnifyingGlassStore } from '@/components/lab/magnifying-glass/magnifying-glass-store'
 
 export function ColorModeDropdownSwitcher({
   className,
@@ -28,6 +30,14 @@ export function ColorModeDropdownSwitcher({
   className?: string
 }) {
   const { setColorMode, theme } = useSwitchColorMode()
+  const isMagnifyingGlassActive = useMagnifyingGlassStore(
+    (state) => state.isActive
+  )
+  const handleEscapeKeyDown = useEvent((e: KeyboardEvent): void => {
+    if (isMagnifyingGlassActive) {
+      e.preventDefault()
+    }
+  })
 
   return (
     <DropdownMenu>
@@ -50,7 +60,12 @@ export function ColorModeDropdownSwitcher({
           <TooltipContent sideOffset={8}>Switch color mode</TooltipContent>
         </Tooltip>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' sideOffset={10} alignOffset={-4}>
+      <DropdownMenuContent
+        align='end'
+        sideOffset={10}
+        alignOffset={-4}
+        onEscapeKeyDown={handleEscapeKeyDown}
+      >
         <DropdownMenuCheckboxItem
           checked={theme === 'light'}
           onClick={() => setColorMode('light')}
