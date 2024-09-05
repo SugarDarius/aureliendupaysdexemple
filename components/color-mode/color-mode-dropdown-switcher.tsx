@@ -44,7 +44,7 @@ export function ColorModeDropdownSwitcher({
     }
   })
 
-  useHotkeys('t', (): void => {
+  useHotkeys('s+c', (): void => {
     setOpen(!open)
   })
 
@@ -72,7 +72,7 @@ export function ColorModeDropdownSwitcher({
           >
             Switch color mode
             <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium tracking-[2px] text-muted-foreground'>
-              T
+              S+C
             </span>
           </TooltipContent>
         </Tooltip>
