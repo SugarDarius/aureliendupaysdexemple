@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
-export function GET(): Promise<void> {
+export async function GET(): Promise<void> {
   redirect('/')
 }
