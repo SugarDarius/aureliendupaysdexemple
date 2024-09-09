@@ -45,7 +45,11 @@ export function HeroBentoItem() {
           <div className='flex h-full flex-col p-4 max-sm:p-3'>
             <div className='flex flex-none flex-row items-center justify-between'>
               <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-base'>
-                Hey, I&apos;m Aurélien Dupays Dexemple <VFXWavingHand />
+                Hey, I&apos;m{' '}
+                <span className='bg-gradient-to-r from-orange-500 to-fuchsia-500 bg-clip-text font-bold text-transparent dark:from-amber-500 dark:to-pink-500'>
+                  Aurélien Dupays Dexemple
+                </span>{' '}
+                <VFXWavingHand />
               </h1>
               <Image
                 src='/medias/images/aureliendupaysdexemple-logo.webp'
