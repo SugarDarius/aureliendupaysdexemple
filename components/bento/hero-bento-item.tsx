@@ -46,7 +46,7 @@ export function HeroBentoItem() {
             <div className='flex flex-none flex-row items-center justify-between'>
               <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-base'>
                 Hey, I&apos;m{' '}
-                <span className='bg-gradient-to-r from-orange-500 to-fuchsia-500 bg-clip-text font-bold text-transparent dark:from-amber-500 dark:to-pink-500'>
+                <span className='bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text font-bold text-transparent dark:from-amber-500 dark:to-pink-500'>
                   Aurélien Dupays Dexemple
                 </span>{' '}
                 <VFXWavingHand />
