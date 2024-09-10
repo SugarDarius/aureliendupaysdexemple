@@ -65,9 +65,10 @@ export default function WorkPage() {
             <div className='flex w-full flex-col gap-2'>
               <p>My role will involve contributing on:</p>
               <ul className='ml-5 list-disc font-medium'>
-                <li>Liveblocks Platform</li>
-                <li>Implementing and maintaining existing ones</li>
-                <li>Interact with the community and customers</li>
+                <li>Working on Liveblocks products</li>
+                <li>Working on Liveblocks platform</li>
+                <li>Building new features and maintaining existing ones</li>
+                <li>Interacting with the community and customers</li>
               </ul>
             </div>
             <p>
