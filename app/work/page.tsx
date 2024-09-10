@@ -48,6 +48,7 @@ export default function WorkPage() {
       </p>
       <div className='flex w-full flex-col gap-8 text-neutral-900 dark:text-neutral-100'>
         <WorkCard
+          href='https://liveblocks.io'
           companyLogo={<LiveblocksLogoIcon className='size-6' />}
           companyName='Liveblocks'
           jobTitle='Software Engineer (remote)'
