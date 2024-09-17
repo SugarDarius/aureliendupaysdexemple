@@ -73,7 +73,7 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
           <span className='sr-only'>Toggle color mode</span>
         </Button>
       </DrawerTrigger>
-      <DrawerContent className='!outline-none'>
+      <DrawerContent className='!outline-none' aria-describedby={undefined}>
         <div className='w-full px-4 pb-4'>
           <DrawerHeader className='sm:text-center'>
             <DrawerTitle>Color mode</DrawerTitle>
