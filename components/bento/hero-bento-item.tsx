@@ -62,9 +62,9 @@ export function HeroBentoItem() {
             <div className='flex flex-auto' />
             <div className='flex flex-none flex-col gap-4 max-sm:gap-3 max-sm:text-sm'>
               <p>
-                A creative software engineer from 🇫🇷 crafting interfaces and
-                products with
-                <br className='max-md:hidden' />
+                A creative software engineer from 🌲 🇫🇷 crafting interfaces and
+                products <br className='max-md:hidden' />
+                with{' '}
                 <TagLink href='https://react.dev/' className='cursor-none'>
                   <ReactIcon className='mr-1 inline-flex h-3 w-3' />
                   React
@@ -75,7 +75,7 @@ export function HeroBentoItem() {
                   Next.js
                 </TagLink>{' '}
                 <span className='mt-0 inline-flex items-center max-sm:mt-1 max-sm:flex'>
-                  - Currently at
+                  <span className='max-md:hidden'>-&nbsp;</span> Currently at
                   <TagLink
                     href='https://liveblocks.io/'
                     className='mx-1.5 cursor-none'
