@@ -62,8 +62,8 @@
   },
   "devDependencies": {
     "@types/dom-view-transitions": "^1.0.5",
-    "@types/node": "^22.7.8",
-    "@types/react": "^18.3.11",
+    "@types/node": "^22.7.9",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/three": "^0.169.0",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
