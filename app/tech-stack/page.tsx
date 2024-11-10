@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import {
+  type TechStackItem,
   languagesTechStackItems,
   frontendTechnologiesTechStackItems,
   backendTechnologiesTechStackItems,
@@ -21,6 +22,12 @@ export const metadata: Metadata = {
   description: 'Check my tech stack I use everyday',
 }
 
+const StackItem = ({ Icon, ...props }: TechStackItem) => (
+  <TechStackCard {...props}>
+    <Icon className='size-20' />
+  </TechStackCard>
+)
+
 export default function TechStackPage() {
   return (
     <PageContent>
@@ -30,49 +37,35 @@ export default function TechStackPage() {
       />
       <Separator />
       <TechStackGrid title='Technologies'>
-        {frontendTechnologiesTechStackItems.map(({ Icon, ...props }) => (
-          <TechStackCard key={props.name} {...props}>
-            <Icon className='size-20' />
-          </TechStackCard>
+        {frontendTechnologiesTechStackItems.map((props) => (
+          <StackItem key={props.name} {...props} />
         ))}
         <div className='col-span-1 max-sm:hidden' />
-        {backendTechnologiesTechStackItems.map(({ Icon, ...props }) => (
-          <TechStackCard key={props.name} {...props}>
-            <Icon className='size-20' />
-          </TechStackCard>
+        {backendTechnologiesTechStackItems.map((props) => (
+          <StackItem key={props.name} {...props} />
         ))}
       </TechStackGrid>
       <TechStackGrid title='Hoisting & Deployment'>
-        {hoistingAndDeploymentTechStackItems.map(({ Icon, ...props }) => (
-          <TechStackCard key={props.name} {...props}>
-            <Icon className='size-20' />
-          </TechStackCard>
+        {hoistingAndDeploymentTechStackItems.map((props) => (
+          <StackItem key={props.name} {...props} />
         ))}
       </TechStackGrid>
       <TechStackGrid title='Tools & Softwares'>
-        {toolsAndSoftwaresBaseTechStackItems.map(({ Icon, ...props }) => (
-          <TechStackCard key={props.name} {...props}>
-            <Icon className='size-20' />
-          </TechStackCard>
+        {toolsAndSoftwaresBaseTechStackItems.map((props) => (
+          <StackItem key={props.name} {...props} />
         ))}
         <div className='col-span-1 max-sm:hidden' />
         <div className='col-span-1 max-sm:hidden' />
-        {toolsAndSoftwaresRepoTechStackItems.map(({ Icon, ...props }) => (
-          <TechStackCard key={props.name} {...props}>
-            <Icon className='size-20' />
-          </TechStackCard>
+        {toolsAndSoftwaresRepoTechStackItems.map((props) => (
+          <StackItem key={props.name} {...props} />
         ))}
-        {toolsAndSoftwaresDesignTechStackItems.map(({ Icon, ...props }) => (
-          <TechStackCard key={props.name} {...props}>
-            <Icon className='size-20' />
-          </TechStackCard>
+        {toolsAndSoftwaresDesignTechStackItems.map((props) => (
+          <StackItem key={props.name} {...props} />
         ))}
       </TechStackGrid>
       <TechStackGrid title='Languages'>
-        {languagesTechStackItems.map(({ Icon, ...props }) => (
-          <TechStackCard key={props.name} {...props}>
-            <Icon className='size-20' />
-          </TechStackCard>
+        {languagesTechStackItems.map((props) => (
+          <StackItem key={props.name} {...props} />
         ))}
       </TechStackGrid>
     </PageContent>

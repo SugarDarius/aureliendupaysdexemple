@@ -5,19 +5,21 @@ import { Fragment } from 'react'
 import { cn } from '@/lib/utils'
 import { BentoCard } from '@/components/grids/bento-card'
 
+export type TechStackCardProps = {
+  name: string
+  tag: string
+  href?: string
+  className?: string
+  children?: React.ReactNode
+}
+
 export function TechStackCard({
   name,
   tag,
   href,
   className,
   children,
-}: {
-  name: string
-  tag: string
-  href?: string
-  className?: string
-  children?: React.ReactNode
-}) {
+}: TechStackCardProps) {
   const AnchorComp = href ? 'a' : Fragment
   const anchorProps = href
     ? {

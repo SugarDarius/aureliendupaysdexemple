@@ -33,7 +33,7 @@ import { GitHubSquareIcon } from '@/components/icons/github-square-icon'
 import { FigmaIcon } from '@/components/icons/figma-icon'
 import { PhotoshopIcon } from '@/components/icons/photoshop-icon'
 
-type TechStackItem = {
+export type TechStackItem = {
   name: string
   Icon: React.FunctionComponent<
     React.PropsWithoutRef<React.HTMLAttributes<SVGElement>>
