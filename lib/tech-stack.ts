@@ -28,6 +28,7 @@ import { VercelIcon } from '@/components/icons/vercel-icon'
 
 import { VSCodeIcon } from '@/components/icons/vscode-icon'
 import { NodeJSIcon } from '@/components/icons/nodejs-icon'
+import { TurboRepoIcon } from '@/components/icons/turbo-repo-icon'
 import { GitHubSquareIcon } from '@/components/icons/github-square-icon'
 import { FigmaIcon } from '@/components/icons/figma-icon'
 import { PhotoshopIcon } from '@/components/icons/photoshop-icon'
@@ -177,7 +178,7 @@ export const hoistingAndDeploymentTechStackItems: TechStackItem[] = [
   },
 ]
 
-export const toolsAndSoftwaresTechStackItems: TechStackItem[] = [
+export const toolsAndSoftwaresBaseTechStackItems: TechStackItem[] = [
   {
     name: 'VSCode',
     Icon: VSCodeIcon,
@@ -190,12 +191,24 @@ export const toolsAndSoftwaresTechStackItems: TechStackItem[] = [
     tag: 'runtime',
     href: 'https://nodejs.org/',
   },
+]
+
+export const toolsAndSoftwaresRepoTechStackItems: TechStackItem[] = [
+  {
+    name: 'Turborepo',
+    Icon: TurboRepoIcon,
+    tag: 'monorepo',
+    href: 'https://turbo.build/',
+  },
   {
     name: 'GitHub',
     Icon: GitHubSquareIcon,
     tag: 'git',
     href: 'https://github.com/',
   },
+]
+
+export const toolsAndSoftwaresDesignTechStackItems: TechStackItem[] = [
   {
     name: 'Figma',
     Icon: FigmaIcon,

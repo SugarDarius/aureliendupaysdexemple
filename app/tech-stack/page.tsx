@@ -5,7 +5,9 @@ import {
   frontendTechnologiesTechStackItems,
   backendTechnologiesTechStackItems,
   hoistingAndDeploymentTechStackItems,
-  toolsAndSoftwaresTechStackItems,
+  toolsAndSoftwaresBaseTechStackItems,
+  toolsAndSoftwaresRepoTechStackItems,
+  toolsAndSoftwaresDesignTechStackItems,
 } from '@/lib/tech-stack'
 
 import { Separator } from '@/components/ui/separator'
@@ -48,7 +50,19 @@ export default function TechStackPage() {
         ))}
       </TechStackGrid>
       <TechStackGrid title='Tools & Softwares'>
-        {toolsAndSoftwaresTechStackItems.map(({ Icon, ...props }) => (
+        {toolsAndSoftwaresBaseTechStackItems.map(({ Icon, ...props }) => (
+          <TechStackCard key={props.name} {...props}>
+            <Icon className='size-20' />
+          </TechStackCard>
+        ))}
+        <div className='col-span-1 max-sm:hidden' />
+        <div className='col-span-1 max-sm:hidden' />
+        {toolsAndSoftwaresRepoTechStackItems.map(({ Icon, ...props }) => (
+          <TechStackCard key={props.name} {...props}>
+            <Icon className='size-20' />
+          </TechStackCard>
+        ))}
+        {toolsAndSoftwaresDesignTechStackItems.map(({ Icon, ...props }) => (
           <TechStackCard key={props.name} {...props}>
             <Icon className='size-20' />
           </TechStackCard>
