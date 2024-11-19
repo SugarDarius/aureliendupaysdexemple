@@ -44,6 +44,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
+import { BlueskyLogoIcon } from '../icons/bluesky-logo-icon'
 import { CommandIcon } from '@/components/icons/command-icon'
 import { ReturnIcon } from '@/components/icons/return-icon'
 import { SelectIcon } from '@/components/icons/select-icon'
@@ -400,6 +401,17 @@ export function CommandCenterDialog({
             <>
               <TwitterLogoIcon className='h-4 w-4' />
               Twitter (X)
+            </>
+          ),
+        }),
+        createCommandWithSuggestion('bluesky', {
+          value: siteConfig.socialLinks.bluesky.url,
+          searchValue: 'bluesky',
+          onSelect: handleSelectSocialLink,
+          children: (
+            <>
+              <BlueskyLogoIcon className='h-4 w-4' />
+              Bluesky 🦋
             </>
           ),
         }),

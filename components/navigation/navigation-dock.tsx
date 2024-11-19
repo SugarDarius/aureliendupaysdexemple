@@ -13,6 +13,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 
 import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
+import { BlueskyLogoIcon } from '../icons/bluesky-logo-icon'
 import { ColorModeDropdownSwitcher } from '@/components/color-mode/color-mode-dropdown-switcher'
 import { ColorModeDrawerSwitcher } from '@/components/color-mode/color-mode-drawer-switcher'
 import { CommandCenter } from '@/components/command-center/command-center'
@@ -65,6 +66,13 @@ export function NavigationDock() {
             name='Twitter (X)'
           >
             <TwitterLogoIcon className='h-4 w-4' />
+          </NavigationDockItemExternalLink>
+          <NavigationDockItemExternalLink
+            href={siteConfig.socialLinks.bluesky.url}
+            tooltipLabel='Bluesky 🦋'
+            name='Bluesky 🦋'
+          >
+            <BlueskyLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
         </div>
         <Separator orientation='vertical' className='h-[26px]' />

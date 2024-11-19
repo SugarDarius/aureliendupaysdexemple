@@ -9,6 +9,10 @@ export const siteConfig = {
       url: 'https://twitter.com/azeldvin',
       name: '@azeldvin',
     },
+    bluesky: {
+      url: 'https://bsky.app/profile/aureliendupaysdexemple.com',
+      name: '@aureliendupaysdexemple.com',
+    },
     github: {
       url: 'https://github.com/SugarDarius',
       name: 'SugarDarius',
