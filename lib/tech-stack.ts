@@ -99,10 +99,10 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
     href: 'https://tailwindcss.com/',
   },
   {
-    name: 'Framer Motion',
+    name: 'Motion',
     Icon: FramerMotionIcon,
     tag: 'animation',
-    href: 'https://www.framer.com/motion/',
+    href: 'https://motion.dev/',
   },
   {
     name: 'Zod',
