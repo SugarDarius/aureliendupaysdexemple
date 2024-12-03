@@ -11,7 +11,7 @@ import { ShadcnUIIcon } from '@/components/icons/shadcn-ui-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
 import { ReactIcon } from '@/components/icons/react-icon'
 import { TailwindCSSIcon } from '@/components/icons/tailwind-css-icon'
-import { FramerMotionIcon } from '@/components/icons/framer-motion-icon'
+import { MotionIcon } from '@/components/icons/motion-icon'
 import { ZodIcon } from '@/components/icons/zod-icon'
 import { ZustandIcon } from '@/components/icons/zustand-icon'
 import { XStateIcon } from '@/components/icons/xstate-icon'
@@ -100,7 +100,7 @@ export const frontendTechnologiesTechStackItems: TechStackItem[] = [
   },
   {
     name: 'Motion',
-    Icon: FramerMotionIcon,
+    Icon: MotionIcon,
     tag: 'animation',
     href: 'https://motion.dev/',
   },
