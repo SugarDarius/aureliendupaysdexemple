@@ -9,7 +9,7 @@ import {
   motion,
   MotionValue,
   useTransform,
-} from 'framer-motion'
+} from 'motion/react'
 import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
 

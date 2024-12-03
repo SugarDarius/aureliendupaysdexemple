@@ -9,7 +9,7 @@ import {
   type PanInfo,
   type Variants,
   type Transition,
-} from 'framer-motion'
+} from 'motion/react'
 
 import { cn } from '@/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'

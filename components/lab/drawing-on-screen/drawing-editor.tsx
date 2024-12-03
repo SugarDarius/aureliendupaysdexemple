@@ -10,7 +10,7 @@ import {
   motion,
   useMotionValue,
   AnimatePresence,
-} from 'framer-motion'
+} from 'motion/react'
 import { TrashIcon } from '@heroicons/react/24/outline'
 
 import { cn } from '@/lib/utils'

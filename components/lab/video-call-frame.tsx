@@ -11,7 +11,7 @@ import {
   VideoCameraIcon,
 } from '@heroicons/react/24/outline'
 
-import { type Variants, motion, AnimatePresence } from 'framer-motion'
+import { type Variants, motion, AnimatePresence } from 'motion/react'
 
 import { cn } from '@/lib/utils'
 

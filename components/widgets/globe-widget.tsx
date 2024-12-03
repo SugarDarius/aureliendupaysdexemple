@@ -6,7 +6,7 @@ import useEvent from 'react-use-event-hook'
 import useSWR, { type Fetcher } from 'swr'
 
 import createGlobe, { type Marker } from 'cobe'
-import { useSpring } from 'framer-motion'
+import { useSpring } from 'motion/react'
 
 import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 

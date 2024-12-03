@@ -14,7 +14,7 @@ import {
   motion,
   useMotionValue,
   AnimatePresence,
-} from 'framer-motion'
+} from 'motion/react'
 
 import { shallow } from '@liveblocks/react/suspense'
 import {

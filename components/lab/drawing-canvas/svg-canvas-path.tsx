@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useAnimationControls } from 'framer-motion'
+import { motion, useAnimationControls } from 'motion/react'
 import { useTimeout } from '@/hooks/use-timeout'
 
 export type SVGPoint = { x: number; y: number }

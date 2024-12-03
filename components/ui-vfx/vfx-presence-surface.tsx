@@ -12,7 +12,7 @@ import {
   motion,
   useMotionValue,
   AnimatePresence,
-} from 'framer-motion'
+} from 'motion/react'
 
 import { cn, pick } from '@/lib/utils'
 import { getRandomUsername } from '@/lib/random-username'
