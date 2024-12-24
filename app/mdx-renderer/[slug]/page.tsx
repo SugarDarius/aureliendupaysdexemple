@@ -16,12 +16,10 @@ export async function generateStaticParams(): Promise<StaticParam[]> {
   return slugs
 }
 
-export default async function MDXRendererSlugPage({
-  params,
-}: {
-  params: { slug: string }
+export default async function MDXRendererSlugPage(props: {
+  params: Promise<{ slug: string }>
 }) {
-  const slug = params.slug
+  const { slug } = await props.params
 
   const pages = await getMDXPages('mdx-renderer')
   const page = pages.get(slug)

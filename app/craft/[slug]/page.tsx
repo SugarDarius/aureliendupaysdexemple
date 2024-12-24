@@ -27,12 +27,10 @@ export async function generateStaticParams(): Promise<StaticParam[]> {
 
 const OG_IMG_SRC = '/opengraph-image.png'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const slug = params.slug
+  const { slug } = await props.params
 
   const pages = await getMDXPages('craft')
   const page = pages.get(slug)
@@ -66,11 +64,10 @@ export async function generateMetadata({
   }
 }
 
-export default async function CraftSlugPage({
-  params,
-}: {
-  params: { slug: string }
+export default async function CraftSlugPage(props: {
+  params: Promise<{ slug: string }>
 }) {
+  const params = await props.params
   const slug = params.slug
 
   const pages = await getMDXPages('craft')

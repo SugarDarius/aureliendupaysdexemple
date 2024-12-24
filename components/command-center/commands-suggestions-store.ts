@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+import type { JSX } from 'react'
+
 const LOCAL_STORAGE_KEY = 'commands-ranking-store'
 
 type CommandsRankingStore = {
