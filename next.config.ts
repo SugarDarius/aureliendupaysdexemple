@@ -1,3 +1,5 @@
+import type { NextConfig } from 'next'
+
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' va.vercel-scripts.com;
@@ -13,8 +15,7 @@ const ContentSecurityPolicy = `
   upgrade-insecure-requests;
 `
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ['next-mdx-remote'],
   logging: {
