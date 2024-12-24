@@ -66,12 +66,14 @@ export function FrameBufferObjectParticles() {
               count={positions.length / 3}
               array={positions}
               itemSize={3}
+              args={[positions, 3]}
             />
             <bufferAttribute
               attach='attributes-uv'
               count={uvs.length / 2}
               array={uvs}
               itemSize={2}
+              args={[uvs, 2]}
             />
           </bufferGeometry>
         </mesh>,
@@ -84,6 +86,7 @@ export function FrameBufferObjectParticles() {
             count={particlesPosition.length / 3}
             array={particlesPosition}
             itemSize={3}
+            args={[particlesPosition, 3]}
           />
         </bufferGeometry>
         <shaderMaterial
