@@ -42,6 +42,7 @@ export async function generateMetadata(props: {
   const metadata = page.metadata
 
   return {
+    metadataBase: new URL(baseUrl),
     title: metadata.title,
     description: metadata.summary,
     openGraph: {
