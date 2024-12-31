@@ -7,6 +7,6 @@ if echo "$VERCEL_GIT_COMMIT_MESSAGE" | grep -q "\[skip build\]" ; then
     exit 0
 
 else
-    echo "✅ - Build can procceed"
+    echo "✅ - Build can proceed"
     exit 1
 fi
