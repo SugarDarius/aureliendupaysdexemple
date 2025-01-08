@@ -27,7 +27,7 @@
     "@react-three/drei": "^9.120.5",
     "@react-three/fiber": "^9.0.0-rc.1",
     "@t3-oss/env-nextjs": "^0.11.1",
-    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "^1.4.1",
     "@vercel/functions": "^1.5.2",
     "@vercel/speed-insights": "^1.1.0",
