@@ -58,7 +58,7 @@
     "three": "^0.172.0",
     "vaul": "^1.1.2",
     "zod": "^3.24.1",
-    "zustand": "^5.0.2"
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@types/dom-view-transitions": "^1.0.5",
