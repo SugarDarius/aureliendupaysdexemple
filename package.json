@@ -63,8 +63,8 @@
   "devDependencies": {
     "@types/dom-view-transitions": "^1.0.5",
     "@types/node": "^22.10.5",
-    "@types/react": "19.0.4",
-    "@types/react-dom": "19.0.2",
+    "@types/react": "19.0.5",
+    "@types/react-dom": "19.0.3",
     "@types/three": "^0.172.0",
     "@typescript-eslint/eslint-plugin": "^8.19.1",
     "@typescript-eslint/parser": "^8.19.1",
@@ -83,8 +83,8 @@
     "typescript": "^5.7.3"
   },
   "overrides": {
-    "@types/react": "19.0.4",
-    "@types/react-dom": "19.0.2",
+    "@types/react": "19.0.5",
+    "@types/react-dom": "19.0.3",
     "@react-three/drei": {
       "react": "^19.0.0",
       "react-dom": "^19.0.0"
