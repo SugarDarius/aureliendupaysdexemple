@@ -83,8 +83,6 @@
     "typescript": "^5.7.3"
   },
   "overrides": {
-    "@types/react": "19.0.7",
-    "@types/react-dom": "19.0.3",
     "@react-three/drei": {
       "react": "^19.0.0",
       "react-dom": "^19.0.0"
