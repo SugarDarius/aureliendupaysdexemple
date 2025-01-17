@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@types/dom-view-transitions": "^1.0.5",
-    "@types/node": "^22.10.6",
+    "@types/node": "^22.10.7",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
     "@types/three": "^0.172.0",
