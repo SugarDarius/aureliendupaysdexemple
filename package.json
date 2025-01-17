@@ -24,7 +24,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.6",
     "@radix-ui/react-visually-hidden": "^1.1.1",
-    "@react-three/drei": "^9.121.1",
+    "@react-three/drei": "^9.121.2",
     "@react-three/fiber": "^9.0.0-rc.4",
     "@t3-oss/env-nextjs": "^0.11.1",
     "@tailwindcss/typography": "^0.5.16",
@@ -84,6 +84,7 @@
   },
   "overrides": {
     "@react-three/drei": {
+      "@react-three/fiber": "^9.0.0-rc.4",
       "react": "^19.0.0",
       "react-dom": "^19.0.0"
     }
