@@ -61,7 +61,7 @@ const RoomFullAlert = () => {
   })
 
   useErrorListener((err): void => {
-    if (err.code === 4005) {
+    if (err.context.code === 4005) {
       setOpen(true)
     }
   })
