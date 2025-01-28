@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "@liveblocks/client": "^2.16.1",
-    "@liveblocks/node": "^2.16.1",
-    "@liveblocks/react": "^2.16.1",
+    "@liveblocks/client": "^2.16.2",
+    "@liveblocks/node": "^2.16.2",
+    "@liveblocks/react": "^2.16.2",
     "@octokit/graphql": "^8.1.2",
     "@octokit/graphql-schema": "^15.25.0",
     "@radix-ui/react-alert-dialog": "^1.1.5",
