@@ -14,7 +14,7 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 })
 
-export default [
+const config = [
   ...compat.extends(
     'next/core-web-vitals',
     'eslint:recommended',
@@ -73,3 +73,5 @@ export default [
     },
   },
 ]
+
+export default config
