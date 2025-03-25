@@ -1,12 +1,17 @@
-import tsParser from '@typescript-eslint/parser'
-import mdxPlugin from 'eslint-plugin-mdx'
-import mdxParser from 'eslint-mdx'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import js from '@eslint/js'
+import { createRequire } from 'node:module'
+
 import { FlatCompat } from '@eslint/eslintrc'
+import js from '@eslint/js'
+
+import tsParser from '@typescript-eslint/parser'
+import * as mdxPlugin from 'eslint-plugin-mdx'
+import * as mdxParser from 'eslint-mdx'
 
 const __filename = fileURLToPath(import.meta.url)
+const require = createRequire(import.meta.url)
+
 const __dirname = path.dirname(__filename)
 const compat = new FlatCompat({
   baseDirectory: __dirname,
@@ -28,7 +33,9 @@ const config = [
     languageOptions: {
       parser: tsParser,
     },
-
+    plugins: {
+      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+    },
     rules: {
       'prettier/prettier': 'error',
       'react-hooks/exhaustive-deps': 'error',
@@ -47,27 +54,27 @@ const config = [
       'tailwindcss/no-custom-classname': 'off',
     },
   },
+  // MDX configuration
   {
     files: ['**/*.mdx'],
-
     plugins: {
-      'plugin:mdx/recommended': mdxPlugin,
+      mdx: mdxPlugin,
     },
-
     languageOptions: {
       parser: mdxParser,
+    },
+    rules: {
+      ...mdxPlugin.configs.recommended.rules,
     },
   },
   {
     files: ['**/*.tsx', './components/ui/*.ts'],
-
     rules: {
       '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
   },
   {
     files: ['./next.config.mjs'],
-
     rules: {
       '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
