@@ -50,7 +50,7 @@
     "react-dom": "^19.1.0",
     "react-hotkeys-hook": "^4.6.1",
     "react-use-event-hook": "^0.9.6",
-    "sonner": "^2.0.2",
+    "sonner": "^2.0.3",
     "sugar-high": "^0.9.3",
     "swr": "^2.3.3",
     "tailwind-merge": "^3.0.2",
