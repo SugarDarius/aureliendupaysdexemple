@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.23.0",
+    "@eslint/js": "^9.24.0",
     "@types/dom-view-transitions": "^1.0.6",
     "@types/node": "^22.14.0",
     "@types/react": "^19.1.0",
@@ -70,7 +70,7 @@
     "@types/three": "^0.175.0",
     "@typescript-eslint/eslint-plugin": "^8.29.0",
     "@typescript-eslint/parser": "^8.29.0",
-    "eslint": "^9.23.0",
+    "eslint": "^9.24.0",
     "eslint-config-next": "^15.2.4",
     "eslint-config-prettier": "^10.1.1",
     "eslint-mdx": "^3.3.2",
