@@ -51,7 +51,7 @@
     "react": "^19.1.0",
     "react-canvas-confetti": "^2.0.7",
     "react-dom": "^19.1.0",
-    "react-hotkeys-hook": "^4.6.2",
+    "react-hotkeys-hook": "^5.0.1",
     "react-use-event-hook": "^0.9.6",
     "sonner": "^2.0.3",
     "sugar-high": "^0.9.3",
