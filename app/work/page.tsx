@@ -51,30 +51,52 @@ export default function WorkPage() {
           href='https://liveblocks.io'
           companyLogo={<LiveblocksLogoIcon className='size-6' />}
           companyName='Liveblocks'
-          jobTitle='Software Engineer (remote)'
+          jobTitle='Product Engineer (remote)'
           startDate='July 2024'
         >
           <div className='flex w-full flex-col gap-6'>
             <p>
-              I&apos;m very happy to start a new journey at{' '}
+              Beginning July 2024, I joined{' '}
               <InlineLink href='https://liveblocks.io/' aria-label='Liveblocks'>
                 Liveblocks
               </InlineLink>{' '}
-              beginning July 2024.
+              .
             </p>
             <div className='flex w-full flex-col gap-2'>
-              <p>My role will involve contributing on:</p>
+              <p>
+                My role at Liveblocks is mainly on the product engineering
+                space. I&apos;m focusing on the Dashboard,{' '}
+                <InlineLink
+                  href='https://liveblocks.io/docs/api-reference/liveblocks-react#useNotificationSettings'
+                  aria-label='Liveblocks useNotificationSettings'
+                >
+                  React Hooks APIs
+                </InlineLink>
+                , components,{' '}
+                <InlineLink
+                  href='https://liveblocks.io/docs/api-reference/liveblocks-emails'
+                  aria-label='Liveblocks emails'
+                >
+                  helper packages
+                </InlineLink>{' '}
+                and more.
+              </p>
+              <p>At Liveblocks I&apos;m contributing on:</p>
               <ul className='ml-5 list-disc font-medium'>
                 <li>Working on Liveblocks products</li>
-                <li>Working on Liveblocks platform</li>
-                <li>Building new features and maintaining existing ones</li>
+                <li>Working on the Liveblocks platform</li>
+                <li>Building new features and maintaining the existing ones</li>
                 <li>Interacting with the community and customers</li>
               </ul>
             </div>
             <p>
-              I think we will innovate and create a seamless experience for all
-              developers! Let&apos;s go for this exciting new adventure at
-              Liveblocks 🚀
+              Liveblocks is the best place for ready-made features for AI and
+              human collaboration 🚀.
+              <br />
+              Want to give try? 👉🏻{' '}
+              <InlineLink href='https://liveblocks.io/' aria-label='Liveblocks'>
+                liveblocks.io
+              </InlineLink>
             </p>
           </div>
         </WorkCard>
@@ -249,7 +271,7 @@ export default function WorkPage() {
               At Sfeir I was not only a developer but I had the role of{' '}
               <span className='font-semibold'>Team Leader</span> to manage a
               team of developers to help them grow in their careers. I was also
-              a<span className='font-semibold'>technical recruiter</span> to
+              a <span className='font-semibold'>technical recruiter</span> to
               help the talent team hires new developers in the company. I
               completed my scope by being a{' '}
               <span className='font-semibold'>React trainer</span> to help
