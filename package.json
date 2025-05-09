@@ -44,7 +44,7 @@
     "date-fns": "^4.1.0",
     "geist": "^1.4.2",
     "mini-svg-data-uri": "^1.4.4",
-    "motion": "^12.10.2",
+    "motion": "^12.10.4",
     "nanoid": "^5.1.5",
     "next": "^15.3.2",
     "next-mdx-remote": "^5.0.0",
