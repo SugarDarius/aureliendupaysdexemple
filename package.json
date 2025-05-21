@@ -70,7 +70,7 @@
     "@eslint/js": "^9.27.0",
     "@types/dom-view-transitions": "^1.0.6",
     "@types/node": "^22.15.21",
-    "@types/react": "^19.1.4",
+    "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "@types/three": "^0.176.0",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
