@@ -13,14 +13,12 @@ export function CraftCard({
   summary,
   githubURL,
   category,
-  children,
 }: {
   slug: string
   title: string
   summary: string
   category?: string
   githubURL?: string
-  children?: React.ReactNode
 }) {
   const isLab = category?.includes('Lab')
 
@@ -29,7 +27,7 @@ export function CraftCard({
       <div className='relative flex h-full w-full flex-col gap-4 p-4 max-lg:gap-3'>
         <div className='flex flex-none flex-row items-center gap-4'>
           <div className='flex flex-auto flex-row items-center truncate'>
-            <h1 className='truncate text-xl font-extrabold tracking-tighter max-md:text-lg'>
+            <h1 className='truncate bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text text-xl font-extrabold tracking-tighter text-transparent dark:from-amber-500 dark:to-pink-500 max-md:text-lg'>
               {title}
             </h1>
           </div>
@@ -41,11 +39,8 @@ export function CraftCard({
             />
           ) : null}
         </div>
-        <div className='flex w-full flex-auto flex-col items-center'>
-          {children ? children : null}
-        </div>
         <div className='flex w-full flex-none flex-col gap-4'>
-          <p className='line-clamp-2 text-base font-medium leading-5 text-muted-foreground max-md:text-sm'>
+          <p className='line-clamp-2 text-sm font-medium leading-5 text-muted-foreground'>
             {summary}
           </p>
           <div className='flex w-full flex-row items-center justify-between'>

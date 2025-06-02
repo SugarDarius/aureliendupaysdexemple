@@ -11,7 +11,7 @@ const variants = cva(
     variants: {
       variant: {
         default: 'bg-gradient-to-b from-sky-200 to-sky-500',
-        mdx: 'bg-gradient-to-r from-indigo-400 to-cyan-400 max-lg:text-4xl',
+        mdx: 'f bg-gradient-to-r from-orange-500 to-purple-500 dark:from-amber-500 dark:to-pink-500',
       },
     },
     defaultVariants: {
@@ -36,7 +36,7 @@ export function PageHero({
     <div className={cn('relative flex w-full flex-col', className)}>
       <VFXBackgroundRetroGrid />
       <div className='z-[2] flex w-full flex-col gap-1'>
-        <h1 className={cn(variants({ variant }))}>{title}</h1>
+        <h1 className={cn(variants({ variant }), 'w-fit')}>{title}</h1>
         <p className='text-muted-foreground'>{description}</p>
       </div>
     </div>
