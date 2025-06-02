@@ -1,0 +1,109 @@
+---
+title: 'Anzen'
+publishedAt: '2025-06-03'
+summary: 'A flexible, framework validation agnostic, type-safe factory for creating Next.JS App Router route handlers.'
+category: 'Open Source'
+githubURL: 'https://github.com/SugarDarius/anzen'
+---
+
+## Rethinking route handlers
+
+Developing with the Next.JS App Router for API construction is powerful, yet common challenges arise around route handlers: managing request validation,
+ensuring end-to-end type safety, and minimizing boilerplate code. There's a clear need for a smoother, more streamlined approach.
+
+This is the motivation behind [Anzen](https://anzen.sugardarius.dev/): a flexible, framework-validation-agnostic, type-safe factory designed for creating Next.JS App Router route handlers.
+
+### The Common Lifecycle of Route Handler Setup
+
+For developers working with Next.JS API routes, the setup process often involves a familiar sequence:
+
+1.  **Handler Definition**: Specifying the HTTP method (`POST`, `GET`, etc.).
+2.  **Request Data Processing (Often optional, but can be time-consuming and error-prone)**: This step encompasses several potential sub-tasks:
+    - Manually parsing the request body (e.g., `await req.json()`).
+    - Validating the body by integrating a library like Zod, Yup, or Valibot, which involves writing schemas and maybe implementing try-catch blocks for validation logic.
+    - Validating query parameters, which might involve similar schema definition and parsing from `URLSearchParams`.
+    - Ensuring type synchronization between types inferred by validators and those used in the core logic, sometimes requiring manual type assertions or guards.
+3.  **Error Handling**: Implementing logic to return appropriate HTTP status codes (e.g., 400 for validation failures, 500 for server errors) and standardizing error response formats.
+4.  **Response Crafting**: Ensuring the success response adheres to a predefined contract, crucial for frontend integrations.
+
+While not all these steps are mandatory for every endpoint, they represent common points of friction and boilerplate when building robust APIs.
+They are areas where inconsistencies can lead to bugs or a suboptimal developer experience. The question arises: could this setup be more declarative? Could type safety flow more seamlessly from request validation through to the response?
+
+## An Approach to Cleaner, Safer Route Handlers
+
+Anzen offers a solution to these challenges. It's not about reinventing existing tools but providing a well-structured factory to streamline the process of building route handlers.
+
+The core principle is to **define data contracts upfront** using a preferred validation library, allowing Anzen to manage the repetitive aspects of the request lifecycle.
+
+**Key benefits Anzen aims to deliver:**
+
+- **Bring Your Own Validation (BYOV):** Anzen is designed to be validation-agnostic. Whether using Zod, Valibot, Yup, or another library, Anzen integrates as the connecting layer.
+- **End-to-End Type Safety:** Define schemas for dynamic route segments, query search params, request json bodies or request form data bodies. Anzen ensures that data passed to the handler function is parsed, validated, and correctly typed.
+- **Reduced Boilerplate:** By abstracting parsing, validation, authorization and basic error handling, the route handler code can focus directly on the business logic.
+- **Improved Developer Experience:** Clearer, more declarative route definitions contribute to more readable and maintainable code.
+
+## Usage and use case
+
+Let's look at a practical example.
+
+### Let's install Anzen
+
+```sh
+npm i @sugardarius/anzen
+```
+
+### Creating the route handler
+
+Consider a ⁠POST endpoint for inviting a new member in an app, expecting an email and a name.
+
+```tsx
+// app/api/members/invite/route.ts
+import { object, string, email } from 'decoders'
+import { createSafeRouteHandler } from '@sugardarius/anzen'
+import { auth } from '~/lib/auth'
+
+export const POST = createSafeRouteHandler(
+  {
+    authorize: async ({ req }) => {
+      const session = await auth.getSession(req)
+      if (!session) {
+        return new Response(null, { status: 401 })
+      }
+
+      return { user: session.user }
+    },
+    body: object({
+      email: email,
+      name: string,
+    }),
+  },
+  async (
+    {
+      auth, // Auth context is inferred from the authorize function
+      body, // Body is inferred from the body validation
+    },
+    req
+  ): Promise<Response> => {
+    return Response.json({ user: auth.user, body }, { status: 200 })
+  }
+)
+```
+
+### What Anzen provides in this scenario:
+
+- **Authorization**: The `authorize` function checks if the current user making the invite is authenticated, returning a 401 response if not. This context is automatically inferred and passed to the handler.
+- **Body Validation**: The `body` schema is defined using a validation library (in this case, [decoders](https://decoders.cc/)). Anzen handles parsing and validation, ensuring that the `body` parameter in the handler is correctly typed.
+- **Focus on Logic**: The handler code becomes cleaner, concentrating on its primary function.
+- **Error Handling**: Anzen automatically manages error responses for validation failures, unexpected errors and returning appropriate HTTP status codes and messages.
+
+### Key Advantages Realized
+
+A significant benefit becomes apparent when refactoring existing API routes to use Anzen.
+The reduction in duplicate validation and error-handling code is substantial.
+Moreover, the enhanced type safety provides greater confidence, knowing that if a request reaches the core logic, its structure has been verified, leading to faster development cycles and fewer runtime issues.
+
+## Explore Anzen
+
+For those building with Next.JS App Router and encountering similar friction points, Anzen now offers a solution.
+Visit the documentation at [https://anzen.sugardarius.dev/](https://anzen.sugardarius.dev/) for comprehensive examples and the full API reference.
+Anzen is available on [GitHub](https://github.com/SugarDarius/anzen), where issues, feedback, and contributions are welcome 🙂.
