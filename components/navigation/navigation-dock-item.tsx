@@ -40,7 +40,8 @@ export const NavigationDockItem = ({
     },
     [href]
   )
-  const isActive = href === pathname
+  const isActive =
+    href === '/craft' ? pathname.startsWith(href) : href === pathname
   const Icon = navigationItemsIcons[name]
 
   return (
