@@ -2,7 +2,6 @@
   "name": "aureliendupaysdexemple",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack --experimental-https",
     "build": "next build --turbopack",
