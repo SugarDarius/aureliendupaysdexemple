@@ -92,7 +92,7 @@ export const POST = createSafeRouteHandler(
 ### What Anzen provides in this scenario:
 
 - **Authorization**: The `authorize` function checks if the current user making the invite is authenticated, returning a 401 response if not. This context is automatically inferred and passed to the handler.
-- **Body Validation**: The `body` schema is defined using a validation library (in this case, [decoders](https://decoders.cc/)). Anzen handles parsing and validation, ensuring that the `body` parameter in the handler is correctly typed.
+- **Body Validation**: The `body` schema is defined using a validation library (in this case, [decoders](https://decoders.cc/) our champion at [Liveblocks](https://liveblocks.io/) 🚀). Anzen handles parsing and validation, ensuring that the `body` parameter in the handler is correctly typed.
 - **Focus on Logic**: The handler code becomes cleaner, concentrating on its primary function.
 - **Error Handling**: Anzen automatically manages error responses for validation failures, unexpected errors and returning appropriate HTTP status codes and messages.
 
@@ -105,5 +105,5 @@ Moreover, the enhanced type safety provides greater confidence, knowing that if 
 ## Explore Anzen
 
 For those building with Next.JS App Router and encountering similar friction points, Anzen now offers a solution.
-Visit the documentation at [https://anzen.sugardarius.dev/](https://anzen.sugardarius.dev/) for comprehensive examples and the full API reference.
+Visit the documentation at [https://anzen.sugardarius.dev](https://anzen.sugardarius.dev/) for comprehensive examples and the full API reference.
 Anzen is available on [GitHub](https://github.com/SugarDarius/anzen), where issues, feedback, and contributions are welcome 🙂.
