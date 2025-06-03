@@ -13,23 +13,24 @@ ensuring end-to-end type safety, and minimizing boilerplate code. There's a clea
 
 This is the motivation behind [Anzen](https://anzen.sugardarius.dev/): a flexible, framework-validation-agnostic, type-safe factory designed for creating Next.JS App Router route handlers.
 
-### The Common Lifecycle of Route Handler Setup
+### The common lifecycle of route handler setup
 
 For developers working with Next.JS API routes, the setup process often involves a familiar sequence:
 
-1.  **Handler Definition**: Specifying the HTTP method (`POST`, `GET`, etc.).
-2.  **Request Data Processing (Often optional, but can be time-consuming and error-prone)**: This step encompasses several potential sub-tasks:
+1.  **Handler definition**: Specifying the HTTP method (`POST`, `GET`, etc.).
+2.  **Authorization logic**: Implementing checks to ensure the request is from an authenticated user, often using session management libraries.
+3.  **Request data processing (Often optional, but can be time-consuming and error-prone)**: This step encompasses several potential sub-tasks:
     - Manually parsing the request body (e.g., `await req.json()`).
     - Validating the body by integrating a library like Zod, Yup, or Valibot, which involves writing schemas and maybe implementing try-catch blocks for validation logic.
     - Validating query parameters, which might involve similar schema definition and parsing from `URLSearchParams`.
     - Ensuring type synchronization between types inferred by validators and those used in the core logic, sometimes requiring manual type assertions or guards.
-3.  **Error Handling**: Implementing logic to return appropriate HTTP status codes (e.g., 400 for validation failures, 500 for server errors) and standardizing error response formats.
-4.  **Response Crafting**: Ensuring the success response adheres to a predefined contract, crucial for frontend integrations.
+4.  **Error handling**: Implementing logic to return appropriate HTTP status codes (e.g., 400 for validation failures, 500 for server errors) and standardizing error response formats.
+5.  **Response crafting**: Ensuring the success response adheres to a predefined contract, crucial for frontend integrations.
 
 While not all these steps are mandatory for every endpoint, they represent common points of friction and boilerplate when building robust APIs.
 They are areas where inconsistencies can lead to bugs or a suboptimal developer experience. The question arises: could this setup be more declarative? Could type safety flow more seamlessly from request validation through to the response?
 
-## An Approach to Cleaner, Safer Route Handlers
+## An approach to cleaner, safer route handlers
 
 Anzen offers a solution to these challenges. It's not about reinventing existing tools but providing a well-structured factory to streamline the process of building route handlers.
 
@@ -37,9 +38,9 @@ The core principle is to **define data contracts upfront** using a preferred val
 
 **Key benefits Anzen aims to deliver:**
 
-- **Bring Your Own Validation (BYOV):** Anzen is designed to be validation-agnostic. Whether using Zod, Valibot, Yup, or another library, Anzen integrates as the connecting layer.
-- **End-to-End Type Safety:** Define schemas for dynamic route segments, query search params, request json bodies or request form data bodies. Anzen ensures that data passed to the handler function is parsed, validated, and correctly typed.
-- **Reduced Boilerplate:** By abstracting parsing, validation, authorization and basic error handling, the route handler code can focus directly on the business logic.
+- **Bring your own validation:** Anzen is designed to be validation-agnostic. Whether using Zod, Valibot, Yup, or another library, Anzen integrates as the connecting layer.
+- **End-to-End type safety:** Define schemas for dynamic route segments, query search params, request json bodies or request form data bodies. Anzen ensures that data passed to the handler function is parsed, validated, and correctly typed.
+- **Reduced boilerplate:** By abstracting parsing, validation, authorization and basic error handling, the route handler code can focus directly on the business logic.
 - **Improved Developer Experience:** Clearer, more declarative route definitions contribute to more readable and maintainable code.
 
 ## Usage and use case
@@ -96,7 +97,7 @@ export const POST = createSafeRouteHandler(
 - **Focus on Logic**: The handler code becomes cleaner, concentrating on its primary function.
 - **Error Handling**: Anzen automatically manages error responses for validation failures, unexpected errors and returning appropriate HTTP status codes and messages.
 
-### Key Advantages Realized
+### Key advantages realized
 
 A significant benefit becomes apparent when refactoring existing API routes to use Anzen.
 The reduction in duplicate validation and error-handling code is substantial.
