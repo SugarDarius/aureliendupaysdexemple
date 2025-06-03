@@ -93,9 +93,9 @@ export const POST = createSafeRouteHandler(
 ### What Anzen provides in this scenario:
 
 - **Authorization**: The `authorize` function checks if the current user making the invite is authenticated, returning a 401 response if not. This context is automatically inferred and passed to the handler.
-- **Body Validation**: The `body` schema is defined using a validation library (in this case, [decoders](https://decoders.cc/) our champion at [Liveblocks](https://liveblocks.io/) 🚀). Anzen handles parsing and validation, ensuring that the `body` parameter in the handler is correctly typed.
-- **Focus on Logic**: The handler code becomes cleaner, concentrating on its primary function.
-- **Error Handling**: Anzen automatically manages error responses for validation failures, unexpected errors and returning appropriate HTTP status codes and messages.
+- **Body validation**: The `body` schema is defined using a validation library (in this case, [decoders](https://decoders.cc/) our champion at [Liveblocks](https://liveblocks.io/) 🚀). Anzen handles parsing and validation, ensuring that the `body` parameter in the handler is correctly typed.
+- **Focus on logic**: The handler code becomes cleaner, concentrating on its primary function.
+- **Error handling**: Anzen automatically manages error responses for validation failures, unexpected errors and returning appropriate HTTP status codes and messages.
 
 ### Key advantages realized
 
