@@ -31,7 +31,7 @@
     "@radix-ui/react-visually-hidden": "^1.2.3",
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
-    "@t3-oss/env-nextjs": "^0.13.6",
+    "@t3-oss/env-nextjs": "^0.13.8",
     "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "^1.5.0",
     "@vercel/functions": "^2.1.0",
