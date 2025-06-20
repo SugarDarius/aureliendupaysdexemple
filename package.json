@@ -34,7 +34,7 @@
     "@t3-oss/env-nextjs": "^0.13.8",
     "@tailwindcss/typography": "^0.5.16",
     "@vercel/analytics": "^1.5.0",
-    "@vercel/functions": "^2.2.1",
+    "@vercel/functions": "^2.2.2",
     "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "^10.4.21",
     "class-variance-authority": "^0.7.1",
