@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { BeakerIcon, CodeBracketSquareIcon } from '@heroicons/react/24/outline'
 
 import { siteConfig } from '@/config/site-config'
 
@@ -95,7 +96,14 @@ export default async function CraftSlugPage(props: {
             />
           ) : null}
           {page.metadata.category ? (
-            <CategoryTag>{page.metadata.category}</CategoryTag>
+            <CategoryTag>
+              {isLab ? (
+                <BeakerIcon className='size-3.5' />
+              ) : (
+                <CodeBracketSquareIcon className='size-3.5' />
+              )}
+              {page.metadata.category}
+            </CategoryTag>
           ) : null}
         </div>
       </div>
