@@ -33,7 +33,7 @@ export default async function CraftPage() {
             title={page.metadata.title}
             summary={page.metadata.summary}
             category={page.metadata.category}
-            githubURL={page.metadata.githubURL}
+            publishedAt={page.metadata.publishedAt}
           />
         ))}
       </CraftGrid>
