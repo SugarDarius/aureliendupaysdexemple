@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 
 import { siteConfig } from '@/config/site-config'
 
 import { baseUrl } from '@/config/site-config'
 import { getMDXPages } from '@/db/mdx-content'
 
-import { VFXBackgroundDot } from '@/components/ui-vfx/vfx-background-dot'
 import { Separator } from '@/components/ui/separator'
 
 import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
@@ -89,19 +87,6 @@ export default async function CraftSlugPage(props: {
       />
       <Separator />
       <div className='flex w-full flex-col gap-6'>
-        {page.metadata.image ? (
-          <div className='relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 p-8 dark:border-neutral-800 dark:bg-stone-900'>
-            <VFXBackgroundDot />
-            <Image
-              alt=''
-              src={page.metadata.image}
-              width={680 / 1.5}
-              height={430 / 1.5}
-              className='z-[2]'
-              priority
-            />
-          </div>
-        ) : null}
         <div className='flex w-full flex-row items-center justify-between'>
           {page.metadata.githubURL ? (
             <GitHubRepositoryLink
