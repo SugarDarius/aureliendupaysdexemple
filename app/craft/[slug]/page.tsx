@@ -42,12 +42,12 @@ export async function generateMetadata(props: {
 
   return {
     metadataBase: new URL(baseUrl),
-    title: metadata.title,
+    title: `${metadata.title} | ${siteConfig.title}`,
     description: metadata.summary,
     openGraph: {
       type: 'article',
       locale: 'en_US',
-      title: metadata.title,
+      title: `${metadata.title} | ${siteConfig.title}`,
       description: metadata.summary,
       publishedTime: metadata.publishedAt,
       siteName: siteConfig.title,
@@ -56,7 +56,7 @@ export async function generateMetadata(props: {
     },
     twitter: {
       card: 'summary_large_image',
-      title: metadata.title,
+      title: `${metadata.title} | ${siteConfig.title}`,
       description: metadata.summary,
       creator: siteConfig.socialLinks.twitter.name,
       images: [OG_IMG_SRC],
