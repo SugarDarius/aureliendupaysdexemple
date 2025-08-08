@@ -60,7 +60,7 @@
     "swr": "^2.3.4",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.178.0",
+    "three": "^0.179.1",
     "vaul": "^1.1.2",
     "zod": "^4.0.15",
     "zustand": "^5.0.6"
@@ -72,7 +72,7 @@
     "@types/node": "^24.2.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "@types/three": "^0.178.1",
+    "@types/three": "^0.179.0",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
     "eslint": "^9.32.0",
