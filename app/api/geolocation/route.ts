@@ -1,3 +1,4 @@
+import { createSafeRouteHandler } from '@sugardarius/anzen'
 import { geolocation } from '@vercel/functions'
 
 // NOTE:
@@ -5,16 +6,20 @@ import { geolocation } from '@vercel/functions'
 // Defined as strings as `geolocation` returns strings
 const LAT_LONG_FALLBACK = ['37.7595', '-122.4367']
 
-export async function GET(request: Request): Promise<Response> {
-  let { latitude, longitude } = geolocation(request)
+export const GET = createSafeRouteHandler(
+  {
+    id: 'api/geolocation',
+  },
+  async (_ctx, req) => {
+    let { latitude, longitude } = geolocation(req)
+    if (!latitude || !longitude) {
+      latitude = LAT_LONG_FALLBACK[0]
+      longitude = LAT_LONG_FALLBACK[1]
+    }
 
-  if (!latitude || !longitude) {
-    latitude = LAT_LONG_FALLBACK[0]
-    longitude = LAT_LONG_FALLBACK[1]
+    return Response.json({
+      latitude: parseFloat(latitude),
+      longitude: parseFloat(longitude),
+    })
   }
-
-  return Response.json({
-    latitude: parseFloat(latitude),
-    longitude: parseFloat(longitude),
-  })
-}
+)
