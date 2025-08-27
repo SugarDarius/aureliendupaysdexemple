@@ -20,6 +20,15 @@ const compat = new FlatCompat({
 })
 
 const config = [
+  {
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts',
+    ],
+  },
   ...compat.extends(
     'next/core-web-vitals',
     'eslint:recommended',
@@ -53,8 +62,7 @@ const config = [
       'tailwindcss/enforces-shorthand': 'off',
       'tailwindcss/no-custom-classname': 'off',
     },
-  },
-  // MDX configuration
+  }, // MDX configuration
   {
     files: ['**/*.mdx'],
     plugins: {
@@ -65,6 +73,7 @@ const config = [
     },
     rules: {
       ...mdxPlugin.configs.recommended.rules,
+      'react/jsx-no-undef': 'off',
     },
   },
   {
