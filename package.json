@@ -63,7 +63,7 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.179.1",
     "vaul": "^1.1.2",
-    "zod": "^4.1.3",
+    "zod": "^4.1.5",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
