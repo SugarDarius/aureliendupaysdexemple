@@ -30,7 +30,6 @@ export default defineConfig([
     rules: {
       'prettier/prettier': 'off',
       'react-hooks/exhaustive-deps': 'error',
-      'react-hooks/purity': 'off',
       'react-hooks/set-state-in-effect': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'error',
       '@typescript-eslint/no-unused-vars': [

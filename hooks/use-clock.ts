@@ -19,6 +19,7 @@ export function useClock(): UseClockReturnType {
   const [clock, setClock] = useState<string>(formatClock())
   const [refreshDelayMs, setRefreshDelay] = useState<number | null>(null)
 
+  // eslint-disable-next-line react-hooks/purity
   const renderTimeRef = useRef<number>(Date.now())
 
   useInterval((): void => {
