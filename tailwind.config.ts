@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-import { fontFamily } from 'tailwindcss/defaultTheme'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 import typographyPlugin from '@tailwindcss/typography'
 import animationsPlugin from 'tailwindcss-animate'
@@ -9,24 +9,12 @@ import { vfxBackgroundsPlugin } from './_tailwind-plugins/vfx-backgrounds-plugin
 import { vfxBorderBeamPlugin } from './_tailwind-plugins/vfx-border-beam-plugin'
 
 const config = {
-  darkMode: ['class'],
+  darkMode: 'class',
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-  ],
-  prefix: '',
-  safelist: [
-    // VFX Presence Cursor
-    'text-violet-700',
-    'bg-violet-700',
-    'text-orange-600',
-    'bg-orange-600',
-    'text-sky-600',
-    'bg-sky-600',
-    'text-fuchsia-500',
-    'bg-fuchsia-500',
   ],
   theme: {
     container: {
@@ -38,8 +26,14 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-geist-sans)', ...fontFamily.sans],
-        mono: ['var(--font-geist-mono)', ...fontFamily.mono],
+        sans: [
+          'var(--font-geist-sans)',
+          ...(defaultTheme.fontFamily?.sans ?? []),
+        ],
+        mono: [
+          'var(--font-geist-mono)',
+          ...(defaultTheme.fontFamily?.mono ?? []),
+        ],
       },
       colors: {
         border: 'hsl(var(--border))',

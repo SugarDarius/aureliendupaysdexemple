@@ -1,7 +1,6 @@
-import type { PluginAPI } from 'tailwindcss/types/config'
 import plugin from 'tailwindcss/plugin'
 
-export const dragPlugin = plugin(({ addUtilities }: PluginAPI): void => {
+export const dragPlugin = plugin(({ addUtilities }): void => {
   addUtilities({
     '.user-drag-none': {
       '-webkit-user-drag': 'none',

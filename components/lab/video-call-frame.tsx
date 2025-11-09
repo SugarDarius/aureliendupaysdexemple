@@ -27,16 +27,16 @@ import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
 import { PresentationIcon } from '@/components/icons/presentation-icon'
 
 const participantGradients: Record<string, string> = {
-  '#fb7185': 'bg-gradient-to-r from-rose-400 to-red-500',
-  '#a855f7': 'bg-gradient-to-r from-purple-500 to-purple-900',
-  '#bfdbfe': 'bg-gradient-to-r from-blue-200 to-cyan-200',
-  '#a3e635': 'bg-gradient-to-r from-lime-400 to-lime-500',
-  '#fde68a': 'bg-gradient-to-r from-amber-200 to-yellow-400',
-  '#ef4444': 'bg-gradient-to-r from-red-500 to-orange-500',
-  '#ec4899': 'bg-gradient-to-r from-pink-500 to-rose-500',
-  '#6366f1': 'bg-gradient-to-r from-indigo-500 to-blue-500',
-  '#fb923c': 'bg-gradient-to-r from-orange-400 to-red-500',
-  '#f59e0b': 'bg-gradient-to-r from-amber-500 to-amber-700',
+  '#fb7185': 'bg-linear-to-r from-rose-400 to-red-500',
+  '#a855f7': 'bg-linear-to-r from-purple-500 to-purple-900',
+  '#bfdbfe': 'bg-linear-to-r from-blue-200 to-cyan-200',
+  '#a3e635': 'bg-linear-to-r from-lime-400 to-lime-500',
+  '#fde68a': 'bg-linear-to-r from-amber-200 to-yellow-400',
+  '#ef4444': 'bg-linear-to-r from-red-500 to-orange-500',
+  '#ec4899': 'bg-linear-to-r from-pink-500 to-rose-500',
+  '#6366f1': 'bg-linear-to-r from-indigo-500 to-blue-500',
+  '#fb923c': 'bg-linear-to-r from-orange-400 to-red-500',
+  '#f59e0b': 'bg-linear-to-r from-amber-500 to-amber-700',
 }
 
 const variants: Variants = {
@@ -81,12 +81,12 @@ const ParticipantItem = ({
 }: ParticipantItemProps) => {
   const gradient = useMemo(() => {
     if (isCurrentUser) {
-      return 'bg-gradient-to-r from-indigo-400 to-cyan-400'
+      return 'bg-linear-to-r from-indigo-400 to-cyan-400'
     }
 
     return (
       participantGradients[strokeColor] ??
-      'bg-gradient-to-r from-teal-200 to-teal-500'
+      'bg-linear-to-r from-teal-200 to-teal-500'
     )
   }, [isCurrentUser, strokeColor])
   return (
@@ -191,7 +191,7 @@ export function VideoCallFrame({
   return (
     <div
       className={cn(
-        'relative flex h-full max-h-full w-full flex-col gap-4 bg-gradient-to-l from-gray-200 via-fuchsia-200 to-stone-100 p-4',
+        'relative flex h-full max-h-full w-full flex-col gap-4 bg-linear-to-l from-gray-200 via-fuchsia-200 to-stone-100 p-4',
         className
       )}
     >

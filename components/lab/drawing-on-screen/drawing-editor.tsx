@@ -246,7 +246,7 @@ export function DrawingEditor({ className }: { className?: string }) {
         className={cn(
           'relative flex size-full flex-col',
           clsx({
-            '!cursor-none': !isLocked,
+            'cursor-none!': !isLocked,
           })
         )}
         onMouseEnter={handleMouseEnter}

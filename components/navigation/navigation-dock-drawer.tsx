@@ -48,7 +48,7 @@ export function NavigationDockDrawer({
           <Bars3Icon className='size-4' />
         </Button>
       </DrawerTrigger>
-      <DrawerContent className='!outline-none' aria-describedby={undefined}>
+      <DrawerContent className='outline-none!' aria-describedby={undefined}>
         <div className='flex w-full flex-col px-4 pb-4'>
           <DrawerHeader className='sm:text-center'>
             <DrawerTitle>Navigation</DrawerTitle>

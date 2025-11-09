@@ -35,7 +35,6 @@ const config = [
     'prettier',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:tailwindcss/recommended',
     'plugin:prettier/recommended'
   ),
   {
@@ -59,8 +58,6 @@ const config = [
       ],
 
       eqeqeq: 'error',
-      'tailwindcss/enforces-shorthand': 'off',
-      'tailwindcss/no-custom-classname': 'off',
     },
   }, // MDX configuration
   {

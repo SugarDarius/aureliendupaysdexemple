@@ -34,7 +34,7 @@ const Glass = ({
   <motion.svg
     className={cn(
       'pointer-events-none fixed inset-0 scale-50 rounded-full border-2 bg-[hsl(210_80%_90%/0.05)]',
-      '[border-color:color-mix(in_lch,hsl(var(--foreground)),color-mix(in_lch,hsl(var(--background)),hsl(210_10%_40%)),60%)]',
+      'border-[color-mix(in_lch,hsl(var(--foreground)),color-mix(in_lch,hsl(var(--background)),hsl(210_10%_40%)),60%)]',
       'shadow-[0px_4px_16px_rgba(17,17,26,0.1),0px_8px_24px_rgba(17,17,26,0.1),0px_16px_56px_rgba(17,17,26,0.1),0px_4px_16px_rgba(17,17,26,0.1)_inset,0px_8px_24px_rgba(17,17,26,0.1)_inset,0px_16px_56px_rgba(17,17,26,0.1)_inset]',
       '[backdrop-filter:url(#magnify-filter)]'
     )}
@@ -99,7 +99,7 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
   }
 
   return createPortal(
-    <div className='pointer-events-none absolute left-0 top-0 !z-[999999] h-screen w-screen'>
+    <div className='pointer-events-none absolute left-0 top-0 z-999999! h-screen w-screen'>
       {children}
     </div>,
     document.body

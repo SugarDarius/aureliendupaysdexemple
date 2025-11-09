@@ -331,7 +331,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
           className={cn(
             'relative flex h-full w-full',
             clsx({
-              '!cursor-none': !isLocked,
+              'cursor-none!': !isLocked,
             })
           )}
           onMouseEnter={handleMouseEnter}

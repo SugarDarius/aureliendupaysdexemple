@@ -9,7 +9,7 @@ export function toUpperFirst(str: string): string {
   return str[0].toUpperCase() + str.slice(1)
 }
 
-export function pick<T>(collection: T[], coefficient = 1): T {
+export function pick<T>(collection: readonly T[], coefficient = 1): T {
   const length = collection.length
 
   const index =
