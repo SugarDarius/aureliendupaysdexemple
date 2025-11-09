@@ -2,7 +2,7 @@ import plugin from 'tailwindcss/plugin'
 import svgToDataUri from 'mini-svg-data-uri'
 import { flattenColorPalette } from './utils'
 
-export const vfxBackgroundsPlugin = plugin(
+const vfxBackgroundsPlugin = plugin(
   ({ addUtilities, matchUtilities, theme }): void => {
     matchUtilities(
       {
@@ -45,3 +45,5 @@ export const vfxBackgroundsPlugin = plugin(
     },
   }
 )
+
+export default vfxBackgroundsPlugin

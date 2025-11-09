@@ -1,6 +1,6 @@
 import plugin from 'tailwindcss/plugin'
 
-export const dragPlugin = plugin(({ addUtilities }): void => {
+const dragPlugin = plugin(({ addUtilities }): void => {
   addUtilities({
     '.user-drag-none': {
       '-webkit-user-drag': 'none',
@@ -11,3 +11,5 @@ export const dragPlugin = plugin(({ addUtilities }): void => {
     },
   })
 })
+
+export default dragPlugin

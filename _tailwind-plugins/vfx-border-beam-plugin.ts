@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 import { flattenColorPalette } from './utils'
 
-export const vfxBorderBeamPlugin = plugin(
+const vfxBorderBeamPlugin = plugin(
   ({ matchUtilities, theme }): void => {
     matchUtilities(
       {
@@ -153,3 +153,5 @@ export const vfxBorderBeamPlugin = plugin(
     },
   }
 )
+
+export default vfxBorderBeamPlugin
