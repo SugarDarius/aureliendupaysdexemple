@@ -12,8 +12,7 @@ export type UserMeta = {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-type Storage = {}
+type Storage = Record<string, never>
 
 type RoomEvent = {
   type: 'ADD_SVG_PATHS'
@@ -24,8 +23,7 @@ type Presence = {
   isDrawing: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-type ThreadMetadata = {}
+type ThreadMetadata = Record<string, never>
 
 const client = createClient({
   authEndpoint: '/api/liveblocks-auth-drawing-on-screen',
