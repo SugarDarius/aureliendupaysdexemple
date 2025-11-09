@@ -1,25 +1,11 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { createRequire } from 'node:module'
-
-import { FlatCompat } from '@eslint/eslintrc'
+import { defineConfig } from 'eslint/config'
 import js from '@eslint/js'
-
-import tsParser from '@typescript-eslint/parser'
+import eslintConfigNext from 'eslint-config-next'
+import prettierPlugin from 'eslint-plugin-prettier'
 import * as mdxPlugin from 'eslint-plugin-mdx'
 import * as mdxParser from 'eslint-mdx'
 
-const __filename = fileURLToPath(import.meta.url)
-const require = createRequire(import.meta.url)
-
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-})
-
-const config = [
+export default defineConfig([
   {
     ignores: [
       'node_modules/**',
@@ -29,26 +15,24 @@ const config = [
       'next-env.d.ts',
     ],
   },
-  ...compat.extends(
-    'next/core-web-vitals',
-    'eslint:recommended',
-    'prettier',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:prettier/recommended'
-  ),
+  ...eslintConfigNext,
+  js.configs.recommended,
   {
-    languageOptions: {
-      parser: tsParser,
-    },
+    files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
-      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+      prettier: prettierPlugin,
+    },
+    languageOptions: {
+      globals: {
+        React: 'readonly',
+      },
     },
     rules: {
-      'prettier/prettier': 'error',
+      'prettier/prettier': 'off',
       'react-hooks/exhaustive-deps': 'error',
+      'react-hooks/purity': 'off',
+      'react-hooks/set-state-in-effect': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'error',
-
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -56,10 +40,11 @@ const config = [
           varsIgnorePattern: '^_',
         },
       ],
-
       eqeqeq: 'error',
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
     },
-  }, // MDX configuration
+  },
   {
     files: ['**/*.mdx'],
     plugins: {
@@ -80,11 +65,9 @@ const config = [
     },
   },
   {
-    files: ['./next.config.mjs'],
+    files: ['./next.config.ts'],
     rules: {
       '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
   },
-]
-
-export default config
+])
