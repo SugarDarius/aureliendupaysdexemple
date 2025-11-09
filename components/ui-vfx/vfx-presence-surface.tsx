@@ -20,11 +20,39 @@ import { getRandomUsername } from '@/lib/random-username'
 import { useMounted } from '@/hooks/use-mounted'
 import { Cursor } from '@/components/ui/cursor'
 
-const CURSOR_COLORS = ['violet-700', 'orange-600', 'sky-600', 'fuchsia-500']
+const CURSOR_COLORS = [
+  {
+    key: 'violet-700',
+    textClass: 'text-violet-700',
+    backgroundClass: 'bg-violet-700',
+  },
+  {
+    key: 'orange-600',
+    textClass: 'text-orange-600',
+    backgroundClass: 'bg-orange-600',
+  },
+  {
+    key: 'sky-600',
+    textClass: 'text-sky-600',
+    backgroundClass: 'bg-sky-600',
+  },
+  {
+    key: 'fuchsia-500',
+    textClass: 'text-fuchsia-500',
+    backgroundClass: 'bg-fuchsia-500',
+  },
+] as const
 
-const getRandomCursorColor = (previousCursorColor: string | null): string => {
+type CursorColor = (typeof CURSOR_COLORS)[number]
+
+const getRandomCursorColor = (
+  previousCursorColor: CursorColor | null
+): CursorColor => {
   const cursorColor = pick(CURSOR_COLORS)
-  if (previousCursorColor === null || previousCursorColor !== cursorColor) {
+  if (
+    previousCursorColor === null ||
+    previousCursorColor.key !== cursorColor.key
+  ) {
     return cursorColor
   }
 
@@ -40,7 +68,7 @@ const PresenceCursor = ({
   x: MotionValue<number>
   y: MotionValue<number>
   username: string
-  color: string
+  color: CursorColor
 }) => {
   return (
     <motion.div
@@ -51,11 +79,11 @@ const PresenceCursor = ({
       exit={{ opacity: 0 }}
     >
       <div className='flex flex-row gap-1'>
-        <Cursor className={cn('size-5', `text-${color}`)} />
+        <Cursor className={cn('size-5', color.textClass)} />
         <motion.div
           className={cn(
             '-ml-2.5 mt-3 flex h-7 flex-row items-center gap-1.5 rounded-full pl-1.5 pr-2',
-            `bg-${color}`
+            color.backgroundClass
           )}
           initial={{ opacity: 0, x: 10, y: 10 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
@@ -104,10 +132,10 @@ export function VFXPresenceSurface({
   children?: React.ReactNode
 }) {
   const surfaceRef = useRef<HTMLDivElement>(null)
-  const previousCursorColorRef = useRef<string | null>(null)
+  const previousCursorColorRef = useRef<CursorColor | null>(null)
 
   const [isCursorInside, setIsCursorInside] = useState<boolean>(false)
-  const [cursorColor, setCursorColor] = useState<string>('')
+  const [cursorColor, setCursorColor] = useState<CursorColor | null>(null)
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -124,11 +152,13 @@ export function VFXPresenceSurface({
   const handleMouseEnter = useEvent(
     (e: React.MouseEvent<HTMLDivElement>): void => {
       if (!disabled) {
-        const cursorColor = getRandomCursorColor(previousCursorColorRef.current)
-        previousCursorColorRef.current = cursorColor
+        const nextCursorColor = getRandomCursorColor(
+          previousCursorColorRef.current
+        )
+        previousCursorColorRef.current = nextCursorColor
 
         setIsCursorInside(true)
-        setCursorColor(cursorColor)
+        setCursorColor(nextCursorColor)
 
         x.set(e.clientX + window.scrollX)
         y.set(e.clientY + window.scrollY)
@@ -149,13 +179,13 @@ export function VFXPresenceSurface({
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
       className={cn(
-        'relative flex size-full cursor-none flex-col [border-radius:inherit]',
+        'relative flex size-full cursor-none flex-col rounded-[inherit]',
         className
       )}
     >
       <Portal>
         <AnimatePresence>
-          {isCursorInside ? (
+          {isCursorInside && cursorColor ? (
             <PresenceCursor
               key={username}
               x={x}

@@ -1,11 +1,9 @@
-import type { PluginAPI } from 'tailwindcss/types/config'
 import plugin from 'tailwindcss/plugin'
-import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
-
 import svgToDataUri from 'mini-svg-data-uri'
+import { flattenColorPalette } from './utils'
 
-export const vfxBackgroundsPlugin = plugin(
-  ({ addUtilities, matchUtilities, theme }: PluginAPI): void => {
+const vfxBackgroundsPlugin = plugin(
+  ({ addUtilities, matchUtilities, theme }): void => {
     matchUtilities(
       {
         'vfx-bg-dot': (value: string) => ({
@@ -47,3 +45,5 @@ export const vfxBackgroundsPlugin = plugin(
     },
   }
 )
+
+export default vfxBackgroundsPlugin

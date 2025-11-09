@@ -1,9 +1,9 @@
-import type { PluginAPI, Config } from 'tailwindcss/types/config'
+import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
-import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
+import { flattenColorPalette } from './utils'
 
-export const vfxBorderBeamPlugin = plugin(
-  ({ matchUtilities, theme }: PluginAPI): void => {
+const vfxBorderBeamPlugin = plugin(
+  ({ matchUtilities, theme }): void => {
     matchUtilities(
       {
         'vfx-border-beam-duration': (value: string) => ({
@@ -153,3 +153,5 @@ export const vfxBorderBeamPlugin = plugin(
     },
   }
 )
+
+export default vfxBorderBeamPlugin

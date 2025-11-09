@@ -263,14 +263,14 @@ export function SmartStack({
       className={cn('group relative flex flex-col', className)}
     >
       <div
-        className='absolute left-0 top-0 h-full w-full overflow-hidden !bg-transparent'
+        className='absolute left-0 top-0 h-full w-full overflow-hidden bg-transparent!'
         style={{ borderRadius: roundedValuePx }}
       >
         <div
           className='absolute left-0 top-0 h-full w-full overflow-hidden bg-neutral-700 dark:bg-neutral-800'
           style={{ borderRadius: roundedValuePx > 0 ? roundedValuePx + 2 : 0 }}
         >
-          <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-900 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]' />
+          <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-900 mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]' />
         </div>
         <div
           className='absolute left-0 top-0 h-full w-full overflow-hidden'

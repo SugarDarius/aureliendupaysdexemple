@@ -13,6 +13,11 @@ import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 const BASE_MARKERS: Marker[] = [{ location: [48.1744, 6.4512], size: 0.1 }]
 
 type Geolocation = { latitude: number; longitude: number }
+type GlobeRenderState = Record<string, number | [number, number, number]> & {
+  phi: number
+  glowColor: [number, number, number]
+  dark: number
+}
 const fetcher: Fetcher<Geolocation, string> = (url: string) =>
   fetch(url).then((res) => res.json())
 
@@ -31,15 +36,15 @@ export function GlobeWidget() {
   )
   const r = useSpring(3.9, { mass: 1, stiffness: 280, damping: 40 })
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleRender = useEvent((state: Record<string, any>): void => {
+    const globeState = state as GlobeRenderState
     const isDark = resolvedTheme === 'dark'
 
-    state.dark = isDark ? 0 : 1
-    state.glowColor = isDark ? [0.85, 0.85, 0.85] : [0.15, 0.15, 0.15]
+    globeState.dark = isDark ? 0 : 1
+    globeState.glowColor = isDark ? [0.85, 0.85, 0.85] : [0.15, 0.15, 0.15]
 
-    state.phi = r.get()
-    r.set(state.phi + 0.06)
+    globeState.phi = r.get()
+    r.set(globeState.phi + 0.06)
   })
 
   useEffect(() => {
@@ -72,8 +77,7 @@ export function GlobeWidget() {
         globe.destroy()
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [geolocationData])
+  }, [geolocationData, handleRender])
 
   return (
     <div className='relative flex h-full w-full flex-col items-center justify-center p-4 max-sm:gap-3'>

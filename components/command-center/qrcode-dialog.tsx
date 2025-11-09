@@ -36,7 +36,7 @@ export function QRCodeDialog({
           <DialogTitle className='text-2xl font-extrabold tracking-tighter'>
             Scan QR Code
           </DialogTitle>
-          <DialogDescription className='!mt-0'>
+          <DialogDescription className='mt-0!'>
             Scan this QR code with a scanner app on your phone
           </DialogDescription>
         </DialogHeader>
@@ -57,7 +57,7 @@ export function QRCodeDialog({
             />
           </div>
         </div>
-        <DialogFooter className='items-center !justify-center'>
+        <DialogFooter className='items-center justify-center!'>
           <span className='rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
             {value}
           </span>
