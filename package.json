@@ -69,7 +69,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.39.1",
-    "@tailwindcss/postcss": "^4.1.16",
+    "@tailwindcss/postcss": "^4.1.17",
     "@types/dom-view-transitions": "^1.0.6",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
