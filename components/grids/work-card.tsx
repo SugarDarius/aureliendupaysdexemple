@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator'
 import { BentoCard } from '@/components/grids/bento-card'
 
 const WorkCardSeparator = ({ className }: { className?: string }) => (
-  <Separator className={cn('w-4 bg-stone-800 dark:bg-stone-500', className)} />
+  <Separator className={cn('w-4! bg-stone-800 dark:bg-stone-500', className)} />
 )
 
 export function WorkCard({
@@ -50,11 +50,11 @@ export function WorkCard({
               </AnchorComp>
             </div>
             <WorkCardSeparator className='max-md:hidden' />
-            <span className='font-semibold text-muted-foreground max-md:text-sm'>
+            <span className='text-muted-foreground font-semibold max-md:text-sm'>
               {jobTitle}
             </span>
           </div>
-          <div className='flex flex-row items-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 font-mono text-sm text-neutral-900 no-underline dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100 max-md:gap-1 max-md:text-xs'>
+          <div className='flex flex-row items-center gap-2 rounded-full border border-neutral-200 bg-stone-50 px-2.5 py-1 font-mono text-sm text-neutral-900 no-underline max-md:gap-1 max-md:text-xs dark:border-neutral-700 dark:bg-stone-800 dark:text-neutral-100'>
             {startDate}
             <WorkCardSeparator className='w-2 max-md:w-1' />
             {endDate ?? 'Now'}
