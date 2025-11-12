@@ -89,7 +89,7 @@ const CommandCenterFooter = () => (
         <ReturnIcon className='h-4 w-4 stroke-[1.5px]' />
       </CommandCenterFooterShortcut>
       <CommandCenterFooterShortcut name='Close'>
-        <span className='text-xs font-light leading-none tracking-[1px]'>
+        <span className='text-xs leading-none font-light tracking-[1px]'>
           ESC
         </span>
       </CommandCenterFooterShortcut>
