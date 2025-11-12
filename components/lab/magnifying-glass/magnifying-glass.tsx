@@ -22,7 +22,7 @@ import {
   toggleMagnifyingGlass,
 } from '@/components/lab/magnifying-glass/magnifying-glass-store'
 
-const GLASS_SIZE = 120
+const GLASS_SIZE = 240
 
 const Glass = ({
   x,
@@ -99,7 +99,7 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
   }
 
   return createPortal(
-    <div className='pointer-events-none absolute left-0 top-0 z-999999! h-screen w-screen'>
+    <div className='pointer-events-none absolute top-0 left-0 z-999999! h-screen w-screen'>
       {children}
     </div>,
     document.body
