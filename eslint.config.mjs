@@ -1,22 +1,22 @@
-import { defineConfig } from 'eslint/config'
-import js from '@eslint/js'
-import eslintConfigNext from 'eslint-config-next'
+import { defineConfig, globalIgnores } from 'eslint/config'
+import nextVitals from 'eslint-config-next/core-web-vitals'
+import nextTs from 'eslint-config-next/typescript'
+
 import prettierPlugin from 'eslint-plugin-prettier'
 import * as mdxPlugin from 'eslint-plugin-mdx'
 import * as mdxParser from 'eslint-mdx'
 
 export default defineConfig([
-  {
-    ignores: [
-      'node_modules/**',
-      '.next/**',
-      'out/**',
-      'build/**',
-      'next-env.d.ts',
-    ],
-  },
-  ...eslintConfigNext,
-  js.configs.recommended,
+  ...nextVitals,
+  ...nextTs, // Override default ignores of eslint-config-next.
+  globalIgnores([
+    // Default ignores of eslint-config-next:
+    'node_modules/**',
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+  ]),
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
@@ -45,6 +45,12 @@ export default defineConfig([
     },
   },
   {
+    files: ['**/*.tsx', './components/ui/*.ts'],
+    rules: {
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+    },
+  },
+  {
     files: ['**/*.mdx'],
     plugins: {
       mdx: mdxPlugin,
@@ -55,18 +61,6 @@ export default defineConfig([
     rules: {
       ...mdxPlugin.configs.recommended.rules,
       'react/jsx-no-undef': 'off',
-    },
-  },
-  {
-    files: ['**/*.tsx', './components/ui/*.ts'],
-    rules: {
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-    },
-  },
-  {
-    files: ['./next.config.ts'],
-    rules: {
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
   },
 ])

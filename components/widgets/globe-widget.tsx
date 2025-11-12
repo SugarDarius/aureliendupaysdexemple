@@ -36,6 +36,7 @@ export function GlobeWidget() {
   )
   const r = useSpring(3.9, { mass: 1, stiffness: 280, damping: 40 })
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleRender = useEvent((state: Record<string, any>): void => {
     const globeState = state as GlobeRenderState
     const isDark = resolvedTheme === 'dark'
