@@ -62,7 +62,7 @@
     "@tailwindcss/postcss": "^4.1.17",
     "@types/dom-view-transitions": "^1.0.6",
     "@types/node": "^24.10.1",
-    "@types/react": "^19.2.6",
+    "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@types/three": "^0.181.0",
     "eslint": "^9.39.1",
