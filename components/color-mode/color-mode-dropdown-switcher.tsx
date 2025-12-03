@@ -58,11 +58,12 @@ export function ColorModeDropdownSwitcher({
             <span
               className={cn(
                 navigationMenuTriggerStyle(),
-                'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
+                'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
+                'cursor-pointer'
               )}
             >
-              <SunIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-              <MoonIcon className='absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+              <SunIcon className='h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90' />
+              <MoonIcon className='absolute h-4 w-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
               <span className='sr-only'>Toggle color mode</span>
             </span>
           </TooltipTrigger>
@@ -71,7 +72,7 @@ export function ColorModeDropdownSwitcher({
             sideOffset={8}
           >
             Switch color mode
-            <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium tracking-[2px] text-muted-foreground'>
+            <span className='bg-muted text-muted-foreground pointer-events-none flex items-center gap-1 rounded border px-1.5 text-[10px] font-medium tracking-[2px] select-none'>
               S+C
             </span>
           </TooltipContent>

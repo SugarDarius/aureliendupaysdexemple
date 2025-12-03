@@ -72,7 +72,8 @@ export function CommandCenter({ className }: { className?: string }) {
             variant='ghost'
             className={cn(
               navigationMenuTriggerStyle(),
-              'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent',
+              'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
+              'cursor-pointer',
               className
             )}
             onClick={handleButtonClick}
@@ -86,7 +87,7 @@ export function CommandCenter({ className }: { className?: string }) {
           sideOffset={8}
         >
           <span>Command center</span>
-          <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium tracking-[2px] text-muted-foreground'>
+          <span className='bg-muted text-muted-foreground pointer-events-none flex items-center gap-1 rounded border px-1.5 text-[10px] font-medium tracking-[2px] select-none'>
             ⌘K
           </span>
         </TooltipContent>
