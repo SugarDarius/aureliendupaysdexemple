@@ -50,7 +50,7 @@ export const NavigationDockItem = ({
         <TooltipTrigger aria-label={name}>
           <NavigationMenuLink asChild>
             <NavigationDockItemLink href={href} name={name} active={isActive}>
-              <Icon className='h-4 w-4' />
+              <Icon className='size-4' />
             </NavigationDockItemLink>
           </NavigationMenuLink>
         </TooltipTrigger>
@@ -59,7 +59,7 @@ export const NavigationDockItem = ({
           sideOffset={8}
         >
           <span>{toUpperFirst(label)}</span>
-          <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium tracking-[2px] text-muted-foreground'>
+          <span className='bg-muted text-muted-foreground pointer-events-none flex items-center gap-1 rounded border px-1.5 text-[10px] font-medium tracking-[2px] select-none'>
             {shortcutLabel}
           </span>
         </TooltipContent>

@@ -51,7 +51,9 @@ export const NavigationDockItemLink = forwardRef<
         href={href}
         className={cn(
           navigationMenuTriggerStyle(),
-          variants({ variant, className })
+          variants({ variant }),
+          'size-auto',
+          className
         )}
         data-active={active ? '' : undefined}
         onClick={onClick}
@@ -84,7 +86,7 @@ export const NavigationDockItemExternalLink = ({
           rel='noopener noreferrer'
           className={cn(
             navigationMenuTriggerStyle(),
-            'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent'
+            'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0'
           )}
           aria-label={name}
         >
