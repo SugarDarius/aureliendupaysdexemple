@@ -22,7 +22,7 @@ import {
   toggleMagnifyingGlass,
 } from '@/components/lab/magnifying-glass/magnifying-glass-store'
 
-const GLASS_SIZE = 240
+const GLASS_SIZE = 180
 
 const Glass = ({
   x,
@@ -30,31 +30,33 @@ const Glass = ({
 }: {
   x: MotionValue<number>
   y: MotionValue<number>
-}) => (
-  <motion.svg
-    className={cn(
-      'pointer-events-none fixed inset-0 scale-50 rounded-full border-2 bg-[hsl(210_80%_90%/0.05)]',
-      'border-[color-mix(in_lch,hsl(var(--foreground)),color-mix(in_lch,hsl(var(--background)),hsl(210_10%_40%)),60%)]',
-      'shadow-[0px_4px_16px_rgba(17,17,26,0.1),0px_8px_24px_rgba(17,17,26,0.1),0px_16px_56px_rgba(17,17,26,0.1),0px_4px_16px_rgba(17,17,26,0.1)_inset,0px_8px_24px_rgba(17,17,26,0.1)_inset,0px_16px_56px_rgba(17,17,26,0.1)_inset]',
-      '[backdrop-filter:url(#magnify-filter)]'
-    )}
-    xmlns='http://www.w3.org/2000/svg'
-    viewBox='0 0 100 100'
-    fill='none'
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.125, ease: 'linear' }}
-    exit={{ opacity: 0 }}
-    style={{ x, y, width: `${GLASS_SIZE}px`, height: `${GLASS_SIZE}px` }}
-  >
-    <path
-      d='M12.6758 35.6141C14.5653 30.7128 17.4018 26.2318 21.0231 22.4267C24.6445 18.6216 28.9798 15.5671 33.7816 13.4375'
-      stroke='color-mix(in lch, white, transparent 35%)'
-      strokeWidth='8'
-      strokeLinecap='round'
-    />
-  </motion.svg>
-)
+}) => {
+  return (
+    <motion.svg
+      className={cn(
+        'pointer-events-none fixed inset-0 rounded-full border-2 bg-[hsl(210_80%_90%/0.05)]',
+        'border-[color-mix(in_lch,hsl(var(--foreground)),color-mix(in_lch,hsl(var(--background)),hsl(210_10%_40%)),60%)]',
+        'shadow-[0px_4px_16px_rgba(17,17,26,0.1),0px_8px_24px_rgba(17,17,26,0.1),0px_16px_56px_rgba(17,17,26,0.1),0px_4px_16px_rgba(17,17,26,0.1)_inset,0px_8px_24px_rgba(17,17,26,0.1)_inset,0px_16px_56px_rgba(17,17,26,0.1)_inset]',
+        '[backdrop-filter:url(#magnify-filter)]'
+      )}
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 100 100'
+      fill='none'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.125, ease: 'linear' }}
+      exit={{ opacity: 0 }}
+      style={{ x, y, width: `${GLASS_SIZE}px`, height: `${GLASS_SIZE}px` }}
+    >
+      <path
+        d='M12.6758 35.6141C14.5653 30.7128 17.4018 26.2318 21.0231 22.4267C24.6445 18.6216 28.9798 15.5671 33.7816 13.4375'
+        stroke='color-mix(in lch, white, transparent 35%)'
+        strokeWidth='8'
+        strokeLinecap='round'
+      />
+    </motion.svg>
+  )
+}
 
 const MagnifyFilter = () => (
   <svg
