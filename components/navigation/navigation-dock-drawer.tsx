@@ -40,7 +40,7 @@ export function NavigationDockDrawer({
           variant='ghost'
           className={cn(
             navigationMenuTriggerStyle(),
-            'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0 data-[active]:bg-accent',
+            'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
             className
           )}
           aria-label='burger menu'
