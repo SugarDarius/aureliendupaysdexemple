@@ -93,7 +93,7 @@ export function HeroBentoItem() {
                 </div>
                 <div className='flex flex-none flex-row items-center'>
                   <span className='text-[10px] leading-[10px]'>
-                    &copy; 2025
+                    &copy; 2026
                   </span>
                 </div>
               </div>
