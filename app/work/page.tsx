@@ -93,7 +93,7 @@ export default function WorkPage() {
               Liveblocks is the best place for ready-made features for AI and
               human collaboration 🚀.
               <br />
-              Want to give try? 👉🏻{' '}
+              Wanna give a try? 👉🏻{' '}
               <InlineLink href='https://liveblocks.io/' aria-label='Liveblocks'>
                 liveblocks.io
               </InlineLink>
