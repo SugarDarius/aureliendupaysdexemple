@@ -30,7 +30,7 @@ export function CraftCard({
 
   return (
     <BentoCard className='col-span-2' variant='grid'>
-      <Link href={`/craft/${slug}`}>
+      <Link href={`/craft/${slug}`} transitionTypes={['fade']}>
         <div className='relative flex h-full w-full flex-col gap-4 p-4 max-lg:gap-3'>
           <div className='flex flex-none flex-row items-center gap-4'>
             <div className='flex flex-auto flex-row items-center truncate'>
@@ -40,14 +40,14 @@ export function CraftCard({
             </div>
             <div className='flex flex-none items-center'>
               {isLab ? (
-                <BeakerIcon className='size-5 text-muted-foreground' />
+                <BeakerIcon className='text-muted-foreground size-5' />
               ) : (
-                <CodeBracketSquareIcon className='size-5 text-muted-foreground' />
+                <CodeBracketSquareIcon className='text-muted-foreground size-5' />
               )}
             </div>
           </div>
           <div className='flex w-full flex-none flex-col gap-4'>
-            <p className='line-clamp-2 text-sm font-medium leading-5 text-muted-foreground'>
+            <p className='text-muted-foreground line-clamp-2 text-sm leading-5 font-medium'>
               {summary}
             </p>
             <div className='flex w-full flex-row items-center justify-between'>
@@ -56,7 +56,7 @@ export function CraftCard({
                 <ClockIcon className='size-3' />
                 <time
                   dateTime={dateTime.toISOString()}
-                  className='text-xs font-semibold text-muted-foreground'
+                  className='text-muted-foreground text-xs font-semibold'
                 >
                   {published}
                 </time>

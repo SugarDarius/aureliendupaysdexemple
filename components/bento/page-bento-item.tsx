@@ -16,7 +16,12 @@ export function PageBentoItem({
 }) {
   return (
     <BentoCard className='h-full'>
-      <Link href={href} className='h-full w-full' aria-label={title}>
+      <Link
+        href={href}
+        className='h-full w-full'
+        aria-label={title}
+        transitionTypes={['fade']}
+      >
         <div className='relative flex h-full w-full flex-col'>
           <div className='flex h-full flex-col justify-between p-4 max-sm:gap-3'>
             <div className='flex w-full flex-none flex-row items-start justify-between'>
@@ -24,7 +29,7 @@ export function PageBentoItem({
                 <h1 className='text-2xl font-semibold tracking-tighter max-sm:text-lg'>
                   {title}
                 </h1>
-                <p className='text-sm text-muted-foreground'>{description}</p>
+                <p className='text-muted-foreground text-sm'>{description}</p>
               </div>
               <ArrowUpRightIcon className='size-6 max-sm:size-4' />
             </div>

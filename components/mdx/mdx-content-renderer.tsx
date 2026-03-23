@@ -60,7 +60,14 @@ const Link = (
   const href = props.href ?? ''
 
   if (href.startsWith('/')) {
-    return <NextLink href={href} aria-label='internal-link' {...props} />
+    return (
+      <NextLink
+        href={href}
+        aria-label='internal-link'
+        {...props}
+        transitionTypes={['fade']}
+      />
+    )
   }
 
   if (href.startsWith('#')) {
@@ -83,7 +90,7 @@ const CodeBlock = ({
         dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
       />
       <CopyCodeButton
-        className='absolute right-2.5 top-2.5'
+        className='absolute top-2.5 right-2.5'
         code={children as string}
       />
     </React.Fragment>
@@ -96,7 +103,7 @@ const InlineCode = ({
 }: React.HTMLAttributes<HTMLElement>) => (
   <code
     className={cn(
-      'relative w-max rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm before:hidden after:hidden',
+      'bg-muted relative w-max rounded px-[0.3rem] py-[0.2rem] font-mono text-sm before:hidden after:hidden',
       className
     )}
     {...props}
@@ -109,7 +116,7 @@ const RoundedImage = ({ className, alt, ...props }: ImageProps) => (
 
 const RoundedVideo = ({ src }: { src: string }) => (
   <div className='relative flex h-auto w-full flex-col overflow-hidden rounded-xl border'>
-    <div className='absolute left-0 top-0 h-full w-full overflow-hidden bg-neutral-700 dark:bg-neutral-800'>
+    <div className='absolute top-0 left-0 h-full w-full overflow-hidden bg-neutral-700 dark:bg-neutral-800'>
       <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-900 mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]' />
     </div>
     <video
@@ -143,7 +150,7 @@ const components: MDXRendererComponents = {
 
 export function MDXContentRenderer({ source }: { source: string }) {
   return (
-    <article className='prose max-w-none dark:prose-invert prose-a:underline-offset-4 prose-pre:relative prose-pre:bg-[#1B293D]'>
+    <article className='prose dark:prose-invert prose-a:underline-offset-4 prose-pre:relative prose-pre:bg-[#1B293D] max-w-none'>
       <MDXRemote source={source} components={components} />
     </article>
   )
