@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+  experimental: {
+    viewTransition: true,
+  },
   async headers() {
     return [
       {

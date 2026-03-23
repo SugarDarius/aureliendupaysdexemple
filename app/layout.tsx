@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { ViewTransition } from 'react'
 
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
@@ -82,12 +83,19 @@ export default function RootLayout({
         )}
       >
         <ProvidersTree>
-          <main className='flex h-dvh w-screen flex-col overflow-hidden'>
-            <div className='flex h-full w-full flex-col overflow-y-auto'>
-              <div className='flex w-full flex-1 flex-col'>{children}</div>
-            </div>
-            <NavigationDock />
-          </main>
+          <ViewTransition
+            default={{
+              default: 'none',
+              fade: 'fade',
+            }}
+          >
+            <main className='flex h-dvh w-screen flex-col overflow-hidden'>
+              <div className='flex h-full w-full flex-col overflow-y-auto'>
+                <div className='flex w-full flex-1 flex-col'>{children}</div>
+              </div>
+              <NavigationDock />
+            </main>
+          </ViewTransition>
           <Toaster />
           <MagnifyingGlass />
           <TailwindIndicator />

@@ -58,6 +58,7 @@ export const NavigationDockItemLink = forwardRef<
         data-active={active ? '' : undefined}
         onClick={onClick}
         aria-label={name}
+        transitionTypes={['fade']}
       >
         {children}
       </Link>

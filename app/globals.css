@@ -176,3 +176,38 @@
     mix-blend-mode: normal;
   }
 }
+
+@keyframes demo-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes demo-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+::view-transition-old(.fade),
+::view-transition-new(.fade) {
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(.fade) {
+  animation-name: demo-fade-out;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.fade) {
+  animation-name: demo-fade-in;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+}
