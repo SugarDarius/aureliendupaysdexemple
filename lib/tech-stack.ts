@@ -26,6 +26,7 @@ import { SupabaseIcon } from '@/components/icons/supabase-icon'
 
 import { VercelIcon } from '@/components/icons/vercel-icon'
 
+import { CursorIcon } from '@/components/icons/cursor-icon'
 import { VSCodeIcon } from '@/components/icons/vscode-icon'
 import { NodeJSIcon } from '@/components/icons/nodejs-icon'
 import { TurboRepoIcon } from '@/components/icons/turbo-repo-icon'
@@ -179,6 +180,12 @@ export const hoistingAndDeploymentTechStackItems: TechStackItem[] = [
 ]
 
 export const toolsAndSoftwaresBaseTechStackItems: TechStackItem[] = [
+  {
+    name: 'Cursor',
+    Icon: CursorIcon,
+    tag: 'code editor',
+    href: 'https://www.cursor.com/',
+  },
   {
     name: 'VSCode',
     Icon: VSCodeIcon,

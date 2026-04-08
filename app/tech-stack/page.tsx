@@ -55,7 +55,6 @@ export default function TechStackPage() {
           <StackItem key={props.name} {...props} />
         ))}
         <div className='col-span-1 max-sm:hidden' />
-        <div className='col-span-1 max-sm:hidden' />
         {toolsAndSoftwaresRepoTechStackItems.map((props) => (
           <StackItem key={props.name} {...props} />
         ))}
