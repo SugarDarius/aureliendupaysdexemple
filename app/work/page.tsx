@@ -53,6 +53,7 @@ export default function WorkPage() {
           companyName='Liveblocks'
           jobTitle='Product Engineer (remote)'
           startDate='July 2024'
+          endDate='April 2026'
         >
           <div className='flex w-full flex-col gap-6'>
             <p>
@@ -77,7 +78,7 @@ export default function WorkPage() {
                   href='https://liveblocks.io/docs/api-reference/liveblocks-emails'
                   aria-label='Liveblocks emails'
                 >
-                  helper packages
+                  public packages
                 </InlineLink>{' '}
                 and more.
               </p>
