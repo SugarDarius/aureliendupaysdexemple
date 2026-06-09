@@ -23,7 +23,7 @@
     "@react-three/fiber": "^9.6.1",
     "@sugardarius/anzen": "^2.3.2",
     "@t3-oss/env-nextjs": "^0.13.11",
-    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/typography": "^0.5.20",
     "@vercel/analytics": "^2.0.1",
     "@vercel/functions": "^3.6.2",
     "@vercel/speed-insights": "^2.0.0",
