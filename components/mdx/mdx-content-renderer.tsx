@@ -1,18 +1,16 @@
-import React from 'react'
-
-import NextLink from 'next/link'
-import Image, { type ImageProps } from 'next/image'
-
-import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc'
-
 import { clsx } from 'clsx'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import type { MDXRemoteProps } from 'next-mdx-remote/rsc'
+import Image from 'next/image'
+import type { ImageProps } from 'next/image'
+import NextLink from 'next/link'
+import React from 'react'
 import { highlight } from 'sugar-high'
 
-import { cn, slugify } from '@/lib/utils'
-
-import { TagLink } from '@/components/content/tag-link'
 import { Callout } from '@/components/content/callout'
 import { CopyCodeButton } from '@/components/content/copy-code-button'
+import { TagLink } from '@/components/content/tag-link'
+import { cn, slugify } from '@/lib/utils'
 
 type MDXRendererComponents = Required<MDXRemoteProps['components']>
 
@@ -28,10 +26,10 @@ const createHeading = (level: 1 | 2 | 3 | 4 | 5 | 6) => {
     const anchor = slug
       ? [
           React.createElement('a', {
-            href: `#${slug}`,
-            key: `anchor-${slug}`,
             className:
               'invisible absolute -ml-6 h-full w-full cursor-pointer pr-3 no-underline after:content-["#"] group-hover:visible max-lg:hidden',
+            href: `#${slug}`,
+            key: `anchor-${slug}`,
           }),
         ]
       : []
@@ -43,7 +41,7 @@ const createHeading = (level: 1 | 2 | 3 | 4 | 5 | 6) => {
         className: cn('relative', clsx({ group: slug !== null }), className),
       },
       anchor,
-      children
+      children,
     )
   }
   Heading.displayName = `Heading${level}`
@@ -55,7 +53,7 @@ const Link = (
   props: React.DetailedHTMLProps<
     React.AnchorHTMLAttributes<HTMLAnchorElement>,
     HTMLAnchorElement
-  >
+  >,
 ) => {
   const href = props.href ?? ''
 
@@ -84,7 +82,7 @@ const CodeBlock = ({
   const highlightedCodeHTML = highlight(children as string)
 
   return (
-    <React.Fragment>
+    <>
       <code
         {...props}
         dangerouslySetInnerHTML={{ __html: highlightedCodeHTML }}
@@ -93,7 +91,7 @@ const CodeBlock = ({
         className='absolute top-2.5 right-2.5'
         code={children as string}
       />
-    </React.Fragment>
+    </>
   )
 }
 
@@ -104,7 +102,7 @@ const InlineCode = ({
   <code
     className={cn(
       'bg-muted relative w-max rounded px-[0.3rem] py-[0.2rem] font-mono text-sm before:hidden after:hidden',
-      className
+      className,
     )}
     {...props}
   />
@@ -133,19 +131,19 @@ const RoundedVideo = ({ src }: { src: string }) => (
 )
 
 const components: MDXRendererComponents = {
+  Callout,
+  InlineCode,
+  RoundedImage,
+  RoundedVideo,
+  TagLink,
+  a: Link,
+  code: CodeBlock,
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
   h4: createHeading(4),
   h5: createHeading(5),
   h6: createHeading(6),
-  code: CodeBlock,
-  a: Link,
-  TagLink,
-  Callout,
-  InlineCode,
-  RoundedImage,
-  RoundedVideo,
 }
 
 export function MDXContentRenderer({ source }: { source: string }) {

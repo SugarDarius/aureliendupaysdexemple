@@ -16,24 +16,16 @@ const ContentSecurityPolicy = `
 `
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  transpilePackages: ['next-mdx-remote'],
-  logging: {
-    fetches: {
-      fullUrl: true,
-    },
-  },
   experimental: {
     viewTransition: true,
   },
   async headers() {
     return [
       {
-        source: '/(.*)',
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: ContentSecurityPolicy.replace(/\n/g, ''),
+            value: ContentSecurityPolicy.replaceAll('\n', ''),
           },
           {
             key: 'Referrer-Policy',
@@ -61,9 +53,17 @@ const nextConfig: NextConfig = {
             value: 'on',
           },
         ],
+        source: '/(.*)',
       },
     ]
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+  reactStrictMode: true,
+  transpilePackages: ['next-mdx-remote'],
 }
 
 export default nextConfig

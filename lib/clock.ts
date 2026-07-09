@@ -1,8 +1,6 @@
 import { format } from 'date-fns'
 
-export const formatClock = (): string => {
-  return format(new Date(), 'hh-mm-aaaa')
-}
+export const formatClock = (): string => format(new Date(), 'hh-mm-aaaa')
 
 export const getTimezoneOffset = (): string => {
   const timezoneOffset = new Date().getTimezoneOffset()

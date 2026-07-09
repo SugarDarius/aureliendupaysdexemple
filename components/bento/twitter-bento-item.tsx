@@ -1,12 +1,11 @@
-import Image from 'next/image'
 import { PaperAirplaneIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
-import { siteConfig } from '@/config/site-config'
-
-import { VFXBorderBeam } from '@/components/ui-vfx/vfx-border-beam'
 import { BentoCard } from '@/components/grids/bento-card'
 import { TwitterSquareIcon } from '@/components/icons/twitter-square-icon'
+import { VFXBorderBeam } from '@/components/ui-vfx/vfx-border-beam'
 import { TwitterPostWidget } from '@/components/widgets/twitter-post-widget'
+import { siteConfig } from '@/config/site-config'
 
 export function TwitterBentoItem() {
   return (

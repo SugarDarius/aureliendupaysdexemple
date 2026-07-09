@@ -1,13 +1,12 @@
-import { SparklesIcon } from '@/components/icons/sparkles-icon'
 import {
   LabPage,
   LabPageContent,
   LabPageHeader,
 } from '@/components/content/lab-page'
 import { PageHero } from '@/components/content/page-hero'
-
-import { WindowFrame } from '@/components/lab/window-frame'
+import { SparklesIcon } from '@/components/icons/sparkles-icon'
 import { DrawingOnScreenFrame } from '@/components/lab/drawing-on-screen/drawing-on-screen-frame'
+import { WindowFrame } from '@/components/lab/window-frame'
 
 export default function LiveblocksDrawingOnScreenPage() {
   return (

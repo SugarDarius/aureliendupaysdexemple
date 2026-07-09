@@ -2,8 +2,6 @@
 
 import { QRCodeSVG } from 'qrcode.react'
 
-import { cn } from '@/lib/utils'
-import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 import {
   Dialog,
   DialogContent,
@@ -12,6 +10,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
+import { cn } from '@/lib/utils'
 
 const LOGO_SRC = '/medias/images/aureliendupaysdexemple-logo.webp'
 
@@ -49,10 +49,10 @@ export function QRCodeDialog({
               fgColor={isDark ? '#ffffff' : '#000000'}
               level='H'
               imageSettings={{
+                excavate: true,
+                height: 64,
                 src: LOGO_SRC,
                 width: 64,
-                height: 64,
-                excavate: true,
               }}
             />
           </div>

@@ -1,19 +1,14 @@
 'use client'
 
-import { useState } from 'react'
-import useEvent from 'react-use-event-hook'
-
 import {
   SunIcon,
   MoonIcon,
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
+import { useState } from 'react'
+import useEvent from 'react-use-event-hook'
 
-import { cn } from '@/lib/utils'
-import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
-
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
-
+import { Button } from '@/components/ui/button'
 import {
   Drawer,
   DrawerContent,
@@ -21,7 +16,9 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { Button } from '@/components/ui/button'
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
+import { cn } from '@/lib/utils'
 
 const ColorModeDrawerItem = ({
   className,
@@ -33,20 +30,18 @@ const ColorModeDrawerItem = ({
   selected: boolean
   children?: React.ReactNode
   onClick: () => void
-}) => {
-  return (
-    <div
-      className={cn(
-        'flex h-full w-full flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow data-[selected=true]:bg-accent/50',
-        className
-      )}
-      onClick={onClick}
-      date-selected={`${selected}`}
-    >
-      {children}
-    </div>
-  )
-}
+}) => (
+  <div
+    className={cn(
+      'flex h-full w-full flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow data-[selected=true]:bg-accent/50',
+      className,
+    )}
+    onClick={onClick}
+    date-selected={`${selected}`}
+  >
+    {children}
+  </div>
+)
 
 export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
   const { setColorMode, theme } = useSwitchColorMode()
@@ -65,7 +60,7 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
           className={cn(
             navigationMenuTriggerStyle(),
             'flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
-            className
+            className,
           )}
         >
           <SunIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />

@@ -1,22 +1,19 @@
 'use client'
 
+import { shallow } from '@liveblocks/react/suspense'
+import { clsx } from 'clsx'
+import { motion, useMotionValue, AnimatePresence } from 'motion/react'
+import type { MotionValue } from 'motion/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-
-import { createPortal } from 'react-dom'
 import { useMemo, useRef, useState } from 'react'
-
+import { createPortal } from 'react-dom'
 import useEvent from 'react-use-event-hook'
 
-import { clsx } from 'clsx'
-import {
-  type MotionValue,
-  motion,
-  useMotionValue,
-  AnimatePresence,
-} from 'motion/react'
-
-import { shallow } from '@liveblocks/react/suspense'
+import { PencilIcon } from '@/components/icons/pencil-icon'
+import { DrawingCanvas } from '@/components/lab/drawing-canvas/drawing-canvas'
+import type { DrawingCanvasRef } from '@/components/lab/drawing-canvas/drawing-canvas'
+import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
 import {
   useBroadcastEvent,
   useEventListener,
@@ -26,10 +23,11 @@ import {
   useOthers,
   useErrorListener,
 } from '@/components/lab/drawing-on-screen/liveblocks.config'
-
-import { cn } from '@/lib/utils'
-
-import { PencilIcon } from '@/components/icons/pencil-icon'
+import type { Participant } from '@/components/lab/video-call-frame'
+import {
+  VideoCallFrame,
+  ControlButton,
+} from '@/components/lab/video-call-frame'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -39,17 +37,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-
-import {
-  VideoCallFrame,
-  Participant,
-  ControlButton,
-} from '@/components/lab/video-call-frame'
-import type { SVGPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
-import {
-  type DrawingCanvasRef,
-  DrawingCanvas,
-} from '@/components/lab/drawing-canvas/drawing-canvas'
+import { cn } from '@/lib/utils'
 
 const RoomFullAlert = () => {
   const [open, setOpen] = useState<boolean>(false)
@@ -60,6 +48,7 @@ const RoomFullAlert = () => {
     router.push('/')
   })
 
+  // oxlint-disable-next-line promise/prefer-await-to-callbacks
   useErrorListener((err): void => {
     if (err.context.code === 4005) {
       setOpen(true)
@@ -111,7 +100,7 @@ const Portal = ({ children }: { children: React.ReactNode }) =>
     <div className='pointer-events-none absolute left-0 top-0 h-screen w-screen'>
       {children}
     </div>,
-    document.body
+    document.body,
   )
 
 const STROKE_COLOR = '#48AEFF'
@@ -124,8 +113,8 @@ const STROKE_COLOR_PUBLIC_METADATA_KEY = 'liveblocks-stroke-color'
 const SENT_FLAG_PUBLIC_METADATA_KEY = 'liveblocks-sent-flag'
 
 const getBooleanMetadata = (
+  key: string,
   metadata: SVGPath['publicMetadata'] = {},
-  key: string
 ): boolean => {
   const value = metadata[key]
   if (!(typeof value === 'boolean')) {
@@ -135,12 +124,12 @@ const getBooleanMetadata = (
   return value
 }
 
-const markPathsAsSent = (paths: SVGPath[]): SVGPath[] => {
-  return paths.map((path): SVGPath => {
+const markPathsAsSent = (paths: SVGPath[]): SVGPath[] =>
+  paths.map((path): SVGPath => {
     const metadata = path.publicMetadata ?? {}
     const markedAsSent = getBooleanMetadata(
+      SENT_FLAG_PUBLIC_METADATA_KEY,
       metadata,
-      SENT_FLAG_PUBLIC_METADATA_KEY
     )
 
     if (path.ended && !markedAsSent) {
@@ -150,7 +139,6 @@ const markPathsAsSent = (paths: SVGPath[]): SVGPath[] => {
 
     return path
   })
-}
 
 const getUnsentPaths = (paths: SVGPath[]): SVGPath[] => {
   const unsentPaths: SVGPath[] = []
@@ -158,8 +146,8 @@ const getUnsentPaths = (paths: SVGPath[]): SVGPath[] => {
   for (const path of paths) {
     const metadata = path.publicMetadata ?? {}
     const markedAsSent = getBooleanMetadata(
+      SENT_FLAG_PUBLIC_METADATA_KEY,
       metadata,
-      SENT_FLAG_PUBLIC_METADATA_KEY
     )
 
     if (!markedAsSent) {
@@ -173,7 +161,7 @@ const getUnsentPaths = (paths: SVGPath[]): SVGPath[] => {
 const updatePathsStrokeColor = (
   paths: SVGPath[],
   currentUserConnectionId: number,
-  defaultStrokeColor: string
+  defaultStrokeColor: string,
 ): SVGPath[] => {
   for (const path of paths) {
     const connectionId =
@@ -205,20 +193,20 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       me.info.avatarSrc,
       me.info.strokeColor,
     ],
-    shallow
+    shallow,
   )
 
   const otherParticipants = useOthers(
     (others): Participant[] =>
       others.map((other) => ({
+        avatarSrc: other.info.avatarSrc,
         id: `participant-${other.connectionId}`,
         isActive: other.presence.isDrawing,
         isCurrentUser: false,
-        avatarSrc: other.info.avatarSrc,
         strokeColor: other.info.strokeColor,
         username: other.info.username,
       })),
-    shallow
+    shallow,
   )
 
   const updateMyPresence = useUpdateMyPresence()
@@ -235,10 +223,10 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
 
   const participants: Participant[] = useMemo(() => {
     const currentParticipant: Participant = {
+      avatarSrc: currentUserAvatarSrc,
       id: `participant-${currentUserConnectionId}`,
       isActive: currentUserIsDrawing,
       isCurrentUser: true,
-      avatarSrc: currentUserAvatarSrc,
       username: 'Me',
     }
 
@@ -256,7 +244,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
 
       x.set(e.clientX + window.scrollX)
       y.set(e.clientY + window.scrollY)
-    }
+    },
   )
 
   const handleMouseLeave = useEvent((): void => {
@@ -267,7 +255,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     (e: React.MouseEvent<HTMLDivElement>): void => {
       x.set(e.clientX + window.scrollX)
       y.set(e.clientY + window.scrollY)
-    }
+    },
   )
 
   const handleDrawButtonClick = useEvent((): void => {
@@ -279,8 +267,8 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
     const svgPaths = markPathsAsSent(unsentPaths)
 
     broadcast({
+      svgPaths,
       type: 'ADD_SVG_PATHS',
-      svgPaths: svgPaths,
     })
   })
 
@@ -297,7 +285,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
       const paths = updatePathsStrokeColor(
         event.svgPaths,
         currentUserConnectionId,
-        STROKE_COLOR
+        STROKE_COLOR,
       )
 
       canvasRef.current.sync(paths)
@@ -317,9 +305,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
         additionalControls={
           <ControlButton
             active={!isLocked}
-            tooltipContent={
-              <>{`${isLocked ? 'Enable' : 'Disable'} drawing mode`}</>
-            }
+            tooltipContent={`${isLocked ? 'Enable' : 'Disable'} drawing mode`}
             onClick={handleDrawButtonClick}
           >
             <PencilIcon className='size-4 fill-none stroke-[1.5px]' />
@@ -332,7 +318,7 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
             'relative flex h-full w-full',
             clsx({
               'cursor-none!': !isLocked,
-            })
+            }),
           )}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

@@ -1,6 +1,5 @@
-import { flushSync } from 'react-dom'
-
 import { useTheme } from 'next-themes'
+import { flushSync } from 'react-dom'
 import useEvent from 'react-use-event-hook'
 
 const getClipPathKeyframes = (colorMode: string): string[] => {
@@ -14,24 +13,27 @@ const getClipPathKeyframes = (colorMode: string): string[] => {
         `circle(${radius}px at ${x}px ${y}px)`,
       ]
     }
-    case 'light':
+    case 'light': {
       return [
         'polygon(0 100%, 0 100%, 0 100%, 0 100%)',
         'polygon(0 100%, 0 0, 100% 0, 100% 100%)',
       ]
-    case 'dark':
+    }
+    case 'dark': {
       return [
         'polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%)',
         'polygon(100% 100%, 100% 0, 0 0, 0 100%)',
       ]
-    default:
+    }
+    default: {
       return []
+    }
   }
 }
 
 type UseThemeReturnType = ReturnType<typeof useTheme>
 
-type UseSwitchColorModeReturnType = {
+interface UseSwitchColorModeReturnType {
   theme: UseThemeReturnType['theme']
   resolvedTheme: UseThemeReturnType['resolvedTheme']
   setColorMode: (colorMode: string) => Promise<void>
@@ -66,12 +68,12 @@ export function useSwitchColorMode(): UseSwitchColorModeReturnType {
           duration: 500,
           easing: 'ease-in-out',
           pseudoElement: '::view-transition-new(root)',
-        }
+        },
       )
     } catch {
       setTheme(colorMode)
     }
   })
 
-  return { theme, resolvedTheme, setColorMode } as const
+  return { resolvedTheme, setColorMode, theme } as const
 }

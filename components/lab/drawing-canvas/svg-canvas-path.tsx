@@ -1,9 +1,13 @@
 'use client'
 
 import { motion, useAnimationControls } from 'motion/react'
+
 import { useTimeout } from '@/hooks/use-timeout'
 
-export type SVGPoint = { x: number; y: number }
+export type SVGPoint = {
+  x: number
+  y: number
+}
 export type SVGPath = {
   id: string
   points: SVGPoint[]
@@ -14,19 +18,25 @@ export type SVGPath = {
   publicMetadata?: Record<string, string | number | boolean>
 }
 
-type SVGVectorLine = { length: number; angle: number }
+type SVGVectorLine = {
+  length: number
+  angle: number
+}
 const getVectorLine = (p0: SVGPoint, p1: SVGPoint): SVGVectorLine => {
   const distanceX = p1.x - p0.x
   const distanceY = p1.y - p0.y
 
-  const length = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2))
+  const length = Math.sqrt(distanceX ** 2 + distanceY ** 2)
   const angle = Math.atan2(distanceY, distanceX)
 
-  return { length, angle }
+  return { angle, length }
 }
 
-type SVGControlPoint = { x: number; y: number }
-type SVGControlPoints = {
+interface SVGControlPoint {
+  x: number
+  y: number
+}
+interface SVGControlPoints {
   current: SVGPoint
   previous?: SVGPoint
   next?: SVGPoint
@@ -34,7 +44,7 @@ type SVGControlPoints = {
 }
 const getControlPoint = (
   controlPoints: SVGControlPoints,
-  curveSmoothing: number
+  curveSmoothing: number,
 ): SVGControlPoint => {
   const { current, next, previous, reverse = false } = controlPoints
 
@@ -55,7 +65,7 @@ const getCubicBezierCurve = (
   point: SVGPoint,
   index: number,
   points: SVGPoint[],
-  curveSmoothing: number
+  curveSmoothing: number,
 ): string => {
   let startControlPoint: SVGControlPoint
 
@@ -67,27 +77,27 @@ const getCubicBezierCurve = (
         current: points[index - 1],
         next: point,
       },
-      curveSmoothing
+      curveSmoothing,
     )
   } else {
     startControlPoint = getControlPoint(
       {
         current: points[index - 1],
-        previous: points[index - 2],
         next: point,
+        previous: points[index - 2],
       },
-      curveSmoothing
+      curveSmoothing,
     )
   }
 
   const endControlPoint = getControlPoint(
     {
       current: point,
-      previous: points[index - 1],
       next: points[index + 1],
+      previous: points[index - 1],
       reverse: true,
     },
-    curveSmoothing
+    curveSmoothing,
   )
 
   return `C ${startControlPoint.x},${startControlPoint.y} ${endControlPoint.x},${endControlPoint.y} ${point.x},${point.y}`
@@ -96,18 +106,16 @@ const getCubicBezierCurve = (
 const getScaledPoint = (
   point: SVGPoint,
   pathOriginViewBox: [number, number],
-  svgViewBox: [number, number]
-): SVGPoint => {
-  return {
-    x: (point.x / pathOriginViewBox[0]) * svgViewBox[0],
-    y: (point.y / pathOriginViewBox[1]) * svgViewBox[1],
-  }
-}
+  svgViewBox: [number, number],
+): SVGPoint => ({
+  x: (point.x / pathOriginViewBox[0]) * svgViewBox[0],
+  y: (point.y / pathOriginViewBox[1]) * svgViewBox[1],
+})
 
 const getScaledPoints = (
   points: SVGPoint[],
   pathOriginViewBox: [number, number],
-  svgViewBox: [number, number]
+  svgViewBox: [number, number],
 ): SVGPoint[] => {
   const scaledPoints: SVGPoint[] = []
 
@@ -153,7 +161,7 @@ export function SVGCanvasPath({
         onDisappeared(id)
       })
     },
-    ended ? pathDisappearingTimeoutMs : null
+    ended ? pathDisappearingTimeoutMs : null,
   )
 
   if (points.length === 1) {
@@ -175,11 +183,13 @@ export function SVGCanvasPath({
   }
 
   const scaledPoints = getScaledPoints(points, originViewBox, svgViewBox)
-  const d = scaledPoints.reduce<string>((d, point, index, points) => {
-    return index === 0
-      ? `M ${point.x},${point.y}`
-      : `${d} ${getCubicBezierCurve(point, index, points, curveSmoothing)}`
-  }, '')
+  const d = scaledPoints.reduce<string>(
+    (dPath, point, index, originPoints) =>
+      index === 0
+        ? `M ${point.x},${point.y}`
+        : `${dPath} ${getCubicBezierCurve(point, index, originPoints, curveSmoothing)}`,
+    '',
+  )
 
   return (
     <motion.path

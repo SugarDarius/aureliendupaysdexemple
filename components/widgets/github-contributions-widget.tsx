@@ -5,7 +5,7 @@ import { getGitHubContributions } from '@/lib/github-widget'
 
 export async function GitHubContributionsWidget() {
   const { contributionsPerDays } = await getGitHubContributions(
-    siteConfig.socialLinks.github.name
+    siteConfig.socialLinks.github.name,
   )
   return (
     <div className='flex h-full w-full flex-col items-center justify-center'>

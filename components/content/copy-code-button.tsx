@@ -2,12 +2,11 @@
 
 import { CopyIcon } from '@radix-ui/react-icons'
 import useEvent from 'react-use-event-hook'
-
 import { toast } from 'sonner'
 
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
+import { cn } from '@/lib/utils'
 
 export const CopyCodeButton = ({
   className,
@@ -30,7 +29,7 @@ export const CopyCodeButton = ({
           {
             closeButton: true,
             duration: 1000 * 2,
-          }
+          },
         )
       })
   })

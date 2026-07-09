@@ -1,16 +1,14 @@
 'use client'
 
 import { useLayoutEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
-
-import useEvent from 'react-use-event-hook'
 import ReactCanvasConfetti from 'react-canvas-confetti'
 import type { TCanvasConfettiInstance } from 'react-canvas-confetti/dist/types'
-
-import { cn } from '@/lib/utils'
-import { useMounted } from '@/hooks/use-mounted'
+import { createPortal } from 'react-dom'
+import useEvent from 'react-use-event-hook'
 
 import { setVFXConfettiSurfaceInstance } from '@/components/ui-vfx/vfx-confetti-surface-store'
+import { useMounted } from '@/hooks/use-mounted'
+import { cn } from '@/lib/utils'
 
 export function VFXConfettiSurface({ className }: { className?: string }) {
   const mounted = useMounted()
@@ -21,7 +19,7 @@ export function VFXConfettiSurface({ className }: { className?: string }) {
   const handleCanvasInit = useEvent(
     ({ confetti }: { confetti: TCanvasConfettiInstance }): void => {
       setVFXConfettiSurfaceInstance(confetti)
-    }
+    },
   )
 
   useLayoutEffect(() => {
@@ -51,7 +49,7 @@ export function VFXConfettiSurface({ className }: { className?: string }) {
       ref={containerRef}
       className={cn(
         'pointer-events-none! absolute left-0 top-0 z-999999! h-screen w-screen',
-        className
+        className,
       )}
     >
       <ReactCanvasConfetti
@@ -61,6 +59,6 @@ export function VFXConfettiSurface({ className }: { className?: string }) {
         onInit={handleCanvasInit}
       />
     </div>,
-    document.body
+    document.body,
   )
 }

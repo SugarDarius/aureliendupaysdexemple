@@ -42,7 +42,7 @@ export const {
     useErrorListener,
   },
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(
-  client
+  client,
 )
 export const {
   suspense: { LiveblocksProvider },

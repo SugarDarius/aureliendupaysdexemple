@@ -11,13 +11,11 @@ image: '/medias/mdx-content/liveblocks-drawing-on-screen.webp'
 
 This experiment comes from my use of Slack Huddle when someone was sharing his screen and we were drawing on it with a pen tool.
 
-I wanted to re-create it using a great collaborative tool to do it.
-So I chosen to use [Liveblocks](https://liveblocks.io/) and implement it on my personal website as a Lab 🙂.
+I wanted to re-create it using a great collaborative tool to do it. So I chosen to use [Liveblocks](https://liveblocks.io/) and implement it on my personal website as a Lab 🙂.
 
 ## Why drawing on screen?
 
-Drawing on screen is to me a great feature. It brings value and accessibility to users especially when sharing a screen in an application.
-It makes easier to communicate and express yourself when your pointing something present in the shared screen.
+Drawing on screen is to me a great feature. It brings value and accessibility to users especially when sharing a screen in an application. It makes easier to communicate and express yourself when your pointing something present in the shared screen.
 
 From a collaborative standpoint, drawing on screen in real-time brings some great benefits such as:
 
@@ -35,12 +33,9 @@ Having this feature in your product when you let users sharing their screen to e
 
 [Liveblocks](https://liveblocks.io/) is for me a great product providing a complete toolkit to developers to integrate collaborative experiences seamlessly with pace.
 
-Benefits of using **Liveblocks** as a developer are you can integrates with your frontend framework while Liveblocks is managing all the infrastructure and scaling for you.
-As a developer deeply believing in frontend cloud it's for me a good match.
+Benefits of using **Liveblocks** as a developer are you can integrates with your frontend framework while Liveblocks is managing all the infrastructure and scaling for you. As a developer deeply believing in frontend cloud it's for me a good match.
 
-Adding **Liveblocks** into your project is very straightforward.
-First you need to create an account on the web app and then you install the packages you need in your app.
-In my case on my personal website:
+Adding **Liveblocks** into your project is very straightforward. First you need to create an account on the web app and then you install the packages you need in your app. In my case on my personal website:
 
 ```sh
 $ npm i @liveblocks/client @liveblocks/react
@@ -75,8 +70,7 @@ And we're good to go 🚀
 
 ## Drawing paths on screen with an svg canvas
 
-Drawing on screen when sharing screen should stay simple and light in my opinion.
-So I though that instead of using a <InlineCode>canvas</InlineCode> element it would be much better and efficient to use an <InlineCode>svg</InlineCode> element.
+Drawing on screen when sharing screen should stay simple and light in my opinion. So I though that instead of using a <InlineCode>canvas</InlineCode> element it would be much better and efficient to use an <InlineCode>svg</InlineCode> element.
 
 When users draw on screen with their mouses, the mouse event can be easily translated into an <InlineCode>SVGPoint</InlineCode> and then we can assemble theses points to create an <InlineCode>SVGPath</InlineCode>:
 
@@ -121,8 +115,7 @@ And our svg canvas can just expose in the end an <InlineCode>onChange</InlineCod
 />
 ```
 
-Please note I wrote the code of the drawing svg canvas without using any external package but I'm sure there are some better drawing canvas out there.
-You can [check out](https://www.aureliendupaysdexemple.com/lab/drawing-editor) the drawing editor on his lab page:
+Please note I wrote the code of the drawing svg canvas without using any external package but I'm sure there are some better drawing canvas out there. You can [check out](https://www.aureliendupaysdexemple.com/lab/drawing-editor) the drawing editor on his lab page:
 
 <RoundedVideo src='/medias/mdx-content/drawing-editor.webm' />
 
@@ -241,10 +234,7 @@ And here we go 🚀 we can now broadcast and listen on events to draw on screen 
 
 Thanks to **Liveblocks** as a developer we don't have to care all about the stuff on broadcasting and listening events. It's simple with a few lines of code 🚀.
 
-**Liveblocks** allows to bring collaboration with a fast pace on your product and this is amazing 😃.
-No more headaches about how to design the infrastructure nor create the code to handle websocket in your frontend app with a good level of abstraction.
-You can just focus on what's matter the most to bring a super user experience to your customers in your product.
-And this feels really good 😊
+**Liveblocks** allows to bring collaboration with a fast pace on your product and this is amazing 😃. No more headaches about how to design the infrastructure nor create the code to handle websocket in your frontend app with a good level of abstraction. You can just focus on what's matter the most to bring a super user experience to your customers in your product. And this feels really good 😊
 
 <hr />
 

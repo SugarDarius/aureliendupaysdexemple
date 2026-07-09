@@ -1,6 +1,7 @@
-import { create } from 'zustand'
 import { toast } from 'sonner'
-type MagnifyingGlassStore = {
+import { create } from 'zustand'
+
+interface MagnifyingGlassStore {
   isActive: boolean
   toggle: () => void
 }
@@ -12,7 +13,7 @@ export const useMagnifyingGlassStore = create<MagnifyingGlassStore>(
       const nextIsActive = !get().isActive
       set({ isActive: nextIsActive })
     },
-  })
+  }),
 )
 
 export function toggleMagnifyingGlass(): void {
@@ -21,7 +22,7 @@ export function toggleMagnifyingGlass(): void {
 
 useMagnifyingGlassStore.subscribe(({ isActive }): void => {
   toast.info(`Magnifying glass ${isActive ? 'activated' : 'deactivated'}!`, {
-    duration: 1000 * 2,
     closeButton: true,
+    duration: 1000 * 2,
   })
 })

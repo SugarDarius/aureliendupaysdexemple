@@ -25,7 +25,7 @@ function Content({
     <div
       className={cn(
         'flex h-auto min-h-full w-full flex-col items-center gap-10 px-8 pb-24 pt-12 max-sm:px-4',
-        className
+        className,
       )}
     >
       {children}
@@ -44,7 +44,7 @@ function Root({
     <div
       className={cn(
         'relative flex h-auto min-h-full w-full flex-col items-center',
-        className
+        className,
       )}
     >
       {children}

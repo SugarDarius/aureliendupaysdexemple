@@ -1,10 +1,10 @@
-import { create } from 'zustand'
 import type {
   TCanvasConfettiInstance,
   TCanvasConfettiAnimationOptions,
 } from 'react-canvas-confetti/dist/types'
+import { create } from 'zustand'
 
-type VFXConfettiSurfaceStore = {
+interface VFXConfettiSurfaceStore {
   confettiInstance: TCanvasConfettiInstance | null
   setInstance: (confetti: TCanvasConfettiInstance) => void
 }
@@ -17,7 +17,7 @@ const useVFXConfettiSurfaceStore = create<VFXConfettiSurfaceStore>((set) => ({
 }))
 
 export function setVFXConfettiSurfaceInstance(
-  confetti: TCanvasConfettiInstance
+  confetti: TCanvasConfettiInstance,
 ): void {
   useVFXConfettiSurfaceStore.getState().setInstance(confetti)
 }
@@ -30,7 +30,7 @@ const defaultOptions: TCanvasConfettiAnimationOptions = {
 const makeShot = (
   confettiInstance: TCanvasConfettiInstance,
   particlesRatio: number,
-  options: TCanvasConfettiAnimationOptions
+  options: TCanvasConfettiAnimationOptions,
 ): void => {
   confettiInstance({
     ...defaultOptions,
@@ -40,8 +40,7 @@ const makeShot = (
 }
 
 export function fireVFXConfettiSurface(): void {
-  const confettiInstance =
-    useVFXConfettiSurfaceStore.getState().confettiInstance
+  const { confettiInstance } = useVFXConfettiSurfaceStore.getState()
 
   if (confettiInstance) {
     makeShot(confettiInstance, 0.25, {
@@ -52,15 +51,15 @@ export function fireVFXConfettiSurface(): void {
       spread: 60,
     })
     makeShot(confettiInstance, 0.35, {
-      spread: 100,
       decay: 0.91,
       scalar: 0.8,
+      spread: 100,
     })
     makeShot(confettiInstance, 0.1, {
-      spread: 120,
-      startVelocity: 25,
       decay: 0.92,
       scalar: 1.2,
+      spread: 120,
+      startVelocity: 25,
     })
     makeShot(confettiInstance, 0.1, {
       spread: 120,

@@ -2,17 +2,14 @@
 
 import Image from 'next/image'
 
-import { cn } from '@/lib/utils'
-import { useUserAgent } from '@/hooks/use-user-agent'
-
-import { ReactIcon } from '@/components/icons/react-icon'
-import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
-
-import { VFXWavingHand } from '@/components/ui-vfx/vfx-waving-hand'
-import { VFXPresenceSurface } from '@/components/ui-vfx/vfx-presence-surface'
-
-import { BentoCard } from '@/components/grids/bento-card'
 import { TagLink } from '@/components/content/tag-link'
+import { BentoCard } from '@/components/grids/bento-card'
+import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
+import { ReactIcon } from '@/components/icons/react-icon'
+import { VFXPresenceSurface } from '@/components/ui-vfx/vfx-presence-surface'
+import { VFXWavingHand } from '@/components/ui-vfx/vfx-waving-hand'
+import { useUserAgent } from '@/hooks/use-user-agent'
+import { cn } from '@/lib/utils'
 
 const TagPill = ({
   className,
@@ -24,7 +21,7 @@ const TagPill = ({
   <span
     className={cn(
       'inline-flex rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-bold text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100',
-      className
+      className,
     )}
   >
     {children}

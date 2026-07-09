@@ -1,21 +1,22 @@
 import type { MetadataRoute } from 'next'
+
 import { siteConfig } from '@/config/site-config'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: siteConfig.title,
-    short_name: siteConfig.title,
-    description: siteConfig.description,
-    start_url: '/',
-    display: 'standalone',
-    theme_color: '#ffffff',
     background_color: '#ffffff',
+    description: siteConfig.description,
+    display: 'standalone',
     icons: [
       {
-        src: '/pwa/favicon-pwa.ico',
         sizes: 'any',
+        src: '/pwa/favicon-pwa.ico',
         type: 'image/x-icon',
       },
     ],
+    name: siteConfig.title,
+    short_name: siteConfig.title,
+    start_url: '/',
+    theme_color: '#ffffff',
   }
 }

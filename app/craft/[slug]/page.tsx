@@ -1,25 +1,23 @@
+import { BeakerIcon, CodeBracketSquareIcon } from '@heroicons/react/24/outline'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { BeakerIcon, CodeBracketSquareIcon } from '@heroicons/react/24/outline'
 
-import { siteConfig } from '@/config/site-config'
-
-import { baseUrl } from '@/config/site-config'
-import { getMDXPages } from '@/db/mdx-content'
-
-import { Separator } from '@/components/ui/separator'
-
-import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
+import { CategoryTag } from '@/components/content/category-tag'
+import { GitHubRepositoryLink } from '@/components/content/github-repository-link'
 import { PageContent } from '@/components/content/page-content'
 import { PageHero } from '@/components/content/page-hero'
-import { GitHubRepositoryLink } from '@/components/content/github-repository-link'
-import { CategoryTag } from '@/components/content/category-tag'
+import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
+import { Separator } from '@/components/ui/separator'
+import { siteConfig, baseUrl } from '@/config/site-config'
+import { getMDXPages } from '@/db/mdx-content'
 
-type StaticParam = { slug: string }
+interface StaticParam {
+  slug: string
+}
 
 export async function generateStaticParams(): Promise<StaticParam[]> {
   const pages = await getMDXPages('craft')
-  const slugs = Array.from(pages.keys()).map((slug: string) => ({ slug }))
+  const slugs = [...pages.keys()].map((slug: string) => ({ slug }))
 
   return slugs
 }
@@ -38,28 +36,28 @@ export async function generateMetadata(props: {
     return {}
   }
 
-  const metadata = page.metadata
+  const { metadata } = page
 
   return {
-    metadataBase: new URL(baseUrl),
-    title: `${metadata.title} | ${siteConfig.title}`,
     description: metadata.summary,
+    metadataBase: new URL(baseUrl),
     openGraph: {
-      type: 'article',
-      locale: 'en_US',
-      title: `${metadata.title} | ${siteConfig.title}`,
       description: metadata.summary,
+      images: [OG_IMG_SRC],
+      locale: 'en_US',
       publishedTime: metadata.publishedAt,
       siteName: siteConfig.title,
-      url: baseUrl + '/craft/' + page.slug,
-      images: [OG_IMG_SRC],
+      title: `${metadata.title} | ${siteConfig.title}`,
+      type: 'article',
+      url: `${baseUrl}/craft/${page.slug}`,
     },
+    title: `${metadata.title} | ${siteConfig.title}`,
     twitter: {
       card: 'summary_large_image',
-      title: `${metadata.title} | ${siteConfig.title}`,
-      description: metadata.summary,
       creator: siteConfig.socialLinks.twitter.name,
+      description: metadata.summary,
       images: [OG_IMG_SRC],
+      title: `${metadata.title} | ${siteConfig.title}`,
     },
   }
 }
@@ -68,7 +66,7 @@ export default async function CraftSlugPage(props: {
   params: Promise<{ slug: string }>
 }) {
   const params = await props.params
-  const slug = params.slug
+  const { slug } = params
 
   const pages = await getMDXPages('craft')
   const page = pages.get(slug)

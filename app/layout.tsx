@@ -1,70 +1,67 @@
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
 import type { Metadata, Viewport } from 'next'
 import { ViewTransition } from 'react'
 
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-
-import { cn } from '@/lib/utils'
+import { MagnifyingGlass } from '@/components/lab/magnifying-glass/magnifying-glass'
+import { NavigationDock } from '@/components/navigation/navigation-dock'
+import { ProvidersTree } from '@/components/providers/providers-tree'
+import { TailwindIndicator } from '@/components/ui-helpers/tailwind-indicator'
+import { Toaster } from '@/components/ui/sonner'
 import { env } from '@/config/env'
 import { baseUrl, siteConfig } from '@/config/site-config'
-
-import { Toaster } from '@/components/ui/sonner'
-import { ProvidersTree } from '@/components/providers/providers-tree'
-import { NavigationDock } from '@/components/navigation/navigation-dock'
-import { MagnifyingGlass } from '@/components/lab/magnifying-glass/magnifying-glass'
-import { TailwindIndicator } from '@/components/ui-helpers/tailwind-indicator'
+import { cn } from '@/lib/utils'
 
 import './globals.css'
 
 export const metadata: Metadata = {
+  authors: siteConfig.authors,
+  creator: siteConfig.creator,
+  description: siteConfig.description,
+  icons: {
+    icon: '/favicon.ico',
+  },
   metadataBase: new URL(baseUrl),
+  openGraph: {
+    description: siteConfig.description,
+    locale: 'en_US',
+    siteName: siteConfig.title,
+    title: siteConfig.title,
+    type: 'website',
+    url: baseUrl,
+  },
+  robots: {
+    follow: true,
+    googleBot: {
+      follow: true,
+      index: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+    index: true,
+  },
   title: {
     default: siteConfig.title,
     template: `%s | ${siteConfig.title}`,
   },
-  description: siteConfig.description,
-  authors: siteConfig.authors,
-  creator: siteConfig.creator,
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    title: siteConfig.title,
-    description: siteConfig.description,
-    siteName: siteConfig.title,
-    url: baseUrl,
-  },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.title,
-    description: siteConfig.description,
     creator: siteConfig.socialLinks.twitter.name,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    description: siteConfig.description,
+    title: siteConfig.title,
   },
   verification: {
     google: env.NEXT_PUBLIC_GOOGLE_VERIFICATION_TOKEN,
-  },
-  icons: {
-    icon: '/favicon.ico',
   },
 }
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    { color: 'white', media: '(prefers-color-scheme: light)' },
+    { color: 'black', media: '(prefers-color-scheme: dark)' },
   ],
 }
 
@@ -79,7 +76,7 @@ export default function RootLayout({
         className={cn(
           GeistSans.variable,
           GeistMono.variable,
-          'font-sans antialiased'
+          'font-sans antialiased',
         )}
       >
         <ProvidersTree>

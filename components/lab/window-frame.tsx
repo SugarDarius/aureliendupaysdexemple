@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+
 export function WindowFrame({
   className,
   title,
@@ -12,7 +13,7 @@ export function WindowFrame({
     <div
       className={cn(
         'relative flex h-auto min-h-[240px] w-[466px] max-w-full flex-col overflow-hidden rounded-md border shadow-md',
-        className
+        className,
       )}
     >
       <div className='relative flex h-[36px] w-full flex-none flex-row items-center border-b'>

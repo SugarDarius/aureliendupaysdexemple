@@ -1,20 +1,22 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { type Keys, useHotkeys } from 'react-hotkeys-hook'
+import { useHotkeys } from 'react-hotkeys-hook'
+import type { Keys } from 'react-hotkeys-hook'
 
-import { toUpperFirst } from '@/lib/utils'
-import { type NavigationItemName, navigationItemsIcons } from '@/lib/navigation'
+import { NavigationDockItemLink } from '@/components/navigation/navigation-dock-item-link'
+import {
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from '@/components/ui/navigation-menu'
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import {
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from '@/components/ui/navigation-menu'
-import { NavigationDockItemLink } from '@/components/navigation/navigation-dock-item-link'
+import { navigationItemsIcons } from '@/lib/navigation'
+import type { NavigationItemName } from '@/lib/navigation'
+import { toUpperFirst } from '@/lib/utils'
 
 export const NavigationDockItem = ({
   href,
@@ -38,7 +40,7 @@ export const NavigationDockItem = ({
       e.preventDefault()
       router.push(href)
     },
-    [href]
+    [href],
   )
   const isActive =
     href === '/craft' ? pathname.startsWith(href) : href === pathname

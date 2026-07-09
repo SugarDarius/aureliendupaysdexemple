@@ -1,7 +1,7 @@
 'use client'
 
-import { getTimezoneOffset } from '@/lib/clock'
 import { useClock } from '@/hooks/use-clock'
+import { getTimezoneOffset } from '@/lib/clock'
 
 const timezoneOffset = getTimezoneOffset()
 

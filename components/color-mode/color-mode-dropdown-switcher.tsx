@@ -5,26 +5,25 @@ import {
   MoonIcon,
   ComputerDesktopIcon,
 } from '@heroicons/react/24/outline'
-import useEvent from 'react-use-event-hook'
+import { useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
+import useEvent from 'react-use-event-hook'
 
-import { cn } from '@/lib/utils'
-import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
-
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+import { useMagnifyingGlassStore } from '@/components/lab/magnifying-glass/magnifying-glass-store'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu'
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import { useMagnifyingGlassStore } from '@/components/lab/magnifying-glass/magnifying-glass-store'
-import { useState } from 'react'
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
+import { cn } from '@/lib/utils'
 
 export function ColorModeDropdownSwitcher({
   className,
@@ -33,7 +32,7 @@ export function ColorModeDropdownSwitcher({
 }) {
   const { setColorMode, theme } = useSwitchColorMode()
   const isMagnifyingGlassActive = useMagnifyingGlassStore(
-    (state) => state.isActive
+    (state) => state.isActive,
   )
 
   const [open, setOpen] = useState<boolean>(false)
@@ -59,7 +58,7 @@ export function ColorModeDropdownSwitcher({
               className={cn(
                 navigationMenuTriggerStyle(),
                 'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
-                'cursor-pointer'
+                'cursor-pointer',
               )}
             >
               <SunIcon className='h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90' />

@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
+
 import { flattenColorPalette } from './utils'
 
 const vfxBorderBeamPlugin = plugin(
@@ -12,7 +13,7 @@ const vfxBorderBeamPlugin = plugin(
       },
       {
         values: theme('vfxBorderBeamDuration'),
-      }
+      },
     )
 
     matchUtilities(
@@ -23,7 +24,7 @@ const vfxBorderBeamPlugin = plugin(
       },
       {
         values: theme('vfxBorderBeamDelay'),
-      }
+      },
     )
 
     const colors = flattenColorPalette(theme('colors'))
@@ -34,12 +35,12 @@ const vfxBorderBeamPlugin = plugin(
         }),
       },
       {
+        type: 'color',
         values: {
           ...colors,
           DEFAULT: colors['sky-50'],
         },
-        type: 'color',
-      }
+      },
     )
 
     matchUtilities(
@@ -49,12 +50,12 @@ const vfxBorderBeamPlugin = plugin(
         }),
       },
       {
+        type: 'color',
         values: {
           ...colors,
           DEFAULT: colors['sky-500'],
         },
-        type: 'color',
-      }
+      },
     )
 
     matchUtilities(
@@ -65,7 +66,7 @@ const vfxBorderBeamPlugin = plugin(
       },
       {
         values: theme('vfxBorderBeamWidth'),
-      }
+      },
     )
 
     matchUtilities(
@@ -76,7 +77,7 @@ const vfxBorderBeamPlugin = plugin(
       },
       {
         values: theme('vfxBorderBeamAnchor'),
-      }
+      },
     )
 
     matchUtilities(
@@ -87,57 +88,12 @@ const vfxBorderBeamPlugin = plugin(
       },
       {
         values: theme('vfxBorderBeamSize'),
-      }
+      },
     )
   },
   {
     theme: {
       extend: {
-        vfxBorderBeamDelay: ({
-          theme,
-        }: {
-          theme: (path: string) => Config['theme']
-        }) => ({
-          ...theme('animationDelay'),
-          DEFAULT: '0',
-        }),
-        vfxBorderBeamWidth: ({
-          theme,
-        }: {
-          theme: (path: string) => Config['theme']
-        }) => ({
-          ...theme('borderWidth'),
-          DEFAULT: '1px',
-        }),
-        vfxBorderBeamDuration: ({
-          theme,
-        }: {
-          theme: (path: string) => Config['theme']
-        }) => ({
-          ...theme('animationDuration'),
-        }),
-        vfxBorderBeamAnchor: () => ({
-          DEFAULT: '90',
-          0: '0',
-          10: '10',
-          20: '20',
-          30: '30',
-          40: '40',
-          50: '50',
-          60: '60',
-          70: '70',
-          80: '80',
-          90: '90',
-          100: '100',
-        }),
-        vfxBorderBeamSize: ({
-          theme,
-        }: {
-          theme: (path: string) => Config['theme']
-        }) => ({
-          DEFAULT: '8',
-          ...theme('spacing'),
-        }),
         animation: {
           'vfx-border-beam':
             'vfx-border-beam var(--tw-vfx-border-beam-duration) infinite linear',
@@ -149,9 +105,54 @@ const vfxBorderBeamPlugin = plugin(
             },
           },
         },
+        vfxBorderBeamAnchor: () => ({
+          0: '0',
+          10: '10',
+          100: '100',
+          20: '20',
+          30: '30',
+          40: '40',
+          50: '50',
+          60: '60',
+          70: '70',
+          80: '80',
+          90: '90',
+          DEFAULT: '90',
+        }),
+        vfxBorderBeamDelay: ({
+          theme,
+        }: {
+          theme: (path: string) => Config['theme']
+        }) => ({
+          ...theme('animationDelay'),
+          DEFAULT: '0',
+        }),
+        vfxBorderBeamDuration: ({
+          theme,
+        }: {
+          theme: (path: string) => Config['theme']
+        }) => ({
+          ...theme('animationDuration'),
+        }),
+        vfxBorderBeamSize: ({
+          theme,
+        }: {
+          theme: (path: string) => Config['theme']
+        }) => ({
+          DEFAULT: '8',
+          ...theme('spacing'),
+        }),
+        vfxBorderBeamWidth: ({
+          theme,
+        }: {
+          theme: (path: string) => Config['theme']
+        }) => ({
+          ...theme('borderWidth'),
+          DEFAULT: '1px',
+        }),
       },
     },
-  }
+  },
 )
 
 export default vfxBorderBeamPlugin

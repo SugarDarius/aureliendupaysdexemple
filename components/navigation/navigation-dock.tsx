@@ -1,26 +1,24 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import { GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
+import { usePathname } from 'next/navigation'
 
-import { siteConfig } from '@/config/site-config'
-import { navigationItems } from '@/lib/navigation'
-
+import { ColorModeDrawerSwitcher } from '@/components/color-mode/color-mode-drawer-switcher'
+import { ColorModeDropdownSwitcher } from '@/components/color-mode/color-mode-dropdown-switcher'
+import { CommandCenter } from '@/components/command-center/command-center'
+import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
+import { NavigationDockDrawer } from '@/components/navigation/navigation-dock-drawer'
+import { NavigationDockItem } from '@/components/navigation/navigation-dock-item'
+import { NavigationDockItemExternalLink } from '@/components/navigation/navigation-dock-item-link'
 import {
   NavigationMenu,
   NavigationMenuList,
 } from '@/components/ui/navigation-menu'
 import { Separator } from '@/components/ui/separator'
+import { siteConfig } from '@/config/site-config'
+import { navigationItems } from '@/lib/navigation'
 
-import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { BlueskyLogoIcon } from '../icons/bluesky-logo-icon'
-import { ColorModeDropdownSwitcher } from '@/components/color-mode/color-mode-dropdown-switcher'
-import { ColorModeDrawerSwitcher } from '@/components/color-mode/color-mode-drawer-switcher'
-import { CommandCenter } from '@/components/command-center/command-center'
-
-import { NavigationDockDrawer } from '@/components/navigation/navigation-dock-drawer'
-import { NavigationDockItem } from '@/components/navigation/navigation-dock-item'
-import { NavigationDockItemExternalLink } from '@/components/navigation/navigation-dock-item-link'
 
 export function NavigationDock() {
   const pathname = usePathname()

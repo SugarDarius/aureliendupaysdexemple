@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 import { BentoCard } from '@/components/grids/bento-card'
 

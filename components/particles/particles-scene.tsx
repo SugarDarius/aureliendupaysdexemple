@@ -1,6 +1,7 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
+
 import { FrameBufferObjectParticles } from '@/components/particles/frame-buffer-object-particles'
 
 export function ParticlesScene() {

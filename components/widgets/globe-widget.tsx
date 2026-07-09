@@ -1,18 +1,21 @@
 'use client'
 
+import createGlobe from 'cobe'
+import type { Marker } from 'cobe'
+import { useSpring } from 'motion/react'
 import { useRef, useEffect } from 'react'
 import useEvent from 'react-use-event-hook'
-
-import useSWR, { type Fetcher } from 'swr'
-
-import createGlobe, { type Marker } from 'cobe'
-import { useSpring } from 'motion/react'
+import useSWR from 'swr'
+import type { Fetcher } from 'swr'
 
 import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
 
 const BASE_MARKERS: Marker[] = [{ location: [48.1744, 6.4512], size: 0.1 }]
 
-type Geolocation = { latitude: number; longitude: number }
+interface Geolocation {
+  latitude: number
+  longitude: number
+}
 type GlobeRenderState = Record<string, number | [number, number, number]> & {
   phi: number
   glowColor: [number, number, number]
@@ -32,9 +35,9 @@ export function GlobeWidget() {
       revalidateIfStale: false,
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
-    }
+    },
   )
-  const r = useSpring(3.9, { mass: 1, stiffness: 280, damping: 40 })
+  const r = useSpring(3.9, { damping: 40, mass: 1, stiffness: 280 })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleRender = useEvent((state: Record<string, any>): void => {
@@ -58,20 +61,20 @@ export function GlobeWidget() {
         })
       }
       const globe = createGlobe(canvasRef.current, {
-        devicePixelRatio: 2,
-        width: canvasRef.current.offsetWidth * 3,
-        height: canvasRef.current.offsetWidth * 3,
-        phi: 3.9,
-        theta: 0.96,
-        dark: 1,
-        diffuse: 1.2,
-        mapSamples: 16000,
-        mapBrightness: 3,
         baseColor: [1, 1, 1],
-        markerColor: [0.1, 0.8, 1],
+        dark: 1,
+        devicePixelRatio: 2,
+        diffuse: 1.2,
         glowColor: [0.15, 0.15, 0.15],
+        height: canvasRef.current.offsetWidth * 3,
+        mapBrightness: 3,
+        mapSamples: 16_000,
+        markerColor: [0.1, 0.8, 1],
         markers: BASE_MARKERS,
         onRender: handleRender,
+        phi: 3.9,
+        theta: 0.96,
+        width: canvasRef.current.offsetWidth * 3,
       })
 
       return (): void => {

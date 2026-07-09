@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
+
 import { cn } from '@/lib/utils'
 
 export function VFXWavingHand({ className }: { className?: string }) {
@@ -10,12 +11,12 @@ export function VFXWavingHand({ className }: { className?: string }) {
       animate={{ rotate: [0, 20, 0] }}
       style={{ originX: '100%', originY: '100%' }}
       transition={{
-        repeat: 6,
-        repeatType: 'loop',
         delay: 0.15,
         duration: 0.6,
-        type: 'tween',
         ease: 'easeInOut',
+        repeat: 6,
+        repeatType: 'loop',
+        type: 'tween',
       }}
     >
       👋🏻

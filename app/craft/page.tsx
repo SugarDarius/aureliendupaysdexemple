@@ -1,17 +1,16 @@
 import type { Metadata } from 'next'
 
+import { PageContent } from '@/components/content/page-content'
+import { PageHero } from '@/components/content/page-hero'
+import { CraftCard } from '@/components/grids/craft-card'
+import { CraftGrid } from '@/components/grids/craft-grid'
+import { Separator } from '@/components/ui/separator'
 import { getMDXPages } from '@/db/mdx-content'
 import { sortPagesByPublicationDate } from '@/lib/mdx-content'
 
-import { Separator } from '@/components/ui/separator'
-import { PageHero } from '@/components/content/page-hero'
-import { PageContent } from '@/components/content/page-content'
-import { CraftGrid } from '@/components/grids/craft-grid'
-import { CraftCard } from '@/components/grids/craft-card'
-
 export const metadata: Metadata = {
-  title: 'Craft',
   description: 'Check my personal work I craft',
+  title: 'Craft',
 }
 
 export default async function CraftPage() {

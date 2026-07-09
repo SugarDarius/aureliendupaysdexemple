@@ -1,13 +1,11 @@
 'use client'
 
+import { Bars3Icon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import useEvent from 'react-use-event-hook'
-import { Bars3Icon } from '@heroicons/react/24/outline'
 
-import { cn, toUpperFirst } from '@/lib/utils'
-import { type NavigationItem, navigationItemsIcons } from '@/lib/navigation'
-
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+import { NavigationDockItemLink } from '@/components/navigation/navigation-dock-item-link'
+import { Button } from '@/components/ui/button'
 import {
   Drawer,
   DrawerContent,
@@ -15,9 +13,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import { Button } from '@/components/ui/button'
-
-import { NavigationDockItemLink } from '@/components/navigation/navigation-dock-item-link'
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+import { navigationItemsIcons } from '@/lib/navigation'
+import type { NavigationItem } from '@/lib/navigation'
+import { cn, toUpperFirst } from '@/lib/utils'
 
 export function NavigationDockDrawer({
   className,
@@ -41,7 +40,7 @@ export function NavigationDockDrawer({
           className={cn(
             navigationMenuTriggerStyle(),
             'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
-            className
+            className,
           )}
           aria-label='burger menu'
         >

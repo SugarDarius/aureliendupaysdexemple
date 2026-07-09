@@ -1,6 +1,5 @@
 import { graphql } from '@octokit/graphql'
 import type { User } from '@octokit/graphql-schema'
-
 import { addDays, format } from 'date-fns'
 
 import { env } from '@/config/env'
@@ -9,18 +8,18 @@ const TOTAL_NUMBER_OF_DAYS = 49
 const NO_CONTRIBUTIONS_COLOR = '#ebedf0'
 
 const completeContributionsPerWeekdays = (
-  weekdays: ContributionsPerDay[]
+  weekdays: ContributionsPerDay[],
 ): ContributionsPerDay[] => {
   if (weekdays.length < 7) {
     const rest = Math.max(7 - weekdays.length, 0)
     const lastContributedWeekday = weekdays[weekdays.length - rest]
 
-    for (let i = 0; i < rest; i++) {
+    for (let i = 0; i < rest; i += 1) {
       const nextDay = addDays(new Date(lastContributedWeekday.date), 7)
       weekdays.push({
-        date: format(nextDay, 'yyy-MM-dd'),
-        count: 0,
         color: NO_CONTRIBUTIONS_COLOR,
+        count: 0,
+        date: format(nextDay, 'yyy-MM-dd'),
       })
     }
   }
@@ -48,7 +47,7 @@ query getUserContributions($username:String!) {
 }
 `
 
-type ContributionsPerDay = {
+interface ContributionsPerDay {
   date: string
   count: number
   color: string
@@ -71,30 +70,29 @@ type ContributionsPerWeekDays = [
   ContributionsPerDay[],
 ]
 
-type GitHubContributions = {
+interface GitHubContributions {
   totalContributions: number
   contributionsPerDays: ContributionsPerDay[]
 }
 
 export async function getGitHubContributions(
-  username: string
+  username: string,
 ): Promise<GitHubContributions> {
   try {
     const { user } = await graphql<{ user: User }>(getUserContributionsQuery, {
-      username,
       headers: {
         Authorization: `Bearer ${env.GITHUB_CONTRIBUTIONS_READER_TOKEN}`,
       },
+      username,
     })
 
-    const contributionCalendar =
-      user.contributionsCollection.contributionCalendar
+    const { contributionCalendar } = user.contributionsCollection
 
-    const totalContributions = contributionCalendar.totalContributions
+    const { totalContributions } = contributionCalendar
 
     const numberOfWeeks = Math.round(TOTAL_NUMBER_OF_DAYS / 7)
     const weeks = contributionCalendar.weeks.slice(
-      Math.max(contributionCalendar.weeks.length - numberOfWeeks, 0)
+      Math.max(contributionCalendar.weeks.length - numberOfWeeks, 0),
     )
 
     const contributionDays = weeks.flatMap((week) => week.contributionDays)
@@ -103,14 +101,14 @@ export async function getGitHubContributions(
       contributionDays.reduce<ContributionsPerWeekDays>(
         (tuple, contributionDay) => {
           tuple[contributionDay.weekday].push({
-            date: contributionDay.date,
-            count: contributionDay.contributionCount,
             color: contributionDay.color,
+            count: contributionDay.contributionCount,
+            date: contributionDay.date,
           })
 
           return tuple
         },
-        [[], [], [], [], [], [], []]
+        [[], [], [], [], [], [], []],
       )
 
     const contributionsPerDays: ContributionsPerDay[] = [
@@ -124,10 +122,10 @@ export async function getGitHubContributions(
     ]
 
     return {
-      totalContributions,
       contributionsPerDays,
+      totalContributions,
     }
   } catch {
-    return { totalContributions: 0, contributionsPerDays: [] }
+    return { contributionsPerDays: [], totalContributions: 0 }
   }
 }

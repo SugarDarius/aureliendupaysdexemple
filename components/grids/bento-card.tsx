@@ -1,9 +1,10 @@
 'use client'
 
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
+import type { VariantProps } from 'class-variance-authority'
 
-import { cn } from '@/lib/utils'
 import { VFXBackgroundDot } from '@/components/ui-vfx/vfx-background-dot'
+import { cn } from '@/lib/utils'
 
 const bentoCardVariants = cva(
   'relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-stone-50 dark:border-neutral-800 dark:bg-stone-900',
@@ -13,7 +14,7 @@ const bentoCardVariants = cva(
         grid: 'transform-gpu transition-transform duration-150 ease-linear hover:scale-[1.03]',
       },
     },
-  }
+  },
 )
 
 type BentoCardProps = {
@@ -27,7 +28,7 @@ export function BentoCard({
   children,
 }: BentoCardProps) {
   return (
-    <div className={cn(bentoCardVariants({ variant, className }))}>
+    <div className={cn(bentoCardVariants({ className, variant }))}>
       <div className='relative flex size-full flex-col overflow-hidden'>
         <VFXBackgroundDot />
         <div className='relative z-2 flex size-full flex-col'>{children}</div>

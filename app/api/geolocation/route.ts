@@ -18,8 +18,8 @@ export const GET = createSafeRouteHandler(
     }
 
     return Response.json({
-      latitude: parseFloat(latitude),
-      longitude: parseFloat(longitude),
+      latitude: Number.parseFloat(latitude),
+      longitude: Number.parseFloat(longitude),
     })
-  }
+  },
 )

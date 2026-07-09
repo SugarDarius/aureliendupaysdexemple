@@ -1,15 +1,14 @@
 'use client'
 
+import { nanoid } from 'nanoid'
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import { nanoid } from 'nanoid'
-
+import { SVGCanvas } from '@/components/lab/drawing-canvas/svg-canvas'
 import type {
   SVGPoint,
   SVGPath,
 } from '@/components/lab/drawing-canvas/svg-canvas-path'
-import { SVGCanvas } from '@/components/lab/drawing-canvas/svg-canvas'
 
 const DEFAULT_CURVE_SMOOTHING = 0.4
 const DEFAULT_PATH_DISAPPEARING_TIMEOUT_MS = 5000
@@ -18,19 +17,19 @@ const mergePaths = (existing: SVGPath[], incoming: SVGPath[]): SVGPath[] => {
   const allPaths = [...existing, ...incoming]
   const mergedPaths = new Map<string, SVGPath>()
 
-  allPaths.forEach((path) => {
+  for (const path of allPaths) {
     mergedPaths.set(path.id, path)
-  })
+  }
 
-  return Array.from(mergedPaths.values())
+  return [...mergedPaths.values()]
 }
 
-export type DrawingCanvasRef = {
+export interface DrawingCanvasRef {
   clear: () => void
   sync: (paths: SVGPath[]) => void
 }
 
-type DrawingCanvasProps = {
+interface DrawingCanvasProps {
   className?: string
   isLocked?: boolean
   width: React.CSSProperties['width']
@@ -63,7 +62,7 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
       onDrawStart,
       onDrawEnd,
     },
-    ref
+    ref,
   ) => {
     const [isDrawing, setIsDrawing] = useState<boolean>(false)
 
@@ -79,15 +78,15 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
     })
 
     const syncPaths = useEvent((incomingPaths: SVGPath[]): void => {
-      setPaths((paths) => {
-        const mergedPaths = mergePaths(paths, incomingPaths)
+      setPaths((previousPaths) => {
+        const mergedPaths = mergePaths(previousPaths, incomingPaths)
         return mergedPaths
       })
       setShouldNotifyChanges(false)
     })
 
-    const notifyChanges = useEvent((paths: SVGPath[]): void => {
-      onChange?.(paths)
+    const notifyChanges = useEvent((updatedPaths: SVGPath[]): void => {
+      onChange?.(updatedPaths)
     })
 
     const handleMouseDown = useEvent(
@@ -95,45 +94,45 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         setIsDrawing(true)
         onDrawStart?.()
 
-        const id = 'drawing-svg-canvas-path-' + nanoid(10)
+        const id = `drawing-svg-canvas-path-${nanoid(10)}`
         const path: SVGPath = {
+          ended: false,
           id,
+          originViewBox,
           points: [point],
+          publicMetadata: { ...publicMetadata },
           strokeColor,
           strokeWidth,
-          ended: false,
-          originViewBox,
-          publicMetadata: { ...publicMetadata },
         }
 
         setCurrentPathId(id)
         setShouldNotifyChanges(true)
-        setPaths((paths) => [...paths, path])
-      }
+        setPaths((previousPaths) => [...previousPaths, path])
+      },
     )
 
     const handleMouseMove = useEvent((point: SVGPoint): void => {
       if (isDrawing && currentPathId !== null) {
         setShouldNotifyChanges(true)
-        setPaths((paths) => {
-          const currentPathIndex = paths.findIndex(
-            (path) => path.id === currentPathId
+        setPaths((previousPaths) => {
+          const currentPathIndex = previousPaths.findIndex(
+            (path) => path.id === currentPathId,
           )
-          if (currentPathIndex >= 0) {
-            const currentPath = paths[currentPathIndex]
+          if (currentPathIndex !== -1) {
+            const currentPath = previousPaths[currentPathIndex]
             const updatedPath = {
               ...currentPath,
               points: [...currentPath.points, point],
             }
 
             return [
-              ...paths.slice(0, currentPathIndex),
+              ...previousPaths.slice(0, currentPathIndex),
               updatedPath,
-              ...paths.slice(currentPathIndex + 1),
+              ...previousPaths.slice(currentPathIndex + 1),
             ]
           }
 
-          return paths
+          return previousPaths
         })
       }
     })
@@ -144,25 +143,25 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         onDrawEnd?.()
 
         setShouldNotifyChanges(true)
-        setPaths((paths) => {
+        setPaths((previousPaths) => {
           const currentPathIndex = paths.findIndex(
-            (path) => path.id === currentPathId
+            (path) => path.id === currentPathId,
           )
-          if (currentPathIndex >= 0) {
-            const currentPath = paths[currentPathIndex]
+          if (currentPathIndex !== -1) {
+            const currentPath = previousPaths[currentPathIndex]
             const updatedPath = {
               ...currentPath,
               ended: true,
             }
 
             return [
-              ...paths.slice(0, currentPathIndex),
+              ...previousPaths.slice(0, currentPathIndex),
               updatedPath,
-              ...paths.slice(currentPathIndex + 1),
+              ...previousPaths.slice(currentPathIndex + 1),
             ]
           }
 
-          return paths
+          return previousPaths
         })
         setCurrentPathId(null)
       }
@@ -170,13 +169,16 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
 
     const handleDisappearedPath = useEvent((pathId: string): void => {
       setShouldNotifyChanges(false)
-      setPaths((paths) => {
-        const index = paths.findIndex(({ id }) => id === pathId)
-        if (index > -1) {
-          return [...paths.slice(0, index), ...paths.slice(index + 1)]
+      setPaths((previousPaths) => {
+        const index = previousPaths.findIndex(({ id }) => id === pathId)
+        if (index !== -1) {
+          return [
+            ...previousPaths.slice(0, index),
+            ...previousPaths.slice(index + 1),
+          ]
         }
 
-        return paths
+        return previousPaths
       })
     })
 
@@ -186,12 +188,12 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         clear: (): void => {
           clearPaths()
         },
-        sync: (paths: SVGPath[]): void => {
-          syncPaths(paths)
+        sync: (previousPaths: SVGPath[]): void => {
+          syncPaths(previousPaths)
         },
       }),
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      []
+      [],
     )
 
     useEffect(() => {
@@ -218,6 +220,6 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
         onDisappearedPath={handleDisappearedPath}
       />
     )
-  }
+  },
 )
 DrawingCanvas.displayName = 'DrawingCanvas'

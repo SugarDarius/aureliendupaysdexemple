@@ -1,17 +1,18 @@
 import { redirect } from 'next/navigation'
 
-import { getMDXPages } from '@/db/mdx-content'
-
-import { Separator } from '@/components/ui/separator'
 import { PageContent } from '@/components/content/page-content'
 import { PageHero } from '@/components/content/page-hero'
 import { MDXContentRenderer } from '@/components/mdx/mdx-content-renderer'
+import { Separator } from '@/components/ui/separator'
+import { getMDXPages } from '@/db/mdx-content'
 
-type StaticParam = { slug: string }
+interface StaticParam {
+  slug: string
+}
 
 export async function generateStaticParams(): Promise<StaticParam[]> {
   const pages = await getMDXPages('mdx-renderer')
-  const slugs = Array.from(pages.keys()).map((slug: string) => ({ slug }))
+  const slugs = [...pages.keys()].map((slug: string) => ({ slug }))
 
   return slugs
 }

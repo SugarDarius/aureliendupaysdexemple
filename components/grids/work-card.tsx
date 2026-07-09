@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 
-import { cn } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
 import { BentoCard } from '@/components/grids/bento-card'
+import { Separator } from '@/components/ui/separator'
+import { cn } from '@/lib/utils'
 
 const WorkCardSeparator = ({ className }: { className?: string }) => (
   <Separator className={cn('w-4! bg-stone-800 dark:bg-stone-500', className)} />
@@ -28,11 +28,11 @@ export function WorkCard({
   const AnchorComp = href ? 'a' : Fragment
   const anchorProps = href
     ? {
-        href,
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        className: 'inline-flex underline-offset-2 hover:underline',
         'aria-label': companyName,
+        className: 'inline-flex underline-offset-2 hover:underline',
+        href,
+        rel: 'noopener noreferrer',
+        target: '_blank',
       }
     : {}
 
@@ -42,7 +42,7 @@ export function WorkCard({
         <div className='flex flex-row items-center justify-between max-md:flex-col max-md:items-start max-md:justify-start max-md:gap-2'>
           <div className='flex flex-row items-center gap-2 max-md:flex-col max-md:items-start max-md:gap-0'>
             <div className='flex flex-row items-center gap-2'>
-              {companyLogo ? companyLogo : null}
+              {companyLogo}
               <AnchorComp {...anchorProps}>
                 <h1 className='text-xl font-extrabold tracking-tighter max-md:text-lg'>
                   {companyName}

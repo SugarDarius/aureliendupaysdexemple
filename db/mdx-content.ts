@@ -1,5 +1,6 @@
-import fs from 'fs/promises'
-import path from 'path'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+
 import { z } from 'zod'
 
 const PAGE_EXT_NAME = '.mdx'
@@ -7,28 +8,31 @@ const PAGE_EXT_NAME = '.mdx'
 async function getMDXFiles(dirName: string): Promise<string[]> {
   const dir = await fs.readdir(dirName)
   const files = dir.filter(
-    (file): boolean => path.extname(file) === PAGE_EXT_NAME
+    (file): boolean => path.extname(file) === PAGE_EXT_NAME,
   )
 
   return files
 }
 
 const pageMetadataSchema = z.object({
-  title: z.string(),
-  publishedAt: z.string(),
-  summary: z.string(),
-  image: z.string().optional(),
   category: z.string().optional(),
   githubURL: z.string().url().optional(),
+  image: z.string().optional(),
+  publishedAt: z.string(),
+  summary: z.string(),
+  title: z.string(),
 })
 
 type PageMetadata = z.infer<typeof pageMetadataSchema>
-type PageMDXData = { metadata: PageMetadata; content: string }
+interface PageMDXData {
+  metadata: PageMetadata
+  content: string
+}
 
 const defaultMetadata: PageMetadata = {
-  title: '[no title]',
   publishedAt: '[no published date]',
   summary: '[no summary]',
+  title: '[no title]',
 }
 
 async function parseFrontmatter(fileContent: string): Promise<PageMDXData> {
@@ -41,20 +45,20 @@ async function parseFrontmatter(fileContent: string): Promise<PageMDXData> {
 
   const unsafePageMetadata: Record<string, string> = {}
 
-  frontMatterLines.forEach((line) => {
+  for (const line of frontMatterLines) {
     const [key, ...valueArr] = line.split(': ')
     let value = valueArr.join(': ').trim()
 
     value = value.replace(/^['"](.*)['"]$/, '$1')
     unsafePageMetadata[key.trim()] = value
-  })
+  }
 
   const result = await pageMetadataSchema.safeParseAsync(unsafePageMetadata)
   if (result.success) {
-    return { metadata: result.data, content }
+    return { content, metadata: result.data }
   }
 
-  return { metadata: defaultMetadata, content }
+  return { content, metadata: defaultMetadata }
 }
 
 async function readMDXFile(filePath: string): Promise<PageMDXData> {
@@ -85,9 +89,9 @@ async function getMDXData(dirName: string): Promise<Pages> {
 }
 
 export async function getMDXPages(
-  contentSrc: 'blog' | 'craft' | 'mdx-renderer'
+  contentSrc: 'blog' | 'craft' | 'mdx-renderer',
 ): Promise<Pages> {
-  const dirName = path.join(process.cwd(), 'mdx-content/' + contentSrc)
+  const dirName = path.join(process.cwd(), `mdx-content/${contentSrc}`)
   const pages = await getMDXData(dirName)
 
   return pages

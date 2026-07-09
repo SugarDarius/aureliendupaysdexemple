@@ -1,4 +1,5 @@
 import Image from 'next/image'
+
 import { PageBentoItem } from '@/components/bento/page-bento-item'
 
 export function CraftBentoItem() {

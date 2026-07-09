@@ -1,5 +1,5 @@
 export const flattenColorPalette = (
-  palette: Record<string, unknown> | undefined
+  palette: Record<string, unknown> | undefined,
 ): Record<string, string> => {
   const result: Record<string, string> = {}
 
@@ -19,7 +19,7 @@ export const flattenColorPalette = (
     }
 
     for (const [childKey, childValue] of Object.entries(
-      value as Record<string, unknown>
+      value as Record<string, unknown>,
     )) {
       const nextPath =
         childKey === 'DEFAULT'

@@ -1,7 +1,8 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
+
 import { BentoCard } from '@/components/grids/bento-card'
 
-type SocialBentoItemProps = {
+interface SocialBentoItemProps {
   href: string
   name: string
   accountName: string

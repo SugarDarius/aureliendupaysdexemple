@@ -13,7 +13,7 @@ export function CraftGrid({
     <div
       className={cn(
         'grid w-full grid-cols-4 gap-4 max-sm:grid-cols-2',
-        className
+        className,
       )}
     >
       {children}

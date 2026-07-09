@@ -1,8 +1,7 @@
-import { siteConfig } from '@/config/site-config'
-
-import { LinkedInSquareIcon } from '@/components/icons/linkedin-square-icon'
 import { SocialBentoItem } from '@/components/bento/social-bento-item'
+import { LinkedInSquareIcon } from '@/components/icons/linkedin-square-icon'
 import { LinkedInChatWidget } from '@/components/widgets/linkedin-chat-widget'
+import { siteConfig } from '@/config/site-config'
 
 export function LinkedInBentoItem() {
   return (

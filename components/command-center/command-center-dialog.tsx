@@ -1,10 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-
-import { useMemo } from 'react'
-import useEvent from 'react-use-event-hook'
-
 import {
   ArrowRightIcon,
   SunIcon,
@@ -18,18 +13,28 @@ import {
   LinkedInLogoIcon,
   CopyIcon,
 } from '@radix-ui/react-icons'
-
+import { useRouter } from 'next/navigation'
+import { useMemo } from 'react'
+import useEvent from 'react-use-event-hook'
 import { toast } from 'sonner'
 
-import { siteConfig } from '@/config/site-config'
-
-import { cn, toUpperFirst, dasherize } from '@/lib/utils'
-import { navigationItems } from '@/lib/navigation'
-
-import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
-import { useUserAgent } from '@/hooks/use-user-agent'
-import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
-
+import {
+  addSuggestionCommand,
+  getSuggestedCommands,
+  increaseCommandScore,
+} from '@/components/command-center/commands-suggestions-store'
+import { CommandIcon } from '@/components/icons/command-icon'
+import { ConfettiIcon } from '@/components/icons/confetti-icon'
+import { KeyboardIcon } from '@/components/icons/keyboard-icon'
+import { ReturnIcon } from '@/components/icons/return-icon'
+import { SelectIcon } from '@/components/icons/select-icon'
+import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
+import {
+  toggleMagnifyingGlass,
+  useMagnifyingGlassStore,
+} from '@/components/lab/magnifying-glass/magnifying-glass-store'
+import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
+import { Badge } from '@/components/ui/badge'
 import {
   CommandDialog,
   CommandEmpty,
@@ -41,27 +46,14 @@ import {
   CommandShortcut,
   useCommandState,
 } from '@/components/ui/command'
-import { Badge } from '@/components/ui/badge'
+import { siteConfig } from '@/config/site-config'
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
+import { useSwitchColorMode } from '@/hooks/use-switch-color-mode'
+import { useUserAgent } from '@/hooks/use-user-agent'
+import { navigationItems } from '@/lib/navigation'
+import { cn, toUpperFirst, dasherize } from '@/lib/utils'
 
-import { TwitterLogoIcon } from '@/components/icons/twitter-logo-icon'
 import { BlueskyLogoIcon } from '../icons/bluesky-logo-icon'
-import { CommandIcon } from '@/components/icons/command-icon'
-import { ReturnIcon } from '@/components/icons/return-icon'
-import { SelectIcon } from '@/components/icons/select-icon'
-import { ConfettiIcon } from '@/components/icons/confetti-icon'
-import { KeyboardIcon } from '@/components/icons/keyboard-icon'
-
-import {
-  toggleMagnifyingGlass,
-  useMagnifyingGlassStore,
-} from '@/components/lab/magnifying-glass/magnifying-glass-store'
-
-import {
-  addSuggestionCommand,
-  getSuggestedCommands,
-  increaseCommandScore,
-} from '@/components/command-center/commands-suggestions-store'
-import { fireVFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface-store'
 
 const CommandCenterFooterShortcut = ({
   name,
@@ -127,7 +119,7 @@ const ActivatableCommandItemContent = ({
   </div>
 )
 
-type CommandCenterDialogItemProps = {
+interface CommandCenterDialogItemProps {
   name: string
   searchValue?: string
   value: string
@@ -164,7 +156,7 @@ const createCommandWithSuggestion = (
   {
     key: initialKey,
     ...props
-  }: Omit<CommandCenterDialogItemProps, 'name'> & { key?: string }
+  }: Omit<CommandCenterDialogItemProps, 'name'> & { key?: string },
 ): ReturnType<typeof CommandCenterDialogItem> => {
   const key = dasherize(initialKey ?? name)
 
@@ -175,13 +167,13 @@ const createCommandWithSuggestion = (
 
   const commandSuggestion = (
     <CommandCenterDialogItem
-      key={key + '-suggested'}
+      key={`${key}-suggested`}
       name={name}
       {...props}
       searchValue={suggestedSearchValue}
       value={suggestedValue}
-      onSelect={(name: string, value: string) => {
-        props.onSelect(name, value.replace('+suggested', ''))
+      onSelect={(itemName: string, value: string) => {
+        props.onSelect(itemName, value.replace('+suggested', ''))
       }}
     />
   )
@@ -221,7 +213,7 @@ export function CommandCenterDialog({
   const [, copy] = useCopyToClipboard()
 
   const isMagnifyingGlassActive = useMagnifyingGlassStore(
-    (state) => state.isActive
+    (state) => state.isActive,
   )
 
   const handleEscapeKeyDown = useEvent((e: KeyboardEvent): void => {
@@ -242,7 +234,7 @@ export function CommandCenterDialog({
       execCommand(name, (): void => {
         router.push(href)
       })
-    }
+    },
   )
 
   const handleSelectSocialLink = useEvent((name: string, url: string): void => {
@@ -256,7 +248,7 @@ export function CommandCenterDialog({
       execCommand(name, (): void => {
         setColorMode(colorMode)
       })
-    }
+    },
   )
 
   const handleSelectCopyCurrentURL = useEvent((name: string): void => {
@@ -275,7 +267,7 @@ export function CommandCenterDialog({
             {
               closeButton: true,
               duration: 1000 * 2,
-            }
+            },
           )
         })
     })
@@ -299,7 +291,7 @@ export function CommandCenterDialog({
       execCommand(name, (): void => {
         openKeyboardShortcutsDialog()
       })
-    }
+    },
   )
 
   const handleSelectToggleMagnifyingGlass = useEvent((name: string): void => {
@@ -319,11 +311,7 @@ export function CommandCenterDialog({
   ] = useMemo(
     () => [
       navigationItems.map((navigationItem) =>
-        createCommandWithSuggestion('go-to-' + navigationItem.href, {
-          key: navigationItem.href,
-          searchValue: navigationItem.name,
-          value: navigationItem.href,
-          onSelect: handleSelectNavigation,
+        createCommandWithSuggestion(`go-to-${navigationItem.href}`, {
           children: (
             <>
               <ArrowRightIcon className='h-4 w-4' />
@@ -336,101 +324,103 @@ export function CommandCenterDialog({
               </CommandCenterDialogItemShortcut>
             </>
           ),
-        })
+          key: navigationItem.href,
+          onSelect: handleSelectNavigation,
+          searchValue: navigationItem.name,
+          value: navigationItem.href,
+        }),
       ),
       [
         createCommandWithSuggestion('copy-current-url', {
-          value: 'copy current url',
-          onSelect: handleSelectCopyCurrentURL,
           children: (
             <>
               <CopyIcon className='size-4' />
               Copy current URL
             </>
           ),
+          onSelect: handleSelectCopyCurrentURL,
+          value: 'copy current url',
         }),
         createCommandWithSuggestion('create-qr-code', {
-          value: 'create qr code for current url',
-          onSelect: handleSelectCreateQRCode,
           children: (
             <>
               <QrCodeIcon className='size-4' />
               Create QR code for current URL
             </>
           ),
+          onSelect: handleSelectCreateQRCode,
+          value: 'create qr code for current url',
         }),
         createCommandWithSuggestion('vfx-confetti', {
-          value: 'celebrate with confetti',
-          onSelect: handleSelectVFXConfetti,
           children: (
             <>
               <ConfettiIcon className='size-4 stroke-[1.5px]' />
               Celebrate
             </>
           ),
+          onSelect: handleSelectVFXConfetti,
+          value: 'celebrate with confetti',
         }),
       ],
       [
         createCommandWithSuggestion('linkedin', {
-          value: siteConfig.socialLinks.linkedin.url,
-          searchValue: 'linkedin',
-          onSelect: handleSelectSocialLink,
           children: (
             <>
               <LinkedInLogoIcon className='h-4 w-4' />
               LinkedIn
             </>
           ),
+          onSelect: handleSelectSocialLink,
+          searchValue: 'linkedin',
+          value: siteConfig.socialLinks.linkedin.url,
         }),
         createCommandWithSuggestion('github', {
-          value: siteConfig.socialLinks.github.url,
-          searchValue: 'github',
-          onSelect: handleSelectSocialLink,
           children: (
             <>
               <GitHubLogoIcon className='h-4 w-4' />
               GitHub
             </>
           ),
+          onSelect: handleSelectSocialLink,
+          searchValue: 'github',
+          value: siteConfig.socialLinks.github.url,
         }),
         createCommandWithSuggestion('twitter', {
-          value: siteConfig.socialLinks.twitter.url,
-          searchValue: 'twitter',
-          onSelect: handleSelectSocialLink,
           children: (
             <>
               <TwitterLogoIcon className='h-4 w-4' />
               Twitter (X)
             </>
           ),
+          onSelect: handleSelectSocialLink,
+          searchValue: 'twitter',
+          value: siteConfig.socialLinks.twitter.url,
         }),
         createCommandWithSuggestion('bluesky', {
-          value: siteConfig.socialLinks.bluesky.url,
-          searchValue: 'bluesky',
-          onSelect: handleSelectSocialLink,
           children: (
             <>
               <BlueskyLogoIcon className='h-4 w-4' />
               Bluesky 🦋
             </>
           ),
+          onSelect: handleSelectSocialLink,
+          searchValue: 'bluesky',
+          value: siteConfig.socialLinks.bluesky.url,
         }),
       ],
       [
         createCommandWithSuggestion('open-keyboard-shortcuts-dialog', {
-          value: 'keyboard shortcuts',
-          onSelect: handleSelectOpenKeyboardShortcutsDialog,
           children: (
             <>
               <KeyboardIcon className='size-4 stroke-[1.5px]' />
               Keyboard shortcuts
             </>
           ),
+          onSelect: handleSelectOpenKeyboardShortcutsDialog,
+          value: 'keyboard shortcuts',
         }),
         isMagnifyingGlassAvailable
           ? createCommandWithSuggestion('toggle-magnifying-glass', {
-              value: 'toggle magnifying class',
-              onSelect: handleSelectToggleMagnifyingGlass,
               children: (
                 <>
                   <ActivatableCommandItemContent
@@ -439,51 +429,54 @@ export function CommandCenterDialog({
                     <MagnifyingGlassIcon className='size-4' />
                     Toggle magnifying glass
                   </ActivatableCommandItemContent>
-                  {!isMagnifyingGlassActive ? (
+                  {isMagnifyingGlassActive ? null : (
                     <CommandCenterDialogItemShortcut>
                       M
                     </CommandCenterDialogItemShortcut>
-                  ) : null}
+                  )}
                 </>
               ),
+              onSelect: handleSelectToggleMagnifyingGlass,
+              value: 'toggle magnifying class',
             })
           : null,
       ],
       [
         createCommandWithSuggestion('light', {
-          value: 'light',
-          onSelect: handleSelectColorMode,
           children: (
             <ActivatableCommandItemContent active={theme === 'light'}>
               <SunIcon className='h-4 w-4' />
               Light
             </ActivatableCommandItemContent>
           ),
+          // oxlint-disable-next-line react/react-compiler
+          onSelect: handleSelectColorMode,
+          value: 'light',
         }),
         createCommandWithSuggestion('dark', {
-          value: 'dark',
-          onSelect: handleSelectColorMode,
           children: (
             <ActivatableCommandItemContent active={theme === 'dark'}>
               <MoonIcon className='h-4 w-4' />
               Dark
             </ActivatableCommandItemContent>
           ),
+          onSelect: handleSelectColorMode,
+          value: 'dark',
         }),
         createCommandWithSuggestion('system', {
-          value: 'system',
-          onSelect: handleSelectColorMode,
           children: (
             <ActivatableCommandItemContent active={theme === 'system'}>
               <ComputerDesktopIcon className='h-4 w-4' />
               System
             </ActivatableCommandItemContent>
           ),
+          onSelect: handleSelectColorMode,
+          value: 'system',
         }),
       ],
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, isMagnifyingGlassAvailable, isMagnifyingGlassActive]
+    [theme, isMagnifyingGlassAvailable, isMagnifyingGlassActive],
   )
 
   const suggestedCommands = getSuggestedCommands(5)

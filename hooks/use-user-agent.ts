@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { useIsomorphicLayoutEffect } from '@/hooks/use-isomorphic-layout-effect'
 
 type Browser = 'Firefox' | 'Safari' | 'undetermined'
@@ -8,8 +9,8 @@ const getBrowser = (): Browser => {
     return 'undetermined'
   }
 
-  const userAgent = navigator.userAgent
-  const vendor = navigator.vendor
+  const { userAgent } = navigator
+  const { vendor } = navigator
 
   if (/Firefox\/d+\.\d+$/.test(userAgent)) {
     return 'Firefox'
@@ -27,7 +28,7 @@ const getDeviceType = (): DeviceType => {
     return 'undetermined'
   }
 
-  const userAgent = navigator.userAgent
+  const { userAgent } = navigator
 
   if (/(tablet)|(iPad)|(Nexus 9)/i.test(userAgent)) {
     return 'tablet'
@@ -38,7 +39,7 @@ const getDeviceType = (): DeviceType => {
   return 'desktop'
 }
 
-type UseUserAgentReturnType = {
+interface UseUserAgentReturnType {
   isSafari: boolean
   isFirefox: boolean
   isMobile: boolean
@@ -49,11 +50,11 @@ export function useUserAgent(): UseUserAgentReturnType {
   const [deviceType, setDeviceType] = useState<DeviceType>('undetermined')
 
   useIsomorphicLayoutEffect(() => {
-    const browser = getBrowser()
-    const deviceType = getDeviceType()
+    const detectedBrowser = getBrowser()
+    const detectedDeviceType = getDeviceType()
 
-    setBrowser(browser)
-    setDeviceType(deviceType)
+    setBrowser(detectedBrowser)
+    setDeviceType(detectedDeviceType)
   }, [])
 
   const isSafari = browser === 'Safari'
@@ -64,5 +65,5 @@ export function useUserAgent(): UseUserAgentReturnType {
 
   const isMobile = isTablet || isSmartphone
 
-  return { isSafari, isFirefox, isMobile } as const
+  return { isFirefox, isMobile, isSafari } as const
 }

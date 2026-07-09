@@ -1,35 +1,26 @@
 'use client'
 
-import { forwardRef, useRef, useState } from 'react'
-import useEvent from 'react-use-event-hook'
-import { useHotkeys } from 'react-hotkeys-hook'
-
-import { clsx } from 'clsx'
-import {
-  type MotionValue,
-  motion,
-  useMotionValue,
-  AnimatePresence,
-} from 'motion/react'
 import { TrashIcon } from '@heroicons/react/24/outline'
+import { clsx } from 'clsx'
+import { motion, useMotionValue, AnimatePresence } from 'motion/react'
+import type { MotionValue } from 'motion/react'
+import { forwardRef, useRef, useState } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
+import useEvent from 'react-use-event-hook'
 
-import { cn } from '@/lib/utils'
-
+import { PencilIcon } from '@/components/icons/pencil-icon'
+import { TimerIcon } from '@/components/icons/timer-icon'
+import { DrawingCanvas } from '@/components/lab/drawing-canvas/drawing-canvas'
+import type { DrawingCanvasRef } from '@/components/lab/drawing-canvas/drawing-canvas'
+import { Button } from '@/components/ui/button'
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import { PencilIcon } from '@/components/icons/pencil-icon'
-import { TimerIcon } from '@/components/icons/timer-icon'
-import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
-import {
-  type DrawingCanvasRef,
-  DrawingCanvas,
-} from '@/components/lab/drawing-canvas/drawing-canvas'
-
-type ControlButtonProps = {
+interface ControlButtonProps {
   className?: string
   active?: boolean
   'data-state'?: boolean
@@ -47,7 +38,7 @@ const ControlButton = forwardRef<HTMLButtonElement, ControlButtonProps>(
         'hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
         'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
         'dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50 dark:data-[active=true]:text-neutral-900',
-        className
+        className,
       )}
       onClick={onClick}
       data-active={active}
@@ -55,7 +46,7 @@ const ControlButton = forwardRef<HTMLButtonElement, ControlButtonProps>(
     >
       {children}
     </Button>
-  )
+  ),
 )
 ControlButton.displayName = 'ControlButton'
 
@@ -231,7 +222,7 @@ export function DrawingEditor({ className }: { className?: string }) {
     (e: React.MouseEvent<HTMLDivElement>): void => {
       x.set(e.clientX + window.scrollX)
       y.set(e.clientY + window.scrollY)
-    }
+    },
   )
 
   useHotkeys('shift+d', (): void => {
@@ -247,7 +238,7 @@ export function DrawingEditor({ className }: { className?: string }) {
           'relative flex size-full flex-col',
           clsx({
             'cursor-none!': !isLocked,
-          })
+          }),
         )}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

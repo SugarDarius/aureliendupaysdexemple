@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
-import { formatClock } from '@/lib/clock'
 import { useInterval } from '@/hooks/use-interval'
+import { formatClock } from '@/lib/clock'
 
 // check for every seconds to be realistic
 const REFRESH_DELAY_MS = 1000
@@ -19,7 +19,7 @@ export function useClock(): UseClockReturnType {
   const [clock, setClock] = useState<string>(formatClock())
   const [refreshDelayMs, setRefreshDelay] = useState<number | null>(null)
 
-  // eslint-disable-next-line react-hooks/purity
+  // eslint-disable-next-line react-hooks/purity react/react-compiler
   const renderTimeRef = useRef<number>(Date.now())
 
   useInterval((): void => {

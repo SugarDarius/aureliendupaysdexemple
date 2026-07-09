@@ -1,18 +1,12 @@
 'use client'
 
+import { motion, AnimatePresence } from 'motion/react'
+import type { PanInfo, Variants, Transition } from 'motion/react'
 import React, { useLayoutEffect, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import {
-  motion,
-  AnimatePresence,
-  type PanInfo,
-  type Variants,
-  type Transition,
-} from 'motion/react'
-
-import { cn } from '@/lib/utils'
 import { useMounted } from '@/hooks/use-mounted'
+import { cn } from '@/lib/utils'
 
 const DotNavigationItem = ({
   dot,
@@ -23,7 +17,7 @@ const DotNavigationItem = ({
   selectedIndex: number
   onClick: (index: number) => void
 }) => {
-  const index = parseInt(dot.split('-').pop() ?? '-1')
+  const index = Math.trunc(Number(dot.split('-').pop() ?? '-1'))
   const handleClick = useEvent((): void => {
     onClick(index)
   })
@@ -50,7 +44,7 @@ const DotsNavigation = ({
 }) => {
   const dots = Array.from(
     { length: count },
-    (_, i) => 'dot-navigation-item-' + i
+    (_, i) => `dot-navigation-item-${i}`,
   )
 
   return (
@@ -69,35 +63,38 @@ const DotsNavigation = ({
   )
 }
 
-type Custom = { direction: number; height: number }
+interface Custom {
+  direction: number
+  height: number
+}
 
 const variants: Variants = {
   enter: ({ direction, height }: Custom) => ({
-    zIndex: 0,
-    y: direction > 0 ? height + 100 : (height + 100) * -1,
-    scale: 0.65,
     rotateX: direction > 0 ? -45 : 45,
+    scale: 0.65,
+    y: direction > 0 ? height + 100 : (height + 100) * -1,
+    zIndex: 0,
+  }),
+  exit: ({ direction, height }: Custom) => ({
+    rotateX: direction < 0 ? -45 : 45,
+    scale: 0.65,
+    y: direction < 0 ? height + 100 : (height + 100) * -1,
+    zIndex: 0,
   }),
   visible: {
-    zIndex: 4,
-    y: 0,
-    scale: 1,
     rotateX: 0,
+    scale: 1,
+    y: 0,
+    zIndex: 4,
   },
-  exit: ({ direction, height }: Custom) => ({
-    zIndex: 0,
-    y: direction < 0 ? height + 100 : (height + 100) * -1,
-    scale: 0.65,
-    rotateX: direction < 0 ? -45 : 45,
-  }),
 }
 
 const transition: Transition = {
-  y: { duration: 0.6 },
   scale: { duration: 0.6 },
+  y: { duration: 0.6 },
 }
 
-type ItemProps = {
+interface ItemProps {
   direction: number
   size: [number, number]
   children: React.ReactNode
@@ -105,7 +102,7 @@ type ItemProps = {
   onDragStart: () => void
   onDragEnd: (
     event: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
+    info: PanInfo,
   ) => void
 }
 
@@ -119,33 +116,31 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
       onDragEnd,
       onClickCapture,
     }: ItemProps,
-    ref
-  ) => {
-    return (
-      <motion.div
-        ref={ref}
-        className='absolute left-0 top-0 flex flex-col'
-        style={{
-          width: size[0],
-          height: size[1],
-        }}
-        custom={{ direction, height: size[1] }}
-        variants={variants}
-        initial='enter'
-        animate='visible'
-        exit='exit'
-        transition={transition}
-        drag='y'
-        dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={1}
-        onDragStart={onDragStart}
-        onDragEnd={onDragEnd}
-        onClickCapture={onClickCapture}
-      >
-        <div className='flex h-full w-full flex-col'>{children}</div>
-      </motion.div>
-    )
-  }
+    ref,
+  ) => (
+    <motion.div
+      ref={ref}
+      className='absolute left-0 top-0 flex flex-col'
+      style={{
+        height: size[1],
+        width: size[0],
+      }}
+      custom={{ direction, height: size[1] }}
+      variants={variants}
+      initial='enter'
+      animate='visible'
+      exit='exit'
+      transition={transition}
+      drag='y'
+      dragConstraints={{ bottom: 0, top: 0 }}
+      dragElastic={1}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onClickCapture={onClickCapture}
+    >
+      <div className='flex h-full w-full flex-col'>{children}</div>
+    </motion.div>
+  ),
 )
 
 Item.displayName = 'SmartStackItem'
@@ -157,7 +152,7 @@ const getSwipeDistance = (offset: number, velocity: number): number =>
 const getNextIndex = (
   direction: number,
   index: number,
-  maxIndex: number
+  maxIndex: number,
 ): number => {
   let nextIndex = 0
 
@@ -181,6 +176,7 @@ export function SmartStack({
   roundedValuePx?: number
   children: React.ReactNode
 }) {
+  // oxlint-disable-next-line react/no-react-children
   const items = React.Children.toArray(children)
   const count = items.length
 
@@ -216,7 +212,7 @@ export function SmartStack({
       }
 
       isDraggingRef.current = false
-    }
+    },
   )
 
   const handleCaptureClick = useEvent(
@@ -225,7 +221,7 @@ export function SmartStack({
         e.preventDefault()
         e.stopPropagation()
       }
-    }
+    },
   )
 
   const handleDotClick = useEvent((nextIndex: number): void => {
@@ -280,7 +276,7 @@ export function SmartStack({
             <div className='absolute left-0 top-0 h-full w-full animate-in fade-in [&_a]:user-drag-none [&_img]:user-drag-none'>
               <AnimatePresence initial={false} custom={custom} mode='popLayout'>
                 <Item
-                  key={'smart-stack-item-' + index}
+                  key={`smart-stack-item-${index}`}
                   direction={direction}
                   size={containerSize}
                   onDragStart={handleDragStart}

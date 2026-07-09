@@ -370,5 +370,5 @@ export function getRandomUsername(): string {
   const adjective = pick(adjectives)
   const animal = pick(animals)
 
-  return toUpperFirst(adjective) + ' ' + toUpperFirst(animal)
+  return `${toUpperFirst(adjective)} ${toUpperFirst(animal)}`
 }

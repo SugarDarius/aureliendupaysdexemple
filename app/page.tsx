@@ -1,16 +1,14 @@
-import { PageContent } from '@/components/content/page-content'
-import { BentoGrid } from '@/components/grids/bento-grid'
-
-import { SmartStack } from '@/components/lab/smart-stack'
-
+import { CraftBentoItem } from '@/components/bento/craft-bento-item'
 import { GitHubBentoItem } from '@/components/bento/github-bento-item'
 import { HeroBentoItem } from '@/components/bento/hero-bento-item'
-import { TwitterBentoItem } from '@/components/bento/twitter-bento-item'
 import { LinkedInBentoItem } from '@/components/bento/linkedin-bento-item'
 import { StandByBentoItem } from '@/components/bento/stand-by-bento-item'
 import { TechStackBentoItem } from '@/components/bento/tech-stack-bento-item'
+import { TwitterBentoItem } from '@/components/bento/twitter-bento-item'
 import { WorkBentoItem } from '@/components/bento/work-bento-item'
-import { CraftBentoItem } from '@/components/bento/craft-bento-item'
+import { PageContent } from '@/components/content/page-content'
+import { BentoGrid } from '@/components/grids/bento-grid'
+import { SmartStack } from '@/components/lab/smart-stack'
 
 export default async function HomePage() {
   return (

@@ -2,11 +2,14 @@
 
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
-import useEvent from 'react-use-event-hook'
 import { useHotkeys } from 'react-hotkeys-hook'
+import useEvent from 'react-use-event-hook'
 
-import { cn } from '@/lib/utils'
+import { CommandCenterDialog } from '@/components/command-center/command-center-dialog'
+import { KeyboardShortcutsDialog } from '@/components/command-center/keyboard-shortcuts-dialog'
+import { QRCodeDialog } from '@/components/command-center/qrcode-dialog'
+import { CommandIcon } from '@/components/icons/command-icon'
+import { VFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface'
 import { Button } from '@/components/ui/button'
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
@@ -14,16 +17,10 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import { VFXConfettiSurface } from '@/components/ui-vfx/vfx-confetti-surface'
-import { CommandIcon } from '@/components/icons/command-icon'
-
-import { CommandCenterDialog } from '@/components/command-center/command-center-dialog'
-import { QRCodeDialog } from '@/components/command-center/qrcode-dialog'
-import { KeyboardShortcutsDialog } from '@/components/command-center/keyboard-shortcuts-dialog'
+import { cn } from '@/lib/utils'
 
 export function CommandCenter({ className }: { className?: string }) {
   const pathname = usePathname()
-
   const [commandDialogOpen, setCommandDialogOpen] = useState<boolean>(false)
 
   const [qrcodeDialogOpen, setQRCodeDialogOpen] = useState<boolean>(false)
@@ -33,6 +30,7 @@ export function CommandCenter({ className }: { className?: string }) {
     useState<boolean>(false)
 
   useEffect(() => {
+    // oxlint-disable-next-line react/react-compiler
     setQRCodeDialogOpen(false)
   }, [pathname])
 
@@ -44,7 +42,7 @@ export function CommandCenter({ className }: { className?: string }) {
     {
       enabled:
         !commandDialogOpen && !qrcodeDialogOpen && !keyboardShortcutsDialogOpen,
-    }
+    },
   )
 
   const handleButtonClick = useEvent((): void => {
@@ -74,7 +72,7 @@ export function CommandCenter({ className }: { className?: string }) {
               navigationMenuTriggerStyle(),
               'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
               'cursor-pointer',
-              className
+              className,
             )}
             onClick={handleButtonClick}
             aria-label='Command Center'

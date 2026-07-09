@@ -1,10 +1,10 @@
+import type { IUniform } from 'three'
 import {
   ShaderMaterial,
   MathUtils,
   DataTexture,
   RGBAFormat,
   FloatType,
-  IUniform,
 } from 'three'
 
 import {
@@ -13,10 +13,10 @@ import {
 } from '@/components/particles/simulation-shaders'
 
 const getRandomDataSphere = (size: number): Float32Array => {
-  const length = Math.pow(size, 2) * 4
+  const length = size ** 2 * 4
   const data = new Float32Array(length)
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i += 1) {
     const stride = i * 4
 
     const distance = Math.sqrt(Math.random()) * 2
@@ -26,23 +26,23 @@ const getRandomDataSphere = (size: number): Float32Array => {
     data[stride] = distance * Math.sin(theta) * Math.cos(phi)
     data[stride + 1] = distance * Math.sin(theta) * Math.sin(phi)
     data[stride + 2] = distance * Math.cos(theta)
-    data[stride + 3] = 1.0 // NOTE: no impact
+    data[stride + 3] = 1 // NOTE: no impact
   }
 
   return data
 }
 
 const getRandomDataBox = (size: number): Float32Array => {
-  const length = Math.pow(size, 2) * 4
+  const length = size ** 2 * 4
   const data = new Float32Array(length)
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i += 1) {
     const stride = i * 4
 
-    data[stride] = (Math.random() - 0.5) * 2.0
-    data[stride + 1] = (Math.random() - 0.5) * 2.0
-    data[stride + 2] = (Math.random() - 0.5) * 2.0
-    data[stride + 3] = 1.0 // NOTE: no impact
+    data[stride] = (Math.random() - 0.5) * 2
+    data[stride + 1] = (Math.random() - 0.5) * 2
+    data[stride + 2] = (Math.random() - 0.5) * 2
+    data[stride + 3] = 1 // NOTE: no impact
   }
 
   return data
@@ -56,7 +56,7 @@ export class SimulationMaterial extends ShaderMaterial {
       size,
       size,
       RGBAFormat,
-      FloatType
+      FloatType,
     )
     positionsTextureA.needsUpdate = true
 
@@ -66,7 +66,7 @@ export class SimulationMaterial extends ShaderMaterial {
       size,
       size,
       RGBAFormat,
-      FloatType
+      FloatType,
     )
     positionsTextureB.needsUpdate = true
 
@@ -78,9 +78,9 @@ export class SimulationMaterial extends ShaderMaterial {
     }
 
     super({
+      fragmentShader: simulationFragmentShader,
       uniforms: simulationUniforms,
       vertexShader: simulationVertexShader,
-      fragmentShader: simulationFragmentShader,
     })
   }
 }

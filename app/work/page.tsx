@@ -1,27 +1,25 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
-import { cn } from '@/lib/utils'
-
-import { ReactIcon } from '@/components/icons/react-icon'
-import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
-import { LiveblocksLogoIcon } from '@/components/icons/liveblocks-logo-icon'
-import { ClaapIcon } from '@/components/icons/claap-icon'
-
-import { Separator } from '@/components/ui/separator'
+import { InlineLink } from '@/components/content/inline-link'
 import { PageContent } from '@/components/content/page-content'
 import { PageHero } from '@/components/content/page-hero'
-import { InlineLink } from '@/components/content/inline-link'
 import { TagLink } from '@/components/content/tag-link'
 import { WorkCard } from '@/components/grids/work-card'
+import { ClaapIcon } from '@/components/icons/claap-icon'
+import { LiveblocksLogoIcon } from '@/components/icons/liveblocks-logo-icon'
+import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
+import { ReactIcon } from '@/components/icons/react-icon'
+import { Separator } from '@/components/ui/separator'
+import { cn } from '@/lib/utils'
 
 const ItemsSeparator = ({ className }: { className?: string }) => (
   <Separator className={cn('mx-auto w-[90%]', className)} />
 )
 
 export const metadata: Metadata = {
-  title: 'Work',
   description: 'Check my work and contributions',
+  title: 'Work',
 }
 
 export default function WorkPage() {

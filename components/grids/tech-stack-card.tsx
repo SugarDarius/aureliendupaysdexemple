@@ -2,10 +2,10 @@
 
 import { Fragment } from 'react'
 
-import { cn } from '@/lib/utils'
 import { BentoCard } from '@/components/grids/bento-card'
+import { cn } from '@/lib/utils'
 
-export type TechStackCardProps = {
+export interface TechStackCardProps {
   name: string
   tag: string
   href?: string
@@ -23,10 +23,10 @@ export function TechStackCard({
   const AnchorComp = href ? 'a' : Fragment
   const anchorProps = href
     ? {
-        href,
-        target: '_blank',
-        rel: 'noopener noreferrer',
         'aria-label': name,
+        href,
+        rel: 'noopener noreferrer',
+        target: '_blank',
       }
     : {}
   return (

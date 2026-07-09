@@ -4,11 +4,12 @@ import {
   BriefcaseIcon,
   LightBulbIcon,
 } from '@heroicons/react/24/outline'
-import type { HeroiconsIcon } from '@/lib/heroicons'
 import type { Keys } from 'react-hotkeys-hook'
 
+import type { HeroiconsIcon } from '@/lib/heroicons'
+
 export type NavigationItemName = 'home' | 'tech-stack' | 'work' | 'craft'
-export type NavigationItem = {
+export interface NavigationItem {
   href: string
   name: NavigationItemName
   label: string
@@ -19,37 +20,37 @@ export type NavigationItem = {
 export const navigationItems: NavigationItem[] = [
   {
     href: '/',
-    name: 'home',
     label: 'home',
-    shortcutLabel: 'G+H',
+    name: 'home',
     shortcutKeys: 'g+h',
+    shortcutLabel: 'G+H',
   },
   {
     href: '/tech-stack',
-    name: 'tech-stack',
     label: 'tech stack',
-    shortcutLabel: 'G+T',
+    name: 'tech-stack',
     shortcutKeys: 'G+T',
+    shortcutLabel: 'G+T',
   },
   {
     href: '/work',
-    name: 'work',
     label: 'work',
-    shortcutLabel: 'G+W',
+    name: 'work',
     shortcutKeys: 'g+w',
+    shortcutLabel: 'G+W',
   },
   {
     href: '/craft',
-    name: 'craft',
     label: 'craft',
-    shortcutLabel: 'G+C',
+    name: 'craft',
     shortcutKeys: 'g+c',
+    shortcutLabel: 'G+C',
   },
 ]
 
 export const navigationItemsIcons: Record<NavigationItemName, HeroiconsIcon> = {
+  craft: LightBulbIcon,
   home: HomeIcon,
   'tech-stack': WrenchScrewdriverIcon,
   work: BriefcaseIcon,
-  craft: LightBulbIcon,
 }

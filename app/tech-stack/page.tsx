@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 
+import { PageContent } from '@/components/content/page-content'
+import { PageHero } from '@/components/content/page-hero'
+import { TechStackCard } from '@/components/grids/tech-stack-card'
+import { TechStackGrid } from '@/components/grids/tech-stack-grid'
+import { Separator } from '@/components/ui/separator'
 import {
-  type TechStackItem,
   languagesTechStackItems,
   frontendTechnologiesTechStackItems,
   backendTechnologiesTechStackItems,
@@ -10,16 +14,11 @@ import {
   toolsAndSoftwaresRepoTechStackItems,
   toolsAndSoftwaresDesignTechStackItems,
 } from '@/lib/tech-stack'
-
-import { Separator } from '@/components/ui/separator'
-import { PageContent } from '@/components/content/page-content'
-import { PageHero } from '@/components/content/page-hero'
-import { TechStackGrid } from '@/components/grids/tech-stack-grid'
-import { TechStackCard } from '@/components/grids/tech-stack-card'
+import type { TechStackItem } from '@/lib/tech-stack'
 
 export const metadata: Metadata = {
-  title: 'Tech Stack',
   description: 'Check my tech stack I use everyday',
+  title: 'Tech Stack',
 }
 
 const StackItem = ({ Icon, ...props }: TechStackItem) => (

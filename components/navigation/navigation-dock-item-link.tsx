@@ -1,31 +1,31 @@
 'use client'
 
+import { cva } from 'class-variance-authority'
+import type { VariantProps } from 'class-variance-authority'
 import Link from 'next/link'
 import { forwardRef } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
 
-import { cn } from '@/lib/utils'
-
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+import { cn } from '@/lib/utils'
 
 const variants = cva(
   'flex flex-col items-center justify-center data-[active]:bg-accent',
   {
+    defaultVariants: {
+      variant: 'default',
+    },
     variants: {
       variant: {
         default: 'rounded-xl',
         drawer: 'h-full w-full gap-1 rounded-xl border shadow',
       },
     },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
+  },
 )
 
 type NavigationDockItemLinkProps = {
@@ -43,27 +43,25 @@ export const NavigationDockItemLink = forwardRef<
 >(
   (
     { href, name, active = false, className, variant, onClick, children },
-    ref
-  ) => {
-    return (
-      <Link
-        ref={ref}
-        href={href}
-        className={cn(
-          navigationMenuTriggerStyle(),
-          variants({ variant }),
-          'size-auto',
-          className
-        )}
-        data-active={active ? '' : undefined}
-        onClick={onClick}
-        aria-label={name}
-        transitionTypes={['fade']}
-      >
-        {children}
-      </Link>
-    )
-  }
+    ref,
+  ) => (
+    <Link
+      ref={ref}
+      href={href}
+      className={cn(
+        navigationMenuTriggerStyle(),
+        variants({ variant }),
+        'size-auto',
+        className,
+      )}
+      data-active={active ? '' : undefined}
+      onClick={onClick}
+      aria-label={name}
+      transitionTypes={['fade']}
+    >
+      {children}
+    </Link>
+  ),
 )
 NavigationDockItemLink.displayName = 'NavigationDockItemLink'
 
@@ -77,24 +75,22 @@ export const NavigationDockItemExternalLink = ({
   name: string
   tooltipLabel: string
   children: React.ReactNode
-}) => {
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <a
-          href={href}
-          target='_blank'
-          rel='noopener noreferrer'
-          className={cn(
-            navigationMenuTriggerStyle(),
-            'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0'
-          )}
-          aria-label={name}
-        >
-          {children}
-        </a>
-      </TooltipTrigger>
-      <TooltipContent sideOffset={8}>{tooltipLabel}</TooltipContent>
-    </Tooltip>
-  )
-}
+}) => (
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <a
+        href={href}
+        target='_blank'
+        rel='noopener noreferrer'
+        className={cn(
+          navigationMenuTriggerStyle(),
+          'data-active:bg-accent flex h-9 w-9 flex-col items-center justify-center rounded-full p-0',
+        )}
+        aria-label={name}
+      >
+        {children}
+      </a>
+    </TooltipTrigger>
+    <TooltipContent sideOffset={8}>{tooltipLabel}</TooltipContent>
+  </Tooltip>
+)

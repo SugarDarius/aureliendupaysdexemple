@@ -1,63 +1,59 @@
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-
-import { useMemo, useState } from 'react'
-import useEvent from 'react-use-event-hook'
-
 import {
   Cog6ToothIcon,
   FaceSmileIcon,
   MicrophoneIcon,
   VideoCameraIcon,
 } from '@heroicons/react/24/outline'
+import { motion, AnimatePresence } from 'motion/react'
+import type { Variants } from 'motion/react'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import { useMemo, useState } from 'react'
+import useEvent from 'react-use-event-hook'
 
-import { type Variants, motion, AnimatePresence } from 'motion/react'
-
-import { cn } from '@/lib/utils'
-
+import { PresentationIcon } from '@/components/icons/presentation-icon'
+import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
+import { VFXBorderBeam } from '@/components/ui-vfx/vfx-border-beam'
 import { Button } from '@/components/ui/button'
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@/components/ui/tooltip'
-import { VFXBorderBeam } from '@/components/ui-vfx/vfx-border-beam'
-import { ImagePlaceholder } from '@/components/ui-helpers/image-placeholder'
-
-import { PresentationIcon } from '@/components/icons/presentation-icon'
+import { cn } from '@/lib/utils'
 
 const participantGradients: Record<string, string> = {
-  '#fb7185': 'bg-linear-to-r from-rose-400 to-red-500',
+  '#6366f1': 'bg-linear-to-r from-indigo-500 to-blue-500',
+  '#a3e635': 'bg-linear-to-r from-lime-400 to-lime-500',
   '#a855f7': 'bg-linear-to-r from-purple-500 to-purple-900',
   '#bfdbfe': 'bg-linear-to-r from-blue-200 to-cyan-200',
-  '#a3e635': 'bg-linear-to-r from-lime-400 to-lime-500',
-  '#fde68a': 'bg-linear-to-r from-amber-200 to-yellow-400',
-  '#ef4444': 'bg-linear-to-r from-red-500 to-orange-500',
   '#ec4899': 'bg-linear-to-r from-pink-500 to-rose-500',
-  '#6366f1': 'bg-linear-to-r from-indigo-500 to-blue-500',
-  '#fb923c': 'bg-linear-to-r from-orange-400 to-red-500',
+  '#ef4444': 'bg-linear-to-r from-red-500 to-orange-500',
   '#f59e0b': 'bg-linear-to-r from-amber-500 to-amber-700',
+  '#fb7185': 'bg-linear-to-r from-rose-400 to-red-500',
+  '#fb923c': 'bg-linear-to-r from-orange-400 to-red-500',
+  '#fde68a': 'bg-linear-to-r from-amber-200 to-yellow-400',
 }
 
 const variants: Variants = {
   enter: {
-    y: 40,
-    scale: 0.85,
     opacity: 0,
-  },
-  visible: {
-    y: 0,
-    scale: 1,
-    opacity: 1,
+    scale: 0.85,
+    y: 40,
   },
   exit: {
-    y: 40,
-    scale: 0.85,
     opacity: 0,
+    scale: 0.85,
+    y: 40,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
   },
 }
 
-export type Participant = {
+export interface Participant {
   id: string
   isActive: boolean
   isCurrentUser: boolean
@@ -93,16 +89,16 @@ const ParticipantItem = ({
     <motion.div
       className={cn(
         'relative flex aspect-square rounded-lg bg-neutral-800/90 p-2',
-        className
+        className,
       )}
       variants={variants}
       initial='enter'
       animate='visible'
       exit='exit'
       transition={{
-        type: 'tween',
-        ease: 'easeInOut',
         duration: 0.15,
+        ease: 'easeInOut',
+        type: 'tween',
       }}
     >
       <Tooltip>
@@ -110,16 +106,16 @@ const ParticipantItem = ({
           <div
             className={cn(
               'flex size-[86px] flex-col items-center justify-center overflow-hidden rounded-full',
-              gradient
+              gradient,
             )}
           >
             <Image
               src={avatarSrc}
               width={80}
               height={80}
-              alt={'participant avatar ' + id}
+              alt={`participant avatar ${id}`}
               priority
-              style={{ width: 80, height: 80 }}
+              style={{ height: 80, width: 80 }}
             />
           </div>
         </TooltipTrigger>
@@ -157,7 +153,7 @@ export const ControlButton = ({
             'border-neutral-700 hover:border-neutral-700 hover:bg-neutral-800 hover:text-neutral-100 dark:bg-neutral-800 dark:text-neutral-100 dark:hover:border-neutral-200 dark:hover:bg-neutral-50 dark:hover:text-neutral-900',
             'data-[active=true]:border-neutral-700 data-[active=true]:bg-neutral-800 data-[active=true]:text-neutral-100',
             'dark:data-[active=true]:border-neutral-200 dark:data-[active=true]:bg-neutral-50 dark:data-[active=true]:text-neutral-900',
-            className
+            className,
           )}
           data-active={active}
           onClick={onClick}
@@ -174,7 +170,7 @@ export const ControlButton = ({
 export function VideoCallFrame({
   className,
   additionalControls,
-  participants = [],
+  participants,
   children,
 }: {
   className?: string
@@ -192,19 +188,19 @@ export function VideoCallFrame({
     <div
       className={cn(
         'relative flex h-full max-h-full w-full flex-col gap-4 bg-linear-to-l from-gray-200 via-fuchsia-200 to-stone-100 p-4',
-        className
+        className,
       )}
     >
       <div className='relative flex w-full flex-auto flex-row gap-4'>
         <div className='relative flex h-full flex-auto flex-col items-center justify-center overflow-hidden rounded-md bg-neutral-800/10'>
           <div className='flex aspect-video h-auto w-full flex-col items-center justify-center'>
-            {children ? children : <ImagePlaceholder className='w-1/2' />}
+            {children ?? <ImagePlaceholder className='w-1/2' />}
           </div>
         </div>
         <div className='relative flex h-full flex-none flex-col overflow-y-auto'>
           <div className='grid w-max grid-flow-row auto-rows-fr gap-2'>
             <AnimatePresence initial={false}>
-              {participants.map((participant) => (
+              {(participants ?? []).map((participant) => (
                 <ParticipantItem key={participant.id} {...participant} />
               ))}
             </AnimatePresence>

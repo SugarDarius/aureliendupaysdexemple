@@ -3,17 +3,17 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 
-import {
-  type SVGPoint,
-  type SVGPath,
-  SVGCanvasPath,
+import { SVGCanvasPath } from '@/components/lab/drawing-canvas/svg-canvas-path'
+import type {
+  SVGPoint,
+  SVGPath,
 } from '@/components/lab/drawing-canvas/svg-canvas-path'
 
 const SVG_CANVAS_ID = 'drawing-svg-canvas'
 
 const getPointFromEvent = (
   event: React.MouseEvent<HTMLDivElement>,
-  containerPosition: [number, number]
+  containerPosition: [number, number],
 ): SVGPoint => ({
   x: event.pageX - containerPosition[1] - window.scrollX,
   y: event.pageY - containerPosition[0] - window.scrollY,
@@ -60,7 +60,7 @@ export function SVGCanvas({
         const point = getPointFromEvent(e, containerPosition)
         onMouseDown(point, viewBox)
       }
-    }
+    },
   )
 
   const handleMouseMove = useEvent(
@@ -69,7 +69,7 @@ export function SVGCanvas({
         const point = getPointFromEvent(e, containerPosition)
         onMouseMove(point)
       }
-    }
+    },
   )
 
   const handleMouseUp = useEvent(
@@ -77,12 +77,13 @@ export function SVGCanvas({
       if (!isLocked && e.button === 0) {
         onMouseUp()
       }
-    }
+    },
   )
 
   useLayoutEffect(() => {
     const handleResize = (): void => {
       if (containerRef.current) {
+        // oxlint-disable-next-line no-shadow
         const { width, height, top, left } =
           containerRef.current.getBoundingClientRect()
 
@@ -107,7 +108,7 @@ export function SVGCanvas({
     <div
       ref={containerRef}
       className={className}
-      style={{ width, height }}
+      style={{ height, width }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

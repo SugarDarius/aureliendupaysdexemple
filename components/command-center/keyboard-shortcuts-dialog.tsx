@@ -1,10 +1,5 @@
 'use client'
 
-import { cn, toUpperFirst } from '@/lib/utils'
-import { navigationItems } from '@/lib/navigation'
-
-import { useUserAgent } from '@/hooks/use-user-agent'
-
 import {
   Dialog,
   DialogContent,
@@ -12,6 +7,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { useUserAgent } from '@/hooks/use-user-agent'
+import { navigationItems } from '@/lib/navigation'
+import { cn, toUpperFirst } from '@/lib/utils'
 
 const KeyboardShortcutsSection = ({
   children,

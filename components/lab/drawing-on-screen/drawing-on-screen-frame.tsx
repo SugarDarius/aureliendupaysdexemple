@@ -1,16 +1,14 @@
 'use client'
 import { ClientSideSuspense } from '@liveblocks/react/suspense'
 
-import { labsConfig } from '@/config/labs-config'
+import { DrawingOnScreenEditor } from '@/components/lab//drawing-on-screen/drawing-on-screen-editor'
 import {
   LiveblocksProvider,
   RoomProvider,
 } from '@/components/lab/drawing-on-screen/liveblocks.config'
-import { DrawingOnScreenEditor } from '@/components/lab//drawing-on-screen/drawing-on-screen-editor'
+import { labsConfig } from '@/config/labs-config'
 
-const useRoomId = (): string => {
-  return labsConfig.liveblocksDrawingOnScreen.roomId
-}
+const useRoomId = (): string => labsConfig.liveblocksDrawingOnScreen.roomId
 
 const SuspenseFallback = () => (
   <div className='flex h-full w-full flex-col items-center justify-center'>

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+
 import { useIsomorphicLayoutEffect } from '@/hooks/use-isomorphic-layout-effect'
 
 type Callback = () => void

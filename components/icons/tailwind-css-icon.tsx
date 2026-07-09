@@ -15,8 +15,8 @@ export const TailwindCSSIcon = (props: React.HTMLAttributes<SVGElement>) => (
         y2='67.556%'
         id='gradient'
       >
-        <stop stopColor='#2298BD' offset='0%'></stop>
-        <stop stopColor='#0ED7B5' offset='100%'></stop>
+        <stop stopColor='#2298BD' offset='0%' />
+        <stop stopColor='#0ED7B5' offset='100%' />
       </linearGradient>
     </defs>
     <path

@@ -1,17 +1,11 @@
 'use client'
 
-import { useRef } from 'react'
-import {
-  type RootState,
-  extend,
-  useFrame,
-  createPortal,
-} from '@react-three/fiber'
 import { useFBO } from '@react-three/drei'
+import { extend, useFrame, createPortal } from '@react-three/fiber'
+import type { RootState } from '@react-three/fiber'
+import { useRef } from 'react'
 import * as THREE from 'three'
 
-import { SimulationMaterial } from '@/components/particles/simulation-material'
-import { vertexShader, fragmentShader } from '@/components/particles/shaders'
 import {
   scene,
   camera,
@@ -21,17 +15,19 @@ import {
   particlesPosition,
   SIZE,
 } from '@/components/particles/frame-buffer-object-particles-utils'
+import { vertexShader, fragmentShader } from '@/components/particles/shaders'
+import { SimulationMaterial } from '@/components/particles/simulation-material'
 
-extend({ SimulationMaterial: SimulationMaterial })
+extend({ SimulationMaterial })
 
 export function FrameBufferObjectParticles() {
   const points = useRef<THREE.Points>(null)
   const simulationMaterialRef = useRef<SimulationMaterial>(null)
 
   const renderTarget = useFBO(SIZE, SIZE, {
-    minFilter: THREE.NearestFilter,
-    magFilter: THREE.NearestFilter,
     format: THREE.RGBAFormat,
+    magFilter: THREE.NearestFilter,
+    minFilter: THREE.NearestFilter,
     stencilBuffer: false,
     type: THREE.FloatType,
   })
@@ -77,7 +73,7 @@ export function FrameBufferObjectParticles() {
             />
           </bufferGeometry>
         </mesh>,
-        scene
+        scene,
       )}
       <points ref={points}>
         <bufferGeometry>
