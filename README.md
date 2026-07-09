@@ -12,12 +12,12 @@
 
 ## Running locally
 
-This project has been implemented with Node.js v21.7+ and npm v10.5+
+This project has been implemented with Node.js v21.7+ and pnpm v11.10+
 
 ```bash
 git clone https://github.com/SugarDarius/aureliendupaysdexemple.git
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 ## License
