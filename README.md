@@ -1,6 +1,6 @@
 # aureliendupaysdexemple.com
 
-> NOTE: My portfolio is my breakable place where I test patterns and technologies. Some part of the code may not work at some point.
+> NOTE: My personal website is my breakable place where I test patterns and technologies. Some part of the code may not work at some point.
 
 - **Framework**: [Next.js](https://nextjs.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
