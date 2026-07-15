@@ -55,7 +55,7 @@
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.185.1",
-    "ultracite": "^7.9.3",
+    "ultracite": "^7.9.4",
     "vaul": "^1.1.2",
     "zod": "^4.4.3",
     "zustand": "^5.0.14"
