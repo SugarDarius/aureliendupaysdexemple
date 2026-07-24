@@ -67,7 +67,7 @@
     "@types/three": "^0.185.1",
     "oxfmt": "^0.60.0",
     "oxlint": "^1.75.0",
-    "postcss": "^8.5.19",
+    "postcss": "^8.5.22",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "ultracite": "^7.9.4"
