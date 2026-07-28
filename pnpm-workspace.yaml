@@ -3,3 +3,4 @@ allowBuilds:
   unrs-resolver: true
 minimumReleaseAgeExclude:
   - '@types/three@0.185.1'
+  - postcss@8.5.24
