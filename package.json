@@ -61,7 +61,7 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/dom-view-transitions": "^1.0.6",
     "@types/mdx": "^2.0.14",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@types/three": "^0.185.4",
