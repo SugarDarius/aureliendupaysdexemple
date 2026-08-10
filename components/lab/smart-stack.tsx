@@ -48,7 +48,7 @@ const DotsNavigation = ({
   )
 
   return (
-    <div className='absolute right-2 top-0 flex h-full flex-col justify-center'>
+    <div className='absolute top-0 right-2 flex h-full flex-col justify-center'>
       <div className='z-10 flex flex-col justify-center gap-1.5 rounded-full p-1 opacity-25 backdrop-blur-sm transition-opacity ease-linear group-hover:opacity-100'>
         {dots.map((dot) => (
           <DotNavigationItem
@@ -120,7 +120,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>(
   ) => (
     <motion.div
       ref={ref}
-      className='absolute left-0 top-0 flex flex-col'
+      className='absolute top-0 left-0 flex flex-col'
       style={{
         height: size[1],
         width: size[0],
@@ -259,21 +259,21 @@ export function SmartStack({
       className={cn('group relative flex flex-col', className)}
     >
       <div
-        className='absolute left-0 top-0 h-full w-full overflow-hidden bg-transparent!'
+        className='absolute top-0 left-0 h-full w-full overflow-hidden bg-transparent!'
         style={{ borderRadius: roundedValuePx }}
       >
         <div
-          className='absolute left-0 top-0 h-full w-full overflow-hidden bg-neutral-700 dark:bg-neutral-800'
+          className='absolute top-0 left-0 h-full w-full overflow-hidden bg-neutral-700 dark:bg-neutral-800'
           style={{ borderRadius: roundedValuePx > 0 ? roundedValuePx + 2 : 0 }}
         >
           <div className='pointer-events-none absolute inset-0 flex items-center justify-center bg-stone-900 mask-[radial-gradient(ellipse_at_center,transparent_20%,black)]' />
         </div>
         <div
-          className='absolute left-0 top-0 h-full w-full overflow-hidden'
+          className='absolute top-0 left-0 h-full w-full overflow-hidden'
           style={{ borderRadius: roundedValuePx }}
         >
           {mounted ? (
-            <div className='absolute left-0 top-0 h-full w-full animate-in fade-in [&_a]:user-drag-none [&_img]:user-drag-none'>
+            <div className='animate-in fade-in [&_a]:user-drag-none [&_img]:user-drag-none absolute top-0 left-0 h-full w-full'>
               <AnimatePresence initial={false} custom={custom} mode='popLayout'>
                 <Item
                   key={`smart-stack-item-${index}`}

@@ -29,10 +29,10 @@ export function TwitterBentoItem() {
                   />
                 </div>
                 <div className='flex flex-col'>
-                  <h1 className='text-sm font-semibold leading-4 tracking-tighter'>
+                  <h1 className='text-sm leading-4 font-semibold tracking-tighter'>
                     Aurélien
                   </h1>
-                  <span className='text-xs text-muted-foreground'>
+                  <span className='text-muted-foreground text-xs'>
                     {siteConfig.socialLinks.twitter.name}
                   </span>
                 </div>
@@ -42,7 +42,7 @@ export function TwitterBentoItem() {
             <div className='flex w-full flex-auto flex-col gap-4'>
               <TwitterPostWidget />
             </div>
-            <div className='relative flex w-full flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 p-1.5 text-neutral-900 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 max-md:p-1 max-md:text-[10px]'>
+            <div className='relative flex w-full flex-row items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 p-1.5 text-neutral-900 max-md:p-1 max-md:text-[10px] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100'>
               <span className='text-xs font-semibold'>See my account</span>
               <PaperAirplaneIcon className='size-3' />
               <VFXBorderBeam className='vfx-border-beam-duration-[6s] vfx-border-beam-color-from-violet-400 vfx-border-beam-color-to-fuchsia-700 vfx-border-beam-size-[52px] dark:vfx-border-beam-color-from-cyan-300 dark:vfx-border-beam-color-to-sky-600 max-md:vfx-border-beam-size-10' />

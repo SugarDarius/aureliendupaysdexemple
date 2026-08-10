@@ -15,12 +15,12 @@ const ChatBubble = ({
 }) => (
   <div
     className={cn(
-      'flex h-7 w-auto flex-row items-center gap-1.5 rounded-full bg-neutral-600 pl-1.5 pr-2',
+      'flex h-7 w-auto flex-row items-center gap-1.5 rounded-full bg-neutral-600 pr-2 pl-1.5',
       className,
     )}
   >
     <Image src={src} width={16} height={16} alt={alt} priority />
-    <span className='mt-px text-xs font-semibold text-background dark:text-foreground'>
+    <span className='text-background dark:text-foreground mt-px text-xs font-semibold'>
       {children}
     </span>
   </div>

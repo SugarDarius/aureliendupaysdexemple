@@ -14,7 +14,7 @@ import {
 import { cn } from '@/lib/utils'
 
 const variants = cva(
-  'flex flex-col items-center justify-center data-[active]:bg-accent',
+  'data-[active]:bg-accent flex flex-col items-center justify-center',
   {
     defaultVariants: {
       variant: 'default',

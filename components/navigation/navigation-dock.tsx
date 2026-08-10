@@ -24,8 +24,8 @@ export function NavigationDock() {
   const pathname = usePathname()
 
   return (
-    <div className='fixed bottom-6 left-0 right-0 z-10 mx-auto my-0 w-max max-lg:bottom-4'>
-      <div className='relative flex flex-row items-center gap-2 rounded-xl border bg-popover p-1'>
+    <div className='fixed right-0 bottom-6 left-0 z-10 mx-auto my-0 w-max max-lg:bottom-4'>
+      <div className='bg-popover relative flex flex-row items-center gap-2 rounded-xl border p-1'>
         <NavigationMenu className='max-lg:hidden'>
           <NavigationMenuList>
             {navigationItems.map((navigationItem) => (

@@ -18,7 +18,7 @@ export function Callout({
   return (
     <div
       className={cn(
-        'flex w-full flex-row items-stretch gap-2 rounded-lg border border-neutral-200 bg-stone-50 px-4 py-3 text-sm text-foreground dark:border-neutral-800 dark:bg-stone-900',
+        'text-foreground flex w-full flex-row items-stretch gap-2 rounded-lg border border-neutral-200 bg-stone-50 px-4 py-3 text-sm dark:border-neutral-800 dark:bg-stone-900',
         className,
       )}
     >
@@ -37,7 +37,7 @@ export function Callout({
       ) : null}
       <div className='flex flex-auto flex-col justify-center gap-1'>
         {title ? (
-          <h5 className='text-base font-bold leading-none tracking-tight'>
+          <h5 className='text-base leading-none font-bold tracking-tight'>
             {title}
           </h5>
         ) : null}

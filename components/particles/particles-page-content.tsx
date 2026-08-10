@@ -11,7 +11,7 @@ export function ParticlesPageContent({
 }) {
   return (
     <div className='relative flex h-full w-full flex-col items-center justify-center'>
-      <div className='absolute left-0 top-0 z-0 h-full w-full overflow-hidden'>
+      <div className='absolute top-0 left-0 z-0 h-full w-full overflow-hidden'>
         <ParticlesScene />
       </div>
       <div className='z-10 flex flex-col items-center'>

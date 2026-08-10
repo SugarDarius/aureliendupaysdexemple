@@ -63,7 +63,7 @@ const PresenceCursor = ({
   color: CursorColor
 }) => (
   <motion.div
-    className='pointer-events-none absolute left-0 top-0 z-10'
+    className='pointer-events-none absolute top-0 left-0 z-10'
     style={{ x, y }}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -73,7 +73,7 @@ const PresenceCursor = ({
       <Cursor className={cn('size-5', color.textClass)} />
       <motion.div
         className={cn(
-          '-ml-2.5 mt-3 flex h-7 flex-row items-center gap-1.5 rounded-full pl-1.5 pr-2',
+          'mt-3 -ml-2.5 flex h-7 flex-row items-center gap-1.5 rounded-full pr-2 pl-1.5',
           color.backgroundClass,
         )}
         initial={{ opacity: 0, x: 10, y: 10 }}
@@ -90,7 +90,7 @@ const PresenceCursor = ({
             priority
           />
         </div>
-        <span className='mt-px text-xs font-semibold leading-3 text-background dark:text-foreground'>
+        <span className='text-background dark:text-foreground mt-px text-xs leading-3 font-semibold'>
           Hello {username} 👋
         </span>
       </motion.div>
@@ -105,7 +105,7 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
   }
 
   return createPortal(
-    <div className='pointer-events-none absolute left-0 top-0 h-screen w-screen'>
+    <div className='pointer-events-none absolute top-0 left-0 h-screen w-screen'>
       {children}
     </div>,
     document.body,

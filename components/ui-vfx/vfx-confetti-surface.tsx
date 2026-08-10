@@ -48,14 +48,14 @@ export function VFXConfettiSurface({ className }: { className?: string }) {
     <div
       ref={containerRef}
       className={cn(
-        'pointer-events-none! absolute left-0 top-0 z-999999! h-screen w-screen',
+        'pointer-events-none! absolute top-0 left-0 z-999999! h-screen w-screen',
         className,
       )}
     >
       <ReactCanvasConfetti
         width={containerSize[0]}
         height={containerSize[1]}
-        className='pointer-events-none! absolute left-0 top-0'
+        className='pointer-events-none! absolute top-0 left-0'
         onInit={handleCanvasInit}
       />
     </div>,

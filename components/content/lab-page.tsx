@@ -24,7 +24,7 @@ function Content({
   return (
     <div
       className={cn(
-        'flex h-auto min-h-full w-full flex-col items-center gap-10 px-8 pb-24 pt-12 max-sm:px-4',
+        'flex h-auto min-h-full w-full flex-col items-center gap-10 px-8 pt-12 pb-24 max-sm:px-4',
         className,
       )}
     >

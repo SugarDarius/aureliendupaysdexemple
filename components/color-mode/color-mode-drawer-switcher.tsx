@@ -33,7 +33,7 @@ const ColorModeDrawerItem = ({
 }) => (
   <div
     className={cn(
-      'flex h-full w-full flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow data-[selected=true]:bg-accent/50',
+      'data-[selected=true]:bg-accent/50 flex h-full w-full flex-col items-center justify-center gap-1 rounded-xl border px-4 py-2 shadow',
       className,
     )}
     onClick={onClick}
@@ -63,8 +63,8 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
             className,
           )}
         >
-          <SunIcon className='h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <MoonIcon className='absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+          <SunIcon className='h-4 w-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90' />
+          <MoonIcon className='absolute h-4 w-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0' />
           <span className='sr-only'>Toggle color mode</span>
         </Button>
       </DrawerTrigger>

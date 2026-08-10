@@ -28,7 +28,7 @@ const KeyboardShortcutsSectionTitle = ({
 }: {
   children?: React.ReactNode
 }) => (
-  <span className='text-base font-semibold leading-none text-muted-foreground'>
+  <span className='text-muted-foreground text-base leading-none font-semibold'>
     {children}
   </span>
 )
@@ -47,10 +47,10 @@ const KeyboardShortcutLabel = ({
   children,
 }: {
   children?: React.ReactNode
-}) => <span className='text-sm font-medium leading-none'>{children}</span>
+}) => <span className='text-sm leading-none font-medium'>{children}</span>
 
 const KeyboardShortcutKeys = ({ children }: { children?: React.ReactNode }) => (
-  <span className='flex items-center rounded border bg-muted px-1 text-xs font-medium tracking-[2px] text-muted-foreground'>
+  <span className='bg-muted text-muted-foreground flex items-center rounded border px-1 text-xs font-medium tracking-[2px]'>
     {children}
   </span>
 )

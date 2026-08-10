@@ -109,7 +109,7 @@ const DrawButton = ({
     tooltipContent={
       <>
         <span>{`${active ? 'Lock' : 'Unlock'} drawing mode`}</span>
-        <span className='pointer-events-none flex select-none items-center gap-1 rounded border bg-muted px-1.5 text-[10px] font-medium text-muted-foreground'>
+        <span className='bg-muted text-muted-foreground pointer-events-none flex items-center gap-1 rounded border px-1.5 text-[10px] font-medium select-none'>
           SHIFT + D
         </span>
       </>
@@ -160,7 +160,7 @@ const PencilCursor = ({
   color: string
 }) => (
   <motion.div
-    className='pointer-events-none absolute left-0 top-0'
+    className='pointer-events-none absolute top-0 left-0'
     style={{ x, y }}
   >
     <PencilIcon
@@ -248,7 +248,7 @@ export function DrawingEditor({ className }: { className?: string }) {
           <DrawingCanvas
             ref={canvasRef}
             backgroundColor='transparent'
-            className='absolute left-0 top-0'
+            className='absolute top-0 left-0'
             isLocked={isLocked}
             width='100%'
             height='100%'
@@ -265,9 +265,9 @@ export function DrawingEditor({ className }: { className?: string }) {
           </AnimatePresence>
         </div>
       </div>
-      <div className='absolute bottom-0 right-4 top-0 z-10 my-auto flex flex-col items-center justify-center'>
+      <div className='absolute top-0 right-4 bottom-0 z-10 my-auto flex flex-col items-center justify-center'>
         <div
-          className='flex flex-col items-center justify-center gap-1.5 rounded-full border bg-background p-2'
+          className='bg-background flex flex-col items-center justify-center gap-1.5 rounded-full border p-2'
           onMouseEnter={handleControlsMouseEnter}
           onMouseLeave={handleControlsMouseLeave}
         >

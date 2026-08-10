@@ -5,7 +5,7 @@ import { ParticlesPageContent } from '@/components/particles/particles-page-cont
 export function NotFoundPageContent() {
   return (
     <ParticlesPageContent title='404'>
-      <p className='text-xl font-bold tracking-tight text-muted-foreground max-sm:text-sm'>
+      <p className='text-muted-foreground text-xl font-bold tracking-tight max-sm:text-sm'>
         The page you are looking for does not exist.
       </p>
     </ParticlesPageContent>

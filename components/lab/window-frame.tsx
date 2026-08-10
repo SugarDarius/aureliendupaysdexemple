@@ -17,7 +17,7 @@ export function WindowFrame({
       )}
     >
       <div className='relative flex h-[36px] w-full flex-none flex-row items-center border-b'>
-        <div className='absolute left-0 top-0 flex h-full flex-row items-center gap-2 pl-3'>
+        <div className='absolute top-0 left-0 flex h-full flex-row items-center gap-2 pl-3'>
           <div className='size-3 rounded-full bg-[#ff5f56]' />
           <div className='size-3 rounded-full bg-[#ffbd2e]' />
           <div className='size-3 rounded-full bg-[#27c93f]' />

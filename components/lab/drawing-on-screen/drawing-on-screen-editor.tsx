@@ -85,7 +85,7 @@ const PencilCursor = ({
   color: string
 }) => (
   <motion.div
-    className='pointer-events-none absolute left-0 top-0'
+    className='pointer-events-none absolute top-0 left-0'
     style={{ x, y }}
   >
     <PencilIcon
@@ -97,7 +97,7 @@ const PencilCursor = ({
 
 const Portal = ({ children }: { children: React.ReactNode }) =>
   createPortal(
-    <div className='pointer-events-none absolute left-0 top-0 h-screen w-screen'>
+    <div className='pointer-events-none absolute top-0 left-0 h-screen w-screen'>
       {children}
     </div>,
     document.body,
@@ -333,12 +333,12 @@ export function DrawingOnScreenEditor({ className }: { className?: string }) {
               sizes='900px'
             />
           </div>
-          <div className='absolute left-0 top-0 flex h-full w-full'>
+          <div className='absolute top-0 left-0 flex h-full w-full'>
             <DrawingCanvas
               ref={canvasRef}
               isLocked={isLocked}
               backgroundColor='transparent'
-              className='absolute left-0 top-0'
+              className='absolute top-0 left-0'
               width='100%'
               height='100%'
               strokeColor={STROKE_COLOR}

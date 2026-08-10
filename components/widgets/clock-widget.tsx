@@ -11,14 +11,14 @@ export function ClockWidget() {
   return (
     <div className='flex h-full w-full flex-col items-center justify-center p-4 max-sm:gap-3'>
       <div className='flex w-full flex-auto flex-col items-center justify-center'>
-        <span className='text-sm leading-none text-muted-foreground'>
+        <span className='text-muted-foreground text-sm leading-none'>
           {meridiem}
         </span>
-        <div className='relative flex flex-col items-center font-mono text-[74px] font-extrabold italic leading-[74px] tracking-tighter max-sm:text-[60px] max-sm:leading-[60px]'>
+        <div className='relative flex flex-col items-center font-mono text-[74px] leading-[74px] font-extrabold tracking-tighter italic max-sm:text-[60px] max-sm:leading-[60px]'>
           <span className='max-sm:ml[-6px] ml-[-40px]'>{hours}</span>
           <span className='mt-[-16px] max-sm:mt-[-10px]'>{minutes}</span>
         </div>
-        <span className='text-xs leading-none text-muted-foreground'>
+        <span className='text-muted-foreground text-xs leading-none'>
           {timezoneOffset}
         </span>
       </div>

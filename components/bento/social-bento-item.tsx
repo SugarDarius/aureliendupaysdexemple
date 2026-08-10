@@ -39,7 +39,7 @@ export function SocialBentoItem({
                 {accountName}
               </h1>
               <div className='flex flex-row items-center gap-1'>
-                <p className='text-xs text-muted-foreground underline max-md:text-[10px]'>
+                <p className='text-muted-foreground text-xs underline max-md:text-[10px]'>
                   Check my {name} profile
                 </p>
                 <ArrowTopRightOnSquareIcon className='inline-flex size-3.5 max-md:size-2.5' />
