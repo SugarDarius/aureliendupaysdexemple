@@ -181,8 +181,8 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
       ultracite:
-        specifier: ^7.10.1
-        version: 7.10.1(oxfmt@0.62.0)(oxlint@1.77.0)
+        specifier: ^7.10.2
+        version: 7.10.2(oxfmt@0.62.0)(oxlint@1.77.0)
 
 packages:
 
@@ -2997,8 +2997,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  ultracite@7.10.1:
-    resolution: {integrity: sha512-2WbhHS9+rNsPIfV5kHnuHsvFscvMwLIVsUgvEUnTUP3tFRUBpwWN1wmt2K+A6uecjE3Qv7iUOR6gszXBkrv/qg==}
+  ultracite@7.10.2:
+    resolution: {integrity: sha512-WP1Hu/BKy/BDgntaiU33uq2Y8hKL2gEO5li2wfg7XFvmlyIkGDEy8qbWg7GHsxTEjEpWOAKpyFSF8aqc3JNEGQ==}
     hasBin: true
     peerDependencies:
       oxfmt: '>=0.1.0'
@@ -5998,7 +5998,7 @@ snapshots:
 
   typescript@6.0.3: {}
 
-  ultracite@7.10.1(oxfmt@0.62.0)(oxlint@1.77.0):
+  ultracite@7.10.2(oxfmt@0.62.0)(oxlint@1.77.0):
     dependencies:
       '@clack/prompts': 1.7.0
       commander: 15.0.0
