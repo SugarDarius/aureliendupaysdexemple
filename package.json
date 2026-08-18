@@ -49,7 +49,7 @@
     "react-use-event-hook": "^0.9.6",
     "sonner": "^2.0.8",
     "sugar-high": "^2.0.1",
-    "swr": "^2.5.0",
+    "swr": "^2.5.1",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.185.1",
