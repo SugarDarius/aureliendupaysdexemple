@@ -120,8 +120,8 @@ importers:
         specifier: ^2.0.8
         version: 2.0.8(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       sugar-high:
-        specifier: ^2.1.0
-        version: 2.1.0
+        specifier: ^2.3.1
+        version: 2.3.1
       swr:
         specifier: ^2.5.1
         version: 2.5.1(react@19.2.8)
@@ -3093,8 +3093,8 @@ packages:
       babel-plugin-macros:
         optional: true
 
-  sugar-high@2.1.0:
-    resolution: {integrity: sha512-UP9B10ys/PsTnAMjTEcfhPAeQ5AOrcczfo1LxGfLzH3d/vOH/G3ITyj8J3/covfuh1ZFjWAHYh6EuwdPA6ecUA==}
+  sugar-high@2.3.1:
+    resolution: {integrity: sha512-LwFbTGo9j3qYLnId35kkKufYdSil0jsmiac27MM6jTT5V62rmVM4r65XpSaiB9CSKqZUNCIrL64HZkGhVEDu9g==}
 
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
@@ -6307,7 +6307,7 @@ snapshots:
       client-only: 0.0.1
       react: 19.2.8
 
-  sugar-high@2.1.0: {}
+  sugar-high@2.3.1: {}
 
   supports-color@7.2.0:
     dependencies:
