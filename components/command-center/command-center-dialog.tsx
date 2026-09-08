@@ -475,8 +475,19 @@ export function CommandCenterDialog({
         }),
       ],
     ],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [theme, isMagnifyingGlassAvailable, isMagnifyingGlassActive],
+    [
+      theme,
+      isMagnifyingGlassAvailable,
+      isMagnifyingGlassActive,
+      handleSelectToggleMagnifyingGlass,
+      handleSelectColorMode,
+      handleSelectCreateQRCode,
+      handleSelectOpenKeyboardShortcutsDialog,
+      handleSelectVFXConfetti,
+      handleSelectNavigation,
+      handleSelectSocialLink,
+      handleSelectCopyCurrentURL,
+    ],
   )
 
   const suggestedCommands = getSuggestedCommands(5)

@@ -30,8 +30,9 @@ export function CommandCenter({ className }: { className?: string }) {
     useState<boolean>(false)
 
   useEffect(() => {
-    // oxlint-disable-next-line react/react-compiler
+    // oxlint-disable-next-line react/react-compiler react/set-state-in-effect
     setQRCodeDialogOpen(false)
+    // oxlint-disable-next-line react/exhaustive-effect-dependencies
   }, [pathname])
 
   useHotkeys(

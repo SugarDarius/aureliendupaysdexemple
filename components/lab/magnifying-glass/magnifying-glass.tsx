@@ -129,8 +129,7 @@ export function MagnifyingGlass() {
     return (): void => {
       window.removeEventListener('mousemove', handleMouseMove)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [handleMouseMove])
 
   useHotkeys(
     'm',

@@ -192,16 +192,14 @@ export const DrawingCanvas = forwardRef<DrawingCanvasRef, DrawingCanvasProps>(
           syncPaths(previousPaths)
         },
       }),
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [],
+      [clearPaths, syncPaths],
     )
 
     useEffect(() => {
       if (shouldNotifyChanges) {
         notifyChanges(paths)
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [paths, shouldNotifyChanges])
+    }, [paths, shouldNotifyChanges, notifyChanges])
 
     return (
       <SVGCanvas

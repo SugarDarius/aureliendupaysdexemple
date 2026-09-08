@@ -101,8 +101,7 @@ export function SVGCanvas({
       window.removeEventListener('resize', handleResize)
       document.removeEventListener('mouseup', handleMouseUp)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [handleMouseUp])
 
   return (
     <div
