@@ -11,6 +11,8 @@ import { VFXWavingHand } from '@/components/ui-vfx/vfx-waving-hand'
 import { useUserAgent } from '@/hooks/use-user-agent'
 import { cn } from '@/lib/utils'
 
+import { NodeJSIcon } from '../icons/nodejs-icon'
+
 const TagPill = ({
   className,
   children,
@@ -32,7 +34,7 @@ export function HeroBentoItem() {
   const { isMobile } = useUserAgent()
   return (
     <BentoCard
-      className='col-span-3 row-span-1 max-lg:min-h-[220px] max-md:min-h-[200px] max-sm:col-span-2'
+      className='col-span-3 row-span-1 max-lg:min-h-55 max-md:min-h-50 max-sm:col-span-2'
       variant='grid'
     >
       <VFXPresenceSurface disabled={isMobile}>
@@ -57,13 +59,19 @@ export function HeroBentoItem() {
             <div className='flex flex-auto' />
             <div className='flex flex-none flex-col gap-4 max-sm:gap-3 max-sm:text-sm'>
               <p>
-                A creative software engineer from 🌲 🇫🇷 crafting interfaces and
-                products <br className='max-md:hidden' />
-                with{' '}
+                A product software engineer from 🌲 🇫🇷 crafting interfaces and
+                APIs <br className='max-md:hidden' />
+                mostly with{' '}
                 <TagLink href='https://react.dev/' className='cursor-none'>
                   <ReactIcon className='mr-1 inline-flex h-3 w-3' />
                   React
-                </TagLink>{' '}
+                </TagLink>
+                {', '}
+                <TagLink href='https://nodejs.org/' className='cursor-none'>
+                  <NodeJSIcon className='mr-1 inline-flex h-3 w-3' />
+                  Node.js
+                </TagLink>
+                {', '}
                 and{' '}
                 <TagLink href='https://nextjs.org/' className='cursor-none'>
                   <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />
@@ -87,9 +95,7 @@ export function HeroBentoItem() {
                   <TagPill>remote club 🌎</TagPill>
                 </div>
                 <div className='flex flex-none flex-row items-center'>
-                  <span className='text-[10px] leading-[10px]'>
-                    &copy; 2026
-                  </span>
+                  <span className='text-[10px] leading-2.5'>&copy; 2026</span>
                 </div>
               </div>
             </div>

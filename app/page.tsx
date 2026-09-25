@@ -19,7 +19,7 @@ export default async function HomePage() {
         <TwitterBentoItem />
         <LinkedInBentoItem />
         <SmartStack
-          className='col-span-2 row-span-1 min-h-full max-lg:min-h-[220px] max-md:min-h-[180px]'
+          className='col-span-2 row-span-1 min-h-full max-lg:min-h-55 max-md:min-h-45'
           roundedValuePx={16}
         >
           <StandByBentoItem />
