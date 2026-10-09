@@ -9,6 +9,7 @@ import { WorkCard } from '@/components/grids/work-card'
 import { ClaapIcon } from '@/components/icons/claap-icon'
 import { LiveblocksLogoIcon } from '@/components/icons/liveblocks-logo-icon'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
+import { NodeJSIcon } from '@/components/icons/nodejs-icon'
 import { ReactIcon } from '@/components/icons/react-icon'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
@@ -31,11 +32,17 @@ export default function WorkPage() {
       />
       <Separator />
       <p>
-        My main goal is to craft interfaces and products with{' '}
+        My main goal is to craft interfaces and APIs mostly with{' '}
         <TagLink href='https://react.dev/'>
           <ReactIcon className='mr-1 inline-flex h-3 w-3' />
           React
         </TagLink>{' '}
+        {', '}
+        <TagLink href='https://nodejs.org/'>
+          <NodeJSIcon className='mr-1 inline-flex h-3 w-3' />
+          Node.js
+        </TagLink>
+        {', '}
         and{' '}
         <TagLink href='https://nextjs.org/'>
           <NextJSSquareIcon className='mr-1 inline-flex h-3 w-3' />

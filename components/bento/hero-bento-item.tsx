@@ -5,13 +5,12 @@ import Image from 'next/image'
 import { TagLink } from '@/components/content/tag-link'
 import { BentoCard } from '@/components/grids/bento-card'
 import { NextJSSquareIcon } from '@/components/icons/nextjs-square-icon'
+import { NodeJSIcon } from '@/components/icons/nodejs-icon'
 import { ReactIcon } from '@/components/icons/react-icon'
 import { VFXPresenceSurface } from '@/components/ui-vfx/vfx-presence-surface'
 import { VFXWavingHand } from '@/components/ui-vfx/vfx-waving-hand'
 import { useUserAgent } from '@/hooks/use-user-agent'
 import { cn } from '@/lib/utils'
-
-import { NodeJSIcon } from '../icons/nodejs-icon'
 
 const TagPill = ({
   className,
