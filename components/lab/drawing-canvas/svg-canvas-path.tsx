@@ -157,7 +157,7 @@ export function SVGCanvasPath({
         })
       }
 
-      disappearAnimation().then((): void => {
+      void disappearAnimation().then((): void => {
         onDisappeared(id)
       })
     },

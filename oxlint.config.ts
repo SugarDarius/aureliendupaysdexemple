@@ -22,6 +22,7 @@ export default defineConfig({
     'jsx-a11y/control-has-associated-label': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
+    'promise/always-return': 'off',
     'promise/prefer-await-to-then': 'off',
     'react/function-component-definition': 'off',
     'react/hook-use-state': 'off',
