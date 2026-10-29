@@ -14,8 +14,8 @@
 @custom-variant dark (&:is(.dark &, [data-theme='dark'] &));
 
 :root {
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(20 14.3% 4.1%);
+  --background: hsl(38 33% 97%);
+  --foreground: hsl(24 10% 12%);
 
   --card: hsl(0 0% 100%);
   --card-foreground: hsl(20 14.3% 4.1%);
@@ -56,8 +56,8 @@
 }
 
 .dark {
-  --background: hsl(20 14.3% 4.1%);
-  --foreground: hsl(60 9.1% 97.8%);
+  --background: hsl(24 10% 8%);
+  --foreground: hsl(38 33% 97%);
 
   --card: hsl(20 14.3% 4.1%);
   --card-foreground: hsl(60 9.1% 97.8%);

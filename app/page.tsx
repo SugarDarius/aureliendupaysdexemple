@@ -13,6 +13,10 @@ import { SmartStack } from '@/components/lab/smart-stack'
 export default async function HomePage() {
   return (
     <PageContent className='justify-center gap-0'>
+      <div className='flex w-full items-end justify-between border-b border-stone-200/80 pb-5 dark:border-stone-800/80'>
+        <p className='text-xs font-medium uppercase tracking-[0.24em] text-muted-foreground'>Selected work · 2026</p>
+        <p className='text-xs text-muted-foreground'>France / Remote</p>
+      </div>
       <BentoGrid>
         <HeroBentoItem />
         <GitHubBentoItem />
