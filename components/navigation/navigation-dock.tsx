@@ -42,7 +42,7 @@ export function NavigationDock() {
           pathname={pathname}
           navigationItems={navigationItems}
         />
-        <Separator orientation='vertical' className='h-[26px]' />
+        <Separator orientation='vertical' className='h-6.5!' />
         <div className='flex flex-row items-center gap-1'>
           <NavigationDockItemExternalLink
             href={siteConfig.socialLinks.linkedin.url}
@@ -73,7 +73,7 @@ export function NavigationDock() {
             <BlueskyLogoIcon className='h-4 w-4' />
           </NavigationDockItemExternalLink>
         </div>
-        <Separator orientation='vertical' className='h-[26px]' />
+        <Separator orientation='vertical' className='h-6.5!' />
         <div className='flex flex-row items-center gap-1'>
           <CommandCenter className='max-lg:hidden' />
           <ColorModeDropdownSwitcher className='max-lg:hidden' />

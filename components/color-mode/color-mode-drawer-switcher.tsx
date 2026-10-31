@@ -73,7 +73,7 @@ export function ColorModeDrawerSwitcher({ className }: { className?: string }) {
           <DrawerHeader className='sm:text-center'>
             <DrawerTitle>Color mode</DrawerTitle>
           </DrawerHeader>
-          <div className='mx-auto grid w-full max-w-[496px] grid-cols-2 gap-4'>
+          <div className='mx-auto grid w-full max-w-124 grid-cols-2 gap-4'>
             <ColorModeDrawerItem
               selected={theme === 'light'}
               onClick={() => {
