@@ -72,5 +72,5 @@
     "typescript": "^7.0.2",
     "ultracite": "^8.1.0"
   },
-  "packageManager": "pnpm@12.14.0"
+  "packageManager": "pnpm@12.16.1"
 }
