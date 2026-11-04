@@ -4,3 +4,6 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - '@types/three@0.185.1'
   - postcss@8.5.24
+permissions:
+  ultracite:
+    skills: true
