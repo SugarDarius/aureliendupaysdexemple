@@ -42,3 +42,6 @@ certificates
 
 # user local config
 .npmrc
+
+#pnpm
+.pnpm-store/
