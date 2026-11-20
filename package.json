@@ -70,7 +70,7 @@
     "postcss": "^8.5.33",
     "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2",
-    "ultracite": "^8.3.0"
+    "ultracite": "^8.3.1"
   },
   "packageManager": "pnpm@12.21.0"
 }
